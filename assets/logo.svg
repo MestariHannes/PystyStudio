@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 348 48" width="348" height="48" role="img" aria-label="Pysty Studio">
+  <!-- VÄLIAIKAINEN TEKSTILOGO. Korvaa tämä tiedosto lopullisella logolla (sama nimi: assets/logo.svg). -->
+  <rect x="0" y="0" width="27" height="48" rx="6" fill="#2F3CE8"/>
+  <rect x="6" y="31" width="15" height="5" rx="2.5" fill="#FFFFFF"/>
+  <g transform="translate(44 4)" fill="none" stroke="#0F1640" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0 40V0H10A10 10 0 0 1 10 20H0"/>
+    <path d="M29 0L39 17L49 0M39 17V40"/>
+    <path d="M78 7C78 2 73 0 68 0C62 0 58 3.5 58 10C58 17 64 18.5 68 20C72 21.5 78 23 78 30C78 37 74 40 68 40C63 40 58 38 58 33"/>
+    <path d="M87 0H107M97 0V40"/>
+    <path d="M116 0L126 17L136 0M126 17V40"/>
+  </g>
+  <g transform="translate(44 4)" fill="none" stroke="#0F1640" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M172 7C172 2 167 0 162 0C156 0 152 3.5 152 10C152 17 158 18.5 162 20C166 21.5 172 23 172 30C172 37 168 40 162 40C157 40 152 38 152 33"/>
+    <path d="M181 0H201M191 0V40"/>
+    <path d="M210 0V30A10 10 0 0 0 230 30V0"/>
+    <path d="M239 0V40H247A12 12 0 0 0 259 28V12A12 12 0 0 0 247 0Z"/>
+    <path d="M268 0V40"/>
+    <path d="M287 0A10 10 0 0 1 297 10V30A10 10 0 0 1 277 30V10A10 10 0 0 1 287 0Z"/>
+  </g>
+</svg>

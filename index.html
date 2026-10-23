@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pysty Studio – pystyklipit pitkistä videoista ja podcasteista</title>
+  <meta name="description" content="Pysty Studio tekee YouTube-videoista ja podcastjaksoista valmiita 9:16-pystyklippejä TikTokiin, Reelsiin ja Shortsiin. Sanatason tekstitys, täyskorkea rajaus ja klipille tehty musiikki.">
+  <meta property="og:title" content="Pysty Studio – pitkät videot pystyyn">
+  <meta property="og:description" content="Valmiit pystyklipit YouTube-videoista ja podcasteista TikTokiin, Reelsiin ja Shortsiin.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fi_FI">
+  <meta name="theme-color" content="#2F3CE8">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <!-- Fontit tulevat Google Fontsista. Omalle palvelimelle siirto: ks. README.md -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:wght@700..900&family=Sofia+Sans:wght@400..900&display=swap">
+  <link rel="stylesheet" href="assets/tyyli.css">
+  <script src="assets/sivu.js" defer></script>
+</head>
+<body>
+  <a class="ohituslinkki" href="#sisalto">Siirry sisältöön</a>
+
+  <!-- Esimerkkikuvan podcaststudio. Värit tulevat tyyli.css:n k-alkuisista muuttujista. -->
+  <svg class="svg-maaritykset" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+      <pattern id="rimat" width="56" height="900" patternUnits="userSpaceOnUse">
+        <rect x="13" y="40" width="30" height="660" rx="15" style="fill:var(--k-rima)"/>
+      </pattern>
+    </defs>
+    <symbol id="kohtaus" viewBox="0 0 1600 900">
+      <rect width="1600" height="900" style="fill:var(--k-seina)"/>
+      <rect width="1600" height="900" fill="url(#rimat)"/>
+      <circle cx="800" cy="170" r="74" style="fill:var(--k-lamppu);opacity:.18"/>
+      <circle cx="800" cy="170" r="34" style="fill:var(--k-lamppu)"/>
+      <!-- Puhuja A -->
+      <path d="M262 900C264 724 332 642 420 620H540C628 642 696 724 698 900Z" style="fill:var(--k-paita-a)"/>
+      <path d="M440 520h80v104c0 26-80 26-80 0z" style="fill:var(--k-iho-a-varjo)"/>
+      <ellipse cx="480" cy="420" rx="92" ry="112" style="fill:var(--k-iho-a)"/>
+      <path d="M386 428C370 330 420 290 486 290C552 290 596 334 576 424C566 378 540 352 498 350C450 348 410 370 386 428Z" style="fill:var(--k-hius-a)"/>
+      <path d="M384 424C380 296 580 296 576 424" style="fill:none;stroke:var(--k-tumma);stroke-width:20;stroke-linecap:round"/>
+      <rect x="366" y="388" width="40" height="88" rx="20" style="fill:var(--k-tumma)"/>
+      <rect x="554" y="388" width="40" height="88" rx="20" style="fill:var(--k-tumma)"/>
+      <ellipse cx="470" cy="430" rx="9" ry="12" style="fill:var(--k-silma)"/>
+      <ellipse cx="524" cy="430" rx="9" ry="12" style="fill:var(--k-silma)"/>
+      <path d="M480 478q19 15 38 0" style="fill:none;stroke:var(--k-suu);stroke-width:7;stroke-linecap:round"/>
+      <path d="M648 790L614 560" style="stroke:var(--k-tumma);stroke-width:16;stroke-linecap:round"/>
+      <rect x="588" y="468" width="52" height="106" rx="26" transform="rotate(-14 614 521)" style="fill:var(--k-tumma)"/>
+      <!-- Puhuja B -->
+      <path d="M902 900C904 724 972 642 1060 620H1180C1268 642 1336 724 1338 900Z" style="fill:var(--k-paita-b)"/>
+      <path d="M1080 520h80v104c0 26-80 26-80 0z" style="fill:var(--k-iho-b-varjo)"/>
+      <ellipse cx="1120" cy="420" rx="92" ry="112" style="fill:var(--k-iho-b)"/>
+      <path d="M1024 404C1022 306 1070 286 1120 286C1170 286 1218 306 1216 404Z" style="fill:var(--k-pipo)"/>
+      <rect x="1018" y="370" width="204" height="46" rx="23" style="fill:var(--k-pipo-varjo)"/>
+      <ellipse cx="1092" cy="446" rx="9" ry="12" style="fill:var(--k-silma)"/>
+      <ellipse cx="1146" cy="446" rx="9" ry="12" style="fill:var(--k-silma)"/>
+      <path d="M1100 490q19 15 38 0" style="fill:none;stroke:var(--k-suu);stroke-width:7;stroke-linecap:round"/>
+      <path d="M952 790L986 560" style="stroke:var(--k-tumma);stroke-width:16;stroke-linecap:round"/>
+      <rect x="960" y="468" width="52" height="106" rx="26" transform="rotate(14 986 521)" style="fill:var(--k-tumma)"/>
+      <!-- Pöytä -->
+      <rect y="780" width="1600" height="120" style="fill:var(--k-poyta)"/>
+      <rect y="780" width="1600" height="14" style="fill:var(--k-poyta-reuna)"/>
+      <rect x="318" y="722" width="58" height="62" rx="9" style="fill:var(--k-muki)"/>
+      <rect x="1226" y="722" width="58" height="62" rx="9" style="fill:var(--k-muki)"/>
+    </symbol>
+  </svg>
+
+  <header class="ylapalkki">
+    <div class="kehys ylapalkki-sisalto">
+      <a class="logo" href="index.html" aria-label="Pysty Studio, etusivu">
+        <img src="assets/logo.svg" alt="Pysty Studio" width="348" height="48">
+      </a>
+      <nav class="paavalikko" aria-label="Päävalikko">
+        <a href="#nain-se-toimii">Näin se toimii</a>
+        <a href="#klipit">Klipit</a>
+        <a href="#hinnat">Hinnat</a>
+        <a href="#ukk">Kysyttyä</a>
+      </nav>
+      <a class="nappi nappi-ensisijainen nappi-pieni" href="#yhteys">Ota yhteyttä</a>
+    </div>
+  </header>
+
+  <main id="sisalto">
+    <section class="hero" aria-labelledby="hero-otsikko">
+      <div class="kehys hero-ruudukko">
+        <div class="hero-teksti">
+          <h1 id="hero-otsikko"><span>Pitkät</span> <span>videot</span> <span>pystyyn.</span></h1>
+          <p class="ingressi">Teen YouTube-videoista ja podcastjaksoista valmiita pystyklippejä TikTokiin, Reelsiin ja Shortsiin. Sinä lähetät linkin ja hyväksyt klipit. Kohtien valinnan, rajauksen, tekstityksen ja musiikin hoidan minä.</p>
+          <div class="toiminnot">
+            <a class="nappi nappi-ensisijainen" href="mailto:korkiakoskihannes@gmail.com?subject=Klipit%20jaksosta&amp;body=Hei%2C%0A%0ALinkki%20jaksoon%3A%20%0AKanavat%2C%20joilla%20julkaisen%3A%20%0AKiinnostava%20paketti%3A%20%0A">Lähetä jakson linkki</a>
+            <a class="nappi nappi-toissijainen" href="#hinnat">Katso hinnat</a>
+          </div>
+          <p class="pienteksti">Linkki avaa sähköpostiohjelmasi.</p>
+        </div>
+
+        <figure class="demo" data-demo data-puhuja="a">
+          <div class="demo-rivi">
+            <div class="klippi">
+              <svg class="kohtaus" viewBox="0 0 1600 900" aria-hidden="true" focusable="false"><use href="#kohtaus"/></svg>
+              <p class="tekstitys" aria-hidden="true">tulee kahdeksan klippiä.</p>
+            </div>
+            <div class="demo-sivu">
+              <div class="lahde" aria-hidden="true">
+                <svg viewBox="0 0 1600 900" focusable="false"><use href="#kohtaus"/></svg>
+                <span class="rajain"></span>
+              </div>
+              <p class="demo-selite">Alkuperäinen kuva on 16:9. Rajaus seuraa puhujaa.</p>
+              <button class="demo-tauko" type="button" aria-pressed="false" hidden>Pysäytä esimerkki</button>
+            </div>
+          </div>
+          <figcaption class="piilotettu">Esimerkki: podcastjakson kuva rajataan pystyyn puhujan kohdalle, ja tekstitys etenee sana kerrallaan.</figcaption>
+        </figure>
+      </div>
+
+      <div class="kehys">
+        <figure class="aikajana">
+          <svg class="aikajana-aalto" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+            <defs>
+              <clipPath id="klippikohdat">
+                <rect x="62" width="24" height="60"/><rect x="158" width="24" height="60"/>
+                <rect x="294" width="24" height="60"/><rect x="390" width="24" height="60"/>
+                <rect x="542" width="24" height="60"/><rect x="694" width="24" height="60"/>
+                <rect x="846" width="24" height="60"/><rect x="1078" width="24" height="60"/>
+              </clipPath>
+              <path id="aalto" d="M0 18.0h4.5v24h-4.5zM8 12.0h4.5v36h-4.5zM16 14.5h4.5v31h-4.5zM24 15.0h4.5v30h-4.5zM32 13.0h4.5v34h-4.5zM40 16.5h4.5v27h-4.5zM48 20.0h4.5v20h-4.5zM56 21.5h4.5v17h-4.5zM64 22.0h4.5v16h-4.5zM72 21.0h4.5v18h-4.5zM80 18.0h4.5v24h-4.5zM88 15.0h4.5v30h-4.5zM96 11.5h4.5v37h-4.5zM104 14.0h4.5v32h-4.5zM112 13.0h4.5v34h-4.5zM120 12.0h4.5v36h-4.5zM128 14.0h4.5v32h-4.5zM136 18.0h4.5v24h-4.5zM144 14.5h4.5v31h-4.5zM152 14.0h4.5v32h-4.5zM160 9.0h4.5v42h-4.5zM168 8.0h4.5v44h-4.5zM176 13.5h4.5v33h-4.5zM184 11.5h4.5v37h-4.5zM192 12.0h4.5v36h-4.5zM200 17.0h4.5v26h-4.5zM208 20.0h4.5v20h-4.5zM216 21.5h4.5v17h-4.5zM224 20.5h4.5v19h-4.5zM232 18.5h4.5v23h-4.5zM240 17.5h4.5v25h-4.5zM248 16.0h4.5v28h-4.5zM256 13.0h4.5v34h-4.5zM264 16.0h4.5v28h-4.5zM272 18.0h4.5v24h-4.5zM280 18.5h4.5v23h-4.5zM288 18.0h4.5v24h-4.5zM296 17.5h4.5v25h-4.5zM304 11.5h4.5v37h-4.5zM312 11.0h4.5v38h-4.5zM320 7.5h4.5v45h-4.5zM328 5.0h4.5v50h-4.5zM336 13.5h4.5v33h-4.5zM344 13.5h4.5v33h-4.5zM352 15.0h4.5v30h-4.5zM360 18.0h4.5v24h-4.5zM368 19.5h4.5v21h-4.5zM376 20.0h4.5v20h-4.5zM384 16.5h4.5v27h-4.5zM392 18.5h4.5v23h-4.5zM400 16.0h4.5v28h-4.5zM408 16.5h4.5v27h-4.5zM416 16.5h4.5v27h-4.5zM424 17.5h4.5v25h-4.5zM432 20.5h4.5v19h-4.5zM440 21.0h4.5v18h-4.5zM448 19.5h4.5v21h-4.5zM456 17.5h4.5v25h-4.5zM464 14.0h4.5v32h-4.5zM472 11.0h4.5v38h-4.5zM480 10.5h4.5v39h-4.5zM488 9.5h4.5v41h-4.5zM496 10.5h4.5v39h-4.5zM504 15.5h4.5v29h-4.5zM512 13.5h4.5v33h-4.5zM520 16.5h4.5v27h-4.5zM528 14.5h4.5v31h-4.5zM536 14.0h4.5v32h-4.5zM544 13.0h4.5v34h-4.5zM552 13.5h4.5v33h-4.5zM560 14.5h4.5v31h-4.5zM568 16.0h4.5v28h-4.5zM576 18.5h4.5v23h-4.5zM584 21.5h4.5v17h-4.5zM592 22.0h4.5v16h-4.5zM600 21.5h4.5v17h-4.5zM608 18.5h4.5v23h-4.5zM616 16.5h4.5v27h-4.5zM624 14.0h4.5v32h-4.5zM632 12.5h4.5v35h-4.5zM640 9.5h4.5v41h-4.5zM648 10.5h4.5v39h-4.5zM656 16.5h4.5v27h-4.5zM664 14.0h4.5v32h-4.5zM672 17.5h4.5v25h-4.5zM680 14.5h4.5v31h-4.5zM688 14.5h4.5v31h-4.5zM696 14.0h4.5v32h-4.5zM704 7.0h4.5v46h-4.5zM712 14.0h4.5v32h-4.5zM720 14.0h4.5v32h-4.5zM728 19.0h4.5v22h-4.5zM736 20.5h4.5v19h-4.5zM744 22.0h4.5v16h-4.5zM752 22.0h4.5v16h-4.5zM760 19.0h4.5v22h-4.5zM768 16.0h4.5v28h-4.5zM776 13.0h4.5v34h-4.5zM784 12.0h4.5v36h-4.5zM792 12.0h4.5v36h-4.5zM800 14.5h4.5v31h-4.5zM808 17.5h4.5v25h-4.5zM816 19.0h4.5v22h-4.5zM824 17.5h4.5v25h-4.5zM832 16.5h4.5v27h-4.5zM840 15.0h4.5v30h-4.5zM848 8.5h4.5v43h-4.5zM856 11.0h4.5v38h-4.5zM864 7.5h4.5v45h-4.5zM872 12.0h4.5v36h-4.5zM880 14.5h4.5v31h-4.5zM888 19.0h4.5v22h-4.5zM896 18.5h4.5v23h-4.5zM904 20.5h4.5v19h-4.5zM912 19.0h4.5v22h-4.5zM920 15.5h4.5v29h-4.5zM928 17.5h4.5v25h-4.5zM936 15.5h4.5v29h-4.5zM944 18.5h4.5v23h-4.5zM952 17.0h4.5v26h-4.5zM960 19.5h4.5v21h-4.5zM968 19.0h4.5v22h-4.5zM976 20.5h4.5v19h-4.5zM984 14.5h4.5v31h-4.5zM992 15.0h4.5v30h-4.5zM1000 6.5h4.5v47h-4.5zM1008 8.5h4.5v43h-4.5zM1016 7.5h4.5v45h-4.5zM1024 13.0h4.5v34h-4.5zM1032 15.0h4.5v30h-4.5zM1040 17.0h4.5v26h-4.5zM1048 16.5h4.5v27h-4.5zM1056 18.5h4.5v23h-4.5zM1064 14.5h4.5v31h-4.5zM1072 13.5h4.5v33h-4.5zM1080 13.0h4.5v34h-4.5zM1088 14.5h4.5v31h-4.5zM1096 18.5h4.5v23h-4.5zM1104 20.5h4.5v19h-4.5zM1112 20.5h4.5v19h-4.5zM1120 22.5h4.5v15h-4.5zM1128 21.0h4.5v18h-4.5zM1136 17.5h4.5v25h-4.5zM1144 18.0h4.5v24h-4.5zM1152 10.0h4.5v40h-4.5zM1160 8.5h4.5v43h-4.5zM1168 7.0h4.5v46h-4.5zM1176 9.0h4.5v42h-4.5zM1184 12.0h4.5v36h-4.5zM1192 15.5h4.5v29h-4.5z"/>
+            </defs>
+            <g class="aikajana-kohdat">
+              <rect x="60" y="0" width="28" height="60" rx="4"/><rect x="156" y="0" width="28" height="60" rx="4"/>
+              <rect x="292" y="0" width="28" height="60" rx="4"/><rect x="388" y="0" width="28" height="60" rx="4"/>
+              <rect x="540" y="0" width="28" height="60" rx="4"/><rect x="692" y="0" width="28" height="60" rx="4"/>
+              <rect x="844" y="0" width="28" height="60" rx="4"/><rect x="1076" y="0" width="28" height="60" rx="4"/>
+            </g>
+            <use href="#aalto" class="aikajana-puhe"/>
+            <use href="#aalto" class="aikajana-valitut" clip-path="url(#klippikohdat)"/>
+          </svg>
+          <div class="aikajana-ajat" aria-hidden="true"><span>0:00</span><span>58:40</span></div>
+          <figcaption>Esimerkki: tunnin jaksosta valitaan kahdeksan kohtaa, jotka toimivat yksinäänkin.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="nain-se-toimii" class="osio" aria-labelledby="vaiheet-otsikko">
+      <div class="kehys">
+        <h2 id="vaiheet-otsikko">Näin se toimii</h2>
+        <ol class="vaiheet">
+          <li>
+            <h3>Lähetät linkin</h3>
+            <p>Lähetä linkki YouTube-videoon tai latauslinkki jaksoon. Tunnuksiasi en tarvitse.</p>
+          </li>
+          <li>
+            <h3>Valitsen kohdat</h3>
+            <p>Käyn jakson läpi litteraatista ja valitsen kohdat, jotka toimivat ilman muuta jaksoa. Jokainen klippi alkaa kasvoista, tunteesta tai tekemisestä, jotta selaaja pysähtyy.</p>
+          </li>
+          <li>
+            <h3>Teen klipit</h3>
+            <p>Rajaan kuvan pystyyn puhujan kohdalle ja teen tekstityksen sekä klipille oman musiikin. Äänitaso säädetään somen tasolle.</p>
+          </li>
+          <li>
+            <h3>Hyväksyt ja julkaiset</h3>
+            <p>Saat klipit latauslinkkinä. Yksi korjauskierros kuuluu hintaan, ja julkaiset klipit itse omilla tileilläsi.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="klipit" class="osio osio-pinta" aria-labelledby="klipit-otsikko">
+      <div class="kehys">
+        <h2 id="klipit-otsikko">Mitä klipeissä on</h2>
+        <p class="johdanto">Kuvassa on puhuja, tekstitys ja lopussa lyhyt kehote, kuten ”Koko jakso YouTubessa”. Otsikoita ja välitekstejä ei lisätä, joten klippi alkaa suoraan kasvoista tai tekemisestä.</p>
+
+        <div class="anatomia">
+          <figure class="anatomia-kuva">
+            <div class="klippi klippi-b">
+              <svg class="kohtaus" viewBox="0 0 1600 900" aria-hidden="true" focusable="false"><use href="#kohtaus"/></svg>
+              <span class="ui-yla" aria-hidden="true"></span>
+              <span class="ui-kuvake" style="top:46%" aria-hidden="true"></span>
+              <span class="ui-kuvake" style="top:55%" aria-hidden="true"></span>
+              <span class="ui-kuvake" style="top:64%" aria-hidden="true"></span>
+              <span class="ui-kuvake" style="top:73%" aria-hidden="true"></span>
+              <span class="ui-rivi" style="top:85%;width:58%" aria-hidden="true"></span>
+              <span class="ui-rivi" style="top:90%;width:40%" aria-hidden="true"></span>
+              <span class="turva-alue" aria-hidden="true"></span>
+              <p class="tekstitys" aria-hidden="true">tehdä itse?</p>
+              <span class="merkki" style="left:3%;top:54%" aria-hidden="true">1</span>
+              <span class="merkki" style="left:3%;top:3%" aria-hidden="true">2</span>
+              <span class="merkki" style="right:3%;top:37%" aria-hidden="true">3</span>
+            </div>
+            <figcaption class="piilotettu">Kaavio pystyklipistä: tekstitys keskellä, kuva rajattu puhujaan ja sovelluksen painikkeet sekä kuvausteksti reunoilla.</figcaption>
+          </figure>
+
+          <div class="anatomia-teksti">
+            <ul class="ominaisuudet">
+              <li>
+                <span class="merkki merkki-lista" aria-hidden="true">1</span>
+                <div>
+                  <h3>Tekstitys sana kerrallaan</h3>
+                  <p>Sanat ilmestyvät puheen tahdissa. Valkoinen teksti ja paksu musta reunus erottuvat sekä vaaleaa että tummaa taustaa vasten.</p>
+                </div>
+              </li>
+              <li>
+                <span class="merkki merkki-lista" aria-hidden="true">2</span>
+                <div>
+                  <h3>Täyskorkea 9:16-rajaus</h3>
+                  <p>Rajaus pysyy puhujassa tai tekemisessä koko klipin ajan, ja kun puhuja vaihtuu, rajaus hyppää hänen kohdalleen. Vaakakuvaa palkkien kanssa ei käytetä missään kohdassa.</p>
+                </div>
+              </li>
+              <li>
+                <span class="merkki merkki-lista" aria-hidden="true">3</span>
+                <div>
+                  <h3>Turva-alueet</h3>
+                  <p>Tekstit pysyvät TikTokin ja Reelsin painikkeiden ja kuvaustekstin ulkopuolella. Sama koskee lähdevideoon valmiiksi poltettuja tekstejä.</p>
+                </div>
+              </li>
+            </ul>
+
+            <h3 class="alaotsikko">Ääni ja tekniikka</h3>
+            <dl class="tekniikka">
+              <div>
+                <dt>Oma musiikki</dt>
+                <dd>Klipille tehdään oma instrumentaalikappale, ja sen drop osuu klipin kohokohtaan. Puhe kuuluu aina musiikin yli.</dd>
+              </div>
+              <div>
+                <dt>−14 LUFS</dt>
+                <dd>Äänet normalisoidaan somen tavalliselle tasolle, joten klippi ei jää hiljaiseksi muiden videoiden välissä.</dd>
+              </div>
+              <div>
+                <dt>59,94 fps</dt>
+                <dd>Klipit renderöidään 59,94 kuvaa sekunnissa, joten liike ja tekstitys etenevät sulavasti.</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="hinnat" class="osio" aria-labelledby="hinnat-otsikko">
+      <div class="kehys">
+        <h2 id="hinnat-otsikko">Palvelut ja hinnat</h2>
+        <p class="johdanto">Hinnat ovat alv 0 %. Laskuun lisätään alv 25,5 %.</p>
+
+        <div class="hintaryhma">
+          <div class="hintaryhma-otsikko">
+            <h3>Kuukausipaketit</h3>
+            <p>Minimisopimus 3 kk, sen jälkeen irtisanomisaika 1 kk.</p>
+          </div>
+          <ul class="hinnasto">
+            <li class="hintarivi">
+              <div>
+                <h4>Klippaamo Starter</h4>
+                <p>12 klippiä kuukaudessa.</p>
+              </div>
+              <p class="hinta"><span class="summa">390 €</span><span class="jakso">/kk</span><span class="alv">+ alv 25,5 %</span></p>
+            </li>
+            <li class="hintarivi">
+              <div>
+                <h4>Klippaamo Pro</h4>
+                <p>24 klippiä kuukaudessa ja jokaiselle klipille valmis julkaisuteksti.</p>
+              </div>
+              <p class="hinta"><span class="summa">690 €</span><span class="jakso">/kk</span><span class="alv">+ alv 25,5 %</span></p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="hintaryhma">
+          <div class="hintaryhma-otsikko">
+            <h3>Kertatyöt</h3>
+            <p>Ei sopimuskautta.</p>
+          </div>
+          <ul class="hinnasto">
+            <li class="hintarivi">
+              <div>
+                <h4>Kertaerä</h4>
+                <p>Yhdestä jaksosta 8 klippiä. Hyvä tapa kokeilla ennen kuukausipakettia.</p>
+              </div>
+              <p class="hinta"><span class="summa">190 €</span><span class="alv">+ alv 25,5 %</span></p>
+            </li>
+            <li class="hintarivi">
+              <div>
+                <h4>Pysty Puhe -pilotti</h4>
+                <p>Kun sinulla ei ole podcastia: haastattelen sinua etänä 45 minuuttia ja teen tallenteesta kuukauden klipit.</p>
+              </div>
+              <p class="hinta"><span class="summa">290 €</span><span class="alv">+ alv 25,5 %</span></p>
+            </li>
+            <li class="hintarivi">
+              <div>
+                <h4>AI-mainospaketti</h4>
+                <p>10 lyhyttä pystymainosta verkkokaupan tuotekuvista. Tuote näytetään aitona, ja videot merkitään tekoälyllä tehdyiksi.</p>
+              </div>
+              <p class="hinta"><span class="summa">690 €</span><span class="alv">+ alv 25,5 %</span></p>
+            </li>
+          </ul>
+        </div>
+
+        <p class="hinta-huomio">Jokaisessa toimituksessa on yksi korjauskierros.</p>
+      </div>
+    </section>
+
+    <section id="lisapalvelut" class="osio" aria-labelledby="lisapalvelut-otsikko">
+      <div class="kehys">
+        <h2 id="lisapalvelut-otsikko">Lisäpalvelut</h2>
+        <p class="johdanto">Lisäpalvelut tilataan paketin rinnalle. Hinnat ovat alv 0 %, ja laskuun lisätään alv 25,5 %.</p>
+        <!-- Lisäpalveluhinnasto 23.10.2026. Rivin rakenne sama kuin hinnastossa: li.hintarivi. -->
+        <div class="lisapalvelut">
+          <div class="lisaryhma">
+            <h3>Lisää klippejä</h3>
+            <ul class="hinnasto hinnasto-tiivis">
+              <li class="hintarivi">
+                <div><h4>Arkisto 30</h4><p>10 vanhasta videosta 30 klippiä, ajastettavaksi uusien rinnalle.</p></div>
+                <p class="hinta"><span class="summa">590 €</span></p>
+              </li>
+              <li class="hintarivi">
+                <div><h4>Kanavan parhaat 50</h4><p>50 klippiä koko kanavan historian parhaista hetkistä.</p></div>
+                <p class="hinta"><span class="summa">890 €</span></p>
+              </li>
+              <li class="hintarivi">
+                <div><h4>Livestriimin klippaus</h4><p>Striimistä noin 8 klippiä.</p></div>
+                <p class="hinta"><span class="summa">190 €</span><span class="jakso">/striimi</span></p>
+              </li>
+              <li class="hintarivi">
+                <div><h4>Traileri</h4><p>Teaser-klippi päivää ennen uutta videota.</p></div>
+                <p class="hinta"><span class="summa">25 €</span><span class="jakso">/kpl</span></p>
+              </li>
+              <li class="hintarivi">
+                <div><h4>Kommenttivastausklippi</h4><p>Klippi, joka vastaa suosittuun kommenttiin.</p></div>
+                <p class="hinta"><span class="summa">20 €</span><span class="jakso">/kpl</span></p>
+              </li>
+              <li class="hintarivi">
+                <div><h4>Best of -kooste</h4><p>Kuukauden parhaat palat 60–90 sekunnissa.</p></div>
+                <p class="hinta"><span class="summa">79 €</span><span class="jakso">/kpl</span></p>
+              </li>
+              <li class="hintarivi">
+                <div><h4>Ennen ja jälkeen -kooste</h4><p>Projekti alusta loppuun 45–60 sekunnissa.</p></div>
+                <p class="hinta"><span class="summa">99 €</span><span class="jakso">/kpl</span></p>
+              </li>
+              <li class="hintarivi">
+                <div><h4>Sponsori- tai merch-klippi</h4><p>Oma mainosklippi yhteistyökumppanin tuotteelle tai omalle merchille. Kaupallinen yhteistyö merkitään aina.</p></div>
+                <p class="hinta"><span class="summa">149 €</span><span class="jakso">/kpl</span></p>
+              </li>
+              <li class="hintarivi">
+                <div><h4>Podcast-audiogrammi</h4><p>Ääniklippi aaltomuodolla ja tekstityksellä.</p></div>
+                <p class="hinta"><span class="summa">15 €</span><span class="jakso">/kpl</span></p>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="lisaryhma">
+              <h3>Julkaisu ja seuranta</h3>
+              <ul class="hinnasto hinnasto-tiivis">
+                <li class="hintarivi">
+                  <div><h4>Julkaisutekstit ja aihetunnisteet</h4><p>Tekstit TikTokiin, Reelsiin ja Shortsiin jokaiselle klipille, noin 20 klippiä kuussa. Sisältyy Pro-pakettiin.</p></div>
+                  <p class="hinta"><span class="summa">60 €</span><span class="jakso">/kk</span></p>
+                </li>
+                <li class="hintarivi">
+                  <div><h4>Julkaisu puolestasi</h4><p>Julkaisen ja ajastan klipit omille tileillesi. Saan tileille julkaisijaroolin, en salasanaa.</p></div>
+                  <p class="hinta"><span class="summa">120 €</span><span class="jakso">/kk</span></p>
+                </li>
+                <li class="hintarivi">
+                  <div><h4>Oma klippitili</h4><p>Klipeille omat tilit TikTokiin, Instagramiin ja YouTubeen sinun nimissäsi: profiilit, bio ja linkitys päätiliisi.</p></div>
+                  <p class="hinta"><span class="summa">150 €</span><span class="jakso"> kerta</span></p>
+                </li>
+                <li class="hintarivi">
+                  <div><h4>Klippitilin ylläpito</h4><p>Julkaisu ja ajastus kolmelle alustalle, noin 5 julkaisua viikossa, ja lyhyt kuukausikatsaus.</p></div>
+                  <p class="hinta"><span class="summa">190 €</span><span class="jakso">/kk</span></p>
+                </li>
+                <li class="hintarivi">
+                  <div><h4>Kuukausiraportti</h4><p>Katselut, parhaat klipit ja ehdotukset seuraavaan kuuhun.</p></div>
+                  <p class="hinta"><span class="summa">49 €</span><span class="jakso">/kk</span></p>
+                </li>
+              </ul>
+            </div>
+
+            <div class="lisaryhma">
+              <h3>Kuvat</h3>
+              <ul class="hinnasto hinnasto-tiivis">
+                <li class="hintarivi">
+                  <div><h4>Kansikuva</h4><p>Reels- tai Shorts-kansi klipille.</p></div>
+                  <p class="hinta"><span class="summa">10 €</span><span class="jakso">/kpl</span></p>
+                </li>
+                <li class="hintarivi">
+                  <div><h4>YouTube-pikkukuva</h4><p>Pitkän videon pääkuva (thumbnail).</p></div>
+                  <p class="hinta"><span class="summa">49 €</span><span class="jakso">/kpl</span></p>
+                </li>
+              </ul>
+            </div>
+
+            <div class="lisaryhma">
+              <h3>Klippien lisät</h3>
+              <ul class="hinnasto hinnasto-tiivis">
+                <li class="hintarivi">
+                  <div><h4>Englanninkielinen tekstitys</h4><p>Tekstitys englanniksi kansainväliselle yleisölle.</p></div>
+                  <p class="hinta"><span class="summa">+5 €</span><span class="jakso">/klippi</span></p>
+                </li>
+                <li class="hintarivi">
+                  <div><h4>Kiiretoimitus 24 h</h4><p>Klipit 24 tunnin kuluessa.</p></div>
+                  <p class="hinta"><span class="summa">+50 %</span></p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Referenssit on piilotettu (hidden), kunnes asiakkaalta on lupa. Poista hidden, kun klipit ovat paikallaan. -->
+    <section id="referenssit" class="osio osio-pinta" aria-labelledby="referenssit-otsikko" hidden>
+      <div class="kehys">
+        <h2 id="referenssit-otsikko">Referenssit</h2>
+        <p class="johdanto">Asiakkaiden klipit näytetään täällä vain heidän luvallaan. Referenssit lisätään, kun luvat on saatu.</p>
+        <!-- PAIKKAMERKKI: vaihda kehykset asiakkaan luvalla julkaistaviin klippeihin (esim. <video> tai upotus). -->
+        <ul class="referenssit" aria-label="Referenssien paikat">
+          <li class="referenssi-paikka"><span>[Referenssi 1]</span></li>
+          <li class="referenssi-paikka"><span>[Referenssi 2]</span></li>
+          <li class="referenssi-paikka"><span>[Referenssi 3]</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="ukk" class="osio" aria-labelledby="ukk-otsikko">
+      <div class="kehys">
+        <h2 id="ukk-otsikko">Usein kysyttyä</h2>
+        <div class="ukk-lista">
+          <details>
+            <summary>Tarvitsetko tunnukseni someen?</summary>
+            <p>En tarvitse. Saat valmiit klipit latauslinkkinä ja julkaiset ne itse omilla tileilläsi. Jos haluat, että julkaisen puolestasi, saan tileillesi julkaisijaroolin, en salasanaa.</p>
+          </details>
+          <details>
+            <summary>Millaisista videoista klipit onnistuvat?</summary>
+            <p>Parhaiten videoista, joissa puhujat näkyvät kuvassa: videopodcasteista, haastatteluista, webinaareista ja YouTube-videoista. Myös vlogit käyvät. Jos sinulla ei ole valmista videota, Pysty Puhe -pilotissa haastattelen sinua etänä ja teen klipit haastattelusta.</p>
+          </details>
+          <details>
+            <summary>Kuinka nopeasti saan klipit?</summary>
+            <p>Toimitusaikataulu sovitaan aloituksessa. Klipit voi saada jakso kerrallaan tai kerran viikossa. Kiiretoimitus 24 tunnissa maksaa 50 % lisää.</p>
+          </details>
+          <details>
+            <summary>Entä jos klippi ei miellytä?</summary>
+            <p>Jokaisessa toimituksessa on yksi korjauskierros. Kerro, mitä haluat muuttaa, niin korjaan klipin.</p>
+          </details>
+          <details>
+            <summary>Mistä musiikki tulee?</summary>
+            <p>Teen klipeille oman instrumentaalimusiikin, joten sen voi julkaista kaikilla alustoilla. Jakson oma intro- tai taustamusiikki poistetaan, jos et omista sen oikeuksia. Jos haluat käyttää TikTokin tai Instagramin trendiääntä, saat klipin ilman musiikkia.</p>
+          </details>
+          <details>
+            <summary>Entä jos jakso on kaupallista yhteistyötä?</summary>
+            <p>Merkintä kuuluu silloin myös klippiin. Se tehdään julkaisutekstiin ja alustan omalla merkinnällä (Branded content tai Paid partnership), joten kuva pysyy puhtaana.</p>
+          </details>
+          <details>
+            <summary>Kuka omistaa klipit?</summary>
+            <p>Kun lasku on maksettu, oikeudet toimitettuihin klippeihin siirtyvät sinulle, ja saat muokata niitä vapaasti. Klippejäsi ei näytetä muille ilman lupaasi.</p>
+          </details>
+          <details>
+            <summary>Kenelle palvelu on tarkoitettu?</summary>
+            <p>Yrityksille ja yrittäjille, joilla on Y-tunnus: YouTube-tekijöille, podcasteille, valmentajille ja asiantuntijoille, jotka julkaisevat pitkää videota säännöllisesti.</p>
+          </details>
+          <details>
+            <summary>Kuinka pitkä sopimus on?</summary>
+            <p>Kuukausipaketeissa minimisopimus on 3 kuukautta, ja sen jälkeen irtisanomisaika on 1 kuukausi. Kertaerä, Pysty Puhe -pilotti ja AI-mainospaketti ovat kertatöitä.</p>
+          </details>
+          <details>
+            <summary>Miksi lasku tulee Keikkalaskulta?</summary>
+            <p>Teen työn kevytyrittäjänä, ja laskutus hoidetaan Keikkalasku-laskutuspalvelun kautta. Lasku tulee siksi Suomen Keikkalaskun nimissä, ja siihen lisätään alv 25,5 %. Sopimus tehdään kuitenkin kanssani.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="yhteys" class="osio yhteys" aria-labelledby="yhteys-otsikko">
+      <div class="kehys yhteys-ruudukko">
+        <div>
+          <h2 id="yhteys-otsikko">Aloitetaan seuraavasta jaksostasi</h2>
+          <p class="johdanto">Lähetä linkki jaksoon, josta haluat klipit, ja kerro, millä kanavilla julkaiset. Vastaan ja ehdotan sopivaa pakettia.</p>
+          <a class="nappi nappi-kaanteinen" href="mailto:korkiakoskihannes@gmail.com?subject=Klipit%20jaksosta&amp;body=Hei%2C%0A%0ALinkki%20jaksoon%3A%20%0AKanavat%2C%20joilla%20julkaisen%3A%20%0AKiinnostava%20paketti%3A%20%0A">Lähetä sähköpostia</a>
+        </div>
+        <dl class="yhteystiedot">
+          <div>
+            <dt>Sähköposti</dt>
+            <dd><a class="iso-linkki" href="mailto:korkiakoskihannes@gmail.com">korkiakoskihannes@gmail.com</a></dd>
+          </div>
+          <div>
+            <dt>Puhelin</dt>
+            <dd><a class="iso-linkki" href="tel:+358413144255">+358 41 314 4255</a></dd>
+          </div>
+          <div>
+            <dt>Yhteyshenkilö</dt>
+            <dd>Hannes Korkiakoski</dd>
+          </div>
+        </dl>
+        <p class="yhteys-huomio">Sivulla ei ole lomaketta eikä seurantaa. Viestisi tulee suoraan sähköpostiini.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="alapalkki">
+    <div class="kehys alapalkki-sisalto">
+      <img class="alapalkki-logo" src="assets/logo.svg" alt="Pysty Studio" width="348" height="48">
+      <p>Palveluntarjoaja: Hannes Korkiakoski (markkinointinimi Pysty Studio). Laskutus Keikkalasku-laskutuspalvelun kautta.</p>
+      <p><a href="mailto:korkiakoskihannes@gmail.com">korkiakoskihannes@gmail.com</a><br><a href="tel:+358413144255">+358 41 314 4255</a></p>
+      <p><a href="tietosuoja.html">Tietosuojaseloste</a><br>Sivusto ei käytä evästeitä.</p>
+    </div>
+  </footer>
+</body>
+</html>
