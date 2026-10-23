@@ -10,8 +10,9 @@ Pysty Studion oma staattinen sivusto: pelkkää HTML:ää, CSS:ää ja JavaScrip
 | `tietosuoja.html` | Tietosuojaseloste (luonnos, pohjana `02_sopimukset-ja-laki/2026-10-21_dpa-ja-tietosuoja.md`) |
 | `assets/tyyli.css` | Kaikki tyylit. Brändivärit ja fontit ovat tiedoston alussa `:root`-osassa. |
 | `assets/sivu.js` | Heron esimerkkiklippi: tekstitys sana kerrallaan ja puhujan vaihto |
-| `assets/logo.svg` | **Väliaikainen** tekstilogo |
-| `assets/favicon.svg` | Väliaikainen selainvälilehden kuvake |
+| `assets/logo.svg` | Nimilogo PYSTY\|STUDIO vaalealle pohjalle (konsepti 4, Pystyviiva). Yläpalkissa. |
+| `assets/logo-tumma.svg` | Nimilogo tummalle pohjalle. Mustassa alapalkissa. |
+| `assets/favicon.svg` | Selainvälilehden kuvake (P\| mustalla pohjalla) |
 | `.nojekyll` | Kertoo GitHub Pagesille, että sivu julkaistaan sellaisenaan |
 
 ## Esikatselu omalla koneella
@@ -25,12 +26,15 @@ Sähköposti, puhelin ja nimi ovat `index.html`:ssä (Yhteys-osio, napit ja alap
 - **Referenssit-osio** on piilotettu (`hidden`), kunnes asiakkaalta on lupa. Kun klipit ovat paikallaan, poista `hidden` osion `<section>`-tagista.
 - **Y-tunnusta ei ole,** joten sitä ei ole lisätty. Kun Oy perustetaan, lisää Y-tunnus alapalkkiin ja tietosuojaselosteeseen ja päivitä UKK:n kohta ”Miksi lasku tulee Keikkalaskulta?”.
 
-## Logon ja värien vaihto
+## Logo ja ilme
 
-- **Logo:** korvaa `assets/logo.svg` lopullisella logolla samalla nimellä. Logo näkyy yläpalkissa ja alapalkissa molemmilla sivuilla. Jos uuden logon kuvasuhde on eri, päivitä `<img>`-tagien `width`- ja `height`-arvot (4 kohtaa: `index.html` ja `tietosuoja.html`, ylä- ja alapalkki). Korkeus asetetaan CSS:ssä (`.logo img` ja `.alapalkki-logo`), joten leveys seuraa kuvasuhdetta.
-- **Kuvake:** korvaa `assets/favicon.svg`.
-- **Värit:** vaihda `assets/tyyli.css`:n alussa olevat `--vari-…`-muuttujat. Esimerkkiklipin studio (`--k-…`) seuraa brändivärejä. Vaihda myös `theme-color` molempien HTML-tiedostojen `<head>`-osassa.
-- **Fontit:** vaihda `--fontti-…`-muuttujat ja Google Fonts -linkki `<head>`-osassa.
+Sivu käyttää logokonseptia 4, Pystyviiva, jonka Hannes valitsi 23.10.2026. Lähteet ja perustelut ovat kansiossa `08_brandi` (`2026-10-23_logo-perustelut.md`, osio 4). Edelliset väliaikaiset logo ja kuvake on arkistoitu kansioon `99_arkisto` (`2026-10-23_verkkosivu-logo-valiaikainen.svg` ja `2026-10-23_verkkosivu-favicon-valiaikainen.svg`).
+
+- **Värit:** musta `#000000`, tekstityskeltainen `#FFE100`, valkoinen `#FFFFFF` ja betoni `#E4E4E1` (sivun tausta). Ne ovat `assets/tyyli.css`:n alussa `:root`-osassa. Esimerkkiklipin studio käyttää `--k-…`-muuttujia. `theme-color` on musta molempien HTML-tiedostojen `<head>`-osassa.
+- **Keltaisen käyttö:** keltainen erottuu valkoisesta ja betonista huonosti (1,3:1). Sitä käytetään vain mustalla pohjalla (yhteysosio ja alapalkki), korostuksena mustan tekstin takana (linkkien ja nappien hover) tai mustan reunan kanssa (otsikon pystyviiva, vaiheiden numerot, merkit ja aikajanan kohdat). Keltaista tekstiä ei käytetä vaalealla pohjalla.
+- **Fontit:** Big Shoulders Display (900) otsikoissa ja Figtree leipätekstissä. Muuttujat `--fontti-…` ja Google Fonts -linkki `<head>`-osassa.
+- **Logon vaihto:** korvaa `assets/logo.svg` ja `assets/logo-tumma.svg` samoilla nimillä. Jos kuvasuhde muuttuu, päivitä `<img>`-tagien `width`- ja `height`-arvot (4 kohtaa: `index.html` ja `tietosuoja.html`, ylä- ja alapalkki). Vaalea logo on 537 × 121 ja tumma 537 × 112. Korkeus asetetaan CSS:ssä (`.logo img` ja `.alapalkki-logo`), joten leveys seuraa kuvasuhdetta.
+- **Kuvake:** `assets/favicon.svg`.
 
 ## Hintojen muokkaus
 
@@ -45,7 +49,7 @@ Asiakaskohtaisia hintoja ja tarjouksia ei laiteta sivulle.
 
 ## Fontit ja tietosuoja
 
-Fontit (Sofia Sans ja Sofia Sans Extra Condensed, SIL Open Font License) ladataan nyt Google Fontsista. Google Fonts ei aseta evästeitä, mutta kävijän IP-osoite välittyy Googlelle, ja tämä on kerrottu tietosuojaselosteessa.
+Fontit (Big Shoulders Display ja Figtree, SIL Open Font License) ladataan nyt Google Fontsista. Google Fonts ei aseta evästeitä, mutta kävijän IP-osoite välittyy Googlelle, ja tämä on kerrottu tietosuojaselosteessa.
 
 Jos haluat, ettei sivu ota yhteyttä Googleen:
 
@@ -78,7 +82,8 @@ Polussa on iso P ja iso S (`/PystyStudio/`), samaan tapaan kuin Ajouran vanhassa
 
 ## Vielä tekemättä
 
-- [ ] Lopullinen logo ja kuvake (`08_brandi`): korvaa `assets/logo.svg` ja `assets/favicon.svg`
+- [x] Lopullinen logo ja kuvake: konsepti 4, Pystyviiva (23.10.2026)
+- [ ] PNG-kuvake (`favicon.ico`, `apple-touch-icon`) ja jakokuva (`og:image`), kun logo on viimeistelty
 - [ ] Referenssit: klipit asiakkaan kirjallisella luvalla, sitten `hidden` pois osiosta
 - [ ] Tietosuojaseloste: osoite rekisterinpitäjän tietoihin, jos laki sitä vaatii, ja juristin tarkistus
 - [ ] Fontit omalle palvelimelle, jos Google Fonts halutaan pois (ks. yllä)

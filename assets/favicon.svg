@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!-- Väliaikainen kuvake. Vaihda lopullisen logon mukaan. -->
-  <rect width="64" height="64" rx="14" fill="#2F3CE8"/>
-  <rect x="20" y="9" width="24" height="46" rx="6" fill="none" stroke="#FFFFFF" stroke-width="5"/>
-  <rect x="25" y="36" width="14" height="5" rx="2.5" fill="#FFFFFF"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="Pysty Studio"><title>Pysty Studio</title><path d="M0 7.04A7.04 7.04 0 0 1 7.04 0L24.96 0A7.04 7.04 0 0 1 32 7.04L32 24.96A7.04 7.04 0 0 1 24.96 32L7.04 32A7.04 7.04 0 0 1 0 24.96Z" fill="#000000"/><g transform="translate(8 3.84) scale(0.2432)"><g transform="translate(-4 90)"><path d="M19 0L4 0L4 -80L23.3 -80Q34.5 -80 39.48 -75.48Q44.45 -70.95 44.8 -60.5L44.8 -60.5Q44.95 -56.3 44.95 -52.7Q44.95 -49.1 44.8 -44.9L44.8 -44.9Q44.45 -34.5 39.48 -29.95Q34.5 -25.4 23.3 -25.4L23.3 -25.4L19 -25.4L19 0M19 -66.8L19 -38.6L23.3 -38.6Q26.45 -38.6 28.05 -40.05Q29.65 -41.5 29.8 -44.1L29.8 -44.1Q29.95 -46.55 30 -49.62Q30.05 -52.7 30 -55.78Q29.95 -58.85 29.8 -61.3L29.8 -61.3Q29.65 -63.95 28.05 -65.37Q26.45 -66.8 23.3 -66.8L23.3 -66.8L19 -66.8" fill="#FFFFFF"/><g class="caret"><rect x="55.95" y="-90" width="13.8" height="100" fill="#FFE100"/></g></g></g></svg>
