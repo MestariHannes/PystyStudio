@@ -123,9 +123,9 @@
       a.setAttribute('href', a.getAttribute('data-pohja') + (osat.length ? '?' + osat.join('&') : ''));
     });
   }
-  // Uuden ilmeen esikatselu (?uusi=1, <html class="ilme-uusi">) kulkee sisäisissä linkeissä. Muuten tyhjä lista.
+  // Lisäparametrit sisäisiin linkkeihin (uuden ilmeen esikatselu ?uusi=1 päättyi 23.10.2026, joten lista on tyhjä).
   function lisaParametrit() {
-    return document.documentElement.classList.contains('ilme-uusi') ? ['uusi=1'] : [];
+    return [];
   }
 
   function aseta(uusi) {

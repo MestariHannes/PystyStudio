@@ -1,13 +1,12 @@
-/* Pysty Studio – uuden ilmeen ESIKATSELU (?uusi=1).
-   Ladataan vain, kun osoitteessa on ?uusi=1 (sivun <head>-skripti lisää <html>-elementtiin luokan ilme-uusi
-   ja tarvittaessa luokat ilme-animoi ja intro-tulossa). Tyylit: ilme-uusi.css.
+/* Pysty Studio – Pystyviiva-ilme (esikatselu ?uusi=1 23.10.2026, käytössä kaikilla sivuilla samasta päivästä alkaen).
+   Sivun <head>-skripti lisää <html>-elementtiin luokan ilme-uusi
+   ja tarvittaessa luokat ilme-animoi ja intro-tulossa. Tyylit: ilme-uusi.css.
 
-   1. ?uusi=1 kulkee sisäisissä linkeissä (hinnat.js, valuutta.js ja tarjous.js hoitavat omat linkkinsä itse).
    2. Nauha heron alle: alustat ja lyhyet lupaukset (koriste, aria-hidden).
    3. Avausefekti etusivulla ensimmäisellä käynnillä (localStorage; ilman tallennusta kerran latausta kohden).
       Noin 5 s, Ohita-nappi, ja klikkaus, kosketus, vieritys tai mikä tahansa näppäin ohittaa sen.
       Intro on vain sisällön päällä oleva kerros (aria-hidden): sivun sisältö on HTML:ssä heti.
-      Pakota uudelleen: ?uusi=1&intro=1.
+      Pakota uudelleen: ?intro=1.
    4. Hero-otsikko sana kerrallaan ja osioiden otsikot kirjoittuvat näkyviin vieritettäessä.
    Vähennetty liike (prefers-reduced-motion): ei introa eikä animaatioita (luokkia ei lisätä). */
 (function () {
@@ -19,19 +18,7 @@
   var animoi = h.classList.contains('ilme-animoi');
   var AVAIN = 'pystystudio-intro';
 
-  // 1. Sisäiset sivulinkit: ?uusi=1 mukaan (ankkurit, mailto:, tel:, sms: ja ulkoiset osoitteet jäävät ennalleen).
-  document.querySelectorAll('a[href]').forEach(function (a) {
-    if (a.hasAttribute('data-tarjouslinkki') || a.hasAttribute('data-kielilinkki') || a.hasAttribute('data-tarjous-kielilinkki')) return;
-    var href = a.getAttribute('href');
-    if (!href || /^(#|[a-z][a-z0-9+.-]*:|\/\/)/i.test(href) || /[?&]uusi=1/.test(href)) return;
-    var osat = href.split('#');
-    var polku = osat[0].split('?')[0];
-    if (!/(\.html|\/)$/.test(polku)) return;
-    var alku = osat[0] + (osat[0].indexOf('?') >= 0 ? '&' : '?') + 'uusi=1';
-    a.setAttribute('href', alku + (osat.length > 1 ? '#' + osat.slice(1).join('#') : ''));
-  });
-
-  // 2. Nauha heron alle.
+  // 2. Nauha heron alle. (Kohta 1, ?uusi=1-linkit, poistettiin, kun ilme otettiin käyttöön 23.10.2026.)
   var hero = document.querySelector('.hero');
   if (hero) {
     var sisalto = en
