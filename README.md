@@ -25,6 +25,7 @@ Pysty Studion oma staattinen sivusto: pelkkää HTML:ää, CSS:ää ja JavaScrip
 | `assets/favicon.svg` | Selainvälilehden kuvake (P\| mustalla pohjalla) |
 | `assets/apple-touch-icon.png` | 180 × 180 px kuvake iPhonen kotivalikkoon ja PNG-varakuvake (kopio tiedostosta `08_brandi/logo/png/2026-10-23_pysty-logo-favicon-180.png`) |
 | `assets/jakokuva.png`, `assets/jakokuva-en.png` | Somejakojen kuva (`og:image`) 1200 × 630, suomeksi ja englanniksi (ks. Hakukoneet ja somejaot) |
+| `assets/ilme-uusi.css`, `assets/ilme-uusi.js` | Uuden ilmeen esikatselu, joka on käytössä vain osoitteella `?uusi=1` (ks. Uuden ilmeen esikatselu) |
 | `404.html` | Oma ”Sivua ei löytynyt” -sivu suomeksi ja englanniksi. Polut alkavat `/PystyStudio/`, koska GitHub Pages näyttää sivun mistä tahansa puuttuvasta osoitteesta. |
 | `.nojekyll` | Kertoo GitHub Pagesille, että sivu julkaistaan sellaisenaan |
 
@@ -157,6 +158,30 @@ Asiakaskohtaisia hintoja ja tarjouksia ei laiteta sivulle.
 - **Ilman JavaScriptiä** sivulla näkyy ohje lähettää sähköpostia ja palvelulista. Yhteenveto ja yhteystietokentät ovat piilossa.
 - **Tietosuoja:** tarjouspyynnöstä kerrotaan tietosuojaselosteen kohdassa ”Mitä tietoja käsittelen” (molemmat kielet).
 - **Toimitusaika** on sivuilla muodossa ”parhaimmillaan parissa tunnissa, yleensä vuorokauden sisällä arkipäivinä” (Tuomarin tarkennus 23.10.2026). Sitova yläraja on sopimuksessa. Kiiretoimitus poistettiin hinnastosta 23.10.2026.
+
+## Uuden ilmeen esikatselu (?uusi=1, lisätty 23.10.2026)
+
+Hannes pyysi näyttävämpää ilmettä ja avausefektiä. Uusi ilme on ensin esikatseluna, joka näkyy vain osoitteella
+https://mestarihannes.github.io/PystyStudio/?uusi=1 (englanniksi `en/?uusi=1`). Ilman parametria sivu on täsmälleen ennallaan.
+
+- **Teema:** logon pystyviiva on kursori, joka kirjoittaa tekstityksen sana kerrallaan.
+  - **Avausefekti** (noin 5 s, vain etusivulla ensimmäisellä käynnillä):
+    1. Musta ruutu ja vilkkuva kursori.
+    2. PYSTY | STUDIO ja ”Pitkät videot pystyyn.” ilmestyvät sana kerrallaan.
+    3. 16:9-studiokuva rajautuu 9:16:ksi puhujan kohdalle.
+    4. Pystykehys suurenee ja aukeaa sivuksi.
+  - **Muu ilme:**
+    - musta hero, jonka otsikko ilmestyy sana kerrallaan
+    - keltainen nauha (alustat ja lyhyet lupaukset)
+    - kursori osioiden otsikoiden perässä
+    - otsikot kirjoittuvat näkyviin vieritettäessä
+    - puhelinkuvan tekstityksessä juuri puhuttu sana on keltainen
+    - hienovarainen rakeisuus betonitaustassa
+- **Intron ohitus:** Ohita-nappi oikeassa yläkulmassa, tai klikkaus, kosketus, vieritys tai mikä tahansa näppäin. Intro on vain sisällön päällä oleva kerros (`aria-hidden`), joten sivun sisältö on HTML:ssä heti hakukoneille ja ruudunlukijoille.
+- **Kerran:** intro merkitään nähdyksi selaimen muistiin (localStorage, avain `pystystudio-intro`). Jos selain estää tallennuksen, intro näkyy kerran latausta kohden. Uudelleen katsominen: `?uusi=1&intro=1`.
+- **Vähennetty liike:** jos laitteessa on valittu vähemmän liikettä (`prefers-reduced-motion`), intro ja animaatiot jäävät pois.
+- **Toteutus:** jokaisen sivun `<head>`-osassa on pieni skripti, joka toimii vain parametrilla `?uusi=1`. Se lisää `<html>`-elementtiin luokan `ilme-uusi` ja lataa tiedostot `assets/ilme-uusi.css` ja `assets/ilme-uusi.js`. Kaikki uudet tyylit ovat `.ilme-uusi`-luokan alla. Parametri kulkee sisäisissä linkeissä (myös FI/EN-valitsin ja tarjoussivu: `valuutta.js`:n `lisaParametrit`).
+- **Käyttöönotto,** jos Hannes hyväksyy: poista esikatseluskriptistä parametriehto (ensimmäinen `if`-rivi) kaikilta sivuilta, jolloin uusi ilme on aina käytössä. Poista samalla `?uusi=1` linkeistä: `valuutta.js`:n `lisaParametrit` palauttaa silloin tyhjän listan, ja `ilme-uusi.js`:n kohta 1 poistetaan.
 
 ## Hakukoneet ja somejaot
 

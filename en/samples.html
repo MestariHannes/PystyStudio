@@ -30,6 +30,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700..900&family=Figtree:wght@400..900&display=swap">
   <link rel="stylesheet" href="../assets/tyyli.css">
+  <!-- Uuden ilmeen esikatselu: vain osoitteella ?uusi=1 (luokka ilme-uusi sekä ../assets/ilme-uusi.css ja ilme-uusi.js).
+       Ilman parametria skripti ei tee mitään, joten oletussivu pysyy ennallaan.  -->
+  <script data-polku="../assets/">
+  (function () {
+    if (!/[?&]uusi=1(&|$)/.test(location.search)) return;
+    var h = document.documentElement, s = document.currentScript, p = s.getAttribute('data-polku');
+    h.classList.add('ilme-uusi');
+    var liike = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    if (liike && 'IntersectionObserver' in window) h.classList.add('ilme-animoi');
+    if (liike && s.hasAttribute('data-intro') && !location.hash) {
+      var nahty = false;
+      try { nahty = window.localStorage.getItem('pystystudio-intro') === '1'; } catch (e) { nahty = false; }
+      if (/[?&]intro=1(&|$)/.test(location.search)) nahty = false;
+      if (!nahty) h.classList.add('intro-tulossa');
+    }
+    document.write('<link rel="stylesheet" href="' + p + 'ilme-uusi.css"><script src="' + p + 'ilme-uusi.js" defer><\/script>');
+  })();
+  </script>
 </head>
 <body>
   <a class="ohituslinkki" href="#content">Skip to content</a>

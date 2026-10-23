@@ -386,6 +386,7 @@
     });
     if (lomake.querySelector('[name="naytteet"]').checked) osat.push('naytteet=1');
     if (V.valuutta() === 'usd') osat.push('currency=usd');
+    if (V.lisaParametrit) osat = osat.concat(V.lisaParametrit()); // uuden ilmeen esikatselu (?uusi=1) säilyy
     return osat.length ? '?' + osat.join('&') : '';
   }
 

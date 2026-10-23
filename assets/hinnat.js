@@ -103,6 +103,7 @@
   function paivitaTarjouslinkit() {
     var osat = valintaOsat();
     if (V.valuutta() === 'usd') osat.push('currency=usd');
+    if (V.lisaParametrit) osat = osat.concat(V.lisaParametrit()); // uuden ilmeen esikatselu (?uusi=1)
     document.querySelectorAll('[data-tarjouslinkki]').forEach(function (a) {
       if (!a.hasAttribute('data-pohja')) a.setAttribute('data-pohja', a.getAttribute('href'));
       a.setAttribute('href', a.getAttribute('data-pohja') + (osat.length ? '?' + osat.join('&') : ''));

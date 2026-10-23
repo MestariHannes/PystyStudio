@@ -119,8 +119,13 @@
     // Kielilinkki vie saman valuutan toiselle kielelle myös silloin, kun selain ei salli tallennusta.
     document.querySelectorAll('[data-kielilinkki]').forEach(function (a) {
       if (!a.hasAttribute('data-pohja')) a.setAttribute('data-pohja', a.getAttribute('href'));
-      a.setAttribute('href', a.getAttribute('data-pohja') + (usd() ? '?currency=usd' : ''));
+      var osat = (usd() ? ['currency=usd'] : []).concat(lisaParametrit());
+      a.setAttribute('href', a.getAttribute('data-pohja') + (osat.length ? '?' + osat.join('&') : ''));
     });
+  }
+  // Uuden ilmeen esikatselu (?uusi=1, <html class="ilme-uusi">) kulkee sisäisissä linkeissä. Muuten tyhjä lista.
+  function lisaParametrit() {
+    return document.documentElement.classList.contains('ilme-uusi') ? ['uusi=1'] : [];
   }
 
   function aseta(uusi) {
@@ -154,6 +159,7 @@
     valuutta: function () { return valuutta; },
     aseta: aseta,
     kun: function (fn) { kuuntelijat.push(fn); },
+    lisaParametrit: lisaParametrit,
     euroa: euroa,
     dollaria: dollaria,
     teksti: teksti,
