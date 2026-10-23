@@ -8,8 +8,10 @@ Pysty Studion oma staattinen sivusto: pelkkää HTML:ää, CSS:ää ja JavaScrip
 |---|---|
 | `index.html` | Etusivu: hero ja esimerkkiklippi, Näin se toimii, Mitä klipeissä on, Palvelut ja hinnat, Lisäpalvelut, Referenssit, Usein kysyttyä ja Yhteys |
 | `tietosuoja.html` | Tietosuojaseloste (luonnos, pohjana `02_sopimukset-ja-laki/2026-10-21_dpa-ja-tietosuoja.md`) |
+| `naytteet.html` | Ilmaisten näytteiden ehdot (sanatarkasti `02_sopimukset-ja-laki/2026-10-23_nayte-ehdot.md`, osio 1). Linkki alapalkissa ja CTA-nappien alla. |
 | `assets/tyyli.css` | Kaikki tyylit. Brändivärit ja fontit ovat tiedoston alussa `:root`-osassa. |
 | `assets/sivu.js` | Heron esimerkkiklippi: tekstitys sana kerrallaan ja puhujan vaihto |
+| `assets/hinnat.js` | Hintojen liukusäätimet ja Klippitilin hoidon alustavalinta. Hinnat ovat `index.html`:ssä, eivät tässä tiedostossa. |
 | `assets/logo.svg` | Nimilogo PYSTY\|STUDIO vaalealle pohjalle (konsepti 4, Pystyviiva). Yläpalkissa. |
 | `assets/logo-tumma.svg` | Nimilogo tummalle pohjalle. Mustassa alapalkissa. |
 | `assets/favicon.svg` | Selainvälilehden kuvake (P\| mustalla pohjalla) |
@@ -44,6 +46,15 @@ Kaikki hinnat ovat `index.html`:ssä kahdessa osiossa, eikä niitä ole muualla:
 - **Lisäpalvelut** (`<section id="lisapalvelut">`): hinnasto A, jonka Hannes hyväksyi sivustolle 23.10.2026.
 
 Jokainen palvelu on oma `<li class="hintarivi">`-rivinsä: nimi on `<h4>`-tagissa, kuvaus `<p>`-tagissa ja hinta `<span class="summa">`-tagissa. Uusi palvelu lisätään kopioimalla rivi. UKK:ssa hinta mainitaan kahdessa kohdassa, kiiretoimitus (+50 %) ja alv 25,5 %, joten tarkista ne, jos hinnat muuttuvat.
+
+### Säädinkortit (hinnat hyväksytty 23.10.2026)
+
+Kuukausipaketti (Klippaamo), Kertaerä, AI-mainospaketti ja Arkisto ovat säädinkortteja (`data-saadin`), ja Klippitilin hoito on oma korttinsa (`data-tilinhoito`). Säädin päivittää nimen, kuvauksen, hinnan (alv 0 %), alv:llisen hinnan (25,5 %) ja €/klippi-luvun. Laskenta on tiedostossa `assets/hinnat.js`.
+
+- **Portaat ja hinnat** ovat kortin `data-portaat`-attribuutissa, esim. `{"n":12,"hinta":349,"nimi":"Klippaamo Starter"}` (n = klippejä, hinta = € alv 0 %). Portaalle voi antaa oman nimen (`nimi`), kuvauksen (`kuvaus`) ja lisärivin (`lisa`).
+- **`data-oletus`** kertoo oletusportaan järjestysnumeron (0 = ensimmäinen). Myös `<input type="range">`:n `value` ja `max` sekä porrasnumerot (`.portaat`) pitää päivittää, jos portaiden määrä muuttuu.
+- **Ilman JavaScriptiä** säätimet ovat piilossa ja kortissa näkyy oletusportaan teksti. Kun muutat oletusportaan hintaa, päivitä siis myös kortin näkyvät tekstit (nimi, kuvaus, hinta ja `data-yhteenveto`-rivi).
+- **Klippitilin hoito:** `data-hinnat` sisältää €/kk-hinnat julkaisumäärän mukaan muodossa [1 alusta, 2 alustaa, 3 alustaa], ja `data-kayttoonotto` sisältää kertamaksut samassa järjestyksessä. Vähintään yksi alusta pysyy aina valittuna.
 
 Asiakaskohtaisia hintoja ja tarjouksia ei laiteta sivulle.
 
