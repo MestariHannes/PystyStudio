@@ -74,6 +74,24 @@
     valittu: function (n, raha) { return 'Valittu paketti: ' + n + ' klippiä, ' + raha + '.'; }
   };
 
+  // Räätälöity tarjous -linkit (data-tarjouslinkki): säätimet, joita kävijä on liikuttanut, välitetään
+  // URL-parametreina tarjoussivulle, esim. tarjous.html?klippaamo=12&videot=4&per=3&currency=usd.
+  // Henkilötietoja ei laiteta osoitteeseen.
+  var valinnat = {};
+  function paivitaTarjouslinkit() {
+    var osat = [];
+    Object.keys(valinnat).forEach(function (palvelu) {
+      var p = valinnat[palvelu];
+      Object.keys(p).forEach(function (nimi) { osat.push(nimi + '=' + encodeURIComponent(p[nimi])); });
+    });
+    if (V.valuutta() === 'usd') osat.push('currency=usd');
+    document.querySelectorAll('[data-tarjouslinkki]').forEach(function (a) {
+      if (!a.hasAttribute('data-pohja')) a.setAttribute('data-pohja', a.getAttribute('href'));
+      a.setAttribute('href', a.getAttribute('data-pohja') + (osat.length ? '?' + osat.join('&') : ''));
+    });
+  }
+  function valitse(palvelu, parametrit) { valinnat[palvelu] = parametrit; paivitaTarjouslinkit(); }
+
   // Iso hinta kortissa. USD-tilassa summa on "≈ 391 $", ja euro näkyy pienellä sen alla.
   function naytaHinta(summaEl, sentit, etumerkki) {
     var hinta = summaEl.closest('.hinta') || summaEl.parentNode;
@@ -131,7 +149,8 @@
 
   // Tavallinen säädinkortti: data-saadin="klippaamo" tms. (hinnat hintadata.js:stä), yksi porras = määrä ja hinta.
   function teeSaadin(kortti) {
-    var hinnat = H[kortti.getAttribute('data-saadin')];
+    var avain = kortti.getAttribute('data-saadin');
+    var hinnat = H[avain];
     var portaat = JSON.parse(kortti.dataset.portaat);
     var yksikot = (kortti.dataset.yksikko || 'klippi|klippiä').split('|');
     var kk = kortti.hasAttribute('data-kk');
@@ -164,6 +183,11 @@
         p.n + ' ' + yksikko + (kk ? T.kuukaudessa : '') + ', ' + V.sanoin(hinta * 100, kk ? T.kuukaudessa : '') +
         (p.nimi ? ', ' + p.nimi : '') + (p.lisa ? ', ' + p.lisa.replace(/^\+\s*/, T.lisaksi) : ''));
       if (apu) apu.pakettiMuuttui(i, kayttaja);
+      if (kayttaja) {
+        var param = {};
+        param[avain] = p.n;
+        valitse(avain, param);
+      }
     });
 
     var apuEl = saadin.querySelector('[data-apusaatimet]');
@@ -217,6 +241,7 @@
       else if (n !== t) viesti = T.vapaaksi(n, n - t);
 
       asetaPorras(i);
+      if (kayttaja) valitse('klippaamo', { klippaamo: n, videot: v, per: pv });
       yhteensaEl.textContent = T.yhteensa(t);
       viestiTekstiEl.textContent = viesti;
       tarjousEl.hidden = !(t > max);
@@ -281,7 +306,15 @@
       return h;
     }
 
-    kytke(input, paivita);
+    // Tarjoussivulle: julkaisumäärä ja alustat koodeina (tiktok, instagram, shorts).
+    function valitseTilinhoito(h) {
+      valitse('tilinhoito', {
+        tilinhoito: h.p.n,
+        alustat: h.alustat.map(function (a) { return a.toLowerCase().replace('youtube ', ''); }).join(',')
+      });
+    }
+
+    kytke(input, function (i, kayttaja) { var h = paivita(); if (kayttaja) valitseTilinhoito(h); });
     saadin.hidden = false;
     paivita();
     V.kun(paivita);
@@ -298,6 +331,7 @@
           huomioEl.hidden = true;
         }
         var h = paivita();
+        valitseTilinhoito(h);
         ilmoitusEl.textContent = viesti + T.alustaIlmoitus(h.a, V.sanoin(h.kk * 100, T.kuukaudessa), V.sanoin(h.kerta * 100));
       });
     });
@@ -305,6 +339,8 @@
 
   piirraKiinteat();
   V.kun(piirraKiinteat);
+  V.kun(paivitaTarjouslinkit);
+  paivitaTarjouslinkit();
   document.querySelectorAll('[data-saadin]').forEach(teeSaadin);
   document.querySelectorAll('[data-tilinhoito]').forEach(teeTilinhoito);
 })();

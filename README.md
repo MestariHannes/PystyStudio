@@ -12,11 +12,14 @@ Pysty Studion oma staattinen sivusto: pelkkää HTML:ää, CSS:ää ja JavaScrip
 | `en/index.html` | Etusivu englanniksi (sama rakenne ja samat säätimet) |
 | `en/samples.html` | Näytteiden ehdot englanniksi. Kohta 6 ja käännösmerkintä ovat Tuomarin tekstejä. |
 | `en/privacy.html` | Tietosuojaseloste englanniksi, lopussa käännösmerkintä (Tuomarin teksti) |
+| `tarjous.html` | Räätälöity tarjous: palvelut valittavina, hinta-arvio ja tarjouspyyntö sähköpostilla |
+| `en/quote.html` | Räätälöity tarjous englanniksi (Custom quote) |
 | `assets/tyyli.css` | Kaikki tyylit. Brändivärit ja fontit ovat tiedoston alussa `:root`-osassa. |
 | `assets/sivu.js` | Heron esimerkkiklippi: tekstitys sana kerrallaan ja puhujan vaihto. Repliikit suomeksi ja englanniksi sivun kielen mukaan. |
 | `assets/hintadata.js` | **Kaikki hinnat ja EUR/USD-kurssi yhdessä paikassa.** Molemmat kielet käyttävät tätä. |
 | `assets/valuutta.js` | Valuuttavalitsin (EUR / USD), valinnan muistaminen ja rahasummien muotoilu |
-| `assets/hinnat.js` | Hintojen liukusäätimet, Klippaamon apusäätimet (videoita × klippiä per video) ja Klippitilin hoidon alustavalinta |
+| `assets/hinnat.js` | Hintojen liukusäätimet, Klippaamon apusäätimet (videoita × klippiä per video), Klippitilin hoidon alustavalinta ja Räätälöity tarjous -linkkien valinnat |
+| `assets/tarjous.js` | Tarjoussivun laskenta, yhteenveto, sähköpostiviesti (mailto) ja Kopioi viesti -nappi |
 | `assets/logo.svg` | Nimilogo PYSTY\|STUDIO vaalealle pohjalle (konsepti 4, Pystyviiva). Yläpalkissa. |
 | `assets/logo-tumma.svg` | Nimilogo tummalle pohjalle. Mustassa alapalkissa. |
 | `assets/favicon.svg` | Selainvälilehden kuvake (P\| mustalla pohjalla) |
@@ -35,9 +38,10 @@ Suomenkieliset sivut ovat juuressa ja englanninkieliset kansiossa `en/`. Assetit
 | `index.html` | `en/index.html` |
 | `naytteet.html` | `en/samples.html` |
 | `tietosuoja.html` | `en/privacy.html` |
+| `tarjous.html` | `en/quote.html` |
 
 - **Kielivalitsin FI | EN** on jokaisen sivun yläpalkissa (`<nav class="kielet">`). Linkki vie vastaavalle sivulle toisella kielellä. Nykyisen kielen linkissä on `aria-current="page"`.
-- **Hakukoneet:** jokaisen sivun `<head>`-osassa on `hreflang`-linkit (fi, en ja x-default = suomi). Osoitteet ovat täysiä osoitteita (`https://mestarihannes.github.io/PystyStudio/...`). Jos sivulle tulee oma verkkotunnus, vaihda ne kaikista kuudesta HTML-tiedostosta.
+- **Hakukoneet:** jokaisen sivun `<head>`-osassa on `hreflang`-linkit (fi, en ja x-default = suomi). Osoitteet ovat täysiä osoitteita (`https://mestarihannes.github.io/PystyStudio/...`). Jos sivulle tulee oma verkkotunnus, vaihda ne kaikista HTML-tiedostoista.
 - **Kun suomenkielinen teksti muuttuu,** päivitä sama kohta englanninkieliseen sivuun. Ehtojen ja tietosuojan englanninkieliset versiot ovat käännöksiä, ja niiden lopussa kerrotaan, että suomenkielinen versio on ensisijainen.
 - **Englanninkielisten sivujen alv- ja laskutustekstit ovat Tuomarin tekstejä (23.10.2026), ja niitä käytetään sanatarkasti:**
   - alv: ”Prices exclude VAT. Finnish customers: VAT 25.5% is added. EU businesses with a valid VAT number: 0% VAT (reverse charge). Businesses outside the EU: 0% VAT. Services are for businesses only.”
@@ -70,7 +74,7 @@ Nykyinen kurssi on Euroopan keskuspankin virallinen EUR/USD-viitekurssi 22.10.20
 
 ## Yhteystiedot
 
-Sähköposti, puhelin ja nimi ovat kaikissa kuudessa HTML-tiedostossa (Yhteys-osio, napit ja alapalkki sekä tietosuojaselosteet). Jos jokin niistä muuttuu, vaihda se Etsi ja korvaa -toiminnolla kaikista tiedostoista. Vaihda myös `mailto:`- ja `tel:`-linkit.
+Sähköposti, puhelin ja nimi ovat kaikissa HTML-tiedostoissa (Yhteys-osio, napit ja alapalkki sekä tietosuojaselosteet). Jos jokin niistä muuttuu, vaihda se Etsi ja korvaa -toiminnolla kaikista tiedostoista. Vaihda myös `mailto:`- ja `tel:`-linkit.
 
 - **Referenssit-osio** on piilotettu (`hidden`), kunnes asiakkaalta on lupa. Kun klipit ovat paikallaan, poista `hidden` osion `<section>`-tagista (molemmilla kielillä).
 - **Y-tunnusta ei ole,** joten sitä ei ole lisätty. Kun Oy perustetaan, lisää Y-tunnus alapalkkiin ja tietosuojaselosteeseen ja päivitä UKK:n kohta ”Miksi lasku tulee Keikkalaskulta?” molemmilla kielillä. Englanninkielinen laskutusrivi on Tuomarin teksti, joten muutos tarkistetaan Tuomarilla.
@@ -82,7 +86,7 @@ Sivu käyttää logokonseptia 4, Pystyviiva, jonka Hannes valitsi 23.10.2026. L�
 - **Värit:** musta `#000000`, tekstityskeltainen `#FFE100`, valkoinen `#FFFFFF` ja betoni `#E4E4E1` (sivun tausta). Ne ovat `assets/tyyli.css`:n alussa `:root`-osassa. Esimerkkiklipin studio käyttää `--k-…`-muuttujia. `theme-color` on musta kaikkien HTML-tiedostojen `<head>`-osassa.
 - **Keltaisen käyttö:** keltainen erottuu valkoisesta ja betonista huonosti (1,3:1). Sitä käytetään vain mustalla pohjalla (yhteysosio ja alapalkki), korostuksena mustan tekstin takana (linkkien ja nappien hover, valittu valuutta) tai mustan reunan kanssa (otsikon pystyviiva, vaiheiden numerot, merkit ja aikajanan kohdat). Keltaista tekstiä ei käytetä vaalealla pohjalla.
 - **Fontit:** Big Shoulders Display (900) otsikoissa ja Figtree leipätekstissä. Muuttujat `--fontti-…` ja Google Fonts -linkki `<head>`-osassa.
-- **Logon vaihto:** korvaa `assets/logo.svg` ja `assets/logo-tumma.svg` samoilla nimillä. Jos kuvasuhde muuttuu, päivitä `<img>`-tagien `width`- ja `height`-arvot (kaikki kuusi HTML-tiedostoa, ylä- ja alapalkki). Vaalea logo on 537 × 121 ja tumma 537 × 112. Korkeus asetetaan CSS:ssä (`.logo img` ja `.alapalkki-logo`), joten leveys seuraa kuvasuhdetta.
+- **Logon vaihto:** korvaa `assets/logo.svg` ja `assets/logo-tumma.svg` samoilla nimillä. Jos kuvasuhde muuttuu, päivitä `<img>`-tagien `width`- ja `height`-arvot (kaikki HTML-tiedostot, ylä- ja alapalkki). Vaalea logo on 537 × 121 ja tumma 537 × 112. Korkeus asetetaan CSS:ssä (`.logo img` ja `.alapalkki-logo`), joten leveys seuraa kuvasuhdetta.
 - **Kuvake:** `assets/favicon.svg`.
 
 ## Hintojen muokkaus
@@ -100,12 +104,14 @@ Hinnat ovat kahdessa osiossa:
 - **Palvelut ja hinnat** (`<section id="hinnat">`, englanniksi `id="pricing"`): kuukausipaketit ja kertatyöt.
 - **Lisäpalvelut** (`<section id="lisapalvelut">`, englanniksi `id="add-ons"`): hinnasto A, jonka Hannes hyväksyi sivustolle 23.10.2026.
 
+Tarjoussivuilla (`tarjous.html` ja `en/quote.html`) ei ole hintoja HTML:ssä: JavaScript hakee ne `hintadata.js`:stä. Jos portaat muuttuvat, päivitä tarjoussivujen valintalistat (`<select data-koko>`).
+
 Jokainen palvelu on oma `<li class="hintarivi">`-rivinsä: nimi on `<h4>`-tagissa, kuvaus `<p>`-tagissa ja hinta `<span class="summa">`-tagissa.
 
 - **Kiinteä hinta** on merkitty `data-hinta="nimi"`, ja nimi viittaa `hintadata.js`:n `kiinteat`-osaan (esim. `data-hinta="lisaklippi"`).
   - `data-etumerkki="+"` lisää plusmerkin (esim. +5 €/klippi).
   - Tekstin sisällä olevassa hinnassa `data-jakso` on summan perään tuleva teksti (esim. `/kpl`), ja `data-sulut` tarkoittaa, että summa on sulkeissa.
-- **Uusi palvelu** lisätään kopioimalla rivi molempiin HTML-tiedostoihin ja lisäämällä hinta `hintadata.js`:n `kiinteat`-osaan uudella nimellä.
+- **Uusi palvelu** lisätään kopioimalla rivi molempiin HTML-tiedostoihin ja lisäämällä hinta `hintadata.js`:n `kiinteat`-osaan uudella nimellä. Lisää se myös tarjoussivuille (`<div class="palvelu" data-palvelu="nimi">`) ja `tarjous.js`:n listaan (`KK` = kuukausihinta, `KPL` = kappalehinta).
 
 ### Säädinkortit (hinnat hyväksytty 23.10.2026)
 
@@ -127,6 +133,18 @@ Klippaamo-kortissa on pakettisäätimen yläpuolella laskuri ”Laske paketin ko
 - Arvot ovat HTML:ssä apusäätimen `data-arvot`-kentässä ja oletus `data-oletus`-kentässä (järjestysnumero). Tekstit ovat `hinnat.js`:ssä molemmilla kielillä.
 
 Asiakaskohtaisia hintoja ja tarjouksia ei laiteta sivulle.
+
+## Räätälöity tarjous (lisätty 23.10.2026)
+
+`tarjous.html` (englanniksi `en/quote.html`): kävijä valitsee palvelut, näkee hinta-arvion ja lähettää tarjouspyynnön. Sivulle vievät Räätälöity tarjous -painikkeet etusivun hintaosiossa (lupausnauhan alla ja lisäpalvelujen lopussa) sekä yläpalkin valikossa leveällä näytöllä (64em eli noin 1024 px alkaen).
+
+- **Etusivun valinnat mukaan:** kun kävijä liikuttaa etusivun säätimiä, painikkeiden linkkiin lisätään valinnat, esim. `tarjous.html?klippaamo=12&videot=4&per=3&tilinhoito=20&alustat=tiktok,shorts&currency=usd`. Vain liikutetut säätimet tulevat mukaan. Parametrien nimet ovat `hintadata.js`:n palvelujen nimiä. Osoitteeseen ei laiteta henkilötietoja.
+- **Laskenta** (`assets/tarjous.js`): kuukausihinnat ja kertaluonteiset hinnat erikseen, alv 0 % ja alv:n kanssa. Kappalehintaiset lisät lasketaan kertaluonteisiksi. Englanninkielinen tekstitys ja vaakaversio lasketaan valittujen palvelujen klippimäärästä (Klippaamo ja Kaikki valmiina kuukausittain, muut kertaluonteisesti; livestriimi = 8 klippiä). Julkaisutekstit ovat 0 €, kun valittuna on Klippaamo Pro.
+- **Lähetä tarjouspyyntö (ei sitova)** avaa kävijän oman sähköpostiohjelman valmiilla viestillä (mailto) osoitteeseen korkiakoskihannes@gmail.com. Aihe on ”Tarjouspyyntö: [yritys]”. Jos ilmaiset näytteet on valittu, viestissä on rivi ”Hyväksyn näytteiden ehdot: [linkki]”. Sivu ei lähetä eikä tallenna mitään itse.
+- **Pitkä viesti:** yli 1 800 merkin mailto-linkki ei välttämättä avaudu kaikissa sähköpostiohjelmissa. Silloin sivu näyttää ohjeen, ja **Kopioi viesti** -nappi kopioi viestin leikepöydälle. Jos selain ei salli kopiointia, viesti näytetään kentässä itse kopioitavaksi.
+- **Ilman JavaScriptiä** sivulla näkyy ohje lähettää sähköpostia ja palvelulista. Yhteenveto ja yhteystietokentät ovat piilossa.
+- **Tietosuoja:** tarjouspyynnöstä kerrotaan tietosuojaselosteen kohdassa ”Mitä tietoja käsittelen” (molemmat kielet).
+- **Toimitusaika** on sivuilla muodossa ”parhaimmillaan parissa tunnissa, yleensä vuorokauden sisällä arkipäivinä” (Tuomarin tarkennus 23.10.2026). Sitova yläraja on sopimuksessa. Kiiretoimitus poistettiin hinnastosta 23.10.2026.
 
 ## Fontit ja tietosuoja
 
@@ -167,6 +185,7 @@ Polussa on iso P ja iso S (`/PystyStudio/`), samaan tapaan kuin Ajouran vanhassa
 
 - [x] Lopullinen logo ja kuvake: konsepti 4, Pystyviiva (23.10.2026)
 - [x] Englanninkieliset sivut ja valuuttavalinta EUR / USD (23.10.2026)
+- [x] Räätälöity tarjous -sivu (23.10.2026)
 - [ ] PNG-kuvake (`favicon.ico`, `apple-touch-icon`) ja jakokuva (`og:image`), kun logo on viimeistelty
 - [ ] Referenssit: klipit asiakkaan kirjallisella luvalla, sitten `hidden` pois osiosta (molemmilla kielillä)
 - [ ] Tietosuojaseloste: osoite rekisterinpitäjän tietoihin, jos laki sitä vaatii, ja juristin tarkistus
@@ -176,7 +195,7 @@ Polussa on iso P ja iso S (`/PystyStudio/`), samaan tapaan kuin Ajouran vanhassa
 ## Mitä sivulla ei ole
 
 - Ei evästeitä, analytiikkaa eikä seurantakoodia. Ainoa selaimeen tallennettava tieto on valuuttavalinta (localStorage), joka ei lähde selaimesta.
-- Ei lomaketta: yhteydenotot tulevat sähköpostilla (`mailto:`), joten sivu ei kerää tietoja itse.
+- Ei lomaketta, joka lähettäisi tietoja: yhteydenotot ja tarjouspyynnöt lähtevät kävijän omasta sähköpostiohjelmasta (`mailto:`), joten sivu ei kerää tietoja itse.
 - Asiakkaiden nimiä, klippejä tai asiakaskohtaisia hintoja ei näytetä ilman lupaa.
 
 Huom. README näkyy julkisessa repossa kaikille, joten tähän tiedostoon ei kirjoiteta asiakastietoja.

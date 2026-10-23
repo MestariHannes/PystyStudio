@@ -58,7 +58,7 @@
 
   // Tekstin sisällä: "438 €/kk", USD-tilassa "438 €/kk (≈ 491 $)".
   function teksti(sentit, jakso, etumerkki) {
-    return euroa(sentit, etumerkki) + (jakso || '') + (usd() ? ' (≈ ' + dollaria(sentit, etumerkki) + ')' : '');
+    return euroa(sentit, etumerkki) + (jakso || '') + (usd() && sentit ? ' (≈ ' + dollaria(sentit, etumerkki) + ')' : '');
   }
   // Lisätieto sulkeissa: "29,08 €/klippi (alv 0 %)", USD-tilassa "29,08 €/klippi (alv 0 %, ≈ 33 $)".
   function lisatiedolla(sentit, jakso, lisa) {

@@ -1020,6 +1020,173 @@ h1 span { display: block; }
   font-weight: 900;
 }
 
+/* Räätälöity tarjous -painike etusivulla (data-tarjouslinkki) */
+.tarjous-kehote {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem 1rem;
+  max-width: 58rem;
+  margin: 0 0 .5rem;
+}
+.tarjous-kehote span { font-size: .9375rem; color: var(--vari-harmaa); }
+.tarjous-kehote + .johdanto { margin-top: 1.25rem; }
+.tarjous-kehote-loppu { margin-top: 3rem; }
+.paavalikko .paavalikko-tarjous { display: none; }
+
+/* Räätälöity tarjous (tarjous.html ja en/quote.html, assets/tarjous.js) */
+.tarjous-sivu { padding-block: 3rem 5rem; }
+.tarjous-sivu h1 { font-size: clamp(2.5rem, 12vw, 5.5rem); line-height: .95; margin-bottom: 1rem; }
+.tarjous-sivu > .johdanto { margin-bottom: 1.5rem; }
+.tarjous-ilman-js {
+  max-width: 40em;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--musta);
+  background: var(--vari-pinta);
+}
+.tarjous-ilman-js[hidden] { display: none; }
+.tarjous-ruudukko { display: grid; gap: 2.5rem; margin-top: 1.5rem; }
+.tarjous-valinnat { min-width: 0; }
+.tarjous-alv { margin: 0 0 1.5rem; color: var(--vari-harmaa); }
+.tarjous-osio { min-width: 0; margin: 0 0 2.5rem; padding: 0; border: 0; }
+.tarjous-osio[hidden] { display: none; }
+.tarjous-osio > legend {
+  float: left;
+  width: 100%;
+  padding: 0 0 .6rem;
+  border-bottom: 2px solid var(--vari-muste);
+  font-family: var(--fontti-otsikko);
+  font-size: 1.75rem;
+  font-weight: 900;
+  line-height: 1;
+}
+.tarjous-osio > legend + * { clear: both; }
+.tarjous-osio-ohje { margin: .75rem 0 0; font-size: .9375rem; color: var(--vari-harmaa); }
+/* Kapealla hinta on nimen alla, 40em alkaen oikeassa reunassa. */
+.palvelu {
+  display: grid;
+  grid-template-columns: 1.375rem minmax(0, 1fr);
+  gap: .35rem .75rem;
+  align-items: start;
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--vari-viiva);
+}
+.palvelu > input[type="checkbox"] {
+  width: 1.375rem;
+  height: 1.375rem;
+  margin: .1rem 0 0;
+  accent-color: var(--musta);
+  cursor: pointer;
+}
+.palvelu > label { cursor: pointer; }
+.palvelu-nimi { display: block; font-size: 1.0625rem; font-weight: 800; line-height: 1.3; }
+.palvelu-kuvaus { display: block; margin-top: .15rem; font-size: .9375rem; color: var(--vari-harmaa); }
+.palvelu-kuvaus a { color: var(--vari-muste); }
+.palvelu-hinta {
+  grid-column: 2;
+  margin: 0;
+  font-size: .9375rem;
+  font-weight: 800;
+  line-height: 1.35;
+  font-variant-numeric: tabular-nums;
+}
+.palvelu-hinta:empty { display: none; }
+.palvelu-asetukset,
+.palvelu-huomio { grid-column: 2 / -1; }
+.palvelu-asetukset { display: flex; flex-wrap: wrap; align-items: flex-end; gap: .75rem 1rem; }
+.palvelu-asetukset .alustat { flex-basis: 100%; margin: 0; }
+.palvelu-huomio { margin: 0; font-size: .875rem; font-weight: 700; }
+.palvelu-huomio[hidden] { display: none; }
+.palvelu-naytteet { grid-template-columns: 1.375rem minmax(0, 1fr); }
+.kentta-pieni { display: grid; gap: .25rem; min-width: 0; }
+.kentta-pieni label { font-size: .875rem; font-weight: 700; }
+.tarjous-sivu select,
+.tarjous-sivu input[type="text"],
+.tarjous-sivu input[type="email"],
+.tarjous-sivu input[type="number"],
+.tarjous-sivu textarea {
+  max-width: 100%;
+  min-height: 2.75rem;
+  padding: .45rem .7rem;
+  border: 2px solid var(--musta);
+  border-radius: var(--sade);
+  background: var(--valkoinen);
+  color: var(--musta);
+  font: inherit;
+  font-size: 1rem;
+}
+.tarjous-sivu select { cursor: pointer; }
+.kentta-maara input { width: 6.5rem; }
+.kentta { display: grid; gap: .3rem; max-width: 34rem; margin-top: 1rem; }
+.kentta label { font-weight: 700; }
+.kentta input, .kentta textarea { width: 100%; }
+.valinnainen { font-weight: 400; color: var(--vari-harmaa); }
+
+/* Yhteenveto */
+.tarjous-yhteenveto {
+  align-self: start;
+  min-width: 0;
+  padding: 1.25rem;
+  border: 2px solid var(--musta);
+  border-radius: var(--sade);
+  background: var(--vari-pinta);
+}
+.tarjous-yhteenveto[hidden] { display: none; }
+.tarjous-yhteenveto h2 { margin-bottom: .75rem; font-size: 2.25rem; }
+.tarjous-yhteenveto h3 { margin: 1rem 0 .35rem; font-size: .9375rem; }
+.tarjous-yhteenveto ul { display: grid; gap: .45rem; margin: 0; padding: 0; list-style: none; font-size: .9375rem; line-height: 1.4; }
+.tarjous-yhteenveto li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .75rem; }
+.yhteenveto-hinta { max-width: 9rem; text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+.yhteenveto-tyhja { margin: 0; color: var(--vari-harmaa); }
+.yhteenveto-summat { display: grid; gap: .75rem; margin: 1.25rem 0 0; padding-top: 1rem; border-top: 2px solid var(--musta); }
+.yhteenveto-summat dt { font-weight: 800; }
+.yhteenveto-summat dd { margin: 0; font-variant-numeric: tabular-nums; }
+.yhteenveto-summat dd span { display: block; }
+.yhteenveto-summat dd span + span { font-size: .875rem; color: var(--vari-harmaa); }
+.yhteenveto-arvio { margin: 1rem 0; font-weight: 700; }
+.tarjous-virhe { margin: 0 0 .75rem; font-weight: 800; }
+.tarjous-virhe:empty { display: none; }
+.tarjous-laheta { width: 100%; }
+.tarjous-yhteenveto .pienteksti { margin-top: .6rem; }
+.tarjous-yhteenveto .pienteksti:empty { display: none; }
+.tarjous-pitka[hidden] { display: none; }
+.tarjous-yhteenveto [data-kopioi] { margin-top: .75rem; }
+.tarjous-kopio { width: 100%; margin-top: .5rem; font-size: .875rem; }
+.tarjous-kopio[hidden] { display: none; }
+
+/* Mobiilin hintapalkki: näkyy näytön alareunassa, kunnes yhteenveto tulee näkyviin. */
+.tarjous-palkki {
+  position: sticky;
+  bottom: 0;
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .75rem 1.25rem;
+  background: var(--musta);
+  color: var(--valkoinen);
+  font-size: .9375rem;
+  transition: opacity .2s, visibility .2s;
+}
+.tarjous-palkki[hidden] { display: none; }
+.tarjous-palkki.piiloon { opacity: 0; visibility: hidden; }
+.tarjous-palkki a { color: var(--valkoinen); font-weight: 800; white-space: nowrap; }
+.tarjous-palkki a:hover { color: var(--musta); }
+.tarjous-palkki :focus-visible { outline-color: var(--keltainen); }
+
+@media (min-width: 40em) {
+  .palvelu { grid-template-columns: 1.375rem minmax(0, 1fr) auto; }
+  .palvelu-hinta { grid-column: auto; max-width: 11rem; text-align: right; }
+}
+
+@media (min-width: 64em) {
+  .paavalikko .paavalikko-tarjous { display: inline; }
+  .tarjous-ruudukko { grid-template-columns: minmax(0, 1fr) 23rem; column-gap: 3.5rem; }
+  .tarjous-yhteenveto { position: sticky; top: 5.5rem; max-height: calc(100vh - 7rem); overflow-y: auto; }
+  .tarjous-palkki, .tarjous-palkki[hidden] { display: none; }
+}
+
 /* Leveämmät näytöt */
 @media (max-width: 29.99em) {
   .ylapalkki .nappi-pieni { padding-inline: .8rem; }
@@ -1064,7 +1231,7 @@ h1 span { display: block; }
   .anatomia { grid-template-columns: minmax(0, 19rem) minmax(0, 1fr); column-gap: 5rem; align-items: start; }
   .anatomia .klippi { width: 100%; }
   .anatomia-kuva { position: sticky; top: 6rem; }
-  .hintarivi { grid-template-columns: minmax(0, 1fr) 10rem; padding-block: 1.6rem; }
+  .hintarivi { grid-template-columns: minmax(0, 1fr) minmax(10rem, auto); padding-block: 1.6rem; }
   .hintarivi h4 { font-family: var(--fontti-otsikko); font-size: 2.25rem; font-weight: 900; line-height: 1; margin-bottom: .5rem; }
   .hinta .summa { font-size: 3.5rem; }
   .lisapalvelut { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 4rem; align-items: start; }
