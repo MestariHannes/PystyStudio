@@ -54,41 +54,34 @@ Jos haluat, ettei sivu ota yhteyttä Googleen:
 3. Poista Google Fonts -rivit (`preconnect` ja `stylesheet`) molemmista HTML-tiedostoista.
 4. Poista Google Fonts tietosuojaselosteen kohdista ”Kuka tietoja käsittelee”, ”Sivuston käyttö” ja ”Siirrot EU:n ulkopuolelle”.
 
-## Julkaisu GitHub Pagesiin
+## Julkaisu (GitHub Pages)
 
-Julkaisusta päättää Hannes. Repoa ei ole vielä luotu, eikä mitään ole julkaistu.
+Sivu julkaistiin 23.10.2026 samalla tavalla kuin Ajoura: omassa julkisessa repossaan GitHub Pagesiin.
 
-1. **Luo repo:** GitHubissa (tili MestariHannes) New repository, esim. nimellä `pystystudio`.
-   - Ilmaisessa GitHub-tilissä Pages vaatii julkisen repon. Silloin koko koodi on kaikkien nähtävissä, joten repoon ei laiteta muuta kuin tämän kansion sisältö.
-   - Asiakkaiden klippejä, sopimuksia tai muita Pysty Studion kansioita ei laiteta repoon.
-2. **Vie tiedostot repoon:** avaa PowerShell tässä kansiossa (`09_verkkosivu`) ja aja:
-   ```
-   git init
-   git add .
-   git commit -m "Pysty Studion sivusto"
-   git branch -M main
-   git remote add origin https://github.com/MestariHannes/pystystudio.git
-   git push -u origin main
-   ```
-3. **Kytke Pages päälle:** repon Settings → Pages → Build and deployment → Source: *Deploy from a branch* → Branch: `main` ja kansio `/ (root)` → Save.
-4. **Tarkista:** sivu näkyy muutaman minuutin kuluttua osoitteessa `https://mestarihannes.github.io/pystystudio/`. Kaikki polut ovat suhteellisia, joten sivu toimii myös tässä alikansiossa.
-5. **Oma verkkotunnus (valinnainen):** esim. `pystystudio.fi`.
-   1. Repon Settings → Pages → Custom domain → kirjoita verkkotunnus → Save.
-   2. Lisää verkkotunnuksen DNS-asetuksiin A-tietueet `185.199.108.153`, `185.199.109.153`, `185.199.110.153` ja `185.199.111.153` sekä `www`-aliakselle CNAME `mestarihannes.github.io`.
-   3. Kun DNS toimii, kytke päälle *Enforce HTTPS*.
-   - Tarkista nimi ensin, ks. `01_suunnitelma` (Tuomarin nimitarkistus).
+| Mikä | Osoite |
+|---|---|
+| Sivu | https://mestarihannes.github.io/PystyStudio/ |
+| Tietosuojaseloste | https://mestarihannes.github.io/PystyStudio/tietosuoja.html |
+| Koodi | https://github.com/MestariHannes/PystyStudio (julkinen, haara `main`) |
+| Pages-asetus | https://github.com/MestariHannes/PystyStudio/settings/pages (lähde: `main`, kansio `/`) |
+| Linkki Lavreonin sivulta | Lavreonin PR https://github.com/MestariHannes/lavreon/pull/38: ”Pysty Studio ↗” yläpalkissa Ajouran vieressä sekä alapalkissa |
 
-Päivitykset tehdään jatkossa muokkaamalla tiedostoja ja ajamalla `git add .`, `git commit -m "kuvaus"` ja `git push`.
+Polussa on iso P ja iso S (`/PystyStudio/`), samaan tapaan kuin Ajouran vanhassa osoitteessa.
 
-## Tarkistuslista ennen julkaisua
+- **Julkinen repo:** ilmaisessa GitHub-tilissä Pages vaatii julkisen repon, joten koodi ja tämä README näkyvät kaikille. Repoon laitetaan vain tämän kansion sisältö. Asiakkaiden klippejä, sopimuksia tai muita Pysty Studion kansioita ei laiteta sinne.
+- **Päivitys:** muokkaa tiedostoja tässä kansiossa (`09_verkkosivu`, joka on repon paikallinen kopio). Aja sitten `git add .`, `git commit -m "kuvaus"` ja `git push`. Sivu päivittyy muutamassa minuutissa.
+- **Oma verkkotunnus (valinnainen),** esim. `pystystudio.fi`:
+  1. Repon Settings → Pages → Custom domain → kirjoita verkkotunnus → Save.
+  2. Lisää verkkotunnuksen DNS-asetuksiin A-tietueet `185.199.108.153`, `185.199.109.153`, `185.199.110.153` ja `185.199.111.153` sekä `www`-aliakselle CNAME `mestarihannes.github.io`.
+  3. Kun DNS toimii, kytke päälle *Enforce HTTPS*.
+  - Tarkista nimi ensin, ks. `01_suunnitelma` (Tuomarin nimitarkistus).
 
-- [ ] Hakasulkeet täytetty (`[sähköposti]`, `[puhelin]`, `[nimi]`, `[osoite]`, `[sähköpostipalvelu]`)
-- [ ] Lopullinen logo ja kuvake vaihdettu (`08_brandi`)
-- [ ] Referenssit-osio: poistettu tai lisätty klipit asiakkaan kirjallisella luvalla
-- [ ] Tietosuojaseloste luettu ja tarkistettu, ja `tietosuoja.html`:n LUONNOS-kommentti poistettu
-- [ ] HTML-kommentit luettu: julkisessa repossa ne näkyvät kaikille
-- [ ] Hinnat tarkistettu (`04_myynti/2026-10-23_lisapalvelut-ja-hinnat.md` ja CLAUDE.md)
-- [ ] Sivu katsottu puhelimella ja tietokoneella
+## Vielä tekemättä
+
+- [ ] Lopullinen logo ja kuvake (`08_brandi`): korvaa `assets/logo.svg` ja `assets/favicon.svg`
+- [ ] Referenssit: klipit asiakkaan kirjallisella luvalla, sitten `hidden` pois osiosta
+- [ ] Tietosuojaseloste: osoite rekisterinpitäjän tietoihin, jos laki sitä vaatii, ja juristin tarkistus
+- [ ] Fontit omalle palvelimelle, jos Google Fonts halutaan pois (ks. yllä)
 
 ## Mitä sivulla ei ole
 
