@@ -5,11 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Custom quote – Pysty Studio</title>
   <meta name="description" content="Put together your own Pysty Studio package and see a price estimate right away. A quote request doesn’t commit you to anything.">
+  <link rel="canonical" href="https://mestarihannes.github.io/PystyStudio/en/quote.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Pysty Studio">
+  <meta property="og:url" content="https://mestarihannes.github.io/PystyStudio/en/quote.html">
+  <meta property="og:title" content="Custom quote – Pysty Studio">
+  <meta property="og:description" content="Put together your own Pysty Studio package and see a price estimate right away. A quote request doesn’t commit you to anything.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="fi_FI">
+  <meta property="og:image" content="https://mestarihannes.github.io/PystyStudio/assets/jakokuva-en.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Pysty Studio: Long videos, made vertical. 3 free sample clips.">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#000000">
   <link rel="alternate" hreflang="fi" href="https://mestarihannes.github.io/PystyStudio/tarjous.html">
   <link rel="alternate" hreflang="en" href="https://mestarihannes.github.io/PystyStudio/en/quote.html">
   <link rel="alternate" hreflang="x-default" href="https://mestarihannes.github.io/PystyStudio/tarjous.html">
+  <link rel="icon" href="../assets/apple-touch-icon.png" type="image/png" sizes="180x180">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700..900&family=Figtree:wght@400..900&display=swap">
@@ -27,9 +43,9 @@
         <img src="../assets/logo.svg" alt="Pysty Studio" width="537" height="121">
       </a>
       <nav class="kielet" aria-label="Kieli – Language">
-        <a href="../tarjous.html" lang="fi" hreflang="fi" aria-label="Suomeksi" data-tarjous-kielilinkki>FI</a>
+        <a href="../tarjous.html" lang="fi" hreflang="fi" aria-label="FI – suomeksi" data-tarjous-kielilinkki>FI</a>
         <span class="kielet-vali" aria-hidden="true">|</span>
-        <a href="quote.html" lang="en" hreflang="en" aria-current="page" aria-label="In English">EN</a>
+        <a href="quote.html" lang="en" hreflang="en" aria-current="page" aria-label="EN – in English">EN</a>
       </nav>
       <a class="nappi nappi-toissijainen nappi-pieni" href="index.html">Home</a>
     </div>
@@ -54,49 +70,58 @@
 
     <form class="tarjous-ruudukko" data-tarjous>
       <div class="tarjous-valinnat">
+        <fieldset class="tarjous-osio" data-vain-js hidden>
+          <legend>Free samples</legend>
+          <div class="palvelu palvelu-naytteet">
+            <input type="checkbox" id="q-samples" name="naytteet" autocomplete="off">
+            <label for="q-samples"><span class="palvelu-nimi">I’d like 3 free sample clips first</span> <span class="palvelu-kuvaus">Samples from your own video before you decide. By selecting this, you accept the <a href="samples.html" target="_blank" rel="noopener">free sample terms (opens in a new tab)</a>.</span></label>
+          </div>
+        </fieldset>
+
         <p class="tarjous-alv">Prices exclude VAT. Finnish customers: VAT 25.5% is added. EU businesses with a valid VAT number: 0% VAT (reverse charge). Businesses outside the EU: 0% VAT. Services are for businesses only.</p>
 
         <fieldset class="tarjous-osio">
           <legend>Main services</legend>
 
           <div class="palvelu" data-palvelu="klippaamo">
-            <input type="checkbox" id="q-klippaamo" name="klippaamo" data-valittu>
+            <input type="checkbox" id="q-klippaamo" name="klippaamo" data-valittu autocomplete="off">
             <label for="q-klippaamo"><span class="palvelu-nimi">Klippaamo</span> <span class="palvelu-kuvaus">Monthly package: clips from your videos every month. Month to month, no minimum contract.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
             <div class="palvelu-asetukset">
               <div class="kentta-pieni">
                 <label for="q-klippaamo-size">Clips per month</label>
-                <select id="q-klippaamo-size" data-koko>
+                <select id="q-klippaamo-size" data-koko autocomplete="off">
                   <option value="8">8</option>
                   <option value="12" data-nimi="Klippaamo Starter" selected>12 (Starter)</option>
                   <option value="16">16</option>
                   <option value="20">20</option>
-                  <option value="24" data-nimi="Klippaamo Pro">24 (Pro, incl. post text)</option>
+                  <option value="24" data-nimi="Klippaamo Pro">24 (Pro, incl. post copy)</option>
                 </select>
               </div>
               <div class="kentta-pieni">
                 <label for="q-videos">Videos per month</label>
-                <select id="q-videos" data-videot>
+                <select id="q-videos" data-videot autocomplete="off">
                   <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option><option value="6">6</option><option value="8">8</option>
                 </select>
               </div>
               <div class="kentta-pieni">
                 <label for="q-per">Clips per video</label>
-                <select id="q-per" data-per>
+                <select id="q-per" data-per autocomplete="off">
                   <option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="8">8</option>
                 </select>
               </div>
             </div>
+            <p class="palvelu-huomio" data-huomio-yli hidden>More than 24 clips a month: we can agree on that separately, and there is no upper limit. <a data-yli-tarjous href="mailto:korkiakoskihannes@gmail.com?subject=Quote%20request%3A%20more%20than%2024%20clips%20a%20month&amp;body=Hi%2C%0A%0AVideos%20per%20month%3A%20%0AClips%20per%20video%3A%20%0AChannel%3A%20%0A">Ask for a quote</a></p>
           </div>
 
           <div class="palvelu" data-palvelu="kertaera">
-            <input type="checkbox" id="q-batch" name="kertaera" data-valittu>
+            <input type="checkbox" id="q-batch" name="kertaera" data-valittu autocomplete="off">
             <label for="q-batch"><span class="palvelu-nimi">Single batch</span> <span class="palvelu-kuvaus">Clips from one episode with no monthly contract.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
             <div class="palvelu-asetukset">
               <div class="kentta-pieni">
                 <label for="q-batch-size">Clips</label>
-                <select id="q-batch-size" data-koko>
+                <select id="q-batch-size" data-koko autocomplete="off">
                   <option value="1">1</option><option value="4">4</option><option value="6">6</option><option value="8" selected>8</option>
                 </select>
               </div>
@@ -104,19 +129,19 @@
           </div>
 
           <div class="palvelu" data-palvelu="pystyPuhe">
-            <input type="checkbox" id="q-pystypuhe" name="pystyPuhe" data-valittu>
+            <input type="checkbox" id="q-pystypuhe" name="pystyPuhe" data-valittu autocomplete="off">
             <label for="q-pystypuhe"><span class="palvelu-nimi">Pysty Puhe pilot</span> <span class="palvelu-kuvaus">For when you don’t have a podcast: I interview you remotely for 45 minutes and make 8 clips from the recording.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
           </div>
 
           <div class="palvelu" data-palvelu="aiMainos">
-            <input type="checkbox" id="q-ai" name="aiMainos" data-valittu>
+            <input type="checkbox" id="q-ai" name="aiMainos" data-valittu autocomplete="off">
             <label for="q-ai"><span class="palvelu-nimi">AI ad package</span> <span class="palvelu-kuvaus">Short vertical ads made from your online store’s product photos. The product is shown as it really is, and the videos are labeled as AI-generated.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
             <div class="palvelu-asetukset">
               <div class="kentta-pieni">
                 <label for="q-ai-size">Ads</label>
-                <select id="q-ai-size" data-koko>
+                <select id="q-ai-size" data-koko autocomplete="off">
                   <option value="5">5</option><option value="10" selected>10</option><option value="20">20</option>
                 </select>
               </div>
@@ -124,13 +149,13 @@
           </div>
 
           <div class="palvelu" data-palvelu="arkisto">
-            <input type="checkbox" id="q-archive" name="arkisto" data-valittu>
+            <input type="checkbox" id="q-archive" name="arkisto" data-valittu autocomplete="off">
             <label for="q-archive"><span class="palvelu-nimi">Archive</span> <span class="palvelu-kuvaus">Clips from your older videos, to schedule alongside the new ones.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
             <div class="palvelu-asetukset">
               <div class="kentta-pieni">
                 <label for="q-archive-size">Clips</label>
-                <select id="q-archive-size" data-koko>
+                <select id="q-archive-size" data-koko autocomplete="off">
                   <option value="10">10</option><option value="20">20</option><option value="30" selected>30</option><option value="50" data-nimi="Channel’s best 50">50 (Channel’s best 50)</option>
                 </select>
               </div>
@@ -138,31 +163,32 @@
           </div>
 
           <div class="palvelu" data-palvelu="tilinhoito">
-            <input type="checkbox" id="q-account" name="tilinhoito" data-valittu>
-            <label for="q-account"><span class="palvelu-nimi">Clip account management</span> <span class="palvelu-kuvaus">Profiles, posts, scheduling and post text. The accounts are always in your name. Available alongside a clip package.</span></label>
+            <input type="checkbox" id="q-account" name="tilinhoito" data-valittu autocomplete="off">
+            <label for="q-account"><span class="palvelu-nimi">Clip account management</span> <span class="palvelu-kuvaus">Profiles, posts, scheduling, post copy and a short monthly summary. The accounts are always in your name. You reply to comments and messages yourself. On TikTok, I publish only to a business account. Available alongside a clip package.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
             <div class="palvelu-asetukset">
               <fieldset class="alustat">
                 <legend>Platforms</legend>
                 <div class="alustat-valinnat">
-                  <label class="valinta"><input type="checkbox" value="TikTok" data-alusta="tiktok" checked> TikTok</label>
-                  <label class="valinta"><input type="checkbox" value="Instagram" data-alusta="instagram" checked> Instagram</label>
-                  <label class="valinta"><input type="checkbox" value="YouTube Shorts" data-alusta="shorts" checked> YouTube Shorts</label>
+                  <label class="valinta"><input type="checkbox" value="TikTok" data-alusta="tiktok" checked autocomplete="off"> TikTok</label>
+                  <label class="valinta"><input type="checkbox" value="Instagram" data-alusta="instagram" checked autocomplete="off"> Instagram</label>
+                  <label class="valinta"><input type="checkbox" value="YouTube Shorts" data-alusta="shorts" checked autocomplete="off"> YouTube Shorts</label>
                 </div>
                 <p class="valinta-huomio" data-huomio hidden>Select at least one platform.</p>
               </fieldset>
               <div class="kentta-pieni">
                 <label for="q-account-size">Posts per month</label>
-                <select id="q-account-size" data-koko>
+                <select id="q-account-size" data-koko autocomplete="off">
                   <option value="8">8 (about 2 per week)</option><option value="12">12 (about 3 per week)</option><option value="20" selected>20 (about 5 per week)</option><option value="30">30 (about 7 per week)</option>
                 </select>
               </div>
             </div>
+            <p class="palvelu-huomio" data-huomio-paketti hidden>Clip account management is sold alongside a clip package.</p>
           </div>
 
           <div class="palvelu" data-palvelu="kaikkiValmiina">
-            <input type="checkbox" id="q-all" name="kaikkiValmiina" data-valittu>
-            <label for="q-all"><span class="palvelu-nimi">Clip account, all done for you</span> <span class="palvelu-kuvaus">20 clips a month from your videos, published to three platforms. Clip account management included.</span></label>
+            <input type="checkbox" id="q-all" name="kaikkiValmiina" data-valittu autocomplete="off">
+            <label for="q-all"><span class="palvelu-nimi">Clip account, all done for you</span> <span class="palvelu-kuvaus">Klippaamo with 20 clips and clip account management in one package: I make clips from your videos and publish them for you on a separate clip account on TikTok, Instagram and YouTube Shorts (20 posts a month).</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
           </div>
         </fieldset>
@@ -170,17 +196,17 @@
         <fieldset class="tarjous-osio">
           <legend>Publishing and reporting</legend>
           <div class="palvelu" data-palvelu="julkaisutekstit">
-            <input type="checkbox" id="q-posttext" name="julkaisutekstit" data-valittu>
-            <label for="q-posttext"><span class="palvelu-nimi">Post text and hashtags</span> <span class="palvelu-kuvaus">Post text for TikTok, Reels and Shorts for every clip. Included in the Pro package.</span></label>
+            <input type="checkbox" id="q-posttext" name="julkaisutekstit" data-valittu autocomplete="off">
+            <label for="q-posttext"><span class="palvelu-nimi">Post copy and hashtags</span> <span class="palvelu-kuvaus">Post copy for TikTok, Reels and Shorts for every clip in your monthly package (up to 24 a month). Included in the Pro package.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
           </div>
           <div class="palvelu" data-palvelu="julkaisuPuolesta">
-            <input type="checkbox" id="q-publishing" name="julkaisuPuolesta" data-valittu>
-            <label for="q-publishing"><span class="palvelu-nimi">Publishing for you</span> <span class="palvelu-kuvaus">I publish and schedule the clips on your own accounts. I get a publisher role, not your password.</span></label>
+            <input type="checkbox" id="q-publishing" name="julkaisuPuolesta" data-valittu autocomplete="off">
+            <label for="q-publishing"><span class="palvelu-nimi">Publishing for you</span> <span class="palvelu-kuvaus">I publish and schedule the clips on your own accounts. I get a publisher role, not your password. On TikTok, business accounts only.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
           </div>
           <div class="palvelu" data-palvelu="kuukausiraportti">
-            <input type="checkbox" id="q-report" name="kuukausiraportti" data-valittu>
+            <input type="checkbox" id="q-report" name="kuukausiraportti" data-valittu autocomplete="off">
             <label for="q-report"><span class="palvelu-nimi">Monthly report</span> <span class="palvelu-kuvaus">Views, top clips and suggestions for the next month.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
           </div>
@@ -190,88 +216,80 @@
           <legend>More clips and images</legend>
           <p class="tarjous-osio-ohje">Items priced per piece are counted as one-off. Mention in your message if you’d like them every month.</p>
           <div class="palvelu" data-palvelu="lisaklippi" data-jakso=" each">
-            <input type="checkbox" id="q-extra" name="lisaklippi" data-valittu>
+            <input type="checkbox" id="q-extra" name="lisaklippi" data-valittu autocomplete="off">
             <label for="q-extra"><span class="palvelu-nimi">Extra clip</span> <span class="palvelu-kuvaus">More clips on top of your monthly package.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
-            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="q-extra-qty">Quantity</label><input type="number" id="q-extra-qty" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara></div></div>
+            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="q-extra-qty">Quantity</label><input type="number" id="q-extra-qty" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara autocomplete="off"></div></div>
           </div>
           <div class="palvelu" data-palvelu="livestriimi" data-jakso="/stream">
-            <input type="checkbox" id="q-stream" name="livestriimi" data-valittu>
+            <input type="checkbox" id="q-stream" name="livestriimi" data-valittu autocomplete="off">
             <label for="q-stream"><span class="palvelu-nimi">Livestream clipping</span> <span class="palvelu-kuvaus">About 8 clips from a stream.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
-            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="q-stream-qty">Streams</label><input type="number" id="q-stream-qty" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara></div></div>
+            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="q-stream-qty">Streams</label><input type="number" id="q-stream-qty" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara autocomplete="off"></div></div>
           </div>
           <div class="palvelu" data-palvelu="traileri" data-jakso=" each">
-            <input type="checkbox" id="q-trailer" name="traileri" data-valittu>
+            <input type="checkbox" id="q-trailer" name="traileri" data-valittu autocomplete="off">
             <label for="q-trailer"><span class="palvelu-nimi">Trailer</span> <span class="palvelu-kuvaus">A teaser clip the day before a new video.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
-            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="q-trailer-qty">Quantity</label><input type="number" id="q-trailer-qty" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara></div></div>
+            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="q-trailer-qty">Quantity</label><input type="number" id="q-trailer-qty" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara autocomplete="off"></div></div>
           </div>
           <div class="palvelu" data-palvelu="kommenttivastaus" data-jakso=" each">
-            <input type="checkbox" id="q-comment" name="kommenttivastaus" data-valittu>
+            <input type="checkbox" id="q-comment" name="kommenttivastaus" data-valittu autocomplete="off">
             <label for="q-comment"><span class="palvelu-nimi">Comment reply clip</span> <span class="palvelu-kuvaus">A clip that replies to a popular comment.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
-            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="q-comment-qty">Quantity</label><input type="number" id="q-comment-qty" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara></div></div>
+            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="q-comment-qty">Quantity</label><input type="number" id="q-comment-qty" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara autocomplete="off"></div></div>
           </div>
           <div class="palvelu" data-palvelu="bestOf" data-jakso=" each">
-            <input type="checkbox" id="q-bestof" name="bestOf" data-valittu>
+            <input type="checkbox" id="q-bestof" name="bestOf" data-valittu autocomplete="off">
             <label for="q-bestof"><span class="palvelu-nimi">Best-of compilation</span> <span class="palvelu-kuvaus">The month’s best bits in 60–90 seconds.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
-            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="q-bestof-qty">Quantity</label><input type="number" id="q-bestof-qty" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara></div></div>
+            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="q-bestof-qty">Quantity</label><input type="number" id="q-bestof-qty" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara autocomplete="off"></div></div>
           </div>
           <div class="palvelu" data-palvelu="ennenJalkeen" data-jakso=" each">
-            <input type="checkbox" id="q-before" name="ennenJalkeen" data-valittu>
+            <input type="checkbox" id="q-before" name="ennenJalkeen" data-valittu autocomplete="off">
             <label for="q-before"><span class="palvelu-nimi">Before-and-after compilation</span> <span class="palvelu-kuvaus">A project from start to finish in 45–60 seconds.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
-            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="q-before-qty">Quantity</label><input type="number" id="q-before-qty" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara></div></div>
+            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="q-before-qty">Quantity</label><input type="number" id="q-before-qty" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara autocomplete="off"></div></div>
           </div>
           <div class="palvelu" data-palvelu="sponsori" data-jakso=" each">
-            <input type="checkbox" id="q-sponsor" name="sponsori" data-valittu>
+            <input type="checkbox" id="q-sponsor" name="sponsori" data-valittu autocomplete="off">
             <label for="q-sponsor"><span class="palvelu-nimi">Sponsor or merch clip</span> <span class="palvelu-kuvaus">A dedicated promo clip for a partner’s product or your own merch.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
-            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="q-sponsor-qty">Quantity</label><input type="number" id="q-sponsor-qty" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara></div></div>
+            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="q-sponsor-qty">Quantity</label><input type="number" id="q-sponsor-qty" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara autocomplete="off"></div></div>
           </div>
           <div class="palvelu" data-palvelu="audiogrammi" data-jakso=" each">
-            <input type="checkbox" id="q-audiogram" name="audiogrammi" data-valittu>
+            <input type="checkbox" id="q-audiogram" name="audiogrammi" data-valittu autocomplete="off">
             <label for="q-audiogram"><span class="palvelu-nimi">Podcast audiogram</span> <span class="palvelu-kuvaus">An audio clip with a waveform and captions.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
-            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="q-audiogram-qty">Quantity</label><input type="number" id="q-audiogram-qty" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara></div></div>
+            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="q-audiogram-qty">Quantity</label><input type="number" id="q-audiogram-qty" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara autocomplete="off"></div></div>
           </div>
           <div class="palvelu" data-palvelu="kansikuva" data-jakso=" each">
-            <input type="checkbox" id="q-cover" name="kansikuva" data-valittu>
+            <input type="checkbox" id="q-cover" name="kansikuva" data-valittu autocomplete="off">
             <label for="q-cover"><span class="palvelu-nimi">Cover image</span> <span class="palvelu-kuvaus">A Reels or Shorts cover for a clip.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
-            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="q-cover-qty">Quantity</label><input type="number" id="q-cover-qty" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara></div></div>
+            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="q-cover-qty">Quantity</label><input type="number" id="q-cover-qty" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara autocomplete="off"></div></div>
           </div>
           <div class="palvelu" data-palvelu="pikkukuva" data-jakso=" each">
-            <input type="checkbox" id="q-thumb" name="pikkukuva" data-valittu>
+            <input type="checkbox" id="q-thumb" name="pikkukuva" data-valittu autocomplete="off">
             <label for="q-thumb"><span class="palvelu-nimi">YouTube thumbnail</span> <span class="palvelu-kuvaus">The main image for a long video.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
-            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="q-thumb-qty">Quantity</label><input type="number" id="q-thumb-qty" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara></div></div>
+            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="q-thumb-qty">Quantity</label><input type="number" id="q-thumb-qty" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara autocomplete="off"></div></div>
           </div>
         </fieldset>
 
         <fieldset class="tarjous-osio">
           <legend>Clip extras</legend>
           <div class="palvelu" data-palvelu="englanninTekstitys" data-jakso="/clip">
-            <input type="checkbox" id="q-english" name="englanninTekstitys" data-valittu>
+            <input type="checkbox" id="q-english" name="englanninTekstitys" data-valittu autocomplete="off">
             <label for="q-english"><span class="palvelu-nimi">English captions</span> <span class="palvelu-kuvaus">Captions in English for an international audience. The price is based on the number of clips in the services you select.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
             <p class="palvelu-huomio" data-huomio hidden>Select a clip service first: the price is per clip.</p>
           </div>
           <div class="palvelu" data-palvelu="vaakaversio" data-jakso="/clip">
-            <input type="checkbox" id="q-horizontal" name="vaakaversio" data-valittu>
+            <input type="checkbox" id="q-horizontal" name="vaakaversio" data-valittu autocomplete="off">
             <label for="q-horizontal"><span class="palvelu-nimi">Horizontal 16:9 version</span> <span class="palvelu-kuvaus">The same clip in horizontal format as well, for YouTube, LinkedIn or your website. The price is based on the number of clips in the services you select.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
             <p class="palvelu-huomio" data-huomio hidden>Select a clip service first: the price is per clip.</p>
-          </div>
-        </fieldset>
-
-        <fieldset class="tarjous-osio" data-vain-js hidden>
-          <legend>Free samples</legend>
-          <div class="palvelu palvelu-naytteet">
-            <input type="checkbox" id="q-samples" name="naytteet">
-            <label for="q-samples"><span class="palvelu-nimi">I’d like 3 free sample clips first</span> <span class="palvelu-kuvaus">Samples from your own video before you decide. By selecting this, you accept the <a href="samples.html">free sample terms</a>.</span></label>
           </div>
         </fieldset>
 
@@ -282,7 +300,7 @@
             <input type="text" id="q-name" name="nimi" autocomplete="name" required>
           </div>
           <div class="kentta">
-            <label for="q-company">Company</label>
+            <label for="q-company">Company or channel</label>
             <input type="text" id="q-company" name="yritys" autocomplete="organization" required>
           </div>
           <div class="kentta">
@@ -304,7 +322,7 @@
         </fieldset>
       </div>
 
-      <aside class="tarjous-yhteenveto" id="summary" data-yhteenveto data-vain-js hidden aria-labelledby="summary-heading">
+      <section class="tarjous-yhteenveto" id="summary" data-yhteenveto data-vain-js hidden aria-labelledby="summary-heading">
         <h2 id="summary-heading">Summary</h2>
         <div data-yhteenveto-lista></div>
         <dl class="yhteenveto-summat">
@@ -321,7 +339,7 @@
         <label class="piilotettu" for="q-copy">Message to copy</label>
         <textarea class="tarjous-kopio" id="q-copy" data-kopio-kentta rows="8" readonly hidden></textarea>
         <p class="piilotettu" data-tarjous-ilmoitus aria-live="polite"></p>
-      </aside>
+      </section>
     </form>
   </main>
 

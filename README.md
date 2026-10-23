@@ -6,7 +6,7 @@ Pysty Studion oma staattinen sivusto: pelkkää HTML:ää, CSS:ää ja JavaScrip
 
 | Tiedosto | Mitä siinä on |
 |---|---|
-| `index.html` | Etusivu: hero ja esimerkkiklippi, Näin se toimii, Mitä klipeissä on, Palvelut ja hinnat, Lisäpalvelut, Referenssit, Usein kysyttyä ja Yhteys |
+| `index.html` | Etusivu: hero ja esimerkkiklippi, Näin se toimii, Mitä klipeissä on, Palvelut ja hinnat (näytelaatikko, kuukausipaketti, kertaerä sekä avattavat Muut palvelut ja Lisäpalvelut), Referenssit (piilossa), Kuka klipit tekee, Usein kysyttyä ja Yhteys |
 | `tietosuoja.html` | Tietosuojaseloste (luonnos, pohjana `02_sopimukset-ja-laki/2026-10-21_dpa-ja-tietosuoja.md`) |
 | `naytteet.html` | Ilmaisten näytteiden ehdot (sanatarkasti `02_sopimukset-ja-laki/2026-10-23_nayte-ehdot.md`, osio 1). Linkki alapalkissa ja CTA-nappien alla. |
 | `en/index.html` | Etusivu englanniksi (sama rakenne ja samat säätimet) |
@@ -15,7 +15,7 @@ Pysty Studion oma staattinen sivusto: pelkkää HTML:ää, CSS:ää ja JavaScrip
 | `tarjous.html` | Räätälöity tarjous: palvelut valittavina, hinta-arvio ja tarjouspyyntö sähköpostilla |
 | `en/quote.html` | Räätälöity tarjous englanniksi (Custom quote) |
 | `assets/tyyli.css` | Kaikki tyylit. Brändivärit ja fontit ovat tiedoston alussa `:root`-osassa. |
-| `assets/sivu.js` | Heron esimerkkiklippi: tekstitys sana kerrallaan ja puhujan vaihto. Repliikit suomeksi ja englanniksi sivun kielen mukaan. |
+| `assets/sivu.js` | Avattavien osioiden (`<details>`) avaus ankkurilla sekä heron esimerkkiklippi: tekstitys sana kerrallaan ja puhujan vaihto. Repliikit suomeksi ja englanniksi sivun kielen mukaan. |
 | `assets/hintadata.js` | **Kaikki hinnat ja EUR/USD-kurssi yhdessä paikassa.** Molemmat kielet käyttävät tätä. |
 | `assets/valuutta.js` | Valuuttavalitsin (EUR / USD), valinnan muistaminen ja rahasummien muotoilu |
 | `assets/hinnat.js` | Hintojen liukusäätimet, Klippaamon apusäätimet (videoita × klippiä per video), Klippitilin hoidon alustavalinta ja Räätälöity tarjous -linkkien valinnat |
@@ -23,6 +23,9 @@ Pysty Studion oma staattinen sivusto: pelkkää HTML:ää, CSS:ää ja JavaScrip
 | `assets/logo.svg` | Nimilogo PYSTY\|STUDIO vaalealle pohjalle (konsepti 4, Pystyviiva). Yläpalkissa. |
 | `assets/logo-tumma.svg` | Nimilogo tummalle pohjalle. Mustassa alapalkissa. |
 | `assets/favicon.svg` | Selainvälilehden kuvake (P\| mustalla pohjalla) |
+| `assets/apple-touch-icon.png` | 180 × 180 px kuvake iPhonen kotivalikkoon ja PNG-varakuvake (kopio tiedostosta `08_brandi/logo/png/2026-10-23_pysty-logo-favicon-180.png`) |
+| `assets/jakokuva.png`, `assets/jakokuva-en.png` | Somejakojen kuva (`og:image`) 1200 × 630, suomeksi ja englanniksi (ks. Hakukoneet ja somejaot) |
+| `404.html` | Oma ”Sivua ei löytynyt” -sivu suomeksi ja englanniksi. Polut alkavat `/PystyStudio/`, koska GitHub Pages näyttää sivun mistä tahansa puuttuvasta osoitteesta. |
 | `.nojekyll` | Kertoo GitHub Pagesille, että sivu julkaistaan sellaisenaan |
 
 ## Esikatselu omalla koneella
@@ -87,7 +90,7 @@ Sivu käyttää logokonseptia 4, Pystyviiva, jonka Hannes valitsi 23.10.2026. L�
 - **Keltaisen käyttö:** keltainen erottuu valkoisesta ja betonista huonosti (1,3:1). Sitä käytetään vain mustalla pohjalla (yhteysosio ja alapalkki), korostuksena mustan tekstin takana (linkkien ja nappien hover, valittu valuutta) tai mustan reunan kanssa (otsikon pystyviiva, vaiheiden numerot, merkit ja aikajanan kohdat). Keltaista tekstiä ei käytetä vaalealla pohjalla.
 - **Fontit:** Big Shoulders Display (900) otsikoissa ja Figtree leipätekstissä. Muuttujat `--fontti-…` ja Google Fonts -linkki `<head>`-osassa.
 - **Logon vaihto:** korvaa `assets/logo.svg` ja `assets/logo-tumma.svg` samoilla nimillä. Jos kuvasuhde muuttuu, päivitä `<img>`-tagien `width`- ja `height`-arvot (kaikki HTML-tiedostot, ylä- ja alapalkki). Vaalea logo on 537 × 121 ja tumma 537 × 112. Korkeus asetetaan CSS:ssä (`.logo img` ja `.alapalkki-logo`), joten leveys seuraa kuvasuhdetta.
-- **Kuvake:** `assets/favicon.svg`.
+- **Kuvake:** `assets/favicon.svg`, iPhonelle ja PNG-varalle `assets/apple-touch-icon.png`.
 
 ## Hintojen muokkaus
 
@@ -99,10 +102,17 @@ Etusivuilla (`index.html` ja `en/index.html`) on samat hinnat myös näkyvinä t
 2. Muuta sama hinta näkyvään tekstiin molemmissa HTML-tiedostoissa. Säädinkorteissa tämä koskee vain oletusporrasta (ks. alla).
 3. Tarkista UKK: lisäkorjaus (15 €) ja suomeksi alv 25,5 %.
 
-Hinnat ovat kahdessa osiossa:
+Hinnat ovat yhdessä osiossa **Palvelut ja hinnat** (`<section id="hinnat">`, englanniksi `id="pricing"`). Osio kevennettiin Hanneksen päätöksellä 23.10.2026 (`04_myynti/2026-10-23_sivuston-tarkistus-ja-korjaukset.md`):
 
-- **Palvelut ja hinnat** (`<section id="hinnat">`, englanniksi `id="pricing"`): kuukausipaketit ja kertatyöt.
-- **Lisäpalvelut** (`<section id="lisapalvelut">`, englanniksi `id="add-ons"`): hinnasto A, jonka Hannes hyväksyi sivustolle 23.10.2026.
+1. Alussa kohderyhmä ja alv, laatikko **Aloita ilmaisilla näytteillä** ja lupaukset.
+2. Näkyvissä ovat **Kuukausipaketti** (Klippaamo ja laskuri) ja **Kertatyö** (Kertaerä).
+3. Avattava `<details id="muut-palvelut">` (englanniksi `other-services`): Kaikki valmiina, Pysty Puhe ja AI-mainospaketti.
+4. Avattava `<details id="lisapalvelut">` (englanniksi `add-ons`): lisäpalvelujen hinnasto A, jonka Hannes hyväksyi sivustolle 23.10.2026. Otsikossa on lisäpalvelujen määrä (18): päivitä se, jos rivejä tulee tai lähtee.
+5. Maksuehdot ja Räätälöity tarjous -painike.
+
+- **Avattavat osiot** toimivat ilman JavaScriptiä. Säätimet toimivat niiden sisällä samoin kuin muualla.
+- **Automaattinen avaus:** osio avautuu, kun sivulle tullaan ankkurilla, joka on osion sisällä tai osio itse (esim. `index.html#lisapalvelut`, `#klippitilin-hoito`, `#arkisto`, `#muut-palvelut`, `#ai-mainospaketti`; englanniksi `#add-ons`, `#clip-account`, `#archive`, `#other-services`), ja kun osoitteessa on osion säätimen valinta (esim. `?tilinhoito=20&alustat=tiktok,shorts` tai `?aiMainos=10`).
+- **Valinnat osoitteessa:** kun kävijä liikuttaa säädintä, valinta päivitetään myös etusivun omaan osoitteeseen samassa muodossa kuin tarjoussivun esitäytössä (esim. `index.html?klippaamo=16`). Takaisin-napilla palatessa ja jaetusta linkistä säätimet palautuvat. Säätimissä on `autocomplete="off"`, jotta selain ei palauta vanhaa arvoa tekstin ja hinnan ohi.
 
 Tarjoussivuilla (`tarjous.html` ja `en/quote.html`) ei ole hintoja HTML:ssä: JavaScript hakee ne `hintadata.js`:stä. Jos portaat muuttuvat, päivitä tarjoussivujen valintalistat (`<select data-koko>`).
 
@@ -136,15 +146,23 @@ Asiakaskohtaisia hintoja ja tarjouksia ei laiteta sivulle.
 
 ## Räätälöity tarjous (lisätty 23.10.2026)
 
-`tarjous.html` (englanniksi `en/quote.html`): kävijä valitsee palvelut, näkee hinta-arvion ja lähettää tarjouspyynnön. Sivulle vievät Räätälöity tarjous -painikkeet etusivun hintaosiossa (lupausnauhan alla ja lisäpalvelujen lopussa) sekä yläpalkin valikossa leveällä näytöllä (64em eli noin 1024 px alkaen).
+`tarjous.html` (englanniksi `en/quote.html`): kävijä valitsee palvelut, näkee hinta-arvion ja lähettää tarjouspyynnön. Sivulle vievät Räätälöity tarjous -painikkeet etusivun hintaosiossa (valuuttavalitsimen alla ja hintaosion lopussa) sekä yläpalkin valikossa leveällä näytöllä (64em eli noin 1024 px alkaen).
 
 - **Etusivun valinnat mukaan:** kun kävijä liikuttaa etusivun säätimiä, painikkeiden linkkiin lisätään valinnat, esim. `tarjous.html?klippaamo=12&videot=4&per=3&tilinhoito=20&alustat=tiktok,shorts&currency=usd`. Vain liikutetut säätimet tulevat mukaan. Parametrien nimet ovat `hintadata.js`:n palvelujen nimiä. Osoitteeseen ei laiteta henkilötietoja.
 - **Laskenta** (`assets/tarjous.js`): kuukausihinnat ja kertaluonteiset hinnat erikseen, alv 0 % ja alv:n kanssa. Kappalehintaiset lisät lasketaan kertaluonteisiksi. Englanninkielinen tekstitys ja vaakaversio lasketaan valittujen palvelujen klippimäärästä (Klippaamo ja Kaikki valmiina kuukausittain, muut kertaluonteisesti; livestriimi = 8 klippiä). Julkaisutekstit ovat 0 €, kun valittuna on Klippaamo Pro.
 - **Lähetä tarjouspyyntö (ei sitova)** avaa kävijän oman sähköpostiohjelman valmiilla viestillä (mailto) osoitteeseen korkiakoskihannes@gmail.com. Aihe on ”Tarjouspyyntö: [yritys]”. Jos ilmaiset näytteet on valittu, viestissä on rivi ”Hyväksyn näytteiden ehdot: [linkki]”. Sivu ei lähetä eikä tallenna mitään itse.
 - **Pitkä viesti:** yli 1 800 merkin mailto-linkki ei välttämättä avaudu kaikissa sähköpostiohjelmissa. Silloin sivu näyttää ohjeen, ja **Kopioi viesti** -nappi kopioi viestin leikepöydälle. Jos selain ei salli kopiointia, viesti näytetään kentässä itse kopioitavaksi.
+- **Takaisin-nappi:** sivun valinnat päivitetään osoitteeseen (ei henkilötietoja), ja valintakentissä on `autocomplete="off"`. Palatessa valinnat, yhteenveto ja hinnat palautuvat osoitteesta.
+- **Erikoistapaukset:** Kaikki valmiina sisältää klippitilin hoidon, joten jos molemmat on valittu, Klippitilin hoito näkyy rivinä ”sisältyy Kaikki valmiina -pakettiin” (0 €) ilman toista käyttöönottoa. Jos Klippitilin hoito valitaan ilman klippipalvelua (Klippaamo, Kaikki valmiina, Kertaerä tai Arkisto), rivillä näkyy huomio ”Klippitilin hoito myydään klippipaketin rinnalle”. Jos videoita × klippiä per video on yli 24, näkyy ”sovitaan erikseen” ja Kysy tarjous -linkki (aihe ”Tarjouspyyntö: yli 24 klippiä kuukaudessa”, ilman näyte-ehtoriviä).
 - **Ilman JavaScriptiä** sivulla näkyy ohje lähettää sähköpostia ja palvelulista. Yhteenveto ja yhteystietokentät ovat piilossa.
 - **Tietosuoja:** tarjouspyynnöstä kerrotaan tietosuojaselosteen kohdassa ”Mitä tietoja käsittelen” (molemmat kielet).
 - **Toimitusaika** on sivuilla muodossa ”parhaimmillaan parissa tunnissa, yleensä vuorokauden sisällä arkipäivinä” (Tuomarin tarkennus 23.10.2026). Sitova yläraja on sopimuksessa. Kiiretoimitus poistettiin hinnastosta 23.10.2026.
+
+## Hakukoneet ja somejaot
+
+- Jokaisella sivulla on `rel=canonical`, Open Graph -tagit (`og:url`, `og:site_name`, `og:title`, `og:description`, `og:image` mittoineen ja alt-tekstineen) ja `twitter:card=summary_large_image`. 404-sivulla on `noindex`.
+- **Jakokuva** `assets/jakokuva.png` (suomenkieliset sivut) ja `assets/jakokuva-en.png` (englanninkieliset) on tehty koodilla 23.10.2026: HTML-pohja (Pystyviiva-nimilogo `08_brandi/logo/2026-10-23_pysty-logo-konsepti-4-pystyviiva-nimilogo-tumma.svg`, otsikko, keltainen ”3 ilmaista näyteklippiä” -merkki ja esimerkkiklipin studio) kuvattiin Chromella 1200 × 630 pikselin kokoon. Jos teksti muuttuu, tee kuva samalla tavalla uudelleen samalla nimellä.
+- **Meta description** on alle 160 merkkiä.
 
 ## Fontit ja tietosuoja
 
@@ -178,7 +196,7 @@ Polussa on iso P ja iso S (`/PystyStudio/`), samaan tapaan kuin Ajouran vanhassa
   1. Repon Settings → Pages → Custom domain → kirjoita verkkotunnus → Save.
   2. Lisää verkkotunnuksen DNS-asetuksiin A-tietueet `185.199.108.153`, `185.199.109.153`, `185.199.110.153` ja `185.199.111.153` sekä `www`-aliakselle CNAME `mestarihannes.github.io`.
   3. Kun DNS toimii, kytke päälle *Enforce HTTPS*.
-  4. Vaihda `hreflang`-osoitteet kaikista HTML-tiedostoista (ks. Kielet).
+  4. Vaihda `hreflang`-, `canonical`-, `og:url`- ja `og:image`-osoitteet kaikista HTML-tiedostoista (ks. Kielet ja Hakukoneet ja somejaot), `tarjous.js`:n `SIVUSTO`, mailto-viestien näyte-ehtolinkit sekä `404.html`:n polut `/PystyStudio/` → `/`.
   - Tarkista nimi ensin, ks. `01_suunnitelma` (Tuomarin nimitarkistus).
 
 ## Vielä tekemättä
@@ -186,7 +204,10 @@ Polussa on iso P ja iso S (`/PystyStudio/`), samaan tapaan kuin Ajouran vanhassa
 - [x] Lopullinen logo ja kuvake: konsepti 4, Pystyviiva (23.10.2026)
 - [x] Englanninkieliset sivut ja valuuttavalinta EUR / USD (23.10.2026)
 - [x] Räätälöity tarjous -sivu (23.10.2026)
-- [ ] PNG-kuvake (`favicon.ico`, `apple-touch-icon`) ja jakokuva (`og:image`), kun logo on viimeistelty
+- [x] PNG-kuvake (`apple-touch-icon`) ja jakokuva (`og:image`) (23.10.2026)
+- [x] Sivuston tarkistuksen korjaukset A ja B sekä kevennetty hintaosio (23.10.2026)
+- [ ] Kuva Hanneksesta Kuka klipit tekee -osioon (paikka on valmiina, ks. kommentti `index.html`:ssä)
+- [ ] Oikea demoklippi Hanneksen omasta materiaalista
 - [ ] Referenssit: klipit asiakkaan kirjallisella luvalla, sitten `hidden` pois osiosta (molemmilla kielillä)
 - [ ] Tietosuojaseloste: osoite rekisterinpitäjän tietoihin, jos laki sitä vaatii, ja juristin tarkistus
 - [ ] Fontit omalle palvelimelle, jos Google Fonts halutaan pois (ks. yllä)

@@ -5,11 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Räätälöity tarjous – Pysty Studio</title>
   <meta name="description" content="Kokoa Pysty Studion palveluista oma paketti ja näe hinta-arvio heti. Tarjouspyyntö ei sido mihinkään.">
+  <link rel="canonical" href="https://mestarihannes.github.io/PystyStudio/tarjous.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Pysty Studio">
+  <meta property="og:url" content="https://mestarihannes.github.io/PystyStudio/tarjous.html">
+  <meta property="og:title" content="Räätälöity tarjous – Pysty Studio">
+  <meta property="og:description" content="Kokoa Pysty Studion palveluista oma paketti ja näe hinta-arvio heti. Tarjouspyyntö ei sido mihinkään.">
+  <meta property="og:locale" content="fi_FI">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://mestarihannes.github.io/PystyStudio/assets/jakokuva.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Pysty Studio: Pitkät videot pystyyn. 3 ilmaista näyteklippiä.">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#000000">
   <link rel="alternate" hreflang="fi" href="https://mestarihannes.github.io/PystyStudio/tarjous.html">
   <link rel="alternate" hreflang="en" href="https://mestarihannes.github.io/PystyStudio/en/quote.html">
   <link rel="alternate" hreflang="x-default" href="https://mestarihannes.github.io/PystyStudio/tarjous.html">
+  <link rel="icon" href="assets/apple-touch-icon.png" type="image/png" sizes="180x180">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700..900&family=Figtree:wght@400..900&display=swap">
@@ -27,9 +43,9 @@
         <img src="assets/logo.svg" alt="Pysty Studio" width="537" height="121">
       </a>
       <nav class="kielet" aria-label="Kieli – Language">
-        <a href="tarjous.html" lang="fi" hreflang="fi" aria-current="page" aria-label="Suomeksi">FI</a>
+        <a href="tarjous.html" lang="fi" hreflang="fi" aria-current="page" aria-label="FI – suomeksi">FI</a>
         <span class="kielet-vali" aria-hidden="true">|</span>
-        <a href="en/quote.html" lang="en" hreflang="en" aria-label="In English" data-tarjous-kielilinkki>EN</a>
+        <a href="en/quote.html" lang="en" hreflang="en" aria-label="EN – in English" data-tarjous-kielilinkki>EN</a>
       </nav>
       <a class="nappi nappi-toissijainen nappi-pieni" href="index.html">Etusivulle</a>
     </div>
@@ -54,19 +70,27 @@
 
     <form class="tarjous-ruudukko" data-tarjous>
       <div class="tarjous-valinnat">
+        <fieldset class="tarjous-osio" data-vain-js hidden>
+          <legend>Ilmaiset näytteet</legend>
+          <div class="palvelu palvelu-naytteet">
+            <input type="checkbox" id="t-naytteet" name="naytteet" autocomplete="off">
+            <label for="t-naytteet"><span class="palvelu-nimi">Haluan ensin 3 ilmaista näyteklippiä</span> <span class="palvelu-kuvaus">Näytteet omasta videostasi ennen kuin päätät. Valitsemalla tämän hyväksyt <a href="naytteet.html" target="_blank" rel="noopener">näytteiden ehdot (avautuu uuteen välilehteen)</a>.</span></label>
+          </div>
+        </fieldset>
+
         <p class="tarjous-alv">Hinnat ovat alv 0 %. Laskuun lisätään alv 25,5 %.</p>
 
         <fieldset class="tarjous-osio">
           <legend>Pääpalvelut</legend>
 
           <div class="palvelu" data-palvelu="klippaamo">
-            <input type="checkbox" id="t-klippaamo" name="klippaamo" data-valittu>
+            <input type="checkbox" id="t-klippaamo" name="klippaamo" data-valittu autocomplete="off">
             <label for="t-klippaamo"><span class="palvelu-nimi">Klippaamo</span> <span class="palvelu-kuvaus">Kuukausipaketti: klippejä videoistasi joka kuukausi. Kuukausi kerrallaan, ei minimisopimusta.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
             <div class="palvelu-asetukset">
               <div class="kentta-pieni">
                 <label for="t-klippaamo-koko">Klippejä kuukaudessa</label>
-                <select id="t-klippaamo-koko" data-koko>
+                <select id="t-klippaamo-koko" data-koko autocomplete="off">
                   <option value="8">8</option>
                   <option value="12" data-nimi="Klippaamo Starter" selected>12 (Starter)</option>
                   <option value="16">16</option>
@@ -76,27 +100,28 @@
               </div>
               <div class="kentta-pieni">
                 <label for="t-videot">Videoita kuukaudessa</label>
-                <select id="t-videot" data-videot>
+                <select id="t-videot" data-videot autocomplete="off">
                   <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option><option value="6">6</option><option value="8">8</option>
                 </select>
               </div>
               <div class="kentta-pieni">
                 <label for="t-per">Klippiä per video</label>
-                <select id="t-per" data-per>
+                <select id="t-per" data-per autocomplete="off">
                   <option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="8">8</option>
                 </select>
               </div>
             </div>
+            <p class="palvelu-huomio" data-huomio-yli hidden>Yli 24 klippiä kuussa: sovitaan erikseen, eikä ylärajaa ole. <a data-yli-tarjous href="mailto:korkiakoskihannes@gmail.com?subject=Tarjouspyynt%C3%B6%3A%20yli%2024%20klippi%C3%A4%20kuukaudessa&amp;body=Hei%2C%0A%0AVideoita%20kuukaudessa%3A%20%0AKlippi%C3%A4%20per%20video%3A%20%0AKanava%3A%20%0A">Kysy tarjous</a></p>
           </div>
 
           <div class="palvelu" data-palvelu="kertaera">
-            <input type="checkbox" id="t-kertaera" name="kertaera" data-valittu>
+            <input type="checkbox" id="t-kertaera" name="kertaera" data-valittu autocomplete="off">
             <label for="t-kertaera"><span class="palvelu-nimi">Kertaerä</span> <span class="palvelu-kuvaus">Klipit yhdestä jaksosta ilman kuukausisopimusta.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
             <div class="palvelu-asetukset">
               <div class="kentta-pieni">
                 <label for="t-kertaera-koko">Klippejä</label>
-                <select id="t-kertaera-koko" data-koko>
+                <select id="t-kertaera-koko" data-koko autocomplete="off">
                   <option value="1">1</option><option value="4">4</option><option value="6">6</option><option value="8" selected>8</option>
                 </select>
               </div>
@@ -104,19 +129,19 @@
           </div>
 
           <div class="palvelu" data-palvelu="pystyPuhe">
-            <input type="checkbox" id="t-pystypuhe" name="pystyPuhe" data-valittu>
+            <input type="checkbox" id="t-pystypuhe" name="pystyPuhe" data-valittu autocomplete="off">
             <label for="t-pystypuhe"><span class="palvelu-nimi">Pysty Puhe -pilotti</span> <span class="palvelu-kuvaus">Kun sinulla ei ole podcastia: haastattelen sinua etänä 45 minuuttia ja teen tallenteesta 8 klippiä.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
           </div>
 
           <div class="palvelu" data-palvelu="aiMainos">
-            <input type="checkbox" id="t-ai" name="aiMainos" data-valittu>
+            <input type="checkbox" id="t-ai" name="aiMainos" data-valittu autocomplete="off">
             <label for="t-ai"><span class="palvelu-nimi">AI-mainospaketti</span> <span class="palvelu-kuvaus">Lyhyitä pystymainoksia verkkokaupan tuotekuvista. Tuote näytetään aitona, ja videot merkitään tekoälyllä tehdyiksi.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
             <div class="palvelu-asetukset">
               <div class="kentta-pieni">
                 <label for="t-ai-koko">Mainoksia</label>
-                <select id="t-ai-koko" data-koko>
+                <select id="t-ai-koko" data-koko autocomplete="off">
                   <option value="5">5</option><option value="10" selected>10</option><option value="20">20</option>
                 </select>
               </div>
@@ -124,13 +149,13 @@
           </div>
 
           <div class="palvelu" data-palvelu="arkisto">
-            <input type="checkbox" id="t-arkisto" name="arkisto" data-valittu>
+            <input type="checkbox" id="t-arkisto" name="arkisto" data-valittu autocomplete="off">
             <label for="t-arkisto"><span class="palvelu-nimi">Arkisto</span> <span class="palvelu-kuvaus">Klippejä vanhoista videoistasi, ajastettavaksi uusien rinnalle.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
             <div class="palvelu-asetukset">
               <div class="kentta-pieni">
                 <label for="t-arkisto-koko">Klippejä</label>
-                <select id="t-arkisto-koko" data-koko>
+                <select id="t-arkisto-koko" data-koko autocomplete="off">
                   <option value="10">10</option><option value="20">20</option><option value="30" selected>30</option><option value="50" data-nimi="Kanavan parhaat 50">50 (Kanavan parhaat 50)</option>
                 </select>
               </div>
@@ -138,31 +163,32 @@
           </div>
 
           <div class="palvelu" data-palvelu="tilinhoito">
-            <input type="checkbox" id="t-tilinhoito" name="tilinhoito" data-valittu>
-            <label for="t-tilinhoito"><span class="palvelu-nimi">Klippitilin hoito</span> <span class="palvelu-kuvaus">Profiilit, julkaisut, ajastukset ja julkaisutekstit. Tili on aina sinun nimissäsi. Saatavilla klippipaketin rinnalle.</span></label>
+            <input type="checkbox" id="t-tilinhoito" name="tilinhoito" data-valittu autocomplete="off">
+            <label for="t-tilinhoito"><span class="palvelu-nimi">Klippitilin hoito</span> <span class="palvelu-kuvaus">Profiilit, julkaisut, ajastukset, julkaisutekstit ja lyhyt kuukausikatsaus. Tili on aina sinun nimissäsi. Kommentteihin ja viesteihin vastaat itse. TikTokissa julkaisen vain yritystilille. Saatavilla klippipaketin rinnalle.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
             <div class="palvelu-asetukset">
               <fieldset class="alustat">
                 <legend>Alustat</legend>
                 <div class="alustat-valinnat">
-                  <label class="valinta"><input type="checkbox" value="TikTok" data-alusta="tiktok" checked> TikTok</label>
-                  <label class="valinta"><input type="checkbox" value="Instagram" data-alusta="instagram" checked> Instagram</label>
-                  <label class="valinta"><input type="checkbox" value="YouTube Shorts" data-alusta="shorts" checked> YouTube Shorts</label>
+                  <label class="valinta"><input type="checkbox" value="TikTok" data-alusta="tiktok" checked autocomplete="off"> TikTok</label>
+                  <label class="valinta"><input type="checkbox" value="Instagram" data-alusta="instagram" checked autocomplete="off"> Instagram</label>
+                  <label class="valinta"><input type="checkbox" value="YouTube Shorts" data-alusta="shorts" checked autocomplete="off"> YouTube Shorts</label>
                 </div>
                 <p class="valinta-huomio" data-huomio hidden>Valitse vähintään yksi alusta.</p>
               </fieldset>
               <div class="kentta-pieni">
                 <label for="t-tilinhoito-koko">Julkaisuja kuukaudessa</label>
-                <select id="t-tilinhoito-koko" data-koko>
+                <select id="t-tilinhoito-koko" data-koko autocomplete="off">
                   <option value="8">8 (noin 2 viikossa)</option><option value="12">12 (noin 3 viikossa)</option><option value="20" selected>20 (noin 5 viikossa)</option><option value="30">30 (noin 7 viikossa)</option>
                 </select>
               </div>
             </div>
+            <p class="palvelu-huomio" data-huomio-paketti hidden>Klippitilin hoito myydään klippipaketin rinnalle.</p>
           </div>
 
           <div class="palvelu" data-palvelu="kaikkiValmiina">
-            <input type="checkbox" id="t-kaikki" name="kaikkiValmiina" data-valittu>
-            <label for="t-kaikki"><span class="palvelu-nimi">Klippitili Kaikki valmiina</span> <span class="palvelu-kuvaus">20 klippiä kuussa videoistasi ja julkaisu kolmelle alustalle. Klippitilin hoito sisältyy.</span></label>
+            <input type="checkbox" id="t-kaikki" name="kaikkiValmiina" data-valittu autocomplete="off">
+            <label for="t-kaikki"><span class="palvelu-nimi">Klippitili Kaikki valmiina</span> <span class="palvelu-kuvaus">Klippaamo 20 klippiä ja klippitilin hoito samassa paketissa: teen klipit videoistasi ja julkaisen ne puolestasi erilliselle klippitilillesi TikTokiin, Instagramiin ja YouTube Shortsiin (20 julkaisua kuussa).</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
           </div>
         </fieldset>
@@ -170,17 +196,17 @@
         <fieldset class="tarjous-osio">
           <legend>Julkaisu ja seuranta</legend>
           <div class="palvelu" data-palvelu="julkaisutekstit">
-            <input type="checkbox" id="t-julkaisutekstit" name="julkaisutekstit" data-valittu>
-            <label for="t-julkaisutekstit"><span class="palvelu-nimi">Julkaisutekstit ja aihetunnisteet</span> <span class="palvelu-kuvaus">Tekstit TikTokiin, Reelsiin ja Shortsiin jokaiselle klipille. Sisältyy Pro-pakettiin.</span></label>
+            <input type="checkbox" id="t-julkaisutekstit" name="julkaisutekstit" data-valittu autocomplete="off">
+            <label for="t-julkaisutekstit"><span class="palvelu-nimi">Julkaisutekstit ja aihetunnisteet</span> <span class="palvelu-kuvaus">Tekstit TikTokiin, Reelsiin ja Shortsiin jokaiselle kuukausipaketin klipille (enintään 24 kuussa). Sisältyy Pro-pakettiin.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
           </div>
           <div class="palvelu" data-palvelu="julkaisuPuolesta">
-            <input type="checkbox" id="t-julkaisu" name="julkaisuPuolesta" data-valittu>
-            <label for="t-julkaisu"><span class="palvelu-nimi">Julkaisu puolestasi</span> <span class="palvelu-kuvaus">Julkaisen ja ajastan klipit omille tileillesi. Saan julkaisijaroolin, en salasanaa.</span></label>
+            <input type="checkbox" id="t-julkaisu" name="julkaisuPuolesta" data-valittu autocomplete="off">
+            <label for="t-julkaisu"><span class="palvelu-nimi">Julkaisu puolestasi</span> <span class="palvelu-kuvaus">Julkaisen ja ajastan klipit omille tileillesi. Saan julkaisijaroolin, en salasanaa. TikTokissa vain yritystilille.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
           </div>
           <div class="palvelu" data-palvelu="kuukausiraportti">
-            <input type="checkbox" id="t-raportti" name="kuukausiraportti" data-valittu>
+            <input type="checkbox" id="t-raportti" name="kuukausiraportti" data-valittu autocomplete="off">
             <label for="t-raportti"><span class="palvelu-nimi">Kuukausiraportti</span> <span class="palvelu-kuvaus">Katselut, parhaat klipit ja ehdotukset seuraavaan kuuhun.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
           </div>
@@ -190,88 +216,80 @@
           <legend>Lisää klippejä ja kuvia</legend>
           <p class="tarjous-osio-ohje">Kappalehintaiset lisät lasketaan kertaluonteisiksi. Kerro viestissä, jos haluat niitä joka kuukausi.</p>
           <div class="palvelu" data-palvelu="lisaklippi" data-jakso="/kpl">
-            <input type="checkbox" id="t-lisaklippi" name="lisaklippi" data-valittu>
+            <input type="checkbox" id="t-lisaklippi" name="lisaklippi" data-valittu autocomplete="off">
             <label for="t-lisaklippi"><span class="palvelu-nimi">Lisäklippi</span> <span class="palvelu-kuvaus">Lisää klippejä kuukausipaketin päälle.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
-            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="t-lisaklippi-maara">Kappaletta</label><input type="number" id="t-lisaklippi-maara" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara></div></div>
+            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="t-lisaklippi-maara">Kappaletta</label><input type="number" id="t-lisaklippi-maara" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara autocomplete="off"></div></div>
           </div>
           <div class="palvelu" data-palvelu="livestriimi" data-jakso="/striimi">
-            <input type="checkbox" id="t-livestriimi" name="livestriimi" data-valittu>
+            <input type="checkbox" id="t-livestriimi" name="livestriimi" data-valittu autocomplete="off">
             <label for="t-livestriimi"><span class="palvelu-nimi">Livestriimin klippaus</span> <span class="palvelu-kuvaus">Striimistä noin 8 klippiä.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
-            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="t-livestriimi-maara">Striimejä</label><input type="number" id="t-livestriimi-maara" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara></div></div>
+            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="t-livestriimi-maara">Striimejä</label><input type="number" id="t-livestriimi-maara" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara autocomplete="off"></div></div>
           </div>
           <div class="palvelu" data-palvelu="traileri" data-jakso="/kpl">
-            <input type="checkbox" id="t-traileri" name="traileri" data-valittu>
+            <input type="checkbox" id="t-traileri" name="traileri" data-valittu autocomplete="off">
             <label for="t-traileri"><span class="palvelu-nimi">Traileri</span> <span class="palvelu-kuvaus">Teaser-klippi päivää ennen uutta videota.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
-            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="t-traileri-maara">Kappaletta</label><input type="number" id="t-traileri-maara" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara></div></div>
+            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="t-traileri-maara">Kappaletta</label><input type="number" id="t-traileri-maara" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara autocomplete="off"></div></div>
           </div>
           <div class="palvelu" data-palvelu="kommenttivastaus" data-jakso="/kpl">
-            <input type="checkbox" id="t-kommentti" name="kommenttivastaus" data-valittu>
+            <input type="checkbox" id="t-kommentti" name="kommenttivastaus" data-valittu autocomplete="off">
             <label for="t-kommentti"><span class="palvelu-nimi">Kommenttivastausklippi</span> <span class="palvelu-kuvaus">Klippi, joka vastaa suosittuun kommenttiin.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
-            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="t-kommentti-maara">Kappaletta</label><input type="number" id="t-kommentti-maara" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara></div></div>
+            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="t-kommentti-maara">Kappaletta</label><input type="number" id="t-kommentti-maara" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara autocomplete="off"></div></div>
           </div>
           <div class="palvelu" data-palvelu="bestOf" data-jakso="/kpl">
-            <input type="checkbox" id="t-bestof" name="bestOf" data-valittu>
+            <input type="checkbox" id="t-bestof" name="bestOf" data-valittu autocomplete="off">
             <label for="t-bestof"><span class="palvelu-nimi">Best of -kooste</span> <span class="palvelu-kuvaus">Kuukauden parhaat palat 60–90 sekunnissa.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
-            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="t-bestof-maara">Kappaletta</label><input type="number" id="t-bestof-maara" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara></div></div>
+            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="t-bestof-maara">Kappaletta</label><input type="number" id="t-bestof-maara" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara autocomplete="off"></div></div>
           </div>
           <div class="palvelu" data-palvelu="ennenJalkeen" data-jakso="/kpl">
-            <input type="checkbox" id="t-ennen" name="ennenJalkeen" data-valittu>
+            <input type="checkbox" id="t-ennen" name="ennenJalkeen" data-valittu autocomplete="off">
             <label for="t-ennen"><span class="palvelu-nimi">Ennen ja jälkeen -kooste</span> <span class="palvelu-kuvaus">Projekti alusta loppuun 45–60 sekunnissa.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
-            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="t-ennen-maara">Kappaletta</label><input type="number" id="t-ennen-maara" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara></div></div>
+            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="t-ennen-maara">Kappaletta</label><input type="number" id="t-ennen-maara" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara autocomplete="off"></div></div>
           </div>
           <div class="palvelu" data-palvelu="sponsori" data-jakso="/kpl">
-            <input type="checkbox" id="t-sponsori" name="sponsori" data-valittu>
+            <input type="checkbox" id="t-sponsori" name="sponsori" data-valittu autocomplete="off">
             <label for="t-sponsori"><span class="palvelu-nimi">Sponsori- tai merch-klippi</span> <span class="palvelu-kuvaus">Oma mainosklippi yhteistyökumppanin tuotteelle tai omalle merchille.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
-            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="t-sponsori-maara">Kappaletta</label><input type="number" id="t-sponsori-maara" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara></div></div>
+            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="t-sponsori-maara">Kappaletta</label><input type="number" id="t-sponsori-maara" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara autocomplete="off"></div></div>
           </div>
           <div class="palvelu" data-palvelu="audiogrammi" data-jakso="/kpl">
-            <input type="checkbox" id="t-audiogrammi" name="audiogrammi" data-valittu>
+            <input type="checkbox" id="t-audiogrammi" name="audiogrammi" data-valittu autocomplete="off">
             <label for="t-audiogrammi"><span class="palvelu-nimi">Podcast-audiogrammi</span> <span class="palvelu-kuvaus">Ääniklippi aaltomuodolla ja tekstityksellä.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
-            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="t-audiogrammi-maara">Kappaletta</label><input type="number" id="t-audiogrammi-maara" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara></div></div>
+            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="t-audiogrammi-maara">Kappaletta</label><input type="number" id="t-audiogrammi-maara" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara autocomplete="off"></div></div>
           </div>
           <div class="palvelu" data-palvelu="kansikuva" data-jakso="/kpl">
-            <input type="checkbox" id="t-kansikuva" name="kansikuva" data-valittu>
+            <input type="checkbox" id="t-kansikuva" name="kansikuva" data-valittu autocomplete="off">
             <label for="t-kansikuva"><span class="palvelu-nimi">Kansikuva</span> <span class="palvelu-kuvaus">Reels- tai Shorts-kansi klipille.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
-            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="t-kansikuva-maara">Kappaletta</label><input type="number" id="t-kansikuva-maara" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara></div></div>
+            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="t-kansikuva-maara">Kappaletta</label><input type="number" id="t-kansikuva-maara" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara autocomplete="off"></div></div>
           </div>
           <div class="palvelu" data-palvelu="pikkukuva" data-jakso="/kpl">
-            <input type="checkbox" id="t-pikkukuva" name="pikkukuva" data-valittu>
+            <input type="checkbox" id="t-pikkukuva" name="pikkukuva" data-valittu autocomplete="off">
             <label for="t-pikkukuva"><span class="palvelu-nimi">YouTube-pikkukuva</span> <span class="palvelu-kuvaus">Pitkän videon pääkuva (thumbnail).</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
-            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="t-pikkukuva-maara">Kappaletta</label><input type="number" id="t-pikkukuva-maara" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara></div></div>
+            <div class="palvelu-asetukset"><div class="kentta-pieni kentta-maara"><label for="t-pikkukuva-maara">Kappaletta</label><input type="number" id="t-pikkukuva-maara" min="1" max="999" step="1" value="1" inputmode="numeric" data-maara autocomplete="off"></div></div>
           </div>
         </fieldset>
 
         <fieldset class="tarjous-osio">
           <legend>Klippien lisät</legend>
           <div class="palvelu" data-palvelu="englanninTekstitys" data-jakso="/klippi">
-            <input type="checkbox" id="t-englanti" name="englanninTekstitys" data-valittu>
+            <input type="checkbox" id="t-englanti" name="englanninTekstitys" data-valittu autocomplete="off">
             <label for="t-englanti"><span class="palvelu-nimi">Englanninkielinen tekstitys</span> <span class="palvelu-kuvaus">Tekstitys englanniksi kansainväliselle yleisölle. Hinta lasketaan valittujen palvelujen klippien määrästä.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
             <p class="palvelu-huomio" data-huomio hidden>Valitse ensin klippipalvelu: hinta lasketaan klippien määrästä.</p>
           </div>
           <div class="palvelu" data-palvelu="vaakaversio" data-jakso="/klippi">
-            <input type="checkbox" id="t-vaaka" name="vaakaversio" data-valittu>
+            <input type="checkbox" id="t-vaaka" name="vaakaversio" data-valittu autocomplete="off">
             <label for="t-vaaka"><span class="palvelu-nimi">Vaakaversio 16:9</span> <span class="palvelu-kuvaus">Sama klippi myös vaakana YouTubeen, LinkedIniin tai verkkosivulle. Hinta lasketaan valittujen palvelujen klippien määrästä.</span></label>
             <p class="palvelu-hinta" data-rivihinta></p>
             <p class="palvelu-huomio" data-huomio hidden>Valitse ensin klippipalvelu: hinta lasketaan klippien määrästä.</p>
-          </div>
-        </fieldset>
-
-        <fieldset class="tarjous-osio" data-vain-js hidden>
-          <legend>Ilmaiset näytteet</legend>
-          <div class="palvelu palvelu-naytteet">
-            <input type="checkbox" id="t-naytteet" name="naytteet">
-            <label for="t-naytteet"><span class="palvelu-nimi">Haluan ensin 3 ilmaista näyteklippiä</span> <span class="palvelu-kuvaus">Näytteet omasta videostasi ennen kuin päätät. Valitsemalla tämän hyväksyt <a href="naytteet.html">näytteiden ehdot</a>.</span></label>
           </div>
         </fieldset>
 
@@ -282,7 +300,7 @@
             <input type="text" id="t-nimi" name="nimi" autocomplete="name" required>
           </div>
           <div class="kentta">
-            <label for="t-yritys">Yritys</label>
+            <label for="t-yritys">Yritys tai kanava</label>
             <input type="text" id="t-yritys" name="yritys" autocomplete="organization" required>
           </div>
           <div class="kentta">
@@ -304,7 +322,7 @@
         </fieldset>
       </div>
 
-      <aside class="tarjous-yhteenveto" id="yhteenveto" data-yhteenveto data-vain-js hidden aria-labelledby="yhteenveto-otsikko">
+      <section class="tarjous-yhteenveto" id="yhteenveto" data-yhteenveto data-vain-js hidden aria-labelledby="yhteenveto-otsikko">
         <h2 id="yhteenveto-otsikko">Yhteenveto</h2>
         <div data-yhteenveto-lista></div>
         <dl class="yhteenveto-summat">
@@ -321,7 +339,7 @@
         <label class="piilotettu" for="t-kopio">Viesti kopioitavaksi</label>
         <textarea class="tarjous-kopio" id="t-kopio" data-kopio-kentta rows="8" readonly hidden></textarea>
         <p class="piilotettu" data-tarjous-ilmoitus aria-live="polite"></p>
-      </aside>
+      </section>
     </form>
   </main>
 
@@ -333,7 +351,7 @@
   <footer class="alapalkki">
     <div class="kehys alapalkki-sisalto">
       <img class="alapalkki-logo" src="assets/logo-tumma.svg" alt="Pysty Studio" width="537" height="112">
-      <p>Palveluntarjoaja: Hannes Korkiakoski (markkinointinimi Pysty Studio). Laskutus Keikkalasku-laskutuspalvelun kautta.</p>
+      <p>Palveluntarjoaja: Hannes Korkiakoski (markkinointinimi Pysty Studio). Laskutus Suomen Keikkalaskun (Y-tunnus 2883508-5) kautta.</p>
       <p><a href="mailto:korkiakoskihannes@gmail.com">korkiakoskihannes@gmail.com</a><br><a href="tel:+358413144255">+358 41 314 4255</a></p>
       <p><a href="index.html">Etusivu</a><br><a href="tietosuoja.html">Tietosuojaseloste</a><br><a href="naytteet.html">Näytteiden ehdot</a></p>
     </div>
