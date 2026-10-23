@@ -2,7 +2,9 @@
    Kurssi on tiedostossa hintadata.js. Laskut ovat aina euroissa, joten USD-tilassa euro näytetään aina mukana.
 
    Valuutta valitaan näin: URL-parametri ?currency=usd tai ?currency=eur, sitten selaimeen tallennettu
-   valinta (localStorage), muuten EUR. Tallennus on try/catch-suojattu, joten sivu toimii ilman sitäkin.
+   valinta (localStorage), muuten EUR. URL-parametrin valinta tallennetaan myös selaimeen, jotta se säilyy
+   sivulta toiselle. Tallennus on try/catch-suojattu, joten sivu toimii ilman sitäkin.
+   Rahasummissa on sitova välilyönti (NBSP) ennen merkkejä € ja $ sekä ≈-merkin jälkeen, jotta summa ei katkea.
    Ilman JavaScriptiä sivulla näkyvät euromääräiset hinnat, ja valuuttavalitsin pysyy piilossa (hidden). */
 (function () {
   'use strict';
@@ -35,7 +37,13 @@
       return v === 'usd' || v === 'eur' ? v : null;
     } catch (e) { return null; }
   }
+  function tallenna(v) {
+    try { window.localStorage.setItem(MUISTI, v); } catch (e) { /* tallennus estetty: valinta pätee tällä sivulla */ }
+  }
   var valuutta = parametri() || tallennettu() || 'eur';
+  if (parametri()) tallenna(valuutta);
+  var NBSP = '\u00a0';
+  var KUUT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   function numero(arvo, desimaalit) {
     return new Intl.NumberFormat(en ? 'en-US' : 'fi-FI', {
@@ -47,29 +55,29 @@
   // "349 €" / "€349", senttien kanssa "337,60 €" / "€337.60". Sentit näytetään vain, kun niitä on.
   function euroa(sentit, etumerkki) {
     var luku = numero(sentit / 100, sentit % 100 === 0 ? 0 : 2);
-    return (etumerkki || '') + (en ? '€' + luku : luku + ' €');
+    return (etumerkki || '') + (en ? '€' + luku : luku + NBSP + '€');
   }
   // "391 $" / "$391": aina kokonaisina dollareina.
   function dollaria(sentit, etumerkki) {
     var luku = numero(dollarit(sentit), 0);
-    return (etumerkki || '') + (en ? '$' + luku : luku + ' $');
+    return (etumerkki || '') + (en ? '$' + luku : luku + NBSP + '$');
   }
   function usd() { return valuutta === 'usd'; }
 
   // Tekstin sisällä: "438 €/kk", USD-tilassa "438 €/kk (≈ 491 $)".
   function teksti(sentit, jakso, etumerkki) {
-    return euroa(sentit, etumerkki) + (jakso || '') + (usd() && sentit ? ' (≈ ' + dollaria(sentit, etumerkki) + ')' : '');
+    return euroa(sentit, etumerkki) + (jakso || '') + (usd() && sentit ? ' (≈' + NBSP + dollaria(sentit, etumerkki) + ')' : '');
   }
   // Lisätieto sulkeissa: "29,08 €/klippi (alv 0 %)", USD-tilassa "29,08 €/klippi (alv 0 %, ≈ 33 $)".
   function lisatiedolla(sentit, jakso, lisa) {
     var osat = [lisa];
-    if (usd()) osat.push('≈ ' + dollaria(sentit));
+    if (usd()) osat.push('≈' + NBSP + dollaria(sentit));
     return euroa(sentit) + (jakso || '') + ' (' + osat.join(', ') + ')';
   }
   // Koko summa sulkeissa: "(25 €/kpl)", USD-tilassa "(25 €/kpl, ≈ 28 $)".
   function sulkeissa(sentit, jakso, etumerkki) {
     return '(' + euroa(sentit, etumerkki) + (jakso || '') +
-      (usd() ? ', ≈ ' + dollaria(sentit, etumerkki) : '') + ')';
+      (usd() ? ', ≈' + NBSP + dollaria(sentit, etumerkki) : '') + ')';
   }
   // Ruudunlukijalle: "349 euroa kuukaudessa", USD-tilassa "349 euroa kuukaudessa, noin 391 dollaria".
   function sanoin(sentit, jakso) {
@@ -93,9 +101,11 @@
   }
 
   // Valitsimen huomautus: kurssi ja päivämäärä hintadata.js:stä HTML:n data-malli-tekstiin.
+  // Päivämäärä suomeksi "22.10.2026" ja englanniksi "22 Oct 2026".
   function huomautus(malli) {
     var p = data.kurssi.pvm.split('-');
-    return malli.replace('{kurssi}', numero(data.kurssi.usd, 4)).replace('{pvm}', p[2] + '.' + p[1] + '.' + p[0]);
+    var pvm = en ? Number(p[2]) + ' ' + KUUT[Number(p[1]) - 1] + ' ' + p[0] : p[2] + '.' + p[1] + '.' + p[0];
+    return malli.replace('{kurssi}', numero(data.kurssi.usd, 4)).replace('{pvm}', pvm);
   }
 
   function paivitaSivu() {
@@ -117,7 +127,7 @@
     if (uusi !== 'usd' && uusi !== 'eur') return;
     if (uusi === valuutta) return;
     valuutta = uusi;
-    try { window.localStorage.setItem(MUISTI, uusi); } catch (e) { /* tallennus estetty: valinta pätee tällä sivulla */ }
+    tallenna(uusi);
     if (parametri() && window.history && window.history.replaceState) {
       try {
         var osoite = window.location.search.replace(/([?&]currency=)(usd|eur)/i, '$1' + uusi);

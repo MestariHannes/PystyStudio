@@ -1,6 +1,45 @@
-/* Pysty Studio – heron esimerkkiklippi.
-   Tekstitys etenee sana kerrallaan, ja rajaus hyppää puhujaan, kun puhuja vaihtuu.
-   Jos käyttäjä on pyytänyt vähemmän liikettä, näytetään yksi pysäytyskuva. */
+/* Pysty Studio – etusivun pienet toiminnot.
+   1. Avattavat osiot (<details>): kun sivulle tullaan ankkurilla (esim. #lisapalvelut tai #klippitilin-hoito)
+      tai sivun sisäinen linkki osoittaa avattavan osion sisälle, osio avataan ja kohta vieritetään näkyviin.
+      Ilman JavaScriptiä osiot avautuvat itse napauttamalla.
+   2. Heron esimerkkiklippi: tekstitys etenee sana kerrallaan, ja rajaus hyppää puhujaan, kun puhuja vaihtuu.
+      Jos käyttäjä on pyytänyt vähemmän liikettä, näytetään yksi pysäytyskuva. */
+(function () {
+  'use strict';
+
+  function kohde(hash) {
+    if (!hash || hash.length < 2) return null;
+    try { return document.getElementById(decodeURIComponent(hash.slice(1))); } catch (e) { return null; }
+  }
+  // Avaa kohteen ja sitä ympäröivät suljetut osiot. Palauttaa true, jos jokin osio avattiin.
+  function avaa(el) {
+    var avattiin = false;
+    var d = el && (el.tagName === 'DETAILS' ? el : el.closest('details'));
+    while (d) {
+      if (!d.open) { d.open = true; avattiin = true; }
+      d = d.parentElement ? d.parentElement.closest('details') : null;
+    }
+    return avattiin;
+  }
+  // Latauksessa vieritys on välitön (selaimen oma ankkurivieritys ei löydä suljetun osion sisältöä),
+  // ja se toistetaan load-tapahtumassa, kun fontit ja hinnat ovat paikallaan.
+  function ankkuri(alussa) {
+    var el = kohde(window.location.hash);
+    if (!el || !avaa(el)) return;
+    if (alussa !== true) { el.scrollIntoView(); return; }
+    el.scrollIntoView({ behavior: 'instant' });
+    window.addEventListener('load', function () { el.scrollIntoView({ behavior: 'instant' }); });
+  }
+
+  ankkuri(true);
+  window.addEventListener('hashchange', ankkuri);
+  // Sisäinen linkki samaan ankkuriin, joka on jo osoitteessa: hashchange ei laukea, joten avataan klikkauksesta.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (a) avaa(kohde(a.getAttribute('href')));
+  });
+})();
+
 (function () {
   'use strict';
 
@@ -101,10 +140,10 @@
     return;
   }
 
+  // Napin teksti kertoo, mitä painallus tekee (Pysäytä / Jatka), joten aria-pressed-tilaa ei käytetä.
   nappi.hidden = false;
   nappi.addEventListener('click', function () {
     kayttajaPysaytti = !kayttajaPysaytti;
-    nappi.setAttribute('aria-pressed', String(kayttajaPysaytti));
     nappi.textContent = kayttajaPysaytti ? NAPPI[1] : NAPPI[0];
     if (kayttajaPysaytti) pysayta(); else kaynnista();
   });

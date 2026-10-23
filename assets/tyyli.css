@@ -212,6 +212,25 @@ h4 { margin: 0; }
 /* Hero */
 .hero { padding-block: 2rem 4rem; }
 .hero-ruudukko { display: grid; gap: 2.75rem; }
+/* Yläotsake H1:n yläpuolella: keltainen pystyviiva mustalla reunalla kuin logossa. */
+.ylaotsake {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  max-width: 30em;
+  margin: 0 0 1.1rem;
+  font-size: .9375rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+.ylaotsake::before {
+  content: "";
+  flex: 0 0 auto;
+  width: .3rem;
+  height: 1.3em;
+  background: var(--keltainen);
+  box-shadow: 0 0 0 1.5px var(--musta);
+}
 h1 {
   font-size: clamp(4.25rem, 23vw, 9.5rem);
   line-height: .88;
@@ -519,13 +538,21 @@ h1 span { display: block; }
   font-weight: 900;
   line-height: 1;
 }
-.tekniikka { margin: 1.25rem 0 0; display: grid; gap: 1.25rem; }
-.tekniikka div {
-  display: grid;
-  gap: .15rem;
+/* Ääni ja tekniikka: hyöty lihavoituna, tekninen luku sulkeissa harmaana. */
+.tekniikka { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; gap: 1rem; }
+.tekniikka li { position: relative; max-width: 34em; padding-left: 1.1rem; }
+.tekniikka li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .2em;
+  width: .3rem;
+  height: 1.15em;
+  background: var(--keltainen);
+  box-shadow: 0 0 0 1.5px var(--musta);
 }
-.tekniikka dt { font-weight: 800; }
-.tekniikka dd { margin: 0; max-width: 34em; }
+.tekniikka strong { font-weight: 800; }
+.tekninen { color: var(--vari-harmaa); font-weight: 600; }
 
 /* Hinnat */
 .hintaryhma { margin-top: 3rem; max-width: 58rem; }
@@ -592,32 +619,83 @@ h1 span { display: block; }
 }
 .hinta .kerta + .alv { margin-top: .2rem; }
 
-/* Lupaukset hintaosion alussa: musta nauha, keltainen pystyviiva */
-.lupaukset {
-  list-style: none;
-  margin: 1.75rem 0 1.5rem;
-  padding: 1.25rem;
-  display: grid;
-  gap: .85rem;
+/* Aloita ilmaisilla näytteillä: musta laatikko hintaosion alussa. Keltainen vain mustalla pohjalla. */
+.naytelaatikko {
   max-width: 58rem;
+  margin: 1.75rem 0 0;
+  padding: 1.5rem 1.25rem;
   border-radius: var(--sade);
   background: var(--vari-tumma);
   color: var(--valkoinen);
+}
+.naytelaatikko h3 {
+  margin: 0 0 1.25rem;
+  font-family: var(--fontti-otsikko);
+  font-size: clamp(2rem, 9vw, 2.75rem);
+  font-weight: 900;
+  line-height: 1;
+}
+.naytevaiheet {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+  counter-reset: nayte;
+}
+.naytevaiheet li {
+  counter-increment: nayte;
+  display: grid;
+  grid-template-columns: 1.75rem minmax(0, 1fr);
+  column-gap: .75rem;
+  align-items: baseline;
+  max-width: 40em;
+  font-weight: 600;
+  line-height: 1.45;
+}
+.naytevaiheet li::before {
+  content: counter(nayte);
+  font-family: var(--fontti-otsikko);
+  font-size: 2.25rem;
+  font-weight: 900;
+  line-height: .8;
+  color: var(--keltainen);
+}
+.naytelaatikko-toiminnot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem 1.5rem;
+  margin: 1.5rem 0 0;
+}
+.naytelaatikko a:not(.nappi) { color: var(--valkoinen); font-weight: 700; }
+.naytelaatikko a:not(.nappi):hover { color: var(--keltainen); background: none; text-decoration-color: var(--keltainen); }
+.naytelaatikko :focus-visible { outline-color: var(--keltainen); }
+
+/* Lupaukset näytelaatikon alla: keltainen pystyviiva mustalla reunalla */
+.lupaukset {
+  list-style: none;
+  margin: 1.5rem 0 2rem;
+  padding: 0;
+  display: grid;
+  gap: .65rem;
+  max-width: 58rem;
 }
 .lupaukset li {
   position: relative;
   padding-left: 1.1rem;
   font-weight: 700;
-  line-height: 1.35;
+  line-height: 1.4;
 }
 .lupaukset li::before {
   content: "";
   position: absolute;
   left: 0;
-  top: .05em;
+  top: .1em;
   width: .3rem;
-  height: 1.25em;
+  height: 1.2em;
   background: var(--keltainen);
+  box-shadow: 0 0 0 1.5px var(--musta);
 }
 
 /* Valuuttavalitsin € EUR | $ USD (assets/valuutta.js). Ilman JavaScriptiä piilossa. */
@@ -872,6 +950,71 @@ h1 span { display: block; }
 .valinta-huomio { margin: .5rem 0 0; font-size: .875rem; font-weight: 700; }
 .valinta-huomio[hidden] { display: none; }
 
+/* Avattavat hintaosiot (Muut palvelut ja Lisäpalvelut). <details> toimii ilman JavaScriptiä.
+   Plus-merkki keltaisessa ympyrässä mustalla reunalla; auki ollessa miinus. */
+.avattava {
+  max-width: 58rem;
+  margin-top: 2.5rem;
+  border-top: 2px solid var(--vari-muste);
+  border-bottom: 2px solid var(--vari-muste);
+}
+.avattava + .avattava { margin-top: 0; border-top: 0; }
+.avattava > summary {
+  position: relative;
+  display: block;
+  padding: 1.15rem 3.5rem 1.15rem 0;
+  cursor: pointer;
+  list-style: none;
+}
+.avattava > summary::-webkit-details-marker { display: none; }
+.avattava > summary::before,
+.avattava > summary::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+}
+.avattava > summary::before {
+  right: .2rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-top: -1.125rem;
+  border-radius: 50%;
+  background: var(--keltainen);
+  box-shadow: 0 0 0 2px var(--musta);
+}
+.avattava > summary::after {
+  right: .825rem;
+  width: 1rem;
+  height: 1rem;
+  margin-top: -.5rem;
+  background:
+    linear-gradient(var(--musta), var(--musta)) center / 100% 2.5px no-repeat,
+    linear-gradient(var(--musta), var(--musta)) center / 2.5px 100% no-repeat;
+}
+.avattava[open] > summary::after {
+  background: linear-gradient(var(--musta), var(--musta)) center / 100% 2.5px no-repeat;
+}
+.avattava-otsikko {
+  display: block;
+  font-family: var(--fontti-otsikko);
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+}
+.avattava-selite {
+  display: block;
+  margin-top: .35rem;
+  font-size: .9375rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--vari-harmaa);
+}
+.avattava > summary:hover .avattava-otsikko { text-decoration: underline; text-decoration-thickness: .06em; text-underline-offset: .12em; }
+.avattava[open] > summary { border-bottom: 1px solid var(--vari-viiva); }
+.avattava-johdanto { margin: 1.25rem 0 0; color: var(--vari-harmaa); }
+.avattava > .hinnasto > .hintarivi:last-child { border-bottom: 0; }
+.avattava > .lisapalvelut { margin-top: 1.5rem; padding-bottom: 2rem; }
+
 /* Lisäpalvelut */
 .lisapalvelut {
   display: grid;
@@ -924,6 +1067,20 @@ h1 span { display: block; }
   color: var(--vari-harmaa);
 }
 
+/* Kuka klipit tekee. Kuvan paikka (.kuka-kuva) on valmiina, mutta kuvaa ei näytetä ennen kuin se on saatu. */
+.kuka-sisalto { display: grid; gap: 1.5rem 2.5rem; align-items: center; }
+.kuka-sisalto h2 { margin-bottom: 1rem; }
+.kuka-kuva {
+  width: 9rem;
+  height: 9rem;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 0 0 .3rem var(--musta);
+}
+@media (min-width: 45em) {
+  .kuka-sisalto:has(.kuka-kuva) { grid-template-columns: auto minmax(0, 1fr); }
+}
+
 /* UKK */
 .ukk-lista {
   max-width: 48rem;
@@ -966,6 +1123,8 @@ h1 span { display: block; }
 .yhteys a.nappi-kaanteinen { color: var(--musta); margin-top: .5rem; }
 .yhteys a.nappi-kaanteinen:hover { color: var(--musta); background: var(--valkoinen); }
 .yhteys :focus-visible { outline-color: var(--keltainen); }
+.yhteys-puhelin { margin: 1.1rem 0 0; }
+.yhteys-puhelin a { font-weight: 800; }
 .yhteys-ruudukko { display: grid; gap: 2.5rem; }
 .yhteystiedot { margin: 0; display: grid; gap: 1.25rem; }
 .yhteystiedot dt { font-size: .875rem; font-weight: 700; opacity: .8; }
@@ -989,7 +1148,7 @@ h1 span { display: block; }
 }
 .alapalkki-sisalto { display: grid; gap: 1.25rem; }
 .alapalkki-logo { height: 1.75rem; width: auto; margin-bottom: .5rem; }
-.alapalkki p { margin: 0; max-width: 34em; }
+.alapalkki p { margin: 0; max-width: 34em; line-height: 1.8; }
 .alapalkki a { color: var(--valkoinen); }
 .alapalkki a:hover { color: var(--keltainen); background: none; text-decoration-color: var(--keltainen); }
 .alapalkki :focus-visible { outline-color: var(--keltainen); }
@@ -1014,6 +1173,18 @@ h1 span { display: block; }
 }
 .kaannos-huomio a { color: var(--vari-muste); }
 .ehdot li { padding-left: .25rem; }
+/* 404-sivu (404.html): suomi ensin, englanti alla. */
+.virhe-koodi {
+  margin: 0 0 .5rem;
+  font-family: var(--fontti-otsikko);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--vari-harmaa);
+}
+.virhe-otsikko span { display: inline; }
+.virhe-toiminnot { margin-top: 1.5rem; }
+.virhe-en { margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--vari-viiva); }
+.virhe-en h2 { margin-top: 0; }
 .ehdot li::marker {
   font-family: var(--fontti-otsikko);
   font-size: 1.375rem;
@@ -1174,6 +1345,10 @@ h1 span { display: block; }
 .tarjous-palkki a { color: var(--valkoinen); font-weight: 800; white-space: nowrap; }
 .tarjous-palkki a:hover { color: var(--musta); }
 .tarjous-palkki :focus-visible { outline-color: var(--keltainen); }
+/* Hintapalkki ei peitä näppäimistöllä kohdistettua kenttää. */
+@media (max-width: 63.99em) {
+  html:has(.tarjous-palkki:not([hidden])) { scroll-padding-bottom: 5.5rem; }
+}
 
 @media (min-width: 40em) {
   .palvelu { grid-template-columns: 1.375rem minmax(0, 1fr) auto; }
@@ -1196,6 +1371,17 @@ h1 span { display: block; }
 @media (max-width: 22.49em) {
   .hinta .summa { font-size: 2.375rem; }
   .hinta .jakso { font-size: 1.25rem; }
+}
+/* Kapealla puhelimella (enintään 384 px) hintarivi on yhtenä sarakkeena: hinta nimen ja kuvauksen alla,
+   jotta USD-tilan pitkä hinta (≈ 1 333 $ ja euro alla) ei puristu. Tiiviit lisäpalvelurivit pysyvät kahdessa sarakkeessa. */
+@media (max-width: 24em) {
+  .hinnasto:not(.hinnasto-tiivis) > .hintarivi { grid-template-columns: minmax(0, 1fr); }
+  .hinnasto:not(.hinnasto-tiivis) > .hintarivi > .hinta { text-align: left; }
+  .hinnasto:not(.hinnasto-tiivis) > .hintarivi > .hinta .kerta { margin-left: 0; max-width: none; }
+}
+/* Vaakasuuntainen puhelin: matala näyttö, joten yläpalkki ei jää kiinni yläreunaan. */
+@media (max-height: 30em) {
+  .ylapalkki { position: static; }
 }
 
 @media (min-width: 30em) {
@@ -1235,6 +1421,11 @@ h1 span { display: block; }
   .hintarivi h4 { font-family: var(--fontti-otsikko); font-size: 2.25rem; font-weight: 900; line-height: 1; margin-bottom: .5rem; }
   .hinta .summa { font-size: 3.5rem; }
   .lisapalvelut { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 4rem; align-items: start; }
+  .naytelaatikko { padding: 2rem; }
+  .naytevaiheet { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+  .naytevaiheet li { grid-template-columns: minmax(0, 1fr); }
+  .naytevaiheet li::before { margin-bottom: .6rem; font-size: 3rem; }
+  .avattava-otsikko { font-size: 2.25rem; }
 }
 
 @media (min-width: 64em) {

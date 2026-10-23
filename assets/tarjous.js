@@ -2,6 +2,8 @@
    Hinnat tulevat hintadata.js:stä ja valuutta valuutta.js:stä, joten hintoja ei ole tässä tiedostossa.
    Sivu ei lähetä eikä tallenna mitään: Lähetä-painike avaa kävijän oman sähköpostiohjelman valmiilla
    viestillä (mailto). Etusivun valinnat tulevat URL-parametreina, esim. ?klippaamo=12&videot=4&per=3.
+   Sivun omat valinnat päivitetään samassa muodossa osoitteeseen (history.replaceState), ja valintojen
+   kentissä on autocomplete="off": Takaisin-napilla palatessa valinnat palautuvat osoitteesta, eivät selaimen muistista.
    Ilman JavaScriptiä sivulla näkyy ohje lähettää sähköpostia ja palvelulista. */
 (function () {
   'use strict';
@@ -31,6 +33,9 @@
     perKlippi: function (n, kk, hinta) { return n + ' ' + monikko(n, 'clip', 'clips') + (kk ? ' per month' : '') + ' × ' + hinta; },
     kpl: function (n, hinta) { return n + ' × ' + hinta; },
     sisaltyy: 'included in the Pro package',
+    sisaltyyKaikki: 'included in the all-done-for-you package',
+    yliAihe: function (max) { return 'Quote request: more than ' + max + ' clips a month'; },
+    yliViesti: function (v, p) { return 'Hi,\n\nVideos per month: ' + v + '\nClips per video: ' + p + '\nChannel: \n'; },
     eiKlippeja: 'Select a clip service first: the price is per clip.',
     kuukausittain: 'Monthly',
     kertaluonteiset: 'One-off',
@@ -49,7 +54,7 @@
     naytteet: 'I’d like 3 free sample clips first.',
     hyvaksyn: 'I accept the sample terms: ',
     ehdot: 'en/samples.html',
-    kentat: { nimi: 'Name', yritys: 'Company', ytunnus: 'Business ID / VAT number', sahkoposti: 'Email', linkki: 'Channel or video', viesti: 'Message' },
+    kentat: { nimi: 'Name', yritys: 'Company or channel', ytunnus: 'Business ID / VAT number', sahkoposti: 'Email', linkki: 'Channel or video', viesti: 'Message' },
     kopioitu: 'Message copied. Paste it into an email to ' + OSOITE + '.',
     eiKopioitu: 'Copying didn’t work. Select the message below and copy it yourself.',
     pitka: 'The message is long. If your email app doesn’t open the whole message, copy it and paste it into an email to ' + OSOITE + '.',
@@ -68,6 +73,9 @@
     perKlippi: function (n, kk, hinta) { return n + ' ' + monikko(n, 'klippi', 'klippiä') + (kk ? ' kuukaudessa' : '') + ' × ' + hinta; },
     kpl: function (n, hinta) { return n + ' × ' + hinta; },
     sisaltyy: 'sisältyy Pro-pakettiin',
+    sisaltyyKaikki: 'sisältyy Kaikki valmiina -pakettiin',
+    yliAihe: function (max) { return 'Tarjouspyyntö: yli ' + max + ' klippiä kuukaudessa'; },
+    yliViesti: function (v, p) { return 'Hei,\n\nVideoita kuukaudessa: ' + v + '\nKlippiä per video: ' + p + '\nKanava: \n'; },
     eiKlippeja: 'Valitse ensin klippipalvelu: hinta lasketaan klippien määrästä.',
     kuukausittain: 'Kuukausittain',
     kertaluonteiset: 'Kertaluonteiset',
@@ -79,14 +87,14 @@
     vastaanottaja: 'Vastaanottaja: ',
     aiheOtsikko: 'Aihe: ',
     hei: 'Hei,',
-    pyydan: 'pyydän tarjousta seuraavista palveluista.',
+    pyydan: 'Pyydän tarjousta seuraavista palveluista.',
     arvio: 'Hinta-arvio:',
     eiSitova: 'Arvio, ei sitova. Lopullinen tarjous lähetetään sähköpostilla.',
     usd: 'Dollarisummat ovat suuntaa antavia. Hinnat sovitaan ja laskutetaan euroissa.',
     naytteet: 'Haluan ensin 3 ilmaista näyteklippiä.',
     hyvaksyn: 'Hyväksyn näytteiden ehdot: ',
     ehdot: 'naytteet.html',
-    kentat: { nimi: 'Nimi', yritys: 'Yritys', ytunnus: 'Y-tunnus', sahkoposti: 'Sähköposti', linkki: 'Kanava tai video', viesti: 'Viesti' },
+    kentat: { nimi: 'Nimi', yritys: 'Yritys tai kanava', ytunnus: 'Y-tunnus', sahkoposti: 'Sähköposti', linkki: 'Kanava tai video', viesti: 'Viesti' },
     kopioitu: 'Viesti kopioitu. Liitä se sähköpostiin osoitteeseen ' + OSOITE + '.',
     eiKopioitu: 'Kopiointi ei onnistunut. Valitse viesti alta ja kopioi se itse.',
     pitka: 'Viesti on pitkä. Jos sähköpostiohjelmasi ei avaa koko viestiä, kopioi viesti ja liitä se sähköpostiin osoitteeseen ' + OSOITE + '.',
@@ -173,7 +181,10 @@
     if (valittu('tilinhoito')) {
       r = rivi('tilinhoito'); n = koko(r);
       var a = alustat(r);
-      if (a.length) {
+      if (valittu('kaikkiValmiina')) {
+        // Kaikki valmiina sisältää klippitilin hoidon: ei toista kuukausihintaa eikä toista käyttöönottoa.
+        lisaa('kk', nimi(r), T.sisaltyyKaikki, 0);
+      } else if (a.length) {
         lisaa('kk', nimi(r), T.alustaa(a.length) + ' (' + luettelo(a) + '), ' + T.julkaisua(n), H.tilinhoito[n][a.length - 1] * 100);
         lisaa('kerta', nimi(r), T.kayttoonotto, H.tilinhoitoKayttoonotto[a.length - 1] * 100);
       }
@@ -246,6 +257,26 @@
     });
     var tilinhoitoHuomio = rivi('tilinhoito').querySelector('[data-huomio]');
     if (tilinhoitoHuomio) tilinhoitoHuomio.hidden = alustat(rivi('tilinhoito')).length > 0;
+    // Klippitilin hoito ilman klippipalvelua: huomio, että se myydään klippipaketin rinnalle.
+    var pakettiHuomio = rivi('tilinhoito').querySelector('[data-huomio-paketti]');
+    if (pakettiHuomio) {
+      pakettiHuomio.hidden = !(valittu('tilinhoito') &&
+        !['klippaamo', 'kaikkiValmiina', 'kertaera', 'arkisto'].some(valittu));
+    }
+    // Yli suurimman Klippaamo-paketin (videoita × klippiä per video): sovitaan erikseen, kuten etusivulla.
+    var k = rivi('klippaamo');
+    var yliEl = k.querySelector('[data-huomio-yli]');
+    if (yliEl) {
+      var koot = Array.prototype.map.call(kokoValinta(k).options, function (o) { return Number(o.value); });
+      var max = koot[koot.length - 1];
+      var v = apuArvo('videot'), p = apuArvo('per');
+      yliEl.hidden = !(apuKaytossa && v * p > max);
+      var linkki = yliEl.querySelector('[data-yli-tarjous]');
+      if (linkki && !yliEl.hidden) {
+        linkki.setAttribute('href', 'mailto:' + OSOITE + '?subject=' + encodeURIComponent(T.yliAihe(max)) +
+          '&body=' + encodeURIComponent(T.yliViesti(v, p)));
+      }
+    }
   }
 
   var listaEl = lomake.querySelector('[data-yhteenveto-lista]');
@@ -289,8 +320,9 @@
     piirraSumma(kkEl, h.summa.kk, T.kk);
     piirraSumma(kertaEl, h.summa.kerta, '');
     if (palkkiSummaEl) {
+      // Mobiilin hintapalkki noudattaa valuuttavalintaa (USD-tilassa dollariarvio perässä).
       palkkiSummaEl.textContent = h.rivit.length
-        ? T.palkki(h.summa.kk ? V.euroa(h.summa.kk) + T.kk : '', h.summa.kerta ? V.euroa(h.summa.kerta) : '')
+        ? T.palkki(h.summa.kk ? V.teksti(h.summa.kk, T.kk) : '', h.summa.kerta ? V.teksti(h.summa.kerta) : '')
         : T.tyhja;
     }
     clearTimeout(ilmoitusAjastin);
@@ -331,7 +363,7 @@
     });
     var vapaa = kentta('viesti');
     if (vapaa) rivitTeksti.push('', T.kentat.viesti + ':', vapaa);
-    return rivitTeksti.join('\n').replace(/ /g, ' ');
+    return rivitTeksti.join('\n').replace(/\u00a0/g, ' ');
   }
   function mailto(h) {
     var aihe = T.aihe(kentta('yritys') || kentta('nimi'));
@@ -364,10 +396,22 @@
     var url = mailto(h);
     lomake.setAttribute('data-mailto', url);
     if (pitkaEl) pitkaEl.hidden = url.length <= PITKA_MAILTO;
+    // Virheilmoitus pois heti, kun jokin palvelu tai näytteet on valittu.
+    if (virheEl && (h.rivit.length || lomake.querySelector('[name="naytteet"]').checked)) virheEl.textContent = '';
+    var haku = parametrit();
     document.querySelectorAll('[data-tarjous-kielilinkki]').forEach(function (a) {
       if (!a.hasAttribute('data-pohja')) a.setAttribute('data-pohja', a.getAttribute('href'));
-      a.setAttribute('href', a.getAttribute('data-pohja') + parametrit());
+      a.setAttribute('href', a.getAttribute('data-pohja') + haku);
     });
+    // Valinnat sivun osoitteeseen (ei henkilötietoja), jotta Takaisin-napilla palatessa esitäyttö palauttaa ne.
+    if (window.history && window.history.replaceState) {
+      try {
+        var uusi = window.location.pathname + haku + window.location.hash;
+        if (uusi !== window.location.pathname + window.location.search + window.location.hash) {
+          window.history.replaceState(window.history.state, '', uusi);
+        }
+      } catch (e) { /* osoitetta ei voi päivittää: lomake toimii silti */ }
+    }
     return h;
   }
 
@@ -422,6 +466,8 @@
   lomake.addEventListener('change', function (e) {
     var el = e.target;
     var r = el.closest('[data-palvelu]');
+    // Määräkenttä: arvo normalisoidaan kenttään (kokonaisluku 1–999), jotta kenttä ja laskelma täsmäävät.
+    if (r && el.hasAttribute('data-maara')) el.value = String(maara(r));
     if (r && !el.hasAttribute('data-valittu')) {
       if (el.hasAttribute('data-videot') || el.hasAttribute('data-per')) apuMuuttui();
       else if (el.hasAttribute('data-koko') && r.getAttribute('data-palvelu') === 'klippaamo') apuKaytossa = false;
@@ -484,6 +530,14 @@
   document.querySelectorAll('[data-ilman-js]').forEach(function (el) { el.hidden = true; });
   document.querySelectorAll('[data-vain-js]').forEach(function (el) { el.hidden = false; });
 
+  // Rivin hinta luetaan ruudunlukijalla valintaruudun kuvauksena (aria-describedby).
+  lomake.querySelectorAll('[data-palvelu]').forEach(function (r) {
+    var hintaEl = r.querySelector('[data-rivihinta]');
+    if (!hintaEl) return;
+    if (!hintaEl.id) hintaEl.id = 'hinta-' + r.getAttribute('data-palvelu');
+    ruutu(r).setAttribute('aria-describedby', hintaEl.id);
+  });
+
   var api = window.PystyTarjous = {
     avaa: function (url) { window.location.href = url; },
     mailto: function () { return mailto(laske()); },
@@ -494,4 +548,6 @@
   esitayta();
   paivita();
   V.kun(paivita);
+  // Takaisin-napilla palattaessa (myös selaimen välimuistista) yhteenveto, hinnat ja osoite piirretään uudelleen.
+  window.addEventListener('pageshow', function () { paivita(); });
 })();
