@@ -43,6 +43,5 @@ window.PystyHinnat = {
     englanninTekstitys: 5,           // + €/klippi
     vaakaversio: 10,                 // + €/klippi
     lisakorjaus: 15                  // €/klippi
-  },
-  kiireProsentti: 50                 // kiiretoimitus 24 h: +50 %
+  }
 };

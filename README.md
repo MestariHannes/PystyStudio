@@ -93,7 +93,7 @@ Etusivuilla (`index.html` ja `en/index.html`) on samat hinnat myös näkyvinä t
 
 1. Muuta hinta `hintadata.js`:ään.
 2. Muuta sama hinta näkyvään tekstiin molemmissa HTML-tiedostoissa. Säädinkorteissa tämä koskee vain oletusporrasta (ks. alla).
-3. Tarkista UKK: kiiretoimitus (+50 %), lisäkorjaus (15 €) ja suomeksi alv 25,5 %.
+3. Tarkista UKK: lisäkorjaus (15 €) ja suomeksi alv 25,5 %.
 
 Hinnat ovat kahdessa osiossa:
 
