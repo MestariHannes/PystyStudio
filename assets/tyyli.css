@@ -170,14 +170,44 @@ h4 { margin: 0; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: .75rem;
   min-height: 4rem;
 }
 .logo { display: block; flex: 0 0 auto; }
 .logo:hover { background: none; }
 /* Logo (viewBox 536,9 × 121): kirjaimet ovat 2/3 kuvan korkeudesta, pystyviiva koko korkeus. */
-.logo img { height: 1.875rem; width: auto; }
+/* Kapealla näytöllä logo, kielivalitsin ja nappi mahtuvat samalle riville (375 px). */
+.logo img { height: 1.625rem; width: auto; }
 .paavalikko { display: none; }
+
+/* Kielivalitsin FI | EN. Nykyinen kieli musta ja alleviivattu, toinen harmaa. */
+.kielet {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  font-size: .875rem;
+  font-weight: 800;
+  line-height: 1;
+}
+.kielet a {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.875rem;
+  min-height: 2.5rem;
+  padding: 0 .25rem;
+  border-radius: 3px;
+  color: var(--vari-harmaa);
+  text-decoration: none;
+}
+.kielet a[aria-current] {
+  color: var(--musta);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: .3em;
+}
+.kielet a:hover { color: var(--musta); background: var(--vari-korostus); }
+.kielet-vali { color: var(--vari-viiva); font-weight: 400; }
+.ylapalkki-sisalto .kielet + .nappi { margin-left: -.25rem; }
 
 /* Hero */
 .hero { padding-block: 2rem 4rem; }
@@ -590,6 +620,60 @@ h1 span { display: block; }
   background: var(--keltainen);
 }
 
+/* Valuuttavalitsin € EUR | $ USD (assets/valuutta.js). Ilman JavaScriptiä piilossa. */
+.valuutta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem .75rem;
+  max-width: 58rem;
+  margin: 0 0 1.25rem;
+}
+.valuutta[hidden] { display: none; }
+.valuutta-otsikko { font-size: .9375rem; font-weight: 700; }
+.valuutta-napit {
+  display: inline-flex;
+  border: 2px solid var(--musta);
+  border-radius: var(--sade);
+  overflow: hidden;
+}
+.valuutta-napit button {
+  min-height: 2.75rem;
+  margin: 0;
+  padding: .35rem .95rem;
+  border: 0;
+  background: transparent;
+  color: var(--musta);
+  font: inherit;
+  font-size: .9375rem;
+  font-weight: 800;
+  line-height: 1.2;
+  cursor: pointer;
+}
+.valuutta-napit button + button { border-left: 2px solid var(--musta); }
+.valuutta-napit button[aria-pressed="true"] { background: var(--keltainen); }
+.valuutta-napit button:hover { text-decoration: underline; text-underline-offset: .18em; }
+.valuutta-napit button:focus-visible { outline: 3px solid var(--musta); outline-offset: -6px; border-radius: 4px; }
+.valuutta-huomio {
+  flex-basis: 100%;
+  max-width: 40em;
+  margin: 0;
+  font-size: .875rem;
+  line-height: 1.45;
+  color: var(--vari-harmaa);
+}
+
+/* USD-tilassa iso hinta on dollareina (≈) ja euro näkyy sen alla pienellä. */
+.hinta .noin { margin-right: .08em; font-size: .7em; vertical-align: .08em; }
+.hinta-eur {
+  display: block;
+  margin-top: .35rem;
+  font-family: var(--fontti-teksti);
+  font-size: .875rem;
+  font-weight: 700;
+}
+.hinta-eur[hidden] { display: none; }
+
 /* Hintasäätimet (assets/hinnat.js). Ilman JavaScriptiä .saadin on piilossa ja näkyy oletusporras. */
 .saadinrivi > .saadin,
 .saadinrivi > .saadin-yhteenveto,
@@ -730,6 +814,39 @@ h1 span { display: block; }
   padding-left: .75rem;
   border-left: 3px solid var(--musta);
   font-size: .875rem;
+}
+
+/* Klippaamon apusäätimet: videoita kuukaudessa × klippiä per video. Kapealla allekkain, 30em alkaen rinnakkain. */
+.apusaatimet {
+  display: grid;
+  gap: .15rem 1.5rem;
+  margin: .25rem 0 .9rem;
+  padding: .75rem .9rem .85rem;
+  border-radius: var(--sade);
+  background: var(--vari-pinta);
+}
+.apusaatimet[hidden] { display: none; }
+.apu-otsikko { margin: 0 0 .1rem; font-size: .875rem; font-weight: 800; }
+.apusaadin { display: grid; gap: 0; min-width: 0; }
+.apusaadin .saadin-otsikko { font-size: .875rem; }
+.apusaadin .saadin-arvo { font-size: 1.375rem; }
+.apusaadin .saadin-input { height: 2.5rem; }
+.apusaadin .portaat { height: 1.5rem; font-size: .8125rem; }
+.apusaadin .portaat span { padding: 0 .25rem; }
+.apu-tulos { margin-top: .35rem; }
+.apu-yhteensa { margin: 0; font-weight: 800; }
+.apu-viesti {
+  margin: .35rem 0 0;
+  padding-left: .65rem;
+  border-left: 3px solid var(--musta);
+  font-size: .875rem;
+  line-height: 1.45;
+}
+.apu-viesti[hidden] { display: none; }
+.apu-viesti a { font-weight: 800; white-space: nowrap; }
+@media (min-width: 30em) {
+  .apusaatimet { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .apu-otsikko, .apu-tulos { grid-column: 1 / -1; }
 }
 
 /* Alustojen valinta (Klippitilin hoito) */
@@ -887,6 +1004,15 @@ h1 span { display: block; }
 .seloste-paiva { color: var(--vari-harmaa); }
 .seloste ol { max-width: 40em; margin: 2rem 0 1em; padding-left: 1.75rem; }
 .ehdot li + li { margin-top: 1rem; }
+/* Englanninkielisten ehtojen ja selosteen käännösmerkintä sivun lopussa */
+.kaannos-huomio {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--vari-viiva);
+  font-size: .9375rem;
+  color: var(--vari-harmaa);
+}
+.kaannos-huomio a { color: var(--vari-muste); }
 .ehdot li { padding-left: .25rem; }
 .ehdot li::marker {
   font-family: var(--fontti-otsikko);
@@ -895,8 +1021,19 @@ h1 span { display: block; }
 }
 
 /* Leveämmät näytöt */
+@media (max-width: 29.99em) {
+  .ylapalkki .nappi-pieni { padding-inline: .8rem; }
+}
+
+/* Hyvin kapealla (alle 360 px) isot hinnat hieman pienempinä, jotta pitkä hinta (esim. ≈ 1 333 $) jättää tilaa otsikolle. */
+@media (max-width: 22.49em) {
+  .hinta .summa { font-size: 2.375rem; }
+  .hinta .jakso { font-size: 1.25rem; }
+}
+
 @media (min-width: 30em) {
   .demo-rivi { gap: 1.5rem; }
+  .ylapalkki-sisalto { gap: 1rem; }
   .logo img { height: 2.125rem; }
 }
 
@@ -908,7 +1045,8 @@ h1 span { display: block; }
 }
 
 @media (min-width: 56em) {
-  .paavalikko { display: flex; gap: 1.75rem; margin-left: auto; margin-right: 1rem; }
+  .paavalikko { display: flex; gap: 1.75rem; margin-left: auto; margin-right: .5rem; }
+  .paavalikko + .kielet { margin-left: 0; margin-right: .5rem; }
   .paavalikko a {
     color: var(--vari-muste);
     font-size: .9375rem;

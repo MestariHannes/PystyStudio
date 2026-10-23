@@ -9,8 +9,17 @@
 
   var teksti = demo.querySelector('.tekstitys');
   var nappi = demo.querySelector('.demo-tauko');
+  var en = document.documentElement.lang === 'en';
 
-  var VAIHEET = [
+  // Esimerkin repliikit sivun kielellä (index.html suomeksi, en/index.html englanniksi).
+  var VAIHEET = en ? [
+    { puhuja: 'a', sanat: 'An hour-long episode' },
+    { puhuja: 'a', sanat: 'becomes eight clips.', zoomi: true },
+    { puhuja: 'b', sanat: 'What do I' },
+    { puhuja: 'b', sanat: 'need to do?' },
+    { puhuja: 'a', sanat: 'Send a link.' },
+    { puhuja: 'a', loppu: 'Full episode on YouTube', emoji: '🔥' }
+  ] : [
     { puhuja: 'a', sanat: 'Tunnin jaksosta' },
     { puhuja: 'a', sanat: 'tulee kahdeksan klippiä.', zoomi: true },
     { puhuja: 'b', sanat: 'Mitä mun pitää' },
@@ -18,6 +27,7 @@
     { puhuja: 'a', sanat: 'Lähettää linkki.' },
     { puhuja: 'a', loppu: 'Koko jakso YouTubessa', emoji: '🔥' }
   ];
+  var NAPPI = en ? ['Pause example', 'Play example'] : ['Pysäytä esimerkki', 'Jatka esimerkkiä'];
   var SANAVALI = 300;   // ms sanojen välillä
   var PIDA = 900;       // ms viimeisen sanan jälkeen
   var PIDA_LOPPU = 2600;
@@ -95,7 +105,7 @@
   nappi.addEventListener('click', function () {
     kayttajaPysaytti = !kayttajaPysaytti;
     nappi.setAttribute('aria-pressed', String(kayttajaPysaytti));
-    nappi.textContent = kayttajaPysaytti ? 'Jatka esimerkkiä' : 'Pysäytä esimerkki';
+    nappi.textContent = kayttajaPysaytti ? NAPPI[1] : NAPPI[0];
     if (kayttajaPysaytti) pysayta(); else kaynnista();
   });
 
