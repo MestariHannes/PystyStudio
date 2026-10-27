@@ -18,7 +18,7 @@ Pysty Studion oma staattinen sivusto: pelkkää HTML:ää, CSS:ää ja JavaScrip
 | `assets/sivu.js` | Avattavien osioiden (`<details>`) avaus ankkurilla sekä heron esimerkkiklippi: tekstitys sana kerrallaan ja puhujan vaihto. Repliikit suomeksi ja englanniksi sivun kielen mukaan. |
 | `assets/hintadata.js` | **Kaikki hinnat ja EUR/USD-kurssi yhdessä paikassa.** Molemmat kielet käyttävät tätä. |
 | `assets/valuutta.js` | Valuuttavalitsin (EUR / USD), valinnan muistaminen ja rahasummien muotoilu |
-| `assets/hinnat.js` | Hintojen liukusäätimet, Klippaamon apusäätimet (videoita × klippiä per video), Klippitilin hoidon alustavalinta ja Räätälöity tarjous -linkkien valinnat |
+| `assets/hinnat.js` | Hintojen liukusäätimet, Klippaamon apusäätimet (videoita × klippiä per video), Klippitilin hoidon alustavalinta, hintatapa Yksityishenkilö / Yritys (ks. Hintojen muokkaus) ja Räätälöity tarjous -linkkien valinnat |
 | `assets/tarjous.js` | Tarjoussivun laskenta, yhteenveto, sähköpostiviesti (mailto) ja Kopioi viesti -nappi |
 | `assets/logo.svg` | Nimilogo PYSTY\|STUDIO vaalealle pohjalle (konsepti 4, Pystyviiva). Yläpalkissa. |
 | `assets/logo-tumma.svg` | Nimilogo tummalle pohjalle. Mustassa alapalkissa. |
@@ -102,6 +102,13 @@ Etusivuilla (`index.html` ja `en/index.html`) on samat hinnat myös näkyvinä t
 1. Muuta hinta `hintadata.js`:ään.
 2. Muuta sama hinta näkyvään tekstiin molemmissa HTML-tiedostoissa. Säädinkorteissa tämä koskee vain oletusporrasta (ks. alla).
 3. Tarkista UKK: lisäkorjaus (15 €) ja suomeksi alv 25,5 %.
+
+**Hintatapa Yksityishenkilö / Yritys (lisätty 28.10.2026):** suomenkielisen etusivun hintaosiossa on valitsin (`data-hintatapa-valitsin`), koska palvelua myydään myös yksityishenkilöille.
+- **Yksityishenkilö** on oletus: kaikki etusivun hinnat näytetään alv:n kanssa (× 1,255), ja yhteenvetorivillä näkyy yrityksen alv 0 % -hinta.
+- **Yritys:** hinnat ovat alv 0 % kuten ennen, ja yhteenvetorivillä näkyy hinta alv:n kanssa.
+- Valinta muistetaan selaimessa (localStorage `pystystudio-hintatapa`). Osoitteella `index.html?hinnat=yritys` tai `?hinnat=yksityinen` sivu aukeaa valitulla tavalla.
+- Laskenta on `assets/hinnat.js`:ssä (`hinnaksi`). Hinnat pysyvät `hintadata.js`:ssä alv 0 %. Tekstit, joilla on yksityishenkilön versio, on merkitty `data-alv-kuluttaja`-kentällä, ja HTML:n oma teksti on yrityksen versio.
+- Englanninkielisellä sivulla ei ole valitsinta, joten siellä hinnat ovat aina alv 0 %. Tarjoussivu näyttää yhteenvedossa molemmat hinnat.
 
 Hinnat ovat yhdessä osiossa **Palvelut ja hinnat** (`<section id="hinnat">`, englanniksi `id="pricing"`). Osio kevennettiin Hanneksen päätöksellä 23.10.2026 (`04_myynti/2026-10-23_sivuston-tarkistus-ja-korjaukset.md`):
 

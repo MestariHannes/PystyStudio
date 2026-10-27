@@ -273,7 +273,7 @@
     <section id="hinnat" class="osio" aria-labelledby="hinnat-otsikko">
       <div class="kehys">
         <h2 id="hinnat-otsikko">Palvelut ja hinnat</h2>
-        <p class="johdanto">Palvelu on tarkoitettu yrityksille ja yrittäjille, joilla on Y-tunnus. Hinnat ovat alv 0&nbsp;%, ja laskuun lisätään alv 25,5&nbsp;%.</p>
+        <p class="johdanto">Voit tilata yrityksenä tai yksityishenkilönä. Yksityishenkilön hinnoissa alv 25,5&nbsp;% on mukana. Yritykselle hinnat ovat alv 0&nbsp;%, ja alv lisätään laskuun.</p>
 
         <!-- Aloita ilmaisilla näytteillä: musta laatikko, keltainen nappi (keltaista vain mustalla pohjalla). -->
         <div class="naytelaatikko">
@@ -294,6 +294,19 @@
           <li>Ei minimisopimusta eikä ylärajaa: isommasta kuukausitilauksesta voidaan sopia erikseen.</li>
         </ul>
 
+        <!-- Hintatapa Yksityishenkilö | Yritys (assets/hinnat.js): yksityishenkilölle hinnat alv:n kanssa, yritykselle alv 0 %.
+             Oletus on yksityishenkilö. Valinta muistetaan selaimessa, ja osoitteella ?hinnat=yritys sivu aukeaa yrityksen hinnoilla.
+             Huomautuksen tekstit ovat data-kuluttaja- ja data-yritys-kentissä. Ilman JavaScriptiä valitsin on piilossa,
+             ja kortit näyttävät alv 0 % -hinnan ja yhteenvetorivillä hinnan alv:n kanssa. -->
+        <div class="valuutta" data-hintatapa-valitsin hidden>
+          <span class="valuutta-otsikko" id="hintatapa-otsikko">Hinnat</span>
+          <div class="valuutta-napit" role="group" aria-labelledby="hintatapa-otsikko">
+            <button type="button" data-hintatapa-nappi="kuluttaja" aria-pressed="true">Yksityishenkilö</button>
+            <button type="button" data-hintatapa-nappi="yritys" aria-pressed="false">Yritys</button>
+          </div>
+          <p class="valuutta-huomio" data-hintatapa-huomio data-kuluttaja="Hinnat sisältävät alv:n 25,5 %. Yksityishenkilönä sinulla on 14 päivän peruuttamisoikeus." data-yritys="Hinnat ovat alv 0 %, ja laskuun lisätään alv 25,5 %."></p>
+          <p class="piilotettu" data-hintatapa-ilmoitus aria-live="polite"></p>
+        </div>
         <!-- Valuuttavalitsin (assets/valuutta.js). Kurssi ja päivämäärä tulevat hintadata.js:stä huomautuksen {kurssi}- ja {pvm}-kohtiin. -->
         <div class="valuutta" data-valuuttavalitsin hidden>
           <span class="valuutta-otsikko" id="valuutta-otsikko">Valuutta</span>
@@ -419,7 +432,7 @@
              Jos lisäpalvelujen määrä muuttuu, päivitä luku myös summary-tekstiin. -->
         <details class="avattava" id="lisapalvelut">
           <summary><span class="avattava-otsikko">Näytä lisäpalvelut:</span> <span class="avattava-selite">julkaisu, klippitili, arkisto ja muut (18)</span></summary>
-          <p class="avattava-johdanto">Lisäpalvelut tilataan yleensä paketin rinnalle. Hinnat ovat alv 0&nbsp;%.</p>
+          <p class="avattava-johdanto">Lisäpalvelut tilataan yleensä paketin rinnalle. <span data-alv-kuluttaja="Hinnat sisältävät alv:n 25,5&nbsp;%.">Hinnat ovat alv 0&nbsp;%.</span></p>
           <div class="lisapalvelut">
             <div class="lisaryhma">
               <h3>Lisää klippejä</h3>
@@ -627,7 +640,7 @@
           </details>
           <details>
             <summary>Kenelle palvelu on tarkoitettu?</summary>
-            <p>Yrityksille ja yrittäjille, joilla on Y-tunnus: YouTube-tekijöille, podcasteille, valmentajille ja asiantuntijoille, jotka julkaisevat pitkää videota säännöllisesti.</p>
+            <p>YouTube-tekijöille, podcasteille, valmentajille ja asiantuntijoille, jotka julkaisevat pitkää videota säännöllisesti. Voit tilata yrityksenä tai yksityishenkilönä. Yksityishenkilönä sinulla on 14 päivän peruuttamisoikeus, ja saat peruuttamisohjeen ennen kuin mitään aloitetaan tai laskutetaan.</p>
           </details>
           <details>
             <summary>Kuinka pitkä sopimus on?</summary>
@@ -635,7 +648,7 @@
           </details>
           <details>
             <summary>Miksi lasku tulee Keikkalaskulta?</summary>
-            <p>Teen työn kevytyrittäjänä, ja laskutus hoidetaan Keikkalasku-laskutuspalvelun kautta. Lasku tulee siksi Suomen Keikkalaskun nimissä, ja siihen lisätään alv 25,5&nbsp;%. Sopimus tehdään kuitenkin kanssani. Kuukausipaketit laskutetaan kuun alussa, maksuaika 14 päivää. Kertaerä, Pysty Puhe, arkisto ja livestriimin klippaus laskutetaan toimituksen jälkeen, maksuaika 7 päivää. AI-mainospaketissa 50&nbsp;% laskutetaan ennen aloitusta ja 50&nbsp;% toimituksen jälkeen.</p>
+            <p>Teen työn kevytyrittäjänä, ja laskutus hoidetaan Keikkalasku-laskutuspalvelun kautta. Lasku tulee siksi Suomen Keikkalaskun nimissä, ja siinä on alv 25,5&nbsp;%. Sopimus tehdään kuitenkin kanssani. Kuukausipaketit laskutetaan kuun alussa, maksuaika 14 päivää. Kertaerä, Pysty Puhe, arkisto ja livestriimin klippaus laskutetaan toimituksen jälkeen, maksuaika 7 päivää. AI-mainospaketissa 50&nbsp;% laskutetaan ennen aloitusta ja 50&nbsp;% toimituksen jälkeen.</p>
           </details>
         </div>
       </div>

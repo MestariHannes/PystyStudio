@@ -17,15 +17,24 @@
   var T = en ? {
     sisAlv: 'Incl. Finnish VAT 25.5%: ',
     alv0: 'excl. VAT',
+    yritykselle: 'For businesses: ',
+    lisaAlv: ' + VAT',
+    sisAlvLyhyt: 'incl. VAT',
+    sisAlvIso: 'incl. VAT 25.5%',
+    tapaIlmoitus: {
+      kuluttaja: 'Prices are now shown for private individuals, including VAT.',
+      yritys: 'Prices are now shown for businesses, excluding VAT.'
+    },
     kk: '/mo',
     kuukaudessa: ' per month',
     lisaksi: 'plus ',
     kayttoonotto: '+ setup ',
     alusta: ['platform', 'platforms'],
     ja: ' and ',
-    tilinhoito: function (a, lista, n, vko, kk, kerta) {
+    tilinhoito: function (a, lista, n, vko, kk, kerta, kuluttajalle) {
       return a + ' ' + monikko(a, 'platform', 'platforms') + ' (' + lista + '), ' + n + ' posts per month, about ' +
-        vko + ' per week. Incl. Finnish VAT 25.5%: ' + kk + ' and setup ' + kerta + '.';
+        vko + ' per week. ' + (kuluttajalle ? 'For businesses: ' + kk + ' and setup ' + kerta + ' + VAT.'
+          : 'Incl. Finnish VAT 25.5%: ' + kk + ' and setup ' + kerta + '.');
     },
     tilinhoitoAria: function (n, vko, raha) { return n + ' posts per month, about ' + vko + ' per week, ' + raha; },
     valitseAlusta: 'Select at least one platform. ',
@@ -49,15 +58,24 @@
   } : {
     sisAlv: 'Sis. alv 25,5 %: ',
     alv0: 'alv 0 %',
+    yritykselle: 'Yritykselle ',
+    lisaAlv: ' + alv',
+    sisAlvLyhyt: 'sis. alv',
+    sisAlvIso: 'sis. alv 25,5 %',
+    tapaIlmoitus: {
+      kuluttaja: 'Hinnat näytetään nyt yksityishenkilölle alv:n kanssa.',
+      yritys: 'Hinnat näytetään nyt yritykselle ilman alv:tä.'
+    },
     kk: '/kk',
     kuukaudessa: ' kuukaudessa',
     lisaksi: 'lisäksi ',
     kayttoonotto: '+ käyttöönotto ',
     alusta: ['alusta', 'alustaa'],
     ja: ' ja ',
-    tilinhoito: function (a, lista, n, vko, kk, kerta) {
+    tilinhoito: function (a, lista, n, vko, kk, kerta, kuluttajalle) {
       return a + ' ' + monikko(a, 'alusta', 'alustaa') + ' (' + lista + '), ' + n + ' julkaisua kuukaudessa eli noin ' +
-        vko + ' viikossa. Sis. alv 25,5 %: ' + kk + ' ja käyttöönotto ' + kerta + '.';
+        vko + ' viikossa. ' + (kuluttajalle ? 'Yritykselle ' + kk + ' ja käyttöönotto ' + kerta + ' + alv.'
+          : 'Sis. alv 25,5 %: ' + kk + ' ja käyttöönotto ' + kerta + '.');
     },
     tilinhoitoAria: function (n, vko, raha) { return n + ' julkaisua kuukaudessa, noin ' + vko + ' viikossa, ' + raha; },
     valitseAlusta: 'Valitse vähintään yksi alusta. ',
@@ -90,6 +108,66 @@
     try { return new URLSearchParams(window.location.search); } catch (e) { return null; }
   })();
   function alkuarvo(nimi) { return ALKU && ALKU.has(nimi) ? ALKU.get(nimi) : null; }
+
+  // Hintatapa (valitsin data-hintatapa-valitsin): yksityishenkilölle hinnat alv:n kanssa, yritykselle alv 0 %.
+  // Valinta tulee osoitteesta (?hinnat=yritys tai ?hinnat=yksityinen), sitten selaimen muistista, muuten yksityishenkilö.
+  // Sivulla, jolla valitsinta ei ole (englanninkielinen etusivu), hinnat näytetään aina alv 0 %.
+  var TAPA_MUISTI = 'pystystudio-hintatapa';
+  var tapaValitsin = document.querySelector('[data-hintatapa-valitsin]');
+  var tapaKuuntelijat = [];
+  function tallennettuTapa() {
+    try {
+      var t = window.localStorage.getItem(TAPA_MUISTI);
+      return t === 'yritys' || t === 'kuluttaja' ? t : null;
+    } catch (e) { return null; }
+  }
+  function tallennaTapa(t) {
+    try { window.localStorage.setItem(TAPA_MUISTI, t); } catch (e) { /* tallennus estetty: valinta pätee tällä sivulla */ }
+  }
+  var tapa = 'yritys';
+  if (tapaValitsin) {
+    var tapaAlku = { yritys: 'yritys', yksityinen: 'kuluttaja' }[alkuarvo('hinnat')] || null;
+    tapa = tapaAlku || tallennettuTapa() || 'kuluttaja';
+    if (tapaAlku) tallennaTapa(tapa);
+  }
+  function kuluttaja() { return tapa === 'kuluttaja'; }
+  // Hinta sentteinä valitulla hintatavalla: yksityishenkilölle alv 25,5 % mukana.
+  function hinnaksi(euroja) { return kuluttaja() ? V.alvilla(euroja) : Math.round(euroja * 100); }
+  // Piirto uudelleen, kun valuutta tai hintatapa vaihtuu.
+  function kun(fn) { V.kun(fn); tapaKuuntelijat.push(fn); }
+
+  // Valitsimen napit ja huomautus, ison hinnan alv-merkintä (.hinta .alv) ja tekstit, joilla on
+  // yksityishenkilön versio (data-alv-kuluttaja). HTML:n oma teksti on yrityksen versio.
+  function paivitaTapaSivulla() {
+    tapaValitsin.querySelectorAll('[data-hintatapa-nappi]').forEach(function (nappi) {
+      nappi.setAttribute('aria-pressed', String(nappi.getAttribute('data-hintatapa-nappi') === tapa));
+    });
+    var huomio = tapaValitsin.querySelector('[data-hintatapa-huomio]');
+    if (huomio) huomio.textContent = huomio.getAttribute(kuluttaja() ? 'data-kuluttaja' : 'data-yritys');
+    document.querySelectorAll('.hinta .alv').forEach(function (el) {
+      if (!el.hasAttribute('data-alv-yritys')) el.setAttribute('data-alv-yritys', el.textContent);
+      el.textContent = kuluttaja() ? T.sisAlvIso : el.getAttribute('data-alv-yritys');
+    });
+    document.querySelectorAll('[data-alv-kuluttaja]').forEach(function (el) {
+      if (!el.hasAttribute('data-alv-yritys')) el.setAttribute('data-alv-yritys', el.textContent);
+      el.textContent = el.getAttribute(kuluttaja() ? 'data-alv-kuluttaja' : 'data-alv-yritys');
+    });
+  }
+  function asetaTapa(uusi) {
+    if (uusi === tapa) return;
+    tapa = uusi;
+    tallennaTapa(uusi);
+    if (/[?&]hinnat=/.test(window.location.search) && window.history && window.history.replaceState) {
+      try {
+        var haku = window.location.search.replace(/([?&]hinnat=)[^&]*/, '$1' + (uusi === 'yritys' ? 'yritys' : 'yksityinen'));
+        window.history.replaceState(window.history.state, '', window.location.pathname + haku + window.location.hash);
+      } catch (e) { /* osoitetta ei voi päivittää: valinta pätee silti */ }
+    }
+    paivitaTapaSivulla();
+    tapaKuuntelijat.forEach(function (fn) { fn(); });
+    var ilmoitus = tapaValitsin.querySelector('[data-hintatapa-ilmoitus]');
+    if (ilmoitus) ilmoitus.textContent = T.tapaIlmoitus[tapa];
+  }
 
   var valinnat = {};
   function valintaOsat() {
@@ -155,7 +233,7 @@
     document.querySelectorAll('[data-hinta]').forEach(function (el) {
       var euroja = H.kiinteat[el.getAttribute('data-hinta')];
       if (typeof euroja !== 'number') return;
-      var sentit = euroja * 100;
+      var sentit = hinnaksi(euroja);
       var etumerkki = el.getAttribute('data-etumerkki') || '';
       var jakso = el.getAttribute('data-jakso') || '';
       if (el.classList.contains('summa')) naytaHinta(el, sentit, etumerkki);
@@ -165,7 +243,7 @@
     // Kaikki valmiina vs. erikseen: Klippaamo 20 klippiä + klippitilin hoito (20 julkaisua, 3 alustaa).
     document.querySelectorAll('[data-kaikki-saasto]').forEach(function (el) {
       var erikseen = H.klippaamo[20] + H.tilinhoito[20][2];
-      el.textContent = V.teksti((erikseen - H.kiinteat.kaikkiValmiina) * 100);
+      el.textContent = V.teksti(hinnaksi(erikseen - H.kiinteat.kaikkiValmiina));
     });
   }
 
@@ -216,7 +294,7 @@
     portaat.forEach(function (p, j) { if (String(p.n) === alku) alkuI = j; });
     input.value = kortti.dataset.oletus || 0;
 
-    function hintaSentit(i) { return hinnat[portaat[i].n] * 100; }
+    function hintaSentit(i) { return hinnaksi(hinnat[portaat[i].n]); }
 
     var piirra = kytke(input, function (i, kayttaja) {
       var p = portaat[i];
@@ -224,17 +302,20 @@
       var yksikko = p.n === 1 ? yksikot[0] : yksikot[1];
       var nimi = p.nimi || kortti.dataset.nimi;
       var kuvaus = p.kuvaus || kortti.dataset.malli.replace('{n}', p.n).replace('{yksikko}', yksikko);
-      var perSentit = Math.round(hinta * 100 / p.n);
+      var perSentit = Math.round(hinnaksi(hinta) / p.n);
+      var jakso = kk ? T.kk : '', perJakso = '/' + (kortti.dataset.per || yksikot[0]);
 
       if (nimiEl) nimiEl.textContent = nimi;
       if (kuvausEl) kuvausEl.textContent = kuvaus;
       if (lisaEl) { lisaEl.textContent = p.lisa || ''; lisaEl.hidden = !p.lisa; }
-      naytaHinta(summaEl, hinta * 100);
+      naytaHinta(summaEl, hinnaksi(hinta));
       arvoEl.textContent = p.n;
-      yhteenvetoEl.textContent = T.sisAlv + V.teksti(V.alvilla(hinta), kk ? T.kk : '') +
-        ' · ' + V.lisatiedolla(perSentit, '/' + (kortti.dataset.per || yksikot[0]), T.alv0);
+      // Yhteenvedossa toinen hinta: yritykselle alv 0 % tai yksityishenkilölle alv:n kanssa.
+      yhteenvetoEl.textContent = kuluttaja()
+        ? T.yritykselle + V.teksti(hinta * 100, jakso) + T.lisaAlv + ' · ' + V.lisatiedolla(perSentit, perJakso, T.sisAlvLyhyt)
+        : T.sisAlv + V.teksti(V.alvilla(hinta), jakso) + ' · ' + V.lisatiedolla(perSentit, perJakso, T.alv0);
       input.setAttribute('aria-valuetext',
-        p.n + ' ' + yksikko + (kk ? T.kuukaudessa : '') + ', ' + V.sanoin(hinta * 100, kk ? T.kuukaudessa : '') +
+        p.n + ' ' + yksikko + (kk ? T.kuukaudessa : '') + ', ' + V.sanoin(hinnaksi(hinta), kk ? T.kuukaudessa : '') +
         (p.nimi ? ', ' + p.nimi : '') + (p.lisa ? ', ' + p.lisa.replace(/^\+\s*/, T.lisaksi) : ''));
       if (apu) apu.pakettiMuuttui(i, kayttaja);
       if (kayttaja) {
@@ -264,7 +345,7 @@
       valinnat[avain] = param;
       avaaOsio(kortti);
     }
-    V.kun(function () { piirra(false); });
+    kun(function () { piirra(false); });
   }
 
   // Klippaamon apusäätimet: videoita kuukaudessa × klippiä per video → pienin paketti, joka riittää.
@@ -377,12 +458,14 @@
     }
     function paivita() {
       var h = laske();
-      naytaHinta(summaEl, h.kk * 100);
-      kertaEl.textContent = T.kayttoonotto + V.teksti(h.kerta * 100);
+      naytaHinta(summaEl, hinnaksi(h.kk));
+      kertaEl.textContent = T.kayttoonotto + V.teksti(hinnaksi(h.kerta));
       arvoEl.textContent = h.p.n;
+      // Yhteenvedossa toinen hinta: yritykselle alv 0 % tai yksityishenkilölle alv:n kanssa.
+      var toinen = kuluttaja() ? function (euroja) { return euroja * 100; } : V.alvilla;
       yhteenvetoEl.textContent = T.tilinhoito(h.a, luettelo(h.alustat), h.p.n, h.p.vko,
-        V.teksti(V.alvilla(h.kk), T.kk), V.teksti(V.alvilla(h.kerta)));
-      input.setAttribute('aria-valuetext', T.tilinhoitoAria(h.p.n, h.p.vko, V.sanoin(h.kk * 100, T.kuukaudessa)));
+        V.teksti(toinen(h.kk), T.kk), V.teksti(toinen(h.kerta)), kuluttaja());
+      input.setAttribute('aria-valuetext', T.tilinhoitoAria(h.p.n, h.p.vko, V.sanoin(hinnaksi(h.kk), T.kuukaudessa)));
       return h;
     }
 
@@ -418,7 +501,7 @@
       };
       avaaOsio(kortti);
     }
-    V.kun(paivita);
+    kun(paivita);
 
     ruudut.forEach(function (ruutu) {
       ruutu.addEventListener('change', function () {
@@ -433,13 +516,20 @@
         }
         var h = paivita();
         valitseTilinhoito(h);
-        ilmoitusEl.textContent = viesti + T.alustaIlmoitus(h.a, V.sanoin(h.kk * 100, T.kuukaudessa), V.sanoin(h.kerta * 100));
+        ilmoitusEl.textContent = viesti + T.alustaIlmoitus(h.a, V.sanoin(hinnaksi(h.kk), T.kuukaudessa), V.sanoin(hinnaksi(h.kerta)));
       });
     });
   }
 
+  if (tapaValitsin) {
+    tapaValitsin.querySelectorAll('[data-hintatapa-nappi]').forEach(function (nappi) {
+      nappi.addEventListener('click', function () { asetaTapa(nappi.getAttribute('data-hintatapa-nappi')); });
+    });
+    tapaValitsin.hidden = false;
+    paivitaTapaSivulla();
+  }
   piirraKiinteat();
-  V.kun(piirraKiinteat);
+  kun(piirraKiinteat);
   V.kun(paivitaTarjouslinkit);
   document.querySelectorAll('[data-saadin]').forEach(teeSaadin);
   document.querySelectorAll('[data-tilinhoito]').forEach(teeTilinhoito);
