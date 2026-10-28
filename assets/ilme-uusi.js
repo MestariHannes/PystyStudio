@@ -2,7 +2,7 @@
    Sivun <head>-skripti lisää <html>-elementtiin luokan ilme-uusi
    ja tarvittaessa luokat ilme-animoi ja intro-tulossa. Tyylit: ilme-uusi.css.
 
-   2. Nauha heron alle: alustat ja lyhyet lupaukset (koriste, aria-hidden).
+   2. (Nauha heron alla poistettiin 28.10.2026.)
    3. Avausefekti etusivulla ensimmäisellä käynnillä (localStorage; ilman tallennusta kerran latausta kohden).
       Noin 3 s, Ohita-nappi, ja klikkaus, kosketus, vieritys tai mikä tahansa näppäin ohittaa sen.
       Intro on vain sisällön päällä oleva kerros (aria-hidden): sivun sisältö on HTML:ssä heti.
@@ -19,28 +19,8 @@
   var animoi = h.classList.contains('ilme-animoi');
   var AVAIN = 'pystystudio-intro';
 
-  // 2. Nauha heron alle. (Kohta 1, ?uusi=1-linkit, poistettiin, kun ilme otettiin käyttöön 23.10.2026.)
+  // 2. Heron alla ollut liukuva nauha poistettiin 28.10.2026 (sivu näytti liian täydeltä).
   var hero = document.querySelector('.hero');
-  if (hero) {
-    var sisalto = en
-      ? ['TikTok', 'Reels', 'Shorts', 'YouTube', 'Word-by-word captions', 'Full-height 9:16', '3 free sample clips']
-      : ['TikTok', 'Reels', 'Shorts', 'YouTube', 'Tekstitys sana kerrallaan', 'Täyskorkea 9:16', '3 ilmaista näyteklippiä'];
-    var nauha = document.createElement('div');
-    nauha.className = 'ilme-nauha';
-    nauha.setAttribute('aria-hidden', 'true');
-    var rulla = document.createElement('div');
-    rulla.className = 'ilme-nauha-rulla';
-    // Neljä kopiota: rulla siirtyy puolet leveydestään, joten silmukka on saumaton leveälläkin näytöllä.
-    for (var k = 0; k < 4; k++) {
-      sisalto.forEach(function (teksti) {
-        var el = document.createElement('span');
-        el.textContent = teksti;
-        rulla.appendChild(el);
-      });
-    }
-    nauha.appendChild(rulla);
-    hero.insertAdjacentElement('afterend', nauha);
-  }
 
   // 4a. Hero-otsikko sana kerrallaan (tyylit: .hero.ilme-esilla).
   function heroEsiin() { if (hero) hero.classList.add('ilme-esilla'); }

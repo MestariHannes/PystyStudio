@@ -354,25 +354,16 @@ h4 { margin: 0; }
   background: var(--keltainen);
   box-shadow: 0 0 0 1.5px var(--musta);
 }
+/* Puhelimessa pienempi (28.10.2026): ennen 23vw, jolloin otsikko vei puolet ensimmäisestä ruudusta. */
 h1 {
-  font-size: clamp(4.25rem, 23vw, 9.5rem);
+  font-size: clamp(3.25rem, 15vw, 9.5rem);
   line-height: .88;
   letter-spacing: 0;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 h1 span { display: block; }
-/* Pystyviiva otsikon lopussa kuin logossa: keltainen viiva mustalla reunalla. */
+/* Otsikon perässä ollut keltainen kursori poistettiin 28.10.2026; luokka jää vain rivitykseen. */
 .kursori { white-space: nowrap; }
-.kursori::after {
-  content: "";
-  display: inline-block;
-  width: .12em;
-  height: .9em;
-  margin-left: .08em;
-  vertical-align: -.1em;
-  background: var(--keltainen);
-  box-shadow: 0 0 0 .035em var(--musta);
-}
 .ingressi {
   font-size: 1.1875rem;
   line-height: 1.5;
@@ -503,6 +494,7 @@ h1 span { display: block; }
 }
 .demo-tauko {
   align-self: flex-start;
+  margin-top: .75rem;
   padding: .35rem 0;
   border: 0;
   background: none;
@@ -684,6 +676,13 @@ h1 span { display: block; }
   align-items: start;
 }
 .ominaisuudet p { max-width: 34em; }
+/* Tiivis lista ilman numeromerkkejä (28.10.2026): otsikko ja yksi lause, ohut viiva yläpuolella kuten vaiheissa. */
+.ominaisuudet-tiivis { margin-top: 2.5rem; gap: 2rem; }
+.ominaisuudet-tiivis li { display: block; padding-top: 1rem; border-top: 2px solid var(--vari-muste); }
+.ominaisuudet-tiivis h3 { margin-bottom: .35rem; }
+@media (min-width: 36em) and (max-width: 55.99em) {
+  .ominaisuudet-tiivis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 .alaotsikko {
   margin-top: 3rem;
   padding-top: 1rem;
@@ -1631,7 +1630,8 @@ h1 span { display: block; }
   .logo { --logo-k: 2.375rem; }
   .osio { padding-block: 7rem; }
   .osio-tiivis { padding-block: 4.5rem; }
-  .vaiheet { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2rem; }
+  .vaiheet { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem; }
+  .ominaisuudet-tiivis { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2.5rem; }
   .vaiheet li { grid-template-columns: minmax(0, 1fr); }
   .vaiheet li > * { grid-column: auto; }
   .vaiheet li::before { grid-row: auto; margin: .25rem 0 1rem; font-size: 4.5rem; }

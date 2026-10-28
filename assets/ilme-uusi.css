@@ -36,28 +36,12 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='r'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23r)'/%3E%3C/svg%3E");
 }
 
-/* ---------- Kursori toistuvana elementtinä ---------- */
-.ilme-uusi .kursori::after { animation: ilme-vilkku 1.06s steps(1) infinite; }
-.ilme-uusi .osio h2::after,
-.ilme-uusi .tarjous-sivu h1::after,
-.ilme-uusi .seloste h1::after {
-  content: "";
-  display: inline-block;
-  width: .09em;
-  height: .78em;
-  margin-left: .1em;
-  vertical-align: -.04em;
-  background: var(--keltainen);
-  box-shadow: 0 0 0 .03em var(--musta);
-  animation: ilme-vilkku-jaa .5s steps(1) 3 both;
-}
-.ilme-uusi .yhteys h2::after { box-shadow: none; }
+/* Otsikoiden vilkkuva keltainen kursori poistettiin kaikkialta 28.10.2026 (Hanneksen päätös). Pystyviiva jää logoon. */
 
 /* ---------- Hero mustalla pohjalla: intro aukeaa suoraan siihen ---------- */
 .ilme-uusi .hero { background: var(--musta); color: var(--valkoinen); }
 .ilme-uusi .hero .ingressi { color: #EDEDEA; }
-.ilme-uusi .hero .ylaotsake::before,
-.ilme-uusi .hero .kursori::after { box-shadow: none; }
+.ilme-uusi .hero .ylaotsake::before { box-shadow: none; }
 .ilme-uusi .hero .pienteksti,
 .ilme-uusi .hero .demo-selite,
 .ilme-uusi .hero .aikajana-ajat { color: var(--vari-harmaa-tumma); }
@@ -96,50 +80,12 @@
 /* Pyyhkäisyssä poistuva klippi on kopio: sen sanat eivät ponnahda uudelleen. */
 .ilme-uusi .demo .klippi-sisalto-vanha .sana.nakyy { animation: none; }
 
-/* ---------- Nauha heron alla (ilme-uusi.js lisää sen, aria-hidden) ---------- */
-@keyframes ilme-nauha { to { transform: translateX(-50%); } }
-.ilme-nauha {
-  overflow: hidden;
-  border-block: 2px solid var(--musta);
-  background: var(--keltainen);
-  color: var(--musta);
-}
-.ilme-nauha-rulla {
-  display: flex;
-  width: max-content;
-  animation: ilme-nauha 36s linear infinite;
-}
-.ilme-nauha:hover .ilme-nauha-rulla { animation-play-state: paused; }
-.ilme-nauha-rulla > span {
-  display: flex;
-  align-items: center;
-  padding-block: .55rem;
-  font-family: var(--fontti-otsikko);
-  font-size: 1.75rem;
-  font-weight: 900;
-  line-height: 1;
-  white-space: nowrap;
-}
-/* Erottimena musta pystyviiva eli sama kursori kuin logossa. */
-.ilme-nauha-rulla > span::after {
-  content: "";
-  width: .13em;
-  height: .85em;
-  margin-inline: .55em;
-  background: var(--musta);
-}
-
 /* ---------- Osiot: otsikko kirjoittuu näkyviin, sisältö tulee hillitysti perässä ---------- */
 .ilme-uusi h2 .ilme-sana { display: inline-block; }
 .ilme-animoi .ilme-paljastus h2 .ilme-sana { opacity: 0; }
 .ilme-animoi .ilme-paljastus.ilme-esilla h2 .ilme-sana {
   animation: ilme-nousu .7s var(--ease-ulos) both;
   animation-delay: calc(var(--i, 0) * .06s);
-}
-.ilme-animoi .ilme-paljastus h2::after { animation: none; opacity: 0; }
-.ilme-animoi .ilme-paljastus.ilme-esilla h2::after {
-  animation: ilme-vilkku-jaa .5s steps(1) 3 both;
-  animation-delay: calc(var(--n, 1) * .06s + .35s);
 }
 .ilme-animoi .ilme-paljastus > .kehys > :not(h2) {
   opacity: 0;
@@ -312,10 +258,5 @@
 @media (prefers-reduced-motion: reduce) {
   .ilme-intro { display: none; }
   .ilme-uusi.intro-tulossa::before { display: none; }
-  .ilme-uusi .kursori::after,
-  .ilme-uusi .osio h2::after,
-  .ilme-uusi .tarjous-sivu h1::after,
-  .ilme-uusi .seloste h1::after,
-  .ilme-uusi .demo .sana.nakyy,
-  .ilme-nauha-rulla { animation: none; }
+  .ilme-uusi .demo .sana.nakyy { animation: none; }
 }

@@ -34,8 +34,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700..900&family=Figtree:wght@400..900&display=swap">
   <link rel="stylesheet" href="assets/tyyli.css">
   <!-- Pystyviiva-ilme (käytössä 23.10.2026): luokka ilme-uusi sekä assets/ilme-uusi.css ja ilme-uusi.js.
-       data-intro = avausefekti tällä sivulla. -->
-  <script data-polku="assets/" data-intro>
+       Avausefekti (data-intro) poistettiin käytöstä 28.10.2026; koodi on yhä ilme-uusi.js:ssä. -->
+  <script data-polku="assets/">
   (function () {
     var h = document.documentElement, s = document.currentScript, p = s.getAttribute('data-polku');
     h.classList.add('ilme-uusi');
@@ -137,16 +137,12 @@
     <section class="hero" aria-labelledby="hero-otsikko">
       <div class="kehys hero-ruudukko">
         <div class="hero-teksti">
-          <p class="ylaotsake">Klippauspalvelu YouTube-tekijöille, podcasteille ja yrityksille</p>
           <h1 id="hero-otsikko"><span>Pitkät</span> <span>videot</span> <span class="kursori">pystyyn.</span></h1>
-          <p class="ingressi">Teen YouTube-videoistasi ja podcastjaksoistasi valmiita pystyklippejä TikTokiin, Reelsiin ja Shortsiin. Valitsen parhaat kohdat, rajaan kuvan puhujaan ja lisään tekstityksen ja musiikin. Sinä vain hyväksyt klipit.</p>
+          <p class="ingressi">Teen YouTube-videoistasi ja podcasteistasi valmiita pystyklippejä TikTokiin, Reelsiin ja Shortsiin. Sinä vain hyväksyt ne.</p>
           <div class="toiminnot">
             <a class="nappi nappi-ensisijainen" href="mailto:korkiakoskihannes@gmail.com?subject=Ilmaiset%20n%C3%A4yteklipit&amp;body=Hei%2C%0A%0ALinkki%20videoon%3A%20%0AKanavat%2C%20joilla%20julkaisen%3A%20%0A%0AHyv%C3%A4ksyn%20n%C3%A4ytteiden%20ehdot%3A%20https%3A%2F%2Fpystystudio.fi%2Fnaytteet.html%0A">Pyydä 3 ilmaista näyteklippiä</a>
             <a class="nappi nappi-toissijainen" href="#hinnat">Katso hinnat</a>
           </div>
-          <p class="pienteksti">Ei sido mihinkään. <a href="naytteet.html">Näytteiden ehdot</a></p>
-          <!-- Myyntiviestistä tulevalle: näytteet on jo tehty, joten seuraava askel on vastata viestiin. -->
-          <p class="pienteksti"><strong>Sait jo näytteet sähköpostilla?</strong> Vastaa samaan viestiin, niin sovitaan aloituksesta.</p>
         </div>
 
         <figure class="demo" data-demo data-puhuja="a">
@@ -156,14 +152,6 @@
                 <svg class="kohtaus" viewBox="0 0 1600 900" aria-hidden="true" focusable="false"><use href="#kohtaus"/></svg>
                 <p class="tekstitys" aria-hidden="true">tulee kahdeksan klippiä.</p>
               </div>
-            </div>
-            <div class="demo-sivu">
-              <div class="lahde" aria-hidden="true">
-                <svg viewBox="0 0 1600 900" focusable="false"><use href="#kohtaus"/></svg>
-                <span class="rajain"></span>
-              </div>
-              <p class="demo-selite">Alkuperäinen kuva on 16:9. Rajaus seuraa puhujaa.</p>
-              <button class="demo-tauko" type="button" hidden>Pysäytä esimerkki</button>
             </div>
           </div>
           <!-- Jakson aikajana: keltainen kursori kelaa kohtaan, josta puhelimen klippi on tehty (sivu.js). -->
@@ -191,8 +179,8 @@
               <span class="aikajana-kursori" aria-hidden="true" hidden><span class="aikajana-aika">0:00</span></span>
             </div>
             <div class="aikajana-ajat" aria-hidden="true"><span>0:00</span><span>58:40</span></div>
-            <figcaption>Esimerkki: tunnin jaksosta valitaan kahdeksan kohtaa, jotka toimivat yksinäänkin.</figcaption>
           </figure>
+          <button class="demo-tauko" type="button" hidden>Pysäytä esimerkki</button>
           <figcaption class="piilotettu">Esimerkki: podcastjakson kuva rajataan pystyyn puhujan kohdalle, ja tekstitys etenee sana kerrallaan.</figcaption>
         </figure>
       </div>
@@ -204,20 +192,15 @@
         <ol class="vaiheet">
           <li>
             <h3>Lähetät linkin</h3>
-            <p>Lähetä linkki YouTube-videoon tai latauslinkki jaksoon. Jos et halua lähettää linkkejä, seuraan kanavaasi ja aloitan heti, kun uusi video on julki. Tunnuksiasi en tarvitse.</p>
-          </li>
-          <li>
-            <h3>Valitsen kohdat</h3>
-            <p>Käyn jakson läpi litteraatin avulla ja valitsen kohdat, jotka toimivat ilman muuta jaksoa. Jokainen klippi alkaa kasvoista, tunteesta tai tekemisestä, jotta selaaja pysähtyy.</p>
-            <p>Jos haluat tietyt hetket, kerro aikaleimat (esim. 12:40–13:15), niin teen klipit niistä.</p>
+            <p>Linkki videoon riittää. Voin myös seurata kanavaasi, jolloin aloitan heti, kun uusi video on julki.</p>
           </li>
           <li>
             <h3>Teen klipit</h3>
-            <p>Rajaan kuvan pystyyn puhujan kohdalle, teen tekstityksen ja lisään musiikin. Säädän äänen somen tavalliselle voimakkuudelle.</p>
+            <p>Valitsen parhaat kohdat, rajaan kuvan puhujaan ja lisään tekstityksen ja musiikin.</p>
           </li>
           <li>
             <h3>Hyväksyt ja julkaiset</h3>
-            <p>Saat klipit latauslinkkinä, yleensä vuorokauden sisällä arkipäivinä. Yksi korjauskierros kuuluu hintaan. Julkaiset klipit itse, tai julkaisen ne puolestasi lisäpalveluna.</p>
+            <p>Saat klipit yleensä vuorokauden sisällä. Yksi korjauskierros kuuluu hintaan.</p>
           </li>
         </ol>
       </div>
@@ -226,88 +209,32 @@
     <section id="klipit" class="osio osio-pinta" aria-labelledby="klipit-otsikko">
       <div class="kehys">
         <h2 id="klipit-otsikko">Mitä klipeissä on</h2>
-        <p class="johdanto">Kuvassa on puhuja, tekstitys ja lopussa lyhyt kehote, kuten ”Koko jakso YouTubessa”. Otsikoita ja välitekstejä ei lisätä, joten klippi alkaa suoraan kasvoista tai tekemisestä.</p>
-
-        <div class="anatomia">
-          <figure class="anatomia-kuva">
-            <div class="klippi klippi-b" aria-hidden="true">
-              <svg class="kohtaus" viewBox="0 0 1600 900" aria-hidden="true" focusable="false"><use href="#kohtaus"/></svg>
-              <span class="ui-yla" aria-hidden="true"></span>
-              <span class="ui-kuvake" style="top:46%" aria-hidden="true"></span>
-              <span class="ui-kuvake" style="top:55%" aria-hidden="true"></span>
-              <span class="ui-kuvake" style="top:64%" aria-hidden="true"></span>
-              <span class="ui-kuvake" style="top:73%" aria-hidden="true"></span>
-              <span class="ui-rivi" style="top:85%;width:58%" aria-hidden="true"></span>
-              <span class="ui-rivi" style="top:90%;width:40%" aria-hidden="true"></span>
-              <span class="turva-alue" aria-hidden="true"></span>
-              <p class="tekstitys" aria-hidden="true">tehdä itse?</p>
-              <span class="merkki" style="left:3%;top:54%" aria-hidden="true">1</span>
-              <span class="merkki" style="left:3%;top:3%" aria-hidden="true">2</span>
-              <span class="merkki" style="right:3%;top:37%" aria-hidden="true">3</span>
-            </div>
-            <figcaption class="piilotettu">Kaavio pystyklipistä: tekstitys keskellä, kuva rajattu puhujaan ja sovelluksen painikkeet sekä kuvausteksti reunoilla.</figcaption>
-          </figure>
-
-          <div class="anatomia-teksti">
-            <ul class="ominaisuudet">
-              <li>
-                <span class="merkki merkki-lista" aria-hidden="true">1</span>
-                <div>
-                  <h3>Tekstitys sana kerrallaan</h3>
-                  <p>Sanat ilmestyvät puheen tahdissa. Valkoinen teksti ja paksu musta reunus erottuvat sekä vaaleaa että tummaa taustaa vasten.</p>
-                </div>
-              </li>
-              <li>
-                <span class="merkki merkki-lista" aria-hidden="true">2</span>
-                <div>
-                  <h3>Täyskorkea 9:16-rajaus</h3>
-                  <p>Rajaus pysyy puhujassa tai tekemisessä koko klipin ajan, ja kun puhuja vaihtuu, rajaus hyppää hänen kohdalleen. Pystyklipissä ei ole missään kohdassa vaakakuvaa mustine palkkeineen.</p>
-                </div>
-              </li>
-              <li>
-                <span class="merkki merkki-lista" aria-hidden="true">3</span>
-                <div>
-                  <h3>Turva-alueet</h3>
-                  <p>Tekstit eivät jää TikTokin ja Reelsin painikkeiden tai kuvaustekstin alle. Sama koskee lähdevideoon valmiiksi poltettuja tekstejä.</p>
-                </div>
-              </li>
-            </ul>
-
-            <h3 class="alaotsikko">Ääni ja tekniikka</h3>
-            <!-- Hyöty ensin, tekninen luku sulkeissa perässä. -->
-            <ul class="tekniikka">
-              <li><strong>Musiikki</strong> on itse tehtyä tai lisensoitua, ja sen drop osuu klipin kohokohtaan. Puhe kuuluu aina musiikin yli.</li>
-              <li><strong>Ääni samalla tasolla kuin muut somevideot</strong> <span class="tekninen">(−14 LUFS)</span></li>
-              <li><strong>Liike ja tekstit etenevät sulavasti</strong> <span class="tekninen">(yleensä 59,94 kuvaa sekunnissa)</span></li>
-            </ul>
-          </div>
-        </div>
+        <!-- Kevennetty 28.10.2026 (Hanneksen veljen palaute): kaavio ja tekniset luvut pois, neljä asiaa lyhyesti. -->
+        <ul class="ominaisuudet ominaisuudet-tiivis">
+          <li>
+            <h3>Alku, joka pysäyttää</h3>
+            <p>Klippi alkaa suoraan parhaasta hetkestä, jotta selaaja pysähtyy jo ensimmäisellä sekunnilla.</p>
+          </li>
+          <li>
+            <h3>Tekstitys sana kerrallaan</h3>
+            <p>Sanat ilmestyvät puheen tahdissa, eikä mikään teksti jää TikTokin tai Reelsin painikkeiden alle.</p>
+          </li>
+          <li>
+            <h3>Kuva rajattu puhujaan</h3>
+            <p>Täyskorkea 9:16 koko klipin ajan, ja rajaus seuraa sitä, joka puhuu.</p>
+          </li>
+          <li>
+            <h3>Musiikki</h3>
+            <p>Musiikki on itse tehtyä tai lisensoitua.</p>
+          </li>
+        </ul>
       </div>
     </section>
 
     <section id="hinnat" class="osio" aria-labelledby="hinnat-otsikko">
       <div class="kehys">
         <h2 id="hinnat-otsikko">Palvelut ja hinnat</h2>
-        <p class="johdanto">Voit tilata yrityksenä tai yksityishenkilönä. Yksityishenkilön hinnoissa alv 25,5&nbsp;% on mukana. Yritykselle hinnat ovat alv 0&nbsp;%, ja alv lisätään laskuun.</p>
-
-        <!-- Aloita ilmaisilla näytteillä: musta laatikko, keltainen nappi (keltaista vain mustalla pohjalla). -->
-        <div class="naytelaatikko">
-          <h3>Aloita ilmaisilla näytteillä</h3>
-          <ol class="naytevaiheet">
-            <li>Lähetä linkki yhteen videoosi.</li>
-            <li>Teen siitä 3 valmista klippiä ilmaiseksi.</li>
-            <li>Jos tilaat, saat julkaista näytteet, ja ne tulevat tilauksen päälle. Jos et tilaa, poistan ne 30 päivässä.</li>
-          </ol>
-          <p class="naytelaatikko-toiminnot">
-            <a class="nappi nappi-kaanteinen" href="mailto:korkiakoskihannes@gmail.com?subject=Ilmaiset%20n%C3%A4yteklipit&amp;body=Hei%2C%0A%0ALinkki%20videoon%3A%20%0AKanavat%2C%20joilla%20julkaisen%3A%20%0A%0AHyv%C3%A4ksyn%20n%C3%A4ytteiden%20ehdot%3A%20https%3A%2F%2Fpystystudio.fi%2Fnaytteet.html%0A">Pyydä 3 ilmaista näyteklippiä</a>
-            <a class="naytelaatikko-ehdot" href="naytteet.html">Näytteiden ehdot</a>
-          </p>
-        </div>
-
-        <ul class="lupaukset">
-          <li>Toimitus parhaimmillaan parissa tunnissa, yleensä vuorokauden sisällä arkipäivinä. Yksi korjauskierros hintaan.</li>
-          <li>Ei minimisopimusta eikä ylärajaa: isommasta kuukausitilauksesta voidaan sopia erikseen.</li>
-        </ul>
+        <p class="johdanto">Aloita kolmella ilmaisella näyteklipillä omasta videostasi. Kuukausipaketit ovat kuukausi kerrallaan, ja voit tilata yrityksenä tai yksityishenkilönä.</p>
 
         <!-- Hintatapa Yksityishenkilö | Yritys (assets/hinnat.js): yksityishenkilölle hinnat alv:n kanssa, yritykselle alv 0 %.
              Oletus on yksityishenkilö. Valinta muistetaan selaimessa, ja osoitteella ?hinnat=yritys sivu aukeaa yrityksen hinnoilla.
@@ -332,7 +259,7 @@
         <div class="hintaryhma">
           <div class="hintaryhma-otsikko">
             <h3>Kuukausipaketti</h3>
-            <p>Kuukausi kerrallaan, ei minimisopimusta. Lopetus sähköpostilla: jos ilmoitat viimeistään kuun 15. päivänä, palvelu päättyy saman kuun lopussa, muuten seuraavan kuun lopussa. Käyttämättömät klipit eivät siirry seuraavaan kuuhun.</p>
+            <p>Kuukausi kerrallaan. Voit lopettaa sähköpostilla.</p>
           </div>
           <ul class="hinnasto">
             <li class="hintarivi saadinrivi" data-saadin="klippaamo" data-nimi="Klippaamo" data-malli="{n} {yksikko} kuukaudessa." data-yksikko="klippi|klippiä" data-per="klippi" data-kk data-oletus="2"
@@ -572,7 +499,7 @@
           </div>
         </details>
 
-        <p class="hinta-huomio">Jokaisessa toimituksessa on yksi korjauskierros. Kuukausipaketit laskutetaan kuun alussa, maksuaika 14 päivää. Kertaerä, Pysty Puhe, arkisto ja livestriimin klippaus laskutetaan toimituksen jälkeen, maksuaika 7 päivää. AI-mainospaketissa 50&nbsp;% laskutetaan ennen aloitusta ja 50&nbsp;% toimituksen jälkeen.</p>
+        <p class="hinta-huomio">Kuukausipaketit laskutetaan kuun alussa ja kertatyöt toimituksen jälkeen.</p>
         <!-- Valuuttavalitsin (assets/valuutta.js). Suomenkielisellä sivulla hintaosion lopussa (siirretty 28.10.2026), koska lähes kaikki maksavat euroissa.
              Räätälöity tarjous -kehote on tämän alla ja yläpalkissa (puhelimessa Valikossa). Kurssi ja päivämäärä tulevat hintadata.js:stä huomautuksen {kurssi}- ja {pvm}-kohtiin. -->
         <div class="valuutta valuutta-loppu" data-valuuttavalitsin hidden>
@@ -620,27 +547,15 @@
         <div class="ukk-lista">
           <details>
             <summary>Mitä ilmaiset näytteet sisältävät?</summary>
-            <p>Teen yhdestä videostasi 3 valmista klippiä samalla tavalla kuin maksetut klipit: rajaus, tekstitys ja musiikki. Näytteet tehdään kerran per asiakas, eivätkä ne velvoita ostamaan mitään. Jos tilaat, saat julkaista ne, ja ne tulevat tilauksen päälle. Jos et tilaa, poistan näytteet ja raakatiedostot 30 päivässä. Tarkemmin: <a href="naytteet.html">näytteiden ehdot</a>.</p>
+            <p>Teen yhdestä videostasi 3 valmista klippiä samalla tavalla kuin maksetut. Ne eivät velvoita ostamaan mitään. Jos tilaat, saat julkaista ne, ja ne tulevat tilauksen päälle. Jos et tilaa, poistan ne 30 päivässä. Tarkemmin: <a href="naytteet.html">näytteiden ehdot</a>.</p>
           </details>
           <details>
             <summary>Tarvitsetko tunnukseni someen?</summary>
-            <p>En tarvitse. Saat valmiit klipit latauslinkkinä ja julkaiset ne itse omilla tileilläsi. Jos haluat, että julkaisen puolestasi, saan tileillesi julkaisijaroolin, en salasanaa.</p>
-          </details>
-          <details>
-            <summary>Millaisista videoista klipit onnistuvat?</summary>
-            <p>Parhaiten videoista, joissa puhujat näkyvät kuvassa: videopodcasteista, haastatteluista, webinaareista ja YouTube-videoista. Myös vlogit käyvät. Jos sinulla ei ole valmista videota, Pysty Puhe -pilotissa haastattelen sinua etänä ja teen klipit haastattelusta.</p>
-          </details>
-          <details>
-            <summary>Voinko valita kohdat itse?</summary>
-            <p>Voit. Aikaleimat (esim. 12:40–13:15) tai lyhyt kuvaus kohdasta riittää, eikä se muuta hintaa. Jos et toivo mitään, valitsen kohdat itse.</p>
-          </details>
-          <details>
-            <summary>Pitääkö minun lähettää linkki joka kerta?</summary>
-            <p>Ei tarvitse. Voin seurata kanavaasi ja aloittaa heti, kun uusi video on julki. Toimitusaika lasketaan silloin videon julkaisusta. Paras tapa on jaettu kansio, jonne valmiit videosi tallentuvat. Alkuperäinen tiedosto on laadukkaampi. Jäsenille tai yksityisiksi rajatuista videoista tarvitsen tiedoston tai latauslinkin. Sponsorikohtia en klippaa ilman vahvistustasi. Jos jostain videosta ei tehdä klippejä, kerro siitä ennen julkaisua.</p>
+            <p>En tarvitse. Saat klipit latauslinkkinä ja julkaiset ne itse. Jos haluat, että julkaisen puolestasi, saan tileillesi julkaisijaroolin, en salasanaa.</p>
           </details>
           <details>
             <summary>Kuinka nopeasti saan klipit?</summary>
-            <p>Parhaimmillaan parissa tunnissa, yleensä vuorokauden sisällä arkipäivinä ja viimeistään 3 arkipäivässä. Aika lasketaan siitä, kun olen saanut linkin tai video on julki ja olen saanut tarvittavat tiedot, kuten sponsorikohdat. Klipit voi saada jakso kerrallaan tai kerran viikossa.</p>
+            <p>Yleensä vuorokauden sisällä arkipäivinä ja viimeistään 3 arkipäivässä siitä, kun video on julki tai olen saanut linkin. Jos haluat tietyt kohdat, kerro aikaleimat.</p>
           </details>
           <details>
             <summary>Entä jos klippi ei miellytä?</summary>
@@ -648,27 +563,19 @@
           </details>
           <details>
             <summary>Mistä musiikki tulee?</summary>
-            <p>Musiikki on itse tehtyä tai lisensoitua, eikä klipeissä käytetä tekijänoikeussuojattua musiikkia ilman lupaa. Jakson oma intro- tai taustamusiikki poistetaan, jos et omista sen oikeuksia. Jos haluat käyttää TikTokin tai Instagramin trendiääntä, saat klipin ilman musiikkia.</p>
-          </details>
-          <details>
-            <summary>Entä jos jakso on kaupallista yhteistyötä?</summary>
-            <p>Silloin myös klippi merkitään mainokseksi. Merkintä tehdään julkaisutekstiin ja alustan omalla työkalulla (Branded content tai Paid partnership), joten kuvaan ei lisätä tekstiä. Jos julkaiset itse, kerron, miten merkintä tehdään. Sponsorikohtia en klippaa ilman vahvistustasi.</p>
+            <p>Musiikki on itse tehtyä tai lisensoitua. Jakson oma intromusiikki poistetaan, jos et omista sen oikeuksia. Jos haluat käyttää trendiääntä, saat klipin ilman musiikkia.</p>
           </details>
           <details>
             <summary>Kuka omistaa klipit?</summary>
-            <p>Saat klippeihin täydet käyttöoikeudet, kun lasku on maksettu, ja voit muokata niitä vapaasti. Musiikki on itse tehtyä tai lisensoitua. En näytä klippejäsi muille ilman lupaasi.</p>
-          </details>
-          <details>
-            <summary>Kenelle palvelu on tarkoitettu?</summary>
-            <p>YouTube-tekijöille, podcasteille, valmentajille ja asiantuntijoille, jotka julkaisevat pitkää videota säännöllisesti. Voit tilata yrityksenä tai yksityishenkilönä. Yksityishenkilönä sinulla on 14 päivän peruuttamisoikeus, ja saat peruuttamisohjeen ennen kuin mitään aloitetaan tai laskutetaan.</p>
+            <p>Sinä. Saat klippeihin täydet käyttöoikeudet, kun lasku on maksettu, enkä näytä niitä muille ilman lupaasi.</p>
           </details>
           <details>
             <summary>Kuinka pitkä sopimus on?</summary>
-            <p>Kuukausipaketit ovat kuukausi kerrallaan, eikä minimisopimusta ole. Lopetus sähköpostilla: jos ilmoitat viimeistään kuun 15. päivänä, palvelu päättyy saman kuun lopussa, muuten seuraavan kuun lopussa. Jos aloitat kesken kuun, ensimmäisen kuukauden hinta ja klippimäärä suhteutetaan päivien mukaan. Kertaerä, Pysty Puhe -pilotti ja AI-mainospaketti ovat kertatöitä ilman kuukausisopimusta.</p>
+            <p>Kuukausipaketit ovat kuukausi kerrallaan. Jos ilmoitat lopettamisesta viimeistään kuun 15. päivänä, palvelu päättyy saman kuun lopussa, muuten seuraavan kuun lopussa. Yksityishenkilönä sinulla on lisäksi 14 päivän peruuttamisoikeus.</p>
           </details>
           <details>
             <summary>Miksi lasku tulee Keikkalaskulta?</summary>
-            <p>Teen työn kevytyrittäjänä, ja laskutus hoidetaan Keikkalasku-laskutuspalvelun kautta. Lasku tulee siksi Suomen Keikkalaskun nimissä, ja siinä on alv 25,5&nbsp;%. Sopimus tehdään kuitenkin kanssani. Kuukausipaketit laskutetaan kuun alussa, maksuaika 14 päivää. Kertaerä, Pysty Puhe, arkisto ja livestriimin klippaus laskutetaan toimituksen jälkeen, maksuaika 7 päivää. AI-mainospaketissa 50&nbsp;% laskutetaan ennen aloitusta ja 50&nbsp;% toimituksen jälkeen.</p>
+            <p>Teen työn kevytyrittäjänä, ja laskutus hoidetaan Keikkalasku-laskutuspalvelun kautta. Sopimus tehdään kuitenkin kanssani. Kuukausipaketit laskutetaan kuun alussa, kertatyöt toimituksen jälkeen.</p>
           </details>
         </div>
       </div>
@@ -680,9 +587,9 @@
           <h2 id="yhteys-otsikko">Aloitetaan seuraavasta jaksostasi</h2>
           <p class="johdanto">Lähetä linkki yhteen videoosi ja kerro, millä kanavilla julkaiset. Teen siitä 3 ilmaista näyteklippiä ja ehdotan sinulle sopivaa pakettia.</p>
           <a class="nappi nappi-kaanteinen" href="mailto:korkiakoskihannes@gmail.com?subject=Ilmaiset%20n%C3%A4yteklipit&amp;body=Hei%2C%0A%0ALinkki%20videoon%3A%20%0AKanavat%2C%20joilla%20julkaisen%3A%20%0A%0AHyv%C3%A4ksyn%20n%C3%A4ytteiden%20ehdot%3A%20https%3A%2F%2Fpystystudio.fi%2Fnaytteet.html%0A">Pyydä ilmaiset näytteet</a>
-          <p class="yhteys-puhelin">Voit myös <a href="tel:+358413144255">soittaa</a> tai <a href="sms:+358413144255">lähettää tekstiviestin</a>: +358&nbsp;41&nbsp;314&nbsp;4255.</p>
+          <!-- Myyntiviestistä tulevalle: näytteet on jo tehty, joten seuraava askel on vastata viestiin. -->
           <p class="yhteys-vastaus"><strong>Sait jo näytteet sähköpostilla?</strong> Vastaa samaan viestiin, niin sovitaan aloituksesta.</p>
-          <p class="pienteksti">Saat 3 ilmaista näyteklippiä omasta videostasi, eikä niiden pyytäminen sido mihinkään. Näytteet ovat arviointia varten, ja saat julkaista ne, kun tilaat palvelun. Jos et tilaa, poistan näytteet ja raakatiedostot 30 päivässä. Lähettämällä linkin hyväksyt <a href="naytteet.html">näytteiden ehdot</a>.</p>
+          <p class="pienteksti">Näytteiden pyytäminen ei sido mihinkään. Lähettämällä linkin hyväksyt <a href="naytteet.html">näytteiden ehdot</a>.</p>
         </div>
         <dl class="yhteystiedot">
           <div>
@@ -703,7 +610,7 @@
             <dd>Hannes Korkiakoski</dd>
           </div>
         </dl>
-        <p class="yhteys-huomio">Napit avaavat oman sähköpostiohjelmasi valmiilla viestillä, ja viesti tulee suoraan sähköpostiini. Jos ohjelma ei aukea, kopioi osoite ja lähetä viesti tavalliseen tapaan. Sivusto ei tallenna tietojasi eikä käytä kävijäseurantaa.</p>
+        <p class="yhteys-huomio">Jos sähköpostiohjelmasi ei aukea napista, kopioi osoite ja lähetä viesti tavalliseen tapaan.</p>
       </div>
     </section>
   </main>

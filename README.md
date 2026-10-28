@@ -186,8 +186,8 @@ Hannes pyysi näyttävämpää ilmettä ja avausefektiä. Ilme oli ensin esikats
     4. Pystykehys suurenee ja aukeaa sivuksi.
   - **Muu ilme:**
     - musta hero, jonka otsikko ilmestyy sana kerrallaan
-    - keltainen nauha (alustat ja lyhyet lupaukset)
-    - kursori osioiden otsikoiden perässä
+    - ~~keltainen nauha (alustat ja lyhyet lupaukset)~~ (poistettu 28.10.2026)
+    - ~~kursori osioiden otsikoiden perässä~~ (poistettu 28.10.2026)
     - otsikot kirjoittuvat näkyviin vieritettäessä
     - puhelinkuvan tekstityksessä juuri puhuttu sana on keltainen
     - hienovarainen rakeisuus betonitaustassa
@@ -203,6 +203,15 @@ Hannes pyysi näyttävämpää ilmettä ja avausefektiä. Ilme oli ensin esikats
 - **Vähennetty liike:** jos laitteessa on valittu vähemmän liikettä (`prefers-reduced-motion`), intro ja animaatiot jäävät pois.
 - **Toteutus:** jokaisen sivun `<head>`-osassa on pieni skripti, joka lisää `<html>`-elementtiin luokan `ilme-uusi` ja lataa tiedostot `assets/ilme-uusi.css` ja `assets/ilme-uusi.js`. Kaikki uudet tyylit ovat `.ilme-uusi`-luokan alla.
 - **Käyttöönotto tehty 23.10.2026:** parametriehto poistettiin kaikilta sivuilta, `valuutta.js`:n `lisaParametrit` palauttaa tyhjän listan, ja `ilme-uusi.js`:n linkkikohta poistettiin.
+- **Kevennys 28.10.2026** (palaute: liikaa tietoa, liian täyteläinen ja tekoälyn näköinen; Hanneksen päätökset). Yllä kuvatusta ilmeestä poistettiin:
+  - avausefekti (etusivujen `<head>`-skriptistä poistettiin `data-intro`; koodi on yhä `ilme-uusi.js`:ssä)
+  - keltainen nauha heron alta (`ilme-uusi.js` ja `ilme-uusi.css`)
+  - vilkkuva keltainen kursori kaikista otsikoista (hero, osiot, alasivut ja 404). Pystyviiva jää logoon ja aikajanan kursoriin.
+  - heron yläotsake ja pientekstit, pieni 16:9-kuva ja kuvatekstit. Pysäytä esimerkki -nappi on aikajanan alla.
+  - Mitä klipeissä on -osion kaavio ja tekniikkalista (drop, äänitaso, kuvataajuus). Tilalla on neljä lyhyttä kohtaa (`.ominaisuudet-tiivis`), joista ensimmäinen on pysäyttävä alku.
+  - hintaosion musta näytelaatikko ja keltaiset lupausrivit; laskutusteksti yhteen lauseeseen
+  - UKK 13 → 8 kysymystä, vastaukset lyhyemmiksi
+  - Vaiheita on kolme (ennen neljä). Heron otsikko on puhelimessa pienempi (`h1`: `clamp(3.25rem, 15vw, 9.5rem)`).
 
 ## Hakukoneet ja somejaot
 
