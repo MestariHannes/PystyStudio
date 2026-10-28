@@ -46,6 +46,7 @@ Suomenkieliset sivut ovat juuressa ja englanninkieliset kansiossa `en/`. Assetit
 
 - **Kielivalitsin FI | EN** on jokaisen sivun yläpalkissa (`<nav class="kielet">`). Linkki vie vastaavalle sivulle toisella kielellä. Nykyisen kielen linkissä on `aria-current="page"`.
 - **Hakukoneet:** jokaisen sivun `<head>`-osassa on `hreflang`-linkit (fi, en ja x-default = suomi). Osoitteet ovat täysiä osoitteita (`https://pystystudio.fi/...`). Jos verkkotunnus vaihtuu, vaihda ne kaikista HTML-tiedostoista sekä `tarjous.js`:n `SIVUSTO`.
+- **Sivukartta ja robots.txt** (28.10.2026): `sitemap.xml` listaa 8 sivua samoilla `hreflang`-pareilla kuin sivujen `<head>`, ja `robots.txt` sallii kaiken ja kertoo sivukartan osoitteen. `404.html` on `noindex` eikä ole sivukartassa. Kun lisäät sivun, lisää se sivukarttaan; kun sivun sisältö muuttuu, päivitä sen `lastmod`. Sivu on Google Search Consolessa (verkkotunnusomaisuus `pystystudio.fi`, vahvistettu Cloudflaren TXT-tietueella).
 - **Kun suomenkielinen teksti muuttuu,** päivitä sama kohta englanninkieliseen sivuun. Ehtojen ja tietosuojan englanninkieliset versiot ovat käännöksiä, ja niiden lopussa kerrotaan, että suomenkielinen versio on ensisijainen.
 - **Englanninkielisten sivujen alv- ja laskutustekstit ovat Tuomarin tekstejä (23.10.2026), ja niitä käytetään sanatarkasti:**
   - alv: ”Prices exclude VAT. Finnish customers: VAT 25.5% is added. EU businesses with a valid VAT number: 0% VAT (reverse charge). Businesses outside the EU: 0% VAT. Services are for businesses only.”
