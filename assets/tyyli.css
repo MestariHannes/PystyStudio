@@ -1029,6 +1029,39 @@ h1 span { display: block; }
   background: var(--musta);
 }
 .portaat span.valittu { background: var(--keltainen); color: var(--musta); }
+/* − ja + -napit vivun arvon vieressä (hinnat.js, teeAskelnapit; 29.10.2026). */
+.saadin-askel { display: inline-flex; align-items: center; gap: .5rem; }
+/* Nappien kanssa otsikkorivi keskitetään pystysuunnassa (ilman nappeja, eli ilman JavaScriptiä, perusviivalle). */
+.saadin-otsikko:has(.saadin-askel) { align-items: center; }
+.saadin-nappi {
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 2px solid var(--musta);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--musta);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.saadin-nappi::before,
+.saadin-nappi[data-suunta="plus"]::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 40%;
+  height: 2.5px;
+  border-radius: 1px;
+  background: currentColor;
+  translate: -50% -50%;
+}
+.saadin-nappi[data-suunta="plus"]::after { width: 2.5px; height: 40%; }
+.saadin-nappi:hover:not(:disabled) { background: var(--keltainen); }
+.saadin-nappi:focus-visible { outline: 3px solid var(--musta); outline-offset: 2px; }
+.saadin-nappi:disabled { opacity: .3; cursor: default; }
+.apusaadin .saadin-nappi { width: 2.125rem; height: 2.125rem; }
 /* Tiheä porrasrivi (Klippaamo 4–64 ja kertaerä 1–50 yhden klipin välein, 29.10.2026): näkyvissä ovat vain avainmäärät
    viivoineen, kapealla data-avain ja leveällä (64em+) myös data-avain-leve. Valittu määrä näkyy aina säätimen yläpuolella. */
 .portaat-tiheat span:not([data-avain]):not([data-avain-leve]) { display: none; }

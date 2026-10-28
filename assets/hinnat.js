@@ -22,6 +22,7 @@
     sisAlvLyhyt: 'incl. VAT',
     sisAlvIso: 'incl. VAT 25.5%',
     klippihinta: function (raha) { return 'about ' + raha + ' per clip'; },
+    vahemman: 'Fewer', enemman: 'More',
     tapaIlmoitus: {
       kuluttaja: 'Prices are now shown for private individuals, including VAT.',
       yritys: 'Prices are now shown for businesses, excluding VAT.'
@@ -64,6 +65,7 @@
     sisAlvLyhyt: 'sis. alv',
     sisAlvIso: 'sis. alv 25,5 %',
     klippihinta: function (raha) { return 'noin ' + raha + ' / klippi'; },
+    vahemman: 'Vähemmän', enemman: 'Enemmän',
     tapaIlmoitus: {
       kuluttaja: 'Hinnat näytetään nyt yksityishenkilölle alv:n kanssa.',
       yritys: 'Hinnat näytetään nyt yritykselle ilman alv:tä.'
@@ -265,16 +267,51 @@
 
   // Yksi liukusäädin porrasnumeroineen. paivita(i, kayttaja): kayttaja = true, kun muutos tuli käyttäjältä.
   // input- ja change-tapahtuma tulevat usein samasta liikkeestä, joten sama arvo käsitellään vain kerran.
+  // − ja + -napit vivun arvon ympärille (29.10.2026): puhelimella vipu hyppää helposti usean pykälän,
+  // joten määrän voi säätää napeilla yksi kerrallaan. Napit ovat vivun otsikkorivillä (.saadin-otsikko .saadin-arvo).
+  function teeAskelnapit(input, askel) {
+    var otsikko = input.previousElementSibling;
+    var arvo = otsikko && otsikko.classList.contains('saadin-otsikko') ? otsikko.querySelector('.saadin-arvo') : null;
+    if (!arvo) return null;
+    var nimi = otsikko.querySelector('label') ? otsikko.querySelector('label').textContent.trim() : '';
+    var ryhma = document.createElement('span');
+    ryhma.className = 'saadin-askel';
+    // Merkit − ja + piirretään CSS:llä (data-suunta), jotta ne ovat samankokoiset fontista riippumatta.
+    function nappi(teksti, suunta) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'saadin-nappi';
+      b.setAttribute('data-suunta', suunta > 0 ? 'plus' : 'miinus');
+      b.setAttribute('aria-label', teksti + (nimi ? ': ' + nimi : ''));
+      b.setAttribute('aria-controls', input.id);
+      b.addEventListener('click', function () { askel(suunta); });
+      return b;
+    }
+    var miinus = nappi(T.vahemman, -1), plus = nappi(T.enemman, 1);
+    arvo.parentNode.insertBefore(ryhma, arvo);
+    ryhma.appendChild(miinus);
+    ryhma.appendChild(arvo);
+    ryhma.appendChild(plus);
+    return { miinus: miinus, plus: plus };
+  }
+
   function kytke(input, paivita) {
     var portaat = input.nextElementSibling;
     var merkit = portaat && portaat.classList.contains('portaat') ? portaat.querySelectorAll('[data-i]') : [];
     var max = Number(input.max) || 1;
     var piirretty = null;
+    var napit = teeAskelnapit(input, function (suunta) {
+      var uusi = Math.min(max, Math.max(0, Number(input.value) + suunta));
+      if (String(uusi) === input.value) return;
+      input.value = uusi;
+      kayttajalta();
+    });
 
     function piirra(kayttaja) {
       var i = Number(input.value);
       piirretty = input.value;
       input.style.setProperty('--t', String(i / max));
+      if (napit) { napit.miinus.disabled = i <= 0; napit.plus.disabled = i >= max; }
       Array.prototype.forEach.call(merkit, function (m) { m.classList.toggle('valittu', Number(m.dataset.i) === i); });
       paivita(i, kayttaja === true);
     }
