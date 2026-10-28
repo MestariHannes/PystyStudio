@@ -141,7 +141,7 @@ Jokainen palvelu on oma `<li class="hintarivi">`-rivinsä: nimi on `<h4>`-tagiss
 
 Kuukausipaketti (Klippaamo), Kertaerä, AI-mainospaketti ja Arkisto ovat säädinkortteja (`data-saadin="klippaamo"` jne.), ja Klippitilin hoito on oma korttinsa (`data-tilinhoito`). Säädin päivittää nimen, kuvauksen, hinnan (alv 0 %), alv:llisen hinnan (25,5 %) ja €/klippi-luvun. Laskenta on tiedostossa `assets/hinnat.js`.
 
-- **Portaiden hinnat** ovat `hintadata.js`:ssä, esim. `klippaamo: { 8: 249, 12: 349, … }` (klippejä: hinta).
+- **Portaiden hinnat** ovat `hintadata.js`:ssä, esim. `klippaamo: { 4: 129, 8: 249, 12: 349, … }` (klippejä: hinta).
 - **Portaat ja niiden omat tekstit** ovat kortin `data-portaat`-attribuutissa, esim. `{"n":12,"nimi":"Klippaamo Starter"}`. Portaalle voi antaa oman nimen (`nimi`), kuvauksen (`kuvaus`) ja lisärivin (`lisa`). Englanninkielisessä tiedostossa tekstit ovat englanniksi.
 - **`data-oletus`** kertoo oletusportaan järjestysnumeron (0 = ensimmäinen). Jos portaiden määrä muuttuu, päivitä myös `hintadata.js`, `<input type="range">`:n `value` ja `max` sekä porrasnumerot (`.portaat`).
 - **Ilman JavaScriptiä** säätimet ovat piilossa ja kortissa näkyy oletusportaan teksti. Kun muutat oletusportaan hintaa, päivitä siis myös kortin näkyvät tekstit (nimi, kuvaus, hinta ja `data-yhteenveto`-rivi) molemmilla kielillä.
@@ -152,7 +152,7 @@ Kuukausipaketti (Klippaamo), Kertaerä, AI-mainospaketti ja Arkisto ovat säädi
 Klippaamo-kortissa on pakettisäätimen yläpuolella laskuri ”Laske paketin koko”. Suomenkielisellä etusivulla se on 28.10.2026 alkaen suljettavan otsikon ”Laske koko videoiden määrästä” takana (`details.apu-avattava`), jotta kortissa näkyy ensin yksi säädin. Osoitteen `?videot=&per=` avaa sen. Laskurissa ovat **Videoita kuukaudessa** (1, 2, 3, 4, 5, 6, 8; oletus 4) ja **Klippiä per video** (2, 3, 4, 5, 6, 8; oletus 3).
 
 - Yhteismäärä (videot × klippiä per video) näkyy rivillä ”Yhteensä 12 klippiä kuukaudessa”, ja pakettisäädin siirtyy pienimpään portaaseen, joka riittää.
-- Alle 8 klippiä: paketti 8 ja vinkki kertaerästä. Yli 24: paketti 24, teksti ”sovitaan erikseen, eikä ylärajaa ole” ja Kysy tarjous -linkki (sama sähköposti kuin muissa napeissa). Portaiden väliin jäävä määrä: kerrotaan, montako klippiä jää vapaaksi.
+- Alle 4 klippiä: paketti 4 ja vinkki kertaerästä (pienin paketti oli 8 klippiä 28.10.2026 asti). Yli 24: paketti 24, teksti ”sovitaan erikseen, eikä ylärajaa ole” ja Kysy tarjous -linkki (sama sähköposti kuin muissa napeissa). Portaiden väliin jäävä määrä: kerrotaan, montako klippiä jää vapaaksi.
 - Kun pakettisäädintä liikuttaa suoraan, apusäätimet eivät muutu, mutta niiden alla näkyy, montako klippiä videota kohden pakettiin mahtuu.
 - Arvot ovat HTML:ssä apusäätimen `data-arvot`-kentässä ja oletus `data-oletus`-kentässä (järjestysnumero). Tekstit ovat `hinnat.js`:ssä molemmilla kielillä.
 
@@ -167,6 +167,7 @@ Asiakaskohtaisia hintoja ja tarjouksia ei laiteta sivulle.
 - **Lähetä tarjouspyyntö (ei sitova)** avaa kävijän oman sähköpostiohjelman valmiilla viestillä (mailto) osoitteeseen korkiakoskihannes@gmail.com. Aihe on ”Tarjouspyyntö: [yritys]”. Jos ilmaiset näytteet on valittu, viestissä on rivi ”Hyväksyn näytteiden ehdot: [linkki]”. Sivu ei lähetä eikä tallenna mitään itse.
 - **Pitkä viesti:** yli 1 800 merkin mailto-linkki ei välttämättä avaudu kaikissa sähköpostiohjelmissa. Silloin sivu näyttää ohjeen, ja **Kopioi viesti** -nappi kopioi viestin leikepöydälle. Jos selain ei salli kopiointia, viesti näytetään kentässä itse kopioitavaksi.
 - **Takaisin-nappi:** sivun valinnat päivitetään osoitteeseen (ei henkilötietoja), ja valintakentissä on `autocomplete="off"`. Palatessa valinnat, yhteenveto ja hinnat palautuvat osoitteesta.
+- **Julkaisutekstit** (korjattu 28.10.2026): ne näkyvät 0 €:n rivinä ”sisältyy …”, kun mukana on Pro (24 klippiä), Klippitilin hoito tai Kaikki valmiina, koska ne kuuluvat näihin. Aiemmin tarjous laski 60 €/kk kahteen kertaan klippitilin hoidon kanssa.
 - **Erikoistapaukset:** Kaikki valmiina sisältää klippitilin hoidon, joten jos molemmat on valittu, Klippitilin hoito näkyy rivinä ”sisältyy Kaikki valmiina -pakettiin” (0 €) ilman toista käyttöönottoa. Jos Klippitilin hoito valitaan ilman klippipalvelua (Klippaamo, Kaikki valmiina, Kertaerä tai Arkisto), rivillä näkyy huomio ”Klippitilin hoito myydään klippipaketin rinnalle”. Jos videoita × klippiä per video on yli 24, näkyy ”sovitaan erikseen” ja Kysy tarjous -linkki (aihe ”Tarjouspyyntö: yli 24 klippiä kuukaudessa”, ilman näyte-ehtoriviä).
 - **Ilman JavaScriptiä** sivulla näkyy ohje lähettää sähköpostia ja palvelulista. Yhteenveto ja yhteystietokentät ovat piilossa.
 - **Tietosuoja:** tarjouspyynnöstä kerrotaan tietosuojaselosteen kohdassa ”Mitä tietoja käsittelen” (molemmat kielet).

@@ -34,6 +34,7 @@
     kpl: function (n, hinta) { return n + ' × ' + hinta; },
     sisaltyy: 'included in the Pro package',
     sisaltyyKaikki: 'included in the all-done-for-you package',
+    sisaltyyHoito: 'included in clip account management',
     yliAihe: function (max) { return 'Quote request: more than ' + max + ' clips a month'; },
     yliViesti: function (v, p) { return 'Hi,\n\nVideos per month: ' + v + '\nClips per video: ' + p + '\nChannel: \n'; },
     eiKlippeja: 'Select a clip service first: the price is per clip.',
@@ -74,6 +75,7 @@
     kpl: function (n, hinta) { return n + ' × ' + hinta; },
     sisaltyy: 'sisältyy Pro-pakettiin',
     sisaltyyKaikki: 'sisältyy Kaikki valmiina -pakettiin',
+    sisaltyyHoito: 'sisältyy klippitilin hoitoon',
     yliAihe: function (max) { return 'Tarjouspyyntö: yli ' + max + ' klippiä kuukaudessa'; },
     yliViesti: function (v, p) { return 'Hei,\n\nVideoita kuukaudessa: ' + v + '\nKlippiä per video: ' + p + '\nKanava: \n'; },
     eiKlippeja: 'Valitse ensin klippipalvelu: hinta lasketaan klippien määrästä.',
@@ -192,8 +194,11 @@
     KK.forEach(function (avain) {
       if (!valittu(avain)) return;
       r = rivi(avain);
-      var pro = avain === 'julkaisutekstit' && valittu('klippaamo') && koko(rivi('klippaamo')) === 24;
-      lisaa('kk', nimi(r), pro ? T.sisaltyy : '', pro ? 0 : H.kiinteat[avain] * 100);
+      // Julkaisutekstit sisältyvät Pro-pakettiin, klippitilin hoitoon ja Kaikki valmiina -pakettiin (korjattu 28.10.2026: ei kahta laskutusta).
+      var teksti = avain === 'julkaisutekstit';
+      var pro = teksti && valittu('klippaamo') && koko(rivi('klippaamo')) === 24;
+      var sisaltyy = pro ? T.sisaltyy : teksti && valittu('kaikkiValmiina') ? T.sisaltyyKaikki : teksti && valittu('tilinhoito') ? T.sisaltyyHoito : '';
+      lisaa('kk', nimi(r), sisaltyy, sisaltyy ? 0 : H.kiinteat[avain] * 100);
     });
     Object.keys(KPL).forEach(function (avain) {
       if (!valittu(avain)) return;
