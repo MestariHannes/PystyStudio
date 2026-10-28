@@ -15,7 +15,7 @@
 
   var en = V.kieli === 'en';
   var OSOITE = 'korkiakoskihannes@gmail.com';
-  var SIVUSTO = 'https://mestarihannes.github.io/PystyStudio/';
+  var SIVUSTO = 'https://pystystudio.fi/';
   var PITKA_MAILTO = 1800; // merkkiä: tätä pidempi mailto-linkki ei avaudu kaikissa sähköpostiohjelmissa
 
   function monikko(n, yksi, monta) { return n === 1 ? yksi : monta; }

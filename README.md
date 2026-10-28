@@ -45,7 +45,7 @@ Suomenkieliset sivut ovat juuressa ja englanninkieliset kansiossa `en/`. Assetit
 | `tarjous.html` | `en/quote.html` |
 
 - **Kielivalitsin FI | EN** on jokaisen sivun yläpalkissa (`<nav class="kielet">`). Linkki vie vastaavalle sivulle toisella kielellä. Nykyisen kielen linkissä on `aria-current="page"`.
-- **Hakukoneet:** jokaisen sivun `<head>`-osassa on `hreflang`-linkit (fi, en ja x-default = suomi). Osoitteet ovat täysiä osoitteita (`https://mestarihannes.github.io/PystyStudio/...`). Jos sivulle tulee oma verkkotunnus, vaihda ne kaikista HTML-tiedostoista.
+- **Hakukoneet:** jokaisen sivun `<head>`-osassa on `hreflang`-linkit (fi, en ja x-default = suomi). Osoitteet ovat täysiä osoitteita (`https://pystystudio.fi/...`). Jos verkkotunnus vaihtuu, vaihda ne kaikista HTML-tiedostoista sekä `tarjous.js`:n `SIVUSTO`.
 - **Kun suomenkielinen teksti muuttuu,** päivitä sama kohta englanninkieliseen sivuun. Ehtojen ja tietosuojan englanninkieliset versiot ovat käännöksiä, ja niiden lopussa kerrotaan, että suomenkielinen versio on ensisijainen.
 - **Englanninkielisten sivujen alv- ja laskutustekstit ovat Tuomarin tekstejä (23.10.2026), ja niitä käytetään sanatarkasti:**
   - alv: ”Prices exclude VAT. Finnish customers: VAT 25.5% is added. EU businesses with a valid VAT number: 0% VAT (reverse charge). Businesses outside the EU: 0% VAT. Services are for businesses only.”
@@ -62,7 +62,7 @@ Valitsin **€ EUR | $ USD** on englanninkielisen etusivun hintaosion alussa ja 
   - dollarit pyöristetään lähimpään kokonaiseen dollariin. Muoto on suomeksi ”269 $” ja englanniksi ”$269”.
 - **USD-tilassa valitsimen alla näkyy huomautus** (Tuomarin teksti). Sen sanamuoto on HTML:ssä valitsimen `data-malli`-kentässä, ja kurssi sekä päivämäärä tulevat kohtiin `{kurssi}` ja `{pvm}` tiedostosta `hintadata.js`.
 - **Valinnan muistaminen:** valinta tallennetaan selaimen localStorageen (avain `pystystudio-valuutta`), joten se säilyy sivulta ja kieleltä toiselle. Jos selain estää tallennuksen, valinta pätee vain avoimella sivulla. Tämä on kerrottu tietosuojaselosteessa (kohta Sivuston käyttö).
-- **Linkki suoraan dollareihin:** `?currency=usd`, esim. `https://mestarihannes.github.io/PystyStudio/en/?currency=usd`. Parametri voittaa tallennetun valinnan. Oletus on EUR molemmilla kielillä.
+- **Linkki suoraan dollareihin:** `?currency=usd`, esim. `https://pystystudio.fi/en/?currency=usd`. Parametri voittaa tallennetun valinnan. Oletus on EUR molemmilla kielillä.
 - **Ilman JavaScriptiä** näkyvät euromääräiset hinnat, ja valitsin on piilossa.
 
 ### Kurssin päivitys
@@ -226,23 +226,23 @@ Sivu julkaistiin 23.10.2026 samalla tavalla kuin Ajoura: omassa julkisessa repos
 
 | Mikä | Osoite |
 |---|---|
-| Sivu | https://mestarihannes.github.io/PystyStudio/ |
-| Sivu englanniksi | https://mestarihannes.github.io/PystyStudio/en/ |
-| Tietosuojaseloste | https://mestarihannes.github.io/PystyStudio/tietosuoja.html (englanniksi `en/privacy.html`) |
+| Sivu | https://pystystudio.fi/ (vanha osoite https://mestarihannes.github.io/PystyStudio/ ohjautuu tänne) |
+| Sivu englanniksi | https://pystystudio.fi/en/ |
+| Tietosuojaseloste | https://pystystudio.fi/tietosuoja.html (englanniksi `en/privacy.html`) |
 | Koodi | https://github.com/MestariHannes/PystyStudio (julkinen, haara `main`) |
 | Pages-asetus | https://github.com/MestariHannes/PystyStudio/settings/pages (lähde: `main`, kansio `/`) |
 | Linkki Lavreonin sivulta | Lavreonin PR https://github.com/MestariHannes/lavreon/pull/38: ”Pysty Studio ↗” yläpalkissa Ajouran vieressä sekä alapalkissa |
 
-Polussa on iso P ja iso S (`/PystyStudio/`), samaan tapaan kuin Ajouran vanhassa osoitteessa.
+Oma verkkotunnus `pystystudio.fi` (käyttäjän päätös 28.10.2026) on repon juuren `CNAME`-tiedostossa. Ennen sitä sivu oli osoitteessa `/PystyStudio/` (iso P ja iso S).
 
 - **Julkinen repo:** ilmaisessa GitHub-tilissä Pages vaatii julkisen repon, joten koodi ja tämä README näkyvät kaikille. Repoon laitetaan vain tämän kansion sisältö. Asiakkaiden klippejä, sopimuksia tai muita Pysty Studion kansioita ei laiteta sinne.
 - **Päivitys:** muokkaa tiedostoja tässä kansiossa (`09_verkkosivu`, joka on repon paikallinen kopio). Aja sitten `git add .`, `git commit -m "kuvaus"` ja `git push`. Sivu päivittyy muutamassa minuutissa.
-- **Oma verkkotunnus (valinnainen),** esim. `pystystudio.fi`:
-  1. Repon Settings → Pages → Custom domain → kirjoita verkkotunnus → Save.
-  2. Lisää verkkotunnuksen DNS-asetuksiin A-tietueet `185.199.108.153`, `185.199.109.153`, `185.199.110.153` ja `185.199.111.153` sekä `www`-aliakselle CNAME `mestarihannes.github.io`.
-  3. Kun DNS toimii, kytke päälle *Enforce HTTPS*.
-  4. Vaihda `hreflang`-, `canonical`-, `og:url`- ja `og:image`-osoitteet kaikista HTML-tiedostoista (ks. Kielet ja Hakukoneet ja somejaot), `tarjous.js`:n `SIVUSTO`, mailto-viestien näyte-ehtolinkit sekä `404.html`:n polut `/PystyStudio/` → `/`.
-  - Tarkista nimi ensin, ks. `01_suunnitelma` (Tuomarin nimitarkistus).
+- **Oma verkkotunnus `pystystudio.fi`:**
+  1. GitHubin tilin asetuksissa Settings → Pages → *Add a domain*: verkkotunnus vahvistetaan TXT-tietueella, jotta kukaan muu ei voi ottaa sitä käyttöön omalla GitHub-sivullaan.
+  2. Verkkotunnuksen DNS-asetuksiin A-tietueet `185.199.108.153`, `185.199.109.153`, `185.199.110.153` ja `185.199.111.153`, AAAA-tietueet `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153` ja `2606:50c0:8003::153` sekä `www`-nimelle CNAME `mestarihannes.github.io`.
+  3. Kun DNS toimii, push `CNAME`-tiedostolla (sisältö `pystystudio.fi`). Repon Settings → Pages näyttää verkkotunnuksen, ja kun varmenne on valmis, sieltä kytketään päälle *Enforce HTTPS*.
+  4. Kaikki täydet osoitteet (`hreflang`, `canonical`, `og:url`, `og:image`, `tarjous.js`:n `SIVUSTO` ja mailto-viestien näyte-ehtolinkit) ovat muotoa `https://pystystudio.fi/...`, ja `404.html`:n polut alkavat `/`.
+  - Nimi tarkistettiin 28.10.2026: Traficomin whois (vapaa), YTJ (ei samannimistä yritystä) ja verkkohaku. Tavaramerkkejä ei tarkistettu.
 
 ## Vielä tekemättä
 
@@ -253,7 +253,7 @@ Polussa on iso P ja iso S (`/PystyStudio/`), samaan tapaan kuin Ajouran vanhassa
 - [x] Sivuston tarkistuksen korjaukset A ja B sekä kevennetty hintaosio (23.10.2026)
 - [x] Mobiilivalikko, lyhyempi avausefekti, Kopioi osoite ja tiiviimpi hintaosio puhelimessa (28.10.2026)
 - [ ] Englanninkieliset sivut yksityishenkilöille (hintatapa, näyte-ehtojen kohdat 6 ja 7, UKK)
-- [ ] Oma verkkotunnus: vaihda osoitteet (canonical, og, hreflang, mailto-viestien ehtolinkki) ja `404.html`:n polut `/PystyStudio/…`, jotka toimivat vain github.io-osoitteessa
+- [ ] Oma verkkotunnus `pystystudio.fi`: osoitteet ja `CNAME` ovat valmiina haarassa `oma-domain` (28.10.2026). Julkaistaan, kun verkkotunnus on ostettu ja DNS toimii.
 - [ ] Kuva Hanneksesta Kuka klipit tekee -osioon (paikka on valmiina, ks. kommentti `index.html`:ssä)
 - [ ] Oikea demoklippi Hanneksen omasta materiaalista
 - [ ] Referenssit: klipit asiakkaan kirjallisella luvalla, sitten `hidden` pois osiosta (molemmilla kielillä)
