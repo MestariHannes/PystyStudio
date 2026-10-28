@@ -3,7 +3,11 @@
       tai sivun sisäinen linkki osoittaa avattavan osion sisälle, osio avataan ja kohta vieritetään näkyviin.
       Ilman JavaScriptiä osiot avautuvat itse napauttamalla.
    2. Heron esimerkkiklippi: tekstitys etenee sana kerrallaan, ja rajaus hyppää puhujaan, kun puhuja vaihtuu.
-      Jos käyttäjä on pyytänyt vähemmän liikettä, näytetään yksi pysäytyskuva. */
+      Jos käyttäjä on pyytänyt vähemmän liikettä, näytetään yksi pysäytyskuva.
+   3. Mobiilivalikko (lisätty 28.10.2026): alle 56em päävalikko ja kielivalinta avautuvat yläpalkin Valikko-napista.
+      Valikko sulkeutuu linkistä, Esc-näppäimestä, ohi napauttamalla ja kun näyttö levenee.
+   4. Kopioi osoite (lisätty 28.10.2026): jos sähköpostinappi ei avaa sähköpostiohjelmaa, osoitteen voi kopioida.
+      Jos leikepöytä ei ole käytössä, osoite valitaan valmiiksi kopioitavaksi. */
 (function () {
   'use strict';
 
@@ -157,4 +161,85 @@
   }
 
   kaynnista();
+})();
+
+(function () {
+  'use strict';
+
+  var nappi = document.querySelector('.valikko-nappi');
+  var valikko = document.getElementById('paavalikko');
+  if (!nappi || !valikko) return;
+
+  var h = document.documentElement;
+  var kapea = window.matchMedia ? window.matchMedia('(max-width: 55.99em)') : null;
+  h.classList.add('valikko-kaytossa');
+  nappi.hidden = false;
+
+  function auki() { return nappi.getAttribute('aria-expanded') === 'true'; }
+  function aseta(avaa, palautaKohdistus) {
+    h.classList.toggle('valikko-auki', avaa);
+    nappi.setAttribute('aria-expanded', String(avaa));
+    if (!avaa && palautaKohdistus) nappi.focus();
+  }
+
+  nappi.addEventListener('click', function (e) {
+    aseta(!auki());
+    // Näppäimistöllä avattaessa kohdistus siirtyy ensimmäiseen linkkiin (detail 0 = ei hiiren tai kosketuksen klikkaus).
+    if (auki() && e.detail === 0) {
+      var eka = valikko.querySelector('a');
+      if (eka) eka.focus();
+    }
+  });
+  valikko.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('a')) aseta(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && auki()) aseta(false, true);
+  });
+  document.addEventListener('click', function (e) {
+    if (auki() && !(e.target.closest && e.target.closest('.ylapalkki'))) aseta(false);
+  });
+  if (kapea) {
+    var muuttui = function () { if (!kapea.matches && auki()) aseta(false); };
+    if (kapea.addEventListener) kapea.addEventListener('change', muuttui);
+    else if (kapea.addListener) kapea.addListener(muuttui);
+  }
+})();
+
+(function () {
+  'use strict';
+
+  var en = document.documentElement.lang === 'en';
+  var KOPIOITU = en ? 'Copied' : 'Kopioitu';
+
+  document.querySelectorAll('[data-kopioi-osoite]').forEach(function (nappi) {
+    var osoite = nappi.getAttribute('data-kopioi-osoite');
+    var tila = nappi.parentNode.querySelector('[data-kopioi-tila]');
+    var linkki = nappi.parentNode.querySelector('a');
+    var teksti = nappi.textContent;
+    var ajastin = null;
+    nappi.hidden = false;
+
+    function onnistui() {
+      nappi.textContent = KOPIOITU;
+      if (tila) tila.textContent = KOPIOITU + ': ' + osoite;
+      clearTimeout(ajastin);
+      ajastin = setTimeout(function () { nappi.textContent = teksti; }, 2500);
+    }
+    // Ilman leikepöytää osoite valitaan, jolloin sen voi kopioida itse.
+    function valitse() {
+      if (!linkki || !window.getSelection) return;
+      var alue = document.createRange();
+      alue.selectNodeContents(linkki);
+      var valinta = window.getSelection();
+      valinta.removeAllRanges();
+      valinta.addRange(alue);
+    }
+    nappi.addEventListener('click', function () {
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(osoite).then(onnistui, valitse);
+        else valitse();
+      } catch (e) { valitse(); }
+    });
+  });
 })();

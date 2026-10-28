@@ -140,11 +140,12 @@
 }
 .ilme-animoi .ilme-paljastus.ilme-esilla > .kehys > :not(h2) { opacity: 1; transform: none; }
 
-/* ---------- Avausefekti (noin 5 s, vain etusivulla ensimmäisellä käynnillä) ----------
-   0–0,5 s   musta ruutu ja vilkkuva keltainen kursori
-   0,5–3 s   PYSTY | STUDIO ja ”Pitkät videot pystyyn.” sana kerrallaan, takana 16:9-studiokuva
-   3–4 s     16:9-kuva rajautuu 9:16:ksi puhujan kohdalle
-   4–5 s     pystykehys suurenee ja intro aukeaa sivuksi
+/* ---------- Avausefekti (noin 3 s, vain etusivulla ensimmäisellä käynnillä) ----------
+   Lyhennetty 28.10.2026 viidestä sekunnista kolmeen, koska myyntiviestistä tuleva kävijä näkee sen ensimmäisenä.
+   0–0,3 s     musta ruutu ja vilkkuva keltainen kursori
+   0,3–1,7 s   PYSTY | STUDIO ja ”Pitkät videot pystyyn.” sana kerrallaan, takana 16:9-studiokuva
+   1,7–2,2 s   16:9-kuva rajautuu 9:16:ksi puhujan kohdalle
+   2,2–3 s     pystykehys suurenee ja intro aukeaa sivuksi
    Ohita-nappi, klikkaus, kosketus, vieritys tai mikä tahansa näppäin ohittaa. */
 
 /* Musta peite heti ensimmäisestä piirrosta, kunnes intro on rakennettu. Varmistus: häviää itsestään. */
@@ -256,46 +257,46 @@
 }
 .ilme-intro-ohita:hover { background: var(--valkoinen); border-color: var(--valkoinen); }
 
-/* Aikajana: kaikki animaatiot kestävät koko intron (5 s), ja prosentit ovat aikaa (1 % = 0,05 s). */
-.ilme-intro-kaynnissa { animation: ilme-intro-pois 5s linear both; }
+/* Aikajana: kaikki animaatiot kestävät koko intron (3 s), ja prosentit ovat aikaa (1 % = 0,03 s). */
+.ilme-intro-kaynnissa { animation: ilme-intro-pois 3s linear both; }
 @keyframes ilme-intro-pois { 0%, 84% { opacity: 1; } 100% { opacity: 0; } }
 
-.ilme-intro-kaynnissa .ilme-intro-kursori { animation: ilme-intro-kursori .26s steps(1) 2 both; }
+.ilme-intro-kaynnissa .ilme-intro-kursori { animation: ilme-intro-kursori .13s steps(1) 2 both; }
 @keyframes ilme-intro-kursori { 0%, 49% { opacity: 1; } 50%, 99% { opacity: 0; } 100% { opacity: 1; } }
-.ilme-intro-kaynnissa .ilme-intro-pysty { animation: ilme-pop .34s cubic-bezier(.3, 1.6, .6, 1) .55s both; }
-.ilme-intro-kaynnissa .ilme-intro-studio { animation: ilme-pop .34s cubic-bezier(.3, 1.6, .6, 1) .95s both; }
+.ilme-intro-kaynnissa .ilme-intro-pysty { animation: ilme-pop .34s cubic-bezier(.3, 1.6, .6, 1) .28s both; }
+.ilme-intro-kaynnissa .ilme-intro-studio { animation: ilme-pop .34s cubic-bezier(.3, 1.6, .6, 1) .48s both; }
 .ilme-intro-kaynnissa .ilme-intro-slogan span {
   animation: ilme-pop .34s cubic-bezier(.3, 1.6, .6, 1) both;
-  animation-delay: calc(1.55s + var(--i, 0) * .37s);
+  animation-delay: calc(.7s + var(--i, 0) * .2s);
 }
-.ilme-intro-kaynnissa .ilme-intro-teksti { animation: ilme-intro-teksti 5s linear both; }
-@keyframes ilme-intro-teksti { 0%, 61% { opacity: 1; } 67%, 100% { opacity: 0; } }
+.ilme-intro-kaynnissa .ilme-intro-teksti { animation: ilme-intro-teksti 3s linear both; }
+@keyframes ilme-intro-teksti { 0%, 55% { opacity: 1; } 60%, 100% { opacity: 0; } }
 
-.ilme-intro-kaynnissa .ilme-intro-kohtaus { animation: ilme-intro-kohtaus 5s both; }
+.ilme-intro-kaynnissa .ilme-intro-kohtaus { animation: ilme-intro-kohtaus 3s both; }
 @keyframes ilme-intro-kohtaus {
-  0%, 27% { opacity: 0; transform: none; animation-timing-function: ease-out; }
-  39% { opacity: .38; }
-  61% { opacity: .38; transform: none; animation-timing-function: cubic-bezier(.6, 0, .3, 1); }
-  68% { opacity: 1; }
-  77%, 100% { opacity: 1; transform: translateX(20%); }
+  0%, 18% { opacity: 0; transform: none; animation-timing-function: ease-out; }
+  30% { opacity: .38; }
+  55% { opacity: .38; transform: none; animation-timing-function: cubic-bezier(.6, 0, .3, 1); }
+  62% { opacity: 1; }
+  70%, 100% { opacity: 1; transform: translateX(20%); }
 }
-.ilme-intro-kaynnissa .ilme-intro-kehys::after { animation: ilme-intro-reunus 5s both; }
-@keyframes ilme-intro-reunus { 0%, 27% { opacity: 0; } 37%, 62% { opacity: 1; } 70%, 100% { opacity: 0; } }
-.ilme-intro-kaynnissa .ilme-intro-rajaus-v { animation: ilme-intro-rajaus-v 5s both; }
-.ilme-intro-kaynnissa .ilme-intro-rajaus-o { animation: ilme-intro-rajaus-o 5s both; }
+.ilme-intro-kaynnissa .ilme-intro-kehys::after { animation: ilme-intro-reunus 3s both; }
+@keyframes ilme-intro-reunus { 0%, 18% { opacity: 0; } 28%, 56% { opacity: 1; } 64%, 100% { opacity: 0; } }
+.ilme-intro-kaynnissa .ilme-intro-rajaus-v { animation: ilme-intro-rajaus-v 3s both; }
+.ilme-intro-kaynnissa .ilme-intro-rajaus-o { animation: ilme-intro-rajaus-o 3s both; }
 @keyframes ilme-intro-rajaus-v {
-  0%, 62% { transform: translateX(-101%); animation-timing-function: cubic-bezier(.7, 0, .3, 1); }
-  77%, 100% { transform: translateX(0); }
+  0%, 56% { transform: translateX(-101%); animation-timing-function: cubic-bezier(.7, 0, .3, 1); }
+  71%, 100% { transform: translateX(0); }
 }
 @keyframes ilme-intro-rajaus-o {
-  0%, 62% { transform: translateX(101%); animation-timing-function: cubic-bezier(.7, 0, .3, 1); }
-  77%, 100% { transform: translateX(0); }
+  0%, 56% { transform: translateX(101%); animation-timing-function: cubic-bezier(.7, 0, .3, 1); }
+  71%, 100% { transform: translateX(0); }
 }
-.ilme-intro-kaynnissa .ilme-intro-rako { animation: ilme-intro-rako 5s both; }
-@keyframes ilme-intro-rako { 0%, 74% { opacity: 0; } 79%, 100% { opacity: 1; } }
-.ilme-intro-kaynnissa .ilme-intro-kehys { animation: ilme-intro-avaus 5s both; }
+.ilme-intro-kaynnissa .ilme-intro-rako { animation: ilme-intro-rako 3s both; }
+@keyframes ilme-intro-rako { 0%, 69% { opacity: 0; } 74%, 100% { opacity: 1; } }
+.ilme-intro-kaynnissa .ilme-intro-kehys { animation: ilme-intro-avaus 3s both; }
 @keyframes ilme-intro-avaus {
-  0%, 79% { transform: scale(1); animation-timing-function: cubic-bezier(.55, 0, .8, .25); }
+  0%, 75% { transform: scale(1); animation-timing-function: cubic-bezier(.55, 0, .8, .25); }
   100% { transform: scale(3.6); }
 }
 

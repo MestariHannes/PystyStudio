@@ -4,7 +4,7 @@
 
    2. Nauha heron alle: alustat ja lyhyet lupaukset (koriste, aria-hidden).
    3. Avausefekti etusivulla ensimmäisellä käynnillä (localStorage; ilman tallennusta kerran latausta kohden).
-      Noin 5 s, Ohita-nappi, ja klikkaus, kosketus, vieritys tai mikä tahansa näppäin ohittaa sen.
+      Noin 3 s, Ohita-nappi, ja klikkaus, kosketus, vieritys tai mikä tahansa näppäin ohittaa sen.
       Intro on vain sisällön päällä oleva kerros (aria-hidden): sivun sisältö on HTML:ssä heti.
       Pakota uudelleen: ?intro=1.
    4. Hero-otsikko sana kerrallaan ja osioiden otsikot kirjoittuvat näkyviin vieritettäessä.
@@ -124,8 +124,8 @@
       if (aloitettu || ohi) return;
       aloitettu = true;
       kerros.classList.add('ilme-intro-kaynnissa');
-      ajastimet.push(setTimeout(heroEsiin, 4300));
-      ajastimet.push(setTimeout(function () { lopeta(false); }, 5050));
+      ajastimet.push(setTimeout(heroEsiin, 2580));
+      ajastimet.push(setTimeout(function () { lopeta(false); }, 3030));
     }
     if (document.fonts && document.fonts.load) {
       Promise.all([

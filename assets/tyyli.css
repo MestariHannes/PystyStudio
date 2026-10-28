@@ -209,6 +209,92 @@ h4 { margin: 0; }
 .kielet-vali { color: var(--vari-viiva); font-weight: 400; }
 .ylapalkki-sisalto .kielet + .nappi { margin-left: -.25rem; }
 
+/* Mobiilivalikko (sivu.js lisää html-elementtiin luokat valikko-kaytossa ja auki ollessa valikko-auki).
+   Alle 56em: yläpalkissa logo, Ilmaiset näytteet ja Valikko-nappi. Päävalikko ja kielivalinta avautuvat yläpalkin alle. */
+.valikko-nappi,
+.paavalikko-kielet { display: none; }
+.valikko-kuvake,
+.valikko-kuvake::before,
+.valikko-kuvake::after {
+  display: block;
+  width: 1.125rem;
+  height: 2px;
+  background: currentColor;
+}
+.valikko-kuvake { position: relative; }
+.valikko-kuvake::before,
+.valikko-kuvake::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  transition: transform .2s ease-out;
+}
+.valikko-kuvake::before { top: -6px; }
+.valikko-kuvake::after { top: 6px; }
+.valikko-nappi[aria-expanded="true"] .valikko-kuvake { background: transparent; }
+.valikko-nappi[aria-expanded="true"] .valikko-kuvake::before { transform: translateY(6px) rotate(45deg); }
+.valikko-nappi[aria-expanded="true"] .valikko-kuvake::after { transform: translateY(-6px) rotate(-45deg); }
+@media (max-width: 55.99em) {
+  .valikko-kaytossa .ylapalkki .kielet { display: none; }
+  .valikko-kaytossa .ylapalkki-sisalto > .nappi-pieni { margin-left: auto; }
+  .valikko-kaytossa .valikko-nappi {
+    display: inline-grid;
+    place-items: center;
+    flex: 0 0 auto;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    border: 2px solid var(--musta);
+    border-radius: var(--sade);
+    background: transparent;
+    color: var(--musta);
+    cursor: pointer;
+  }
+  .valikko-kaytossa .valikko-nappi:hover,
+  .valikko-auki .valikko-nappi { background: var(--keltainen); }
+  .valikko-auki .paavalikko {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 4rem);
+    max-height: calc(100dvh - 4rem);
+    overflow-y: auto;
+    padding: .25rem 1.25rem 1.5rem;
+    background: var(--vari-paperi);
+    border-bottom: 2px solid var(--musta);
+  }
+  .valikko-auki .paavalikko > a,
+  .valikko-auki .paavalikko .paavalikko-tarjous {
+    display: block;
+    padding-block: .75rem;
+    border-bottom: 1px solid var(--vari-viiva);
+    color: var(--musta);
+    font-family: var(--fontti-otsikko);
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1;
+    text-decoration: none;
+  }
+  .valikko-auki .paavalikko-kielet { display: flex; gap: .5rem; margin-top: 1.25rem; }
+  .valikko-auki .paavalikko-kielet a {
+    display: inline-grid;
+    place-items: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    padding: 0 .5rem;
+    border: 2px solid var(--musta);
+    border-radius: var(--sade);
+    color: var(--musta);
+    font-size: .9375rem;
+    font-weight: 800;
+    text-decoration: none;
+  }
+  .valikko-auki .paavalikko-kielet a[aria-current] { background: var(--musta); color: var(--valkoinen); }
+}
+
 /* Hero */
 .hero { padding-block: 2rem 4rem; }
 .hero-ruudukko { display: grid; gap: 2.75rem; }
@@ -708,6 +794,8 @@ h1 span { display: block; }
   margin: 0 0 1.25rem;
 }
 .valuutta[hidden] { display: none; }
+/* Suomenkielisellä etusivulla valuuttavalitsin on hintaosion lopussa (28.10.2026). */
+.valuutta-loppu { margin: 2.5rem 0 0; }
 .valuutta-otsikko { font-size: .9375rem; font-weight: 700; }
 .valuutta-napit {
   display: inline-flex;
@@ -904,6 +992,38 @@ h1 span { display: block; }
   background: var(--vari-pinta);
 }
 .apusaatimet[hidden] { display: none; }
+/* Laskuri suljettavan otsikon takana (index.html, lisätty 28.10.2026). Merkki on pienempi versio .avattava-osioiden pallosta. */
+.apu-avattava { margin: 0 0 .5rem; }
+.apu-avattava > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  min-height: 2.75rem;
+  font-size: .9375rem;
+  font-weight: 800;
+  cursor: pointer;
+  list-style: none;
+}
+.apu-avattava > summary::-webkit-details-marker { display: none; }
+.apu-avattava > summary::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background:
+    linear-gradient(var(--musta), var(--musta)) center / .7rem 2px no-repeat,
+    linear-gradient(var(--musta), var(--musta)) center / 2px .7rem no-repeat,
+    var(--keltainen);
+  box-shadow: 0 0 0 2px var(--musta);
+}
+.apu-avattava[open] > summary::before {
+  background:
+    linear-gradient(var(--musta), var(--musta)) center / .7rem 2px no-repeat,
+    var(--keltainen);
+}
+.apu-avattava > summary:hover { text-decoration: underline; text-underline-offset: .18em; }
+.apu-avattava > .apusaatimet { margin-top: .25rem; }
 .apu-otsikko { margin: 0 0 .1rem; font-size: .875rem; font-weight: 800; }
 .apusaadin { display: grid; gap: 0; min-width: 0; }
 .apusaadin .saadin-otsikko { font-size: .875rem; }
@@ -1123,8 +1243,28 @@ h1 span { display: block; }
 .yhteys a.nappi-kaanteinen { color: var(--musta); margin-top: .5rem; }
 .yhteys a.nappi-kaanteinen:hover { color: var(--musta); background: var(--valkoinen); }
 .yhteys :focus-visible { outline-color: var(--keltainen); }
-.yhteys-puhelin { margin: 1.1rem 0 0; }
+.yhteys-puhelin,
+.yhteys-vastaus { margin: 1.1rem 0 0; }
 .yhteys-puhelin a { font-weight: 800; }
+/* Kopioi osoite -nappi mustalla pohjalla (sivu.js): valkoinen reuna, hover keltainen. */
+.kopioi-nappi {
+  display: flex;
+  align-items: center;
+  min-height: 2.5rem;
+  margin-top: .6rem;
+  padding: .4rem 1rem;
+  border: 2px solid var(--valkoinen);
+  border-radius: var(--sade);
+  background: transparent;
+  color: var(--valkoinen);
+  font: inherit;
+  font-size: .9375rem;
+  font-weight: 800;
+  line-height: 1.2;
+  cursor: pointer;
+}
+.kopioi-nappi[hidden] { display: none; }
+.kopioi-nappi:hover { background: var(--keltainen); border-color: var(--keltainen); color: var(--musta); }
 .yhteys-ruudukko { display: grid; gap: 2.5rem; }
 .yhteystiedot { margin: 0; display: grid; gap: 1.25rem; }
 .yhteystiedot dt { font-size: .875rem; font-weight: 700; opacity: .8; }
@@ -1444,6 +1584,6 @@ h1 span { display: block; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .klippi .kohtaus, .ukk-lista summary::after { transition: none; }
+  .klippi .kohtaus, .ukk-lista summary::after, .valikko-kuvake::before, .valikko-kuvake::after { transition: none; }
   .sana.nakyy { animation: none; }
 }

@@ -54,7 +54,7 @@ Suomenkieliset sivut ovat juuressa ja englanninkieliset kansiossa `en/`. Assetit
 
 ## Valuutta (EUR / USD)
 
-Hintaosion alussa on valitsin **€ EUR | $ USD**. Se vaihtaa kaikki sivun hinnat: kiinteät hinnat, säädinten hinnat, alv-rivit, €/klippi-rivit, lisäpalvelut ja ruudunlukijan tekstit (`aria-valuetext`).
+Valitsin **€ EUR | $ USD** on englanninkielisen etusivun hintaosion alussa ja suomenkielisellä etusivulla hintaosion lopussa (siirretty 28.10.2026, koska lähes kaikki suomalaiset kävijät maksavat euroissa ja valitsin oli hintojen edessä). Se vaihtaa kaikki sivun hinnat: kiinteät hinnat, säädinten hinnat, alv-rivit, €/klippi-rivit, lisäpalvelut ja ruudunlukijan tekstit (`aria-valuetext`).
 
 - **Laskut ovat aina euroissa,** joten USD-tilassakin euro näkyy:
   - isoissa hinnoissa dollarisumma on isolla (”≈ 391 $”) ja euro pienellä sen alla
@@ -82,6 +82,12 @@ Sähköposti, puhelin ja nimi ovat kaikissa HTML-tiedostoissa (Yhteys-osio, napi
 
 - **Referenssit-osio** on piilotettu (`hidden`), kunnes asiakkaalta on lupa. Kun klipit ovat paikallaan, poista `hidden` osion `<section>`-tagista (molemmilla kielillä).
 - **Y-tunnusta ei ole,** joten sitä ei ole lisätty. Kun Oy perustetaan, lisää Y-tunnus alapalkkiin ja tietosuojaselosteeseen ja päivitä UKK:n kohta ”Miksi lasku tulee Keikkalaskulta?” molemmilla kielillä. Englanninkielinen laskutusrivi on Tuomarin teksti, joten muutos tarkistetaan Tuomarilla.
+
+## Mobiilivalikko ja Kopioi osoite (lisätty 28.10.2026)
+
+- **Mobiilivalikko** (`sivu.js`, kohta 3; molemmat etusivut): alle 56em yläpalkissa ovat logo, Ilmaiset näytteet ja Valikko-nappi. Valikosta aukeavat osioiden linkit, Räätälöity tarjous ja kielivalinta FI | EN. Valikko sulkeutuu linkistä, Esc-näppäimestä ja ohi napauttamalla. Ilman JavaScriptiä nappi on piilossa ja yläpalkki on kuten ennen.
+- **Kopioi osoite** (`sivu.js`, kohta 4): Yhteys-osiossa sähköpostiosoitteen alla. Jos `mailto:`-nappi ei avaa sähköpostiohjelmaa (esim. tietokone ilman sähköpostiohjelmaa), osoitteen voi kopioida.
+- **Näytteet jo saaneelle** (heron alla ja Yhteys-osiossa): ”Sait jo näytteet sähköpostilla? Vastaa samaan viestiin, niin sovitaan aloituksesta.” Myyntiviestin saanut tekijä tulee sivulle näytteet jo saaneena.
 
 ## Logo ja ilme
 
@@ -143,7 +149,7 @@ Kuukausipaketti (Klippaamo), Kertaerä, AI-mainospaketti ja Arkisto ovat säädi
 
 ### Klippaamon apusäätimet (lisätty 23.10.2026)
 
-Klippaamo-kortissa on pakettisäätimen yläpuolella laskuri ”Laske paketin koko”: **Videoita kuukaudessa** (1, 2, 3, 4, 5, 6, 8; oletus 4) ja **Klippiä per video** (2, 3, 4, 5, 6, 8; oletus 3).
+Klippaamo-kortissa on pakettisäätimen yläpuolella laskuri ”Laske paketin koko”. Suomenkielisellä etusivulla se on 28.10.2026 alkaen suljettavan otsikon ”Laske koko videoiden määrästä” takana (`details.apu-avattava`), jotta kortissa näkyy ensin yksi säädin. Osoitteen `?videot=&per=` avaa sen. Laskurissa ovat **Videoita kuukaudessa** (1, 2, 3, 4, 5, 6, 8; oletus 4) ja **Klippiä per video** (2, 3, 4, 5, 6, 8; oletus 3).
 
 - Yhteismäärä (videot × klippiä per video) näkyy rivillä ”Yhteensä 12 klippiä kuukaudessa”, ja pakettisäädin siirtyy pienimpään portaaseen, joka riittää.
 - Alle 8 klippiä: paketti 8 ja vinkki kertaerästä. Yli 24: paketti 24, teksti ”sovitaan erikseen, eikä ylärajaa ole” ja Kysy tarjous -linkki (sama sähköposti kuin muissa napeissa). Portaiden väliin jäävä määrä: kerrotaan, montako klippiä jää vapaaksi.
@@ -154,7 +160,7 @@ Asiakaskohtaisia hintoja ja tarjouksia ei laiteta sivulle.
 
 ## Räätälöity tarjous (lisätty 23.10.2026)
 
-`tarjous.html` (englanniksi `en/quote.html`): kävijä valitsee palvelut, näkee hinta-arvion ja lähettää tarjouspyynnön. Sivulle vievät Räätälöity tarjous -painikkeet etusivun hintaosiossa (valuuttavalitsimen alla ja hintaosion lopussa) sekä yläpalkin valikossa leveällä näytöllä (64em eli noin 1024 px alkaen).
+`tarjous.html` (englanniksi `en/quote.html`): kävijä valitsee palvelut, näkee hinta-arvion ja lähettää tarjouspyynnön. Sivulle vievät Räätälöity tarjous -painike etusivun hintaosion lopussa sekä yläpalkin valikko: leveällä näytöllä (64em eli noin 1024 px alkaen) linkkinä yläpalkissa ja puhelimessa Valikossa. Englanninkielisellä etusivulla painike on myös hintaosion alussa. Suomenkielisen sivun yläreunan painike poistettiin 28.10.2026, jotta hinnat tulevat puhelimessa nopeammin näkyviin.
 
 - **Etusivun valinnat mukaan:** kun kävijä liikuttaa etusivun säätimiä, painikkeiden linkkiin lisätään valinnat, esim. `tarjous.html?klippaamo=12&videot=4&per=3&tilinhoito=20&alustat=tiktok,shorts&currency=usd`. Vain liikutetut säätimet tulevat mukaan. Parametrien nimet ovat `hintadata.js`:n palvelujen nimiä. Osoitteeseen ei laiteta henkilötietoja.
 - **Laskenta** (`assets/tarjous.js`): kuukausihinnat ja kertaluonteiset hinnat erikseen, alv 0 % ja alv:n kanssa. Kappalehintaiset lisät lasketaan kertaluonteisiksi. Englanninkielinen tekstitys ja vaakaversio lasketaan valittujen palvelujen klippimäärästä (Klippaamo ja Kaikki valmiina kuukausittain, muut kertaluonteisesti; livestriimi = 8 klippiä). Julkaisutekstit ovat 0 €, kun valittuna on Klippaamo Pro.
@@ -171,7 +177,7 @@ Asiakaskohtaisia hintoja ja tarjouksia ei laiteta sivulle.
 Hannes pyysi näyttävämpää ilmettä ja avausefektiä. Ilme oli ensin esikatseluna osoitteella `?uusi=1`, ja Hannes hyväksyi sen 23.10.2026. Nyt se on käytössä kaikilla sivuilla.
 
 - **Teema:** logon pystyviiva on kursori, joka kirjoittaa tekstityksen sana kerrallaan.
-  - **Avausefekti** (noin 5 s, vain etusivulla ensimmäisellä käynnillä):
+  - **Avausefekti** (noin 3 s, vain etusivulla ensimmäisellä käynnillä; lyhennetty 28.10.2026 viidestä sekunnista, koska myyntiviestistä tuleva kävijä näkee sen ensimmäisenä. Aikajana on `ilme-uusi.css`:n kommentissa):
     1. Musta ruutu ja vilkkuva kursori.
     2. PYSTY | STUDIO ja ”Pitkät videot pystyyn.” ilmestyvät sana kerrallaan.
     3. 16:9-studiokuva rajautuu 9:16:ksi puhujan kohdalle.
@@ -237,6 +243,9 @@ Polussa on iso P ja iso S (`/PystyStudio/`), samaan tapaan kuin Ajouran vanhassa
 - [x] Räätälöity tarjous -sivu (23.10.2026)
 - [x] PNG-kuvake (`apple-touch-icon`) ja jakokuva (`og:image`) (23.10.2026)
 - [x] Sivuston tarkistuksen korjaukset A ja B sekä kevennetty hintaosio (23.10.2026)
+- [x] Mobiilivalikko, lyhyempi avausefekti, Kopioi osoite ja tiiviimpi hintaosio puhelimessa (28.10.2026)
+- [ ] Englanninkieliset sivut yksityishenkilöille (hintatapa, näyte-ehtojen kohdat 6 ja 7, UKK)
+- [ ] Oma verkkotunnus: vaihda osoitteet (canonical, og, hreflang, mailto-viestien ehtolinkki) ja `404.html`:n polut `/PystyStudio/…`, jotka toimivat vain github.io-osoitteessa
 - [ ] Kuva Hanneksesta Kuka klipit tekee -osioon (paikka on valmiina, ks. kommentti `index.html`:ssä)
 - [ ] Oikea demoklippi Hanneksen omasta materiaalista
 - [ ] Referenssit: klipit asiakkaan kirjallisella luvalla, sitten `hidden` pois osiosta (molemmilla kielillä)
@@ -246,7 +255,7 @@ Polussa on iso P ja iso S (`/PystyStudio/`), samaan tapaan kuin Ajouran vanhassa
 
 ## Mitä sivulla ei ole
 
-- Ei evästeitä, analytiikkaa eikä seurantakoodia. Ainoa selaimeen tallennettava tieto on valuuttavalinta (localStorage), joka ei lähde selaimesta.
+- Ei evästeitä, analytiikkaa eikä seurantakoodia. Selaimeen tallennetaan vain valuuttavalinta, hintatapa (yksityishenkilö tai yritys) ja tieto nähdystä avausefektistä (localStorage). Ne eivät lähde selaimesta, ja ne on kerrottu tietosuojaselosteessa.
 - Ei lomaketta, joka lähettäisi tietoja: yhteydenotot ja tarjouspyynnöt lähtevät kävijän omasta sähköpostiohjelmasta (`mailto:`), joten sivu ei kerää tietoja itse.
 - Asiakkaiden nimiä, klippejä tai asiakaskohtaisia hintoja ei näytetä ilman lupaa.
 

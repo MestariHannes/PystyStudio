@@ -107,12 +107,18 @@
       <a class="logo" href="index.html" aria-label="Pysty Studio, etusivu">
         <img src="assets/logo.svg" alt="Pysty Studio" width="537" height="121">
       </a>
-      <nav class="paavalikko" aria-label="Päävalikko">
+      <!-- Kapealla näytöllä (alle 56em) päävalikko avautuu Valikko-napista (sivu.js), ja kielivalinta on valikon lopussa.
+           Ilman JavaScriptiä nappi on piilossa ja yläpalkki on kuten ennen. -->
+      <nav class="paavalikko" id="paavalikko" aria-label="Päävalikko">
         <a href="#nain-se-toimii">Näin se toimii</a>
         <a href="#klipit">Klipit</a>
         <a href="#hinnat">Hinnat</a>
         <a href="#ukk">Kysyttyä</a>
         <a class="paavalikko-tarjous" href="tarjous.html" data-tarjouslinkki>Räätälöity tarjous</a>
+        <span class="paavalikko-kielet">
+          <a href="index.html" lang="fi" hreflang="fi" aria-current="page" aria-label="FI – suomeksi">FI</a>
+          <a href="en/index.html" lang="en" hreflang="en" aria-label="EN – in English" data-kielilinkki>EN</a>
+        </span>
       </nav>
       <nav class="kielet" aria-label="Kieli – Language">
         <a href="index.html" lang="fi" hreflang="fi" aria-current="page" aria-label="FI – suomeksi">FI</a>
@@ -120,6 +126,9 @@
         <a href="en/index.html" lang="en" hreflang="en" aria-label="EN – in English" data-kielilinkki>EN</a>
       </nav>
       <a class="nappi nappi-ensisijainen nappi-pieni" href="#yhteys">Ilmaiset näytteet</a>
+      <button class="valikko-nappi" type="button" aria-expanded="false" aria-controls="paavalikko" hidden>
+        <span class="valikko-kuvake" aria-hidden="true"></span><span class="piilotettu">Valikko</span>
+      </button>
     </div>
   </header>
 
@@ -135,6 +144,8 @@
             <a class="nappi nappi-toissijainen" href="#hinnat">Katso hinnat</a>
           </div>
           <p class="pienteksti">Ei sido mihinkään. <a href="naytteet.html">Näytteiden ehdot</a></p>
+          <!-- Myyntiviestistä tulevalle: näytteet on jo tehty, joten seuraava askel on vastata viestiin. -->
+          <p class="pienteksti"><strong>Sait jo näytteet sähköpostilla?</strong> Vastaa samaan viestiin, niin sovitaan aloituksesta.</p>
         </div>
 
         <figure class="demo" data-demo data-puhuja="a">
@@ -307,18 +318,6 @@
           <p class="valuutta-huomio" data-hintatapa-huomio data-kuluttaja="Hinnat sisältävät alv:n 25,5 %. Yksityishenkilönä sinulla on 14 päivän peruuttamisoikeus." data-yritys="Hinnat ovat alv 0 %, ja laskuun lisätään alv 25,5 %."></p>
           <p class="piilotettu" data-hintatapa-ilmoitus aria-live="polite"></p>
         </div>
-        <!-- Valuuttavalitsin (assets/valuutta.js). Kurssi ja päivämäärä tulevat hintadata.js:stä huomautuksen {kurssi}- ja {pvm}-kohtiin. -->
-        <div class="valuutta" data-valuuttavalitsin hidden>
-          <span class="valuutta-otsikko" id="valuutta-otsikko">Valuutta</span>
-          <div class="valuutta-napit" role="group" aria-labelledby="valuutta-otsikko">
-            <button type="button" data-valuutta-nappi="eur" aria-pressed="true">€ EUR</button>
-            <button type="button" data-valuutta-nappi="usd" aria-pressed="false">$ USD</button>
-          </div>
-          <p class="valuutta-huomio" data-valuutta-huomio data-malli="USD-hinnat ovat suuntaa antavia, EKP:n viitekurssilla (1 € = {kurssi} USD, {pvm}). Hinnat sovitaan ja laskutetaan euroissa. Valuutanvaihdon kulut maksaa asiakas." hidden></p>
-          <p class="piilotettu" data-valuutta-ilmoitus aria-live="polite"></p>
-        </div>
-        <!-- Räätälöity tarjous: hinnat.js lisää linkkiin säätimien valinnat (data-tarjouslinkki). -->
-        <p class="tarjous-kehote"><a class="nappi nappi-toissijainen" href="tarjous.html" data-tarjouslinkki>Räätälöity tarjous</a><span>Kokoa oma paketti ja lähetä tarjouspyyntö. Ei sido mihinkään.</span></p>
         <!-- Hintasäätimet: hinnat ovat tiedostossa assets/hintadata.js (data-saadin kertoo, mikä palvelu).
              Portaat (n = klippejä) ja portaiden omat nimet ovat kortin data-portaat-attribuutissa.
              data-oletus on oletusportaan järjestysnumero (0 = ensimmäinen). Ilman JavaScriptiä näkyy oletusporras,
@@ -340,26 +339,31 @@
               </div>
               <p class="hinta"><span class="summa" data-summa>349&nbsp;€</span><span class="jakso">/kk</span><span class="alv">+ alv 25,5&nbsp;%</span></p>
               <div class="saadin" hidden>
-                <!-- Apusäätimet: videoita × klippiä per video siirtää pakettisäätimen pienimpään riittävään portaaseen.
-                     data-arvot = säätimen arvot, data-oletus = oletusarvon järjestysnumero (0 = ensimmäinen). -->
-                <div class="apusaatimet" data-apusaatimet role="group" aria-labelledby="apu-otsikko" hidden>
-                  <p class="apu-otsikko" id="apu-otsikko">Laske paketin koko</p>
-                  <div class="apusaadin">
-                    <div class="saadin-otsikko"><label for="saadin-videot">Videoita kuukaudessa</label><span class="saadin-arvo" data-apu-arvo="videot" aria-hidden="true">4</span></div>
-                    <input class="saadin-input" type="range" id="saadin-videot" min="0" max="6" step="1" value="3" autocomplete="off" data-apu="videot" data-arvot="[1,2,3,4,5,6,8]" data-oletus="3">
-                    <div class="portaat" aria-hidden="true" style="--n:7"><span style="--i:0" data-i="0">1</span><span style="--i:1" data-i="1">2</span><span style="--i:2" data-i="2">3</span><span style="--i:3" data-i="3">4</span><span style="--i:4" data-i="4">5</span><span style="--i:5" data-i="5">6</span><span style="--i:6" data-i="6">8</span></div>
+                <!-- Laskuri on suljettavan otsikon takana (28.10.2026), jotta kortissa näkyy yksi säädin. Laskuri siirtää alla olevan säätimen.
+                     Osoitteen valinnat ?videot=&per= avaavat sen (hinnat.js). -->
+                <details class="apu-avattava">
+                  <summary>Laske koko videoiden määrästä</summary>
+                  <!-- Apusäätimet: videoita × klippiä per video siirtää pakettisäätimen pienimpään riittävään portaaseen.
+                       data-arvot = säätimen arvot, data-oletus = oletusarvon järjestysnumero (0 = ensimmäinen). -->
+                  <div class="apusaatimet" data-apusaatimet role="group" aria-labelledby="apu-otsikko" hidden>
+                    <p class="apu-otsikko piilotettu" id="apu-otsikko">Laske paketin koko</p>
+                    <div class="apusaadin">
+                      <div class="saadin-otsikko"><label for="saadin-videot">Videoita kuukaudessa</label><span class="saadin-arvo" data-apu-arvo="videot" aria-hidden="true">4</span></div>
+                      <input class="saadin-input" type="range" id="saadin-videot" min="0" max="6" step="1" value="3" autocomplete="off" data-apu="videot" data-arvot="[1,2,3,4,5,6,8]" data-oletus="3">
+                      <div class="portaat" aria-hidden="true" style="--n:7"><span style="--i:0" data-i="0">1</span><span style="--i:1" data-i="1">2</span><span style="--i:2" data-i="2">3</span><span style="--i:3" data-i="3">4</span><span style="--i:4" data-i="4">5</span><span style="--i:5" data-i="5">6</span><span style="--i:6" data-i="6">8</span></div>
+                    </div>
+                    <div class="apusaadin">
+                      <div class="saadin-otsikko"><label for="saadin-per-video">Klippiä per video</label><span class="saadin-arvo" data-apu-arvo="per" aria-hidden="true">3</span></div>
+                      <input class="saadin-input" type="range" id="saadin-per-video" min="0" max="5" step="1" value="1" autocomplete="off" data-apu="per" data-arvot="[2,3,4,5,6,8]" data-oletus="1">
+                      <div class="portaat" aria-hidden="true" style="--n:6"><span style="--i:0" data-i="0">2</span><span style="--i:1" data-i="1">3</span><span style="--i:2" data-i="2">4</span><span style="--i:3" data-i="3">5</span><span style="--i:4" data-i="4">6</span><span style="--i:5" data-i="5">8</span></div>
+                    </div>
+                    <div class="apu-tulos">
+                      <p class="apu-yhteensa" data-apu-yhteensa>Yhteensä 12 klippiä kuukaudessa</p>
+                      <p class="apu-viesti" data-apu-viesti hidden><span data-apu-viesti-teksti></span> <a data-apu-tarjous href="mailto:korkiakoskihannes@gmail.com?subject=Tarjouspyynt%C3%B6%3A%20yli%2024%20klippi%C3%A4%20kuukaudessa&amp;body=Hei%2C%0A%0AVideoita%20kuukaudessa%3A%20%0AKlippi%C3%A4%20per%20video%3A%20%0AKanava%3A%20%0A" hidden>Kysy tarjous</a></p>
+                      <p class="piilotettu" data-apu-ilmoitus aria-live="polite"></p>
+                    </div>
                   </div>
-                  <div class="apusaadin">
-                    <div class="saadin-otsikko"><label for="saadin-per-video">Klippiä per video</label><span class="saadin-arvo" data-apu-arvo="per" aria-hidden="true">3</span></div>
-                    <input class="saadin-input" type="range" id="saadin-per-video" min="0" max="5" step="1" value="1" autocomplete="off" data-apu="per" data-arvot="[2,3,4,5,6,8]" data-oletus="1">
-                    <div class="portaat" aria-hidden="true" style="--n:6"><span style="--i:0" data-i="0">2</span><span style="--i:1" data-i="1">3</span><span style="--i:2" data-i="2">4</span><span style="--i:3" data-i="3">5</span><span style="--i:4" data-i="4">6</span><span style="--i:5" data-i="5">8</span></div>
-                  </div>
-                  <div class="apu-tulos">
-                    <p class="apu-yhteensa" data-apu-yhteensa>Yhteensä 12 klippiä kuukaudessa</p>
-                    <p class="apu-viesti" data-apu-viesti hidden><span data-apu-viesti-teksti></span> <a data-apu-tarjous href="mailto:korkiakoskihannes@gmail.com?subject=Tarjouspyynt%C3%B6%3A%20yli%2024%20klippi%C3%A4%20kuukaudessa&amp;body=Hei%2C%0A%0AVideoita%20kuukaudessa%3A%20%0AKlippi%C3%A4%20per%20video%3A%20%0AKanava%3A%20%0A" hidden>Kysy tarjous</a></p>
-                    <p class="piilotettu" data-apu-ilmoitus aria-live="polite"></p>
-                  </div>
-                </div>
+                </details>
                 <div class="saadin-otsikko"><label for="saadin-kuukausi">Klippejä kuukaudessa</label><span class="saadin-arvo" data-arvo aria-hidden="true">12</span></div>
                 <input class="saadin-input" type="range" id="saadin-kuukausi" min="0" max="4" step="1" value="1" autocomplete="off">
                 <div class="portaat" aria-hidden="true" style="--n:5"><span style="--i:0" data-i="0">8</span><span style="--i:1" data-i="1">12</span><span style="--i:2" data-i="2">16</span><span style="--i:3" data-i="3">20</span><span style="--i:4" data-i="4">24</span></div>
@@ -565,6 +569,18 @@
         </details>
 
         <p class="hinta-huomio">Jokaisessa toimituksessa on yksi korjauskierros. Kuukausipaketit laskutetaan kuun alussa, maksuaika 14 päivää. Kertaerä, Pysty Puhe, arkisto ja livestriimin klippaus laskutetaan toimituksen jälkeen, maksuaika 7 päivää. AI-mainospaketissa 50&nbsp;% laskutetaan ennen aloitusta ja 50&nbsp;% toimituksen jälkeen.</p>
+        <!-- Valuuttavalitsin (assets/valuutta.js). Suomenkielisellä sivulla hintaosion lopussa (siirretty 28.10.2026), koska lähes kaikki maksavat euroissa.
+             Räätälöity tarjous -kehote on tämän alla ja yläpalkissa (puhelimessa Valikossa). Kurssi ja päivämäärä tulevat hintadata.js:stä huomautuksen {kurssi}- ja {pvm}-kohtiin. -->
+        <div class="valuutta valuutta-loppu" data-valuuttavalitsin hidden>
+          <span class="valuutta-otsikko" id="valuutta-otsikko">Valuutta</span>
+          <div class="valuutta-napit" role="group" aria-labelledby="valuutta-otsikko">
+            <button type="button" data-valuutta-nappi="eur" aria-pressed="true">€ EUR</button>
+            <button type="button" data-valuutta-nappi="usd" aria-pressed="false">$ USD</button>
+          </div>
+          <p class="valuutta-huomio" data-valuutta-huomio data-malli="USD-hinnat ovat suuntaa antavia, EKP:n viitekurssilla (1 € = {kurssi} USD, {pvm}). Hinnat sovitaan ja laskutetaan euroissa. Valuutanvaihdon kulut maksaa asiakas." hidden></p>
+          <p class="piilotettu" data-valuutta-ilmoitus aria-live="polite"></p>
+        </div>
+        <!-- Räätälöity tarjous: hinnat.js lisää linkkiin säätimien valinnat (data-tarjouslinkki). -->
         <p class="tarjous-kehote tarjous-kehote-loppu"><a class="nappi nappi-toissijainen" href="tarjous.html" data-tarjouslinkki>Räätälöity tarjous</a><span>Kokoa oma paketti ja lähetä tarjouspyyntö. Ei sido mihinkään.</span></p>
       </div>
     </section>
@@ -661,12 +677,18 @@
           <p class="johdanto">Lähetä linkki yhteen videoosi ja kerro, millä kanavilla julkaiset. Teen siitä 3 ilmaista näyteklippiä ja ehdotan sinulle sopivaa pakettia.</p>
           <a class="nappi nappi-kaanteinen" href="mailto:korkiakoskihannes@gmail.com?subject=Ilmaiset%20n%C3%A4yteklipit&amp;body=Hei%2C%0A%0ALinkki%20videoon%3A%20%0AKanavat%2C%20joilla%20julkaisen%3A%20%0A%0AHyv%C3%A4ksyn%20n%C3%A4ytteiden%20ehdot%3A%20https%3A%2F%2Fmestarihannes.github.io%2FPystyStudio%2Fnaytteet.html%0A">Pyydä ilmaiset näytteet</a>
           <p class="yhteys-puhelin">Voit myös <a href="tel:+358413144255">soittaa</a> tai <a href="sms:+358413144255">lähettää tekstiviestin</a>: +358&nbsp;41&nbsp;314&nbsp;4255.</p>
+          <p class="yhteys-vastaus"><strong>Sait jo näytteet sähköpostilla?</strong> Vastaa samaan viestiin, niin sovitaan aloituksesta.</p>
           <p class="pienteksti">Saat 3 ilmaista näyteklippiä omasta videostasi, eikä niiden pyytäminen sido mihinkään. Näytteet ovat arviointia varten, ja saat julkaista ne, kun tilaat palvelun. Jos et tilaa, poistan näytteet ja raakatiedostot 30 päivässä. Lähettämällä linkin hyväksyt <a href="naytteet.html">näytteiden ehdot</a>.</p>
         </div>
         <dl class="yhteystiedot">
           <div>
             <dt>Sähköposti</dt>
-            <dd><a class="iso-linkki" href="mailto:korkiakoskihannes@gmail.com">korkiakoskihannes<wbr>@gmail.com</a></dd>
+            <dd>
+              <a class="iso-linkki" href="mailto:korkiakoskihannes@gmail.com">korkiakoskihannes<wbr>@gmail.com</a>
+              <!-- Kopioi osoite (sivu.js): jos sähköpostinappi ei avaa ohjelmaa. Ilman JavaScriptiä nappi on piilossa. -->
+              <button class="kopioi-nappi" type="button" data-kopioi-osoite="korkiakoskihannes@gmail.com" hidden>Kopioi osoite</button>
+              <span class="piilotettu" data-kopioi-tila aria-live="polite"></span>
+            </dd>
           </div>
           <div>
             <dt>Puhelin</dt>
@@ -677,7 +699,7 @@
             <dd>Hannes Korkiakoski</dd>
           </div>
         </dl>
-        <p class="yhteys-huomio">Napit avaavat oman sähköpostiohjelmasi valmiilla viestillä, ja viesti tulee suoraan sähköpostiini. Sivusto ei tallenna tietojasi eikä käytä kävijäseurantaa.</p>
+        <p class="yhteys-huomio">Napit avaavat oman sähköpostiohjelmasi valmiilla viestillä, ja viesti tulee suoraan sähköpostiini. Jos ohjelma ei aukea, kopioi osoite ja lähetä viesti tavalliseen tapaan. Sivusto ei tallenna tietojasi eikä käytä kävijäseurantaa.</p>
       </div>
     </section>
   </main>

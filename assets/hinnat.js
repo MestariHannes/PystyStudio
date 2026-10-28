@@ -412,6 +412,9 @@
     var piirraV = kytke(vInput, function (i, kayttaja) { if (kayttaja) apuMuuttui(true); });
     var piirraP = kytke(pInput, function (i, kayttaja) { if (kayttaja) apuMuuttui(true); });
     el.hidden = false;
+    // Suomenkielisellä sivulla laskuri on suljettavan otsikon takana; osoitteesta palautetut arvot avaavat sen.
+    var avattava = el.closest ? el.closest('.apu-avattava') : null;
+    if (avattava && palautettu) avattava.open = true;
 
     return {
       palautettu: palautettu,
