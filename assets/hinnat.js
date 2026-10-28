@@ -21,6 +21,7 @@
     lisaAlv: ' + VAT',
     sisAlvLyhyt: 'incl. VAT',
     sisAlvIso: 'incl. VAT 25.5%',
+    klippihinta: function (raha) { return 'about ' + raha + ' per clip'; },
     tapaIlmoitus: {
       kuluttaja: 'Prices are now shown for private individuals, including VAT.',
       yritys: 'Prices are now shown for businesses, excluding VAT.'
@@ -62,6 +63,7 @@
     lisaAlv: ' + alv',
     sisAlvLyhyt: 'sis. alv',
     sisAlvIso: 'sis. alv 25,5 %',
+    klippihinta: function (raha) { return 'noin ' + raha + ' / klippi'; },
     tapaIlmoitus: {
       kuluttaja: 'Hinnat näytetään nyt yksityishenkilölle alv:n kanssa.',
       yritys: 'Hinnat näytetään nyt yritykselle ilman alv:tä.'
@@ -245,6 +247,14 @@
       if (el.classList.contains('summa')) naytaHinta(el, sentit, etumerkki);
       else if (el.hasAttribute('data-sulut')) el.textContent = V.sulkeissa(sentit, jakso, etumerkki);
       else el.textContent = V.teksti(sentit, jakso, etumerkki);
+    });
+    // Pakettikortin klippihinta: data-klippihinta="klippaamo:N" = paketin hinta / N täysinä euroina (USD-tilassa dollareina).
+    document.querySelectorAll('[data-klippihinta]').forEach(function (el) {
+      var avain = el.getAttribute('data-klippihinta');
+      var euroja = kiinteaHinta(avain), n = Number(avain.split(':')[1]);
+      if (typeof euroja !== 'number' || !n) return;
+      var sentit = Math.round(hinnaksi(euroja) / n / 100) * 100;
+      el.textContent = T.klippihinta(V.valuutta() === 'usd' ? V.dollaria(sentit) : V.euroa(sentit));
     });
     // Kaikki valmiina vs. erikseen: Klippaamo 20 klippiä + klippitilin hoito (20 julkaisua, 3 alustaa).
     document.querySelectorAll('[data-kaikki-saasto]').forEach(function (el) {

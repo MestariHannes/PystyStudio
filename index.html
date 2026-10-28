@@ -250,7 +250,8 @@
           <p class="valuutta-huomio" data-hintatapa-huomio data-kuluttaja="Hinnat sisältävät alv:n 25,5 %. Yksityishenkilönä sinulla on 14 päivän peruuttamisoikeus." data-yritys="Hinnat ovat alv 0 %, ja laskuun lisätään alv 25,5 %."></p>
           <p class="piilotettu" data-hintatapa-ilmoitus aria-live="polite"></p>
         </div>
-        <!-- Pakettikortit (28.10.2026): kolme kuukausipakettia. Hinnat tulevat hintadata.js:stä (data-hinta="klippaamo:N",
+        <!-- Pakettikortit (28.10.2026): kolme kuukausipakettia. Klippihinta (data-klippihinta) = paketin hinta / klippien määrä täysinä euroina.
+             Hinnat tulevat hintadata.js:stä (data-hinta="klippaamo:N",
              hinnat.js), ja Yksityishenkilö | Yritys -valitsin vaihtaa ne. Ilman JavaScriptiä näkyy alv 0 % -hinta.
              Kaikki paketit, kertaerä, lisäpalvelut ja muut palvelut ovat tarjoussivulla (tarjous.html). -->
         <ul class="paketit">
@@ -258,18 +259,21 @@
             <h3>4 klippiä</h3>
             <p class="paketti-kuvaus">Pienelle kanavalle tai kokeiluun.</p>
             <p class="hinta"><span class="summa" data-hinta="klippaamo:4">129&nbsp;€</span><span class="jakso">/kk</span><span class="alv">+ alv 25,5&nbsp;%</span></p>
+            <p class="paketti-klippihinta" data-klippihinta="klippaamo:4">noin 32&nbsp;€ / klippi</p>
             <a class="paketti-linkki" href="tarjous.html?klippaamo=4">Valitse 4 klippiä</a>
           </li>
           <li class="paketti">
             <h3>12 klippiä</h3>
             <p class="paketti-kuvaus">Noin kolme klippiä viikossa.</p>
             <p class="hinta"><span class="summa" data-hinta="klippaamo:12">349&nbsp;€</span><span class="jakso">/kk</span><span class="alv">+ alv 25,5&nbsp;%</span></p>
+            <p class="paketti-klippihinta" data-klippihinta="klippaamo:12">noin 29&nbsp;€ / klippi</p>
             <a class="paketti-linkki" href="tarjous.html?klippaamo=12">Valitse 12 klippiä</a>
           </li>
           <li class="paketti">
             <h3>24 klippiä</h3>
             <p class="paketti-kuvaus">Kuusi klippiä viikossa ja valmis julkaisuteksti jokaiselle.</p>
             <p class="hinta"><span class="summa" data-hinta="klippaamo:24">599&nbsp;€</span><span class="jakso">/kk</span><span class="alv">+ alv 25,5&nbsp;%</span></p>
+            <p class="paketti-klippihinta" data-klippihinta="klippaamo:24">noin 25&nbsp;€ / klippi</p>
             <a class="paketti-linkki" href="tarjous.html?klippaamo=24">Valitse 24 klippiä</a>
           </li>
         </ul>
@@ -329,7 +333,7 @@
           </details>
           <details>
             <summary>Kuka omistaa klipit?</summary>
-            <p>Sinä. Saat klippeihin täydet käyttöoikeudet, kun lasku on maksettu, enkä näytä niitä muille ilman lupaasi.</p>
+            <p>Sinä. Saat klippeihin täydet käyttöoikeudet, kun lasku on maksettu, enkä näytä niitä muille ilman lupaasi. Klippien musiikkiin saat käyttöoikeuden klipin osana, mutta et voi käyttää kappaletta erikseen.</p>
           </details>
           <details>
             <summary>Kuinka pitkä sopimus on?</summary>

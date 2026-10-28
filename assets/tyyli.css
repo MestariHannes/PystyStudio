@@ -325,15 +325,18 @@ h4 { margin: 0; }
 /* Hero */
 .hero { padding-block: 2rem 4rem; }
 .hero-ruudukko { display: grid; gap: 2.75rem; }
-/* Kapealla (alle 64em) demo on heti otsikon alla, jotta liikkuva klippi näkyy ensimmäisellä ruudulla (28.10.2026).
+/* Kapealla (alle 64em) otsikko, ingressi ja napit ovat ensin ja liikkuva klippi niiden alla, jotta selitys ja
+   näytepainike näkyvät ensimmäisellä ruudulla ja klipin yläosa heti niiden alla (28.10.2026, arvioiden korjaus).
    Tekstin osat ovat suoraan flex-säiliön lapsia (display: contents), ja järjestys tulee order-arvoista. */
 @media (max-width: 63.99em) {
   .hero-ruudukko { display: flex; flex-direction: column; gap: 0; }
   .hero-teksti { display: contents; }
   .hero-teksti > * { order: 3; }
   .hero-teksti > .ylaotsake,
-  .hero-teksti > h1 { order: 1; }
-  .hero-ruudukko > .demo { order: 2; margin: .25rem 0 2.5rem; }
+  .hero-teksti > h1,
+  .hero-teksti > .ingressi,
+  .hero-teksti > .toiminnot { order: 1; }
+  .hero-ruudukko > .demo { order: 2; margin: 2.5rem 0 1.5rem; }
 }
 /* Yläotsake H1:n yläpuolella: keltainen pystyviiva mustalla reunalla kuin logossa. */
 .ylaotsake {
@@ -1481,6 +1484,7 @@ h1 span { display: block; }
 .paketti-kuvaus { margin: 0; max-width: 22em; }
 .paketti .hinta { margin: .5rem 0 0; text-align: left; }
 .paketti .hinta .alv { display: block; }
+.paketti-klippihinta { margin: 0; font-size: .9375rem; font-weight: 600; }
 .paketti-linkki { margin-top: .5rem; font-weight: 800; }
 .paketit-muut { max-width: 46em; margin: 2rem 0 0; }
 @media (min-width: 45em) {
@@ -1504,6 +1508,7 @@ h1 span { display: block; }
 .tarjous-ruudukko { display: grid; gap: 2.5rem; margin-top: 1.5rem; }
 .tarjous-valinnat { min-width: 0; }
 .tarjous-alv { margin: 0 0 1.5rem; color: var(--vari-harmaa); }
+.tarjous-sivu .valuutta + .valuutta { margin-top: 1rem; }
 .tarjous-osio { min-width: 0; margin: 0 0 2.5rem; padding: 0; border: 0; }
 .tarjous-osio[hidden] { display: none; }
 .tarjous-osio > legend {

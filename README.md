@@ -107,6 +107,14 @@ Sivu käyttää logokonseptia 4, Pystyviiva, jonka Hannes valitsi 23.10.2026. L�
 
 > **Tarjoussivun säätimet 28.10.2026** (Hanneksen pyyntö): Klippiä per video alkaa 1:stä, Videoita kuukaudessa ulottuu 20:een, ja Klippaamossa on 24:n yli koot 28–64 (neljän välein). Yli 24 klipin hinta on 599 € + 25 € jokaisesta lisäklipistä (Lisäklipin hinta), ja niihin sisältyvät julkaisutekstit kuten Pro-pakettiin. Yli 64 klippiä kuussa: tarjoussivu näyttää huomion "sovitaan erikseen".
 
+> **Arvioiden korjaukset 28.10.2026** (Pääaseman, Kilpailijan ja Tuomarin arviot, `04_myynti/2026-10-28_sivuston-korjaukset/2026-10-28_arviot-sivusta.md`):
+> - **Tarjoussivulla (fi) on sama Yksityishenkilö | Yritys -valitsin** kuin etusivulla: sama selaimen muisti (`pystystudio-hintatapa`) ja sama `?hinnat=`-parametri.
+>   - Yksityishenkilölle rivien, yhteenvedon ja sähköpostiviestin rivihinnat näytetään alv:n kanssa, ja yhteissummassa hinta alv:n kanssa on ensin.
+>   - Laskenta (`PystyTarjous.laske()`) on aina alv 0 %.
+>   - Englanninkielisellä sivulla valitsinta ei ole, ja hinnat ovat alv 0 %.
+> - **Pakettikorteissa näkyy klippihinta** (`data-klippihinta`): paketin hinta jaettuna klippien määrällä täysinä euroina.
+> - **Puhelimen pääkuvassa** ingressi ja napit ovat ennen liikkuvaa klippiä.
+
 **Hinnat ovat tiedostossa `assets/hintadata.js`** (euroja, alv 0 %). Sieltä ne tulevat kummankin kielen etusivulle, ja JavaScript kirjoittaa ne sivulle.
 
 Etusivuilla (`index.html` ja `en/index.html`) on samat hinnat myös näkyvinä teksteinä sitä varten, että sivu toimii ilman JavaScriptiä. **Kun muutat hintaa:**

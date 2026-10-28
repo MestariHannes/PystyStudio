@@ -76,6 +76,19 @@
     <p class="johdanto">Valitse palvelut, joita tarvitset, niin näet hinta-arvion heti. Tarjouspyyntö ei sido sinua mihinkään, ja lopullisen tarjouksen lähetän sähköpostilla.</p>
     <p class="tarjous-ilman-js" data-ilman-js>Lähetä sähköpostia osoitteeseen <a href="mailto:korkiakoskihannes@gmail.com?subject=Tarjouspyynt%C3%B6">korkiakoskihannes@gmail.com</a> ja kerro, mitkä alla olevista palveluista kiinnostavat. Hinnat näet <a href="index.html#hinnat">etusivulta</a>.</p>
 
+    <!-- Hintatapa Yksityishenkilö | Yritys (assets/tarjous.js), sama valinta ja muisti kuin etusivulla: yksityishenkilölle
+         rivien ja yhteenvedon hinnat alv:n kanssa, yritykselle alv 0 %. Oletus on yksityishenkilö, ja ?hinnat=yritys avaa
+         sivun yrityksen hinnoilla. Laskenta ja sähköpostiviestin yhteissummat ovat molemmilla tavoilla alv 0 % ja alv:n kanssa. -->
+    <div class="valuutta" data-hintatapa-valitsin hidden>
+      <span class="valuutta-otsikko" id="hintatapa-otsikko">Hinnat</span>
+      <div class="valuutta-napit" role="group" aria-labelledby="hintatapa-otsikko">
+        <button type="button" data-hintatapa-nappi="kuluttaja" aria-pressed="true">Yksityishenkilö</button>
+        <button type="button" data-hintatapa-nappi="yritys" aria-pressed="false">Yritys</button>
+      </div>
+      <p class="valuutta-huomio" data-hintatapa-huomio data-kuluttaja="Hinnat sisältävät alv:n 25,5 %. Yksityishenkilönä sinulla on 14 päivän peruuttamisoikeus." data-yritys="Hinnat ovat alv 0 %, ja laskuun lisätään alv 25,5 %."></p>
+      <p class="piilotettu" data-hintatapa-ilmoitus aria-live="polite"></p>
+    </div>
+
     <div class="valuutta" data-valuuttavalitsin hidden>
       <span class="valuutta-otsikko" id="valuutta-otsikko">Valuutta</span>
       <div class="valuutta-napit" role="group" aria-labelledby="valuutta-otsikko">
@@ -96,7 +109,7 @@
           </div>
         </fieldset>
 
-        <p class="tarjous-alv">Rivien hinnat ovat alv 0 %. Yhteenvedossa näkyy myös hinta alv:n kanssa (alv 25,5 %), jonka yksityishenkilö maksaa.</p>
+        <p class="tarjous-alv" data-hintatapa-huomio data-kuluttaja="Rivien hinnat sisältävät alv:n 25,5 %. Yhteenvedossa näkyy myös hinta ilman alv:tä." data-yritys="Rivien hinnat ovat alv 0 %. Yhteenvedossa näkyy myös hinta alv:n kanssa (alv 25,5 %), jonka yksityishenkilö maksaa.">Rivien hinnat ovat alv 0 %. Yhteenvedossa näkyy myös hinta alv:n kanssa (alv 25,5 %), jonka yksityishenkilö maksaa.</p>
 
         <fieldset class="tarjous-osio">
           <legend>Pääpalvelut</legend>
