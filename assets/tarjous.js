@@ -545,7 +545,8 @@
   });
 
   var api = window.PystyTarjous = {
-    avaa: function (url) { window.location.href = url; },
+    // Tietokoneella sahkoposti.js näyttää valintaikkunan (Gmail, Outlook, oma ohjelma, kopioi osoite).
+    avaa: function (url) { if (window.PystySahkoposti) window.PystySahkoposti.avaa(url); else window.location.href = url; },
     mailto: function () { return mailto(laske()); },
     viesti: function () { return viesti(laske()); },
     laske: laske

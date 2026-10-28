@@ -88,7 +88,8 @@ Sähköposti, puhelin ja nimi ovat kaikissa HTML-tiedostoissa (Yhteys-osio, napi
 
 - **Mobiilivalikko** (`sivu.js`, kohta 3; molemmat etusivut): alle 56em yläpalkissa ovat logo, Ilmaiset näytteet ja Valikko-nappi. Valikosta aukeavat osioiden linkit, Räätälöity tarjous ja kielivalinta FI | EN. Valikko sulkeutuu linkistä, Esc-näppäimestä ja ohi napauttamalla. Ilman JavaScriptiä nappi on piilossa ja yläpalkki on kuten ennen.
 - **Kopioi osoite** (`sivu.js`, kohta 4): Yhteys-osiossa sähköpostiosoitteen alla. Jos `mailto:`-nappi ei avaa sähköpostiohjelmaa (esim. tietokone ilman sähköpostiohjelmaa), osoitteen voi kopioida.
-- **Näytteet jo saaneelle** (heron alla ja Yhteys-osiossa): ”Sait jo näytteet sähköpostilla? Vastaa samaan viestiin, niin sovitaan aloituksesta.” Myyntiviestin saanut tekijä tulee sivulle näytteet jo saaneena.
+- **Näytteet jo saaneelle** (Yhteys-osiossa; heron alta poistettu 28.10.2026): ”Sait jo näytteet sähköpostilla? Vastaa samaan viestiin, niin sovitaan aloituksesta.” Myyntiviestin saanut tekijä tulee sivulle näytteet jo saaneena.
+- **Sähköpostin valintaikkuna** (`assets/sahkoposti.js`, kaikilla sivuilla, 28.10.2026): tietokoneella `mailto:`-linkki ei tee mitään, jos koneella ei ole toimivaa oletussähköpostiohjelmaa (näin oli Hanneksen koneella: Windowsin lopetettu Sähköposti-sovellus). Siksi tietokoneella (hiiri ja hover) jokainen `mailto:`-linkki avaa ikkunan: Gmail, Outlook.com, oma sähköpostiohjelma ja Kopioi osoite. Aihe ja viestipohja siirtyvät Gmailiin ja Outlookiin. Puhelimessa ja ilman JavaScriptiä linkit avautuvat suoraan. Tarjouslomakkeen lähetys käyttää samaa ikkunaa (`PystyTarjous.avaa` → `PystySahkoposti.avaa`). Tyylit: `tyyli.css`, `.sahkoposti-ikkuna`.
 
 ## Logo ja ilme
 
