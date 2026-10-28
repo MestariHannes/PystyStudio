@@ -253,7 +253,7 @@ Oma verkkotunnus `pystystudio.fi` (käyttäjän päätös 28.10.2026) on repon j
 - [x] Sivuston tarkistuksen korjaukset A ja B sekä kevennetty hintaosio (23.10.2026)
 - [x] Mobiilivalikko, lyhyempi avausefekti, Kopioi osoite ja tiiviimpi hintaosio puhelimessa (28.10.2026)
 - [ ] Englanninkieliset sivut yksityishenkilöille (hintatapa, näyte-ehtojen kohdat 6 ja 7, UKK)
-- [ ] Oma verkkotunnus `pystystudio.fi`: osoitteet ja `CNAME` ovat valmiina haarassa `oma-domain` (28.10.2026). Julkaistaan, kun verkkotunnus on ostettu ja DNS toimii.
+- [x] Oma verkkotunnus `pystystudio.fi` (28.10.2026): Domainhotelli, DNS Cloudflaressa (kaikki tietueet "DNS only"), GitHubin vahvistettu verkkotunnus ja Enforce HTTPS päällä. Vanha github.io-osoite ohjautuu uuteen.
 - [ ] Kuva Hanneksesta Kuka klipit tekee -osioon (paikka on valmiina, ks. kommentti `index.html`:ssä)
 - [ ] Oikea demoklippi Hanneksen omasta materiaalista
 - [ ] Referenssit: klipit asiakkaan kirjallisella luvalla, sitten `hidden` pois osiosta (molemmilla kielillä)
