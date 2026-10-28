@@ -13,7 +13,8 @@ window.PystyHinnat = {
 
   // Portaittaiset palvelut: määrä (klippejä, mainoksia) → hinta €. Portaat näkyvät myös HTML:n data-portaat-kentässä.
   // 4 klippiä lisätty 28.10.2026 (Hanneksen päätös): pienille kanaville, 32,25 €/klippi, eli portaat pysyvät järjestyksessä.
-  klippaamo: { 4: 129, 8: 249, 12: 349, 16: 429, 20: 499, 24: 599 },
+  // Yli 24 klippiä lisätty 28.10.2026 (Hanneksen pyyntö): 24 klipin hinta + 25 € jokaisesta lisäklipistä (sama kuin Lisäklippi).
+  klippaamo: { 4: 129, 8: 249, 12: 349, 16: 429, 20: 499, 24: 599, 28: 699, 32: 799, 36: 899, 40: 999, 44: 1099, 48: 1199, 52: 1299, 56: 1399, 60: 1499, 64: 1599 },
   kertaera: { 1: 49, 4: 149, 6: 199, 8: 269 },
   aiMainos: { 5: 390, 10: 690, 20: 1190 },
   arkisto: { 10: 249, 20: 429, 30: 590, 50: 890 },

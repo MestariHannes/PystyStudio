@@ -194,9 +194,9 @@
     KK.forEach(function (avain) {
       if (!valittu(avain)) return;
       r = rivi(avain);
-      // Julkaisutekstit sisältyvät Pro-pakettiin, klippitilin hoitoon ja Kaikki valmiina -pakettiin (korjattu 28.10.2026: ei kahta laskutusta).
+      // Julkaisutekstit sisältyvät Pro-paketteihin (24 klippiä tai enemmän), klippitilin hoitoon ja Kaikki valmiina -pakettiin (korjattu 28.10.2026: ei kahta laskutusta).
       var teksti = avain === 'julkaisutekstit';
-      var pro = teksti && valittu('klippaamo') && koko(rivi('klippaamo')) === 24;
+      var pro = teksti && valittu('klippaamo') && koko(rivi('klippaamo')) >= 24;
       var sisaltyy = pro ? T.sisaltyy : teksti && valittu('kaikkiValmiina') ? T.sisaltyyKaikki : teksti && valittu('tilinhoito') ? T.sisaltyyHoito : '';
       lisaa('kk', nimi(r), sisaltyy, sisaltyy ? 0 : H.kiinteat[avain] * 100);
     });
