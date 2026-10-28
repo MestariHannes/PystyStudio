@@ -1029,10 +1029,11 @@ h1 span { display: block; }
   background: var(--musta);
 }
 .portaat span.valittu { background: var(--keltainen); color: var(--musta); }
-/* Tiheä porrasrivi (Klippaamo 4–64 klippiä, 28.10.2026): kapealla näkyvät vain avainportaiden numerot (data-avain),
-   muut portaat ovat pelkkiä viivoja. Valittu määrä näkyy aina säätimen yläpuolella. */
+/* Tiheä porrasrivi (Klippaamo 4–64 ja kertaerä 1–50 yhden klipin välein, 29.10.2026): näkyvissä ovat vain avainmäärät
+   viivoineen, kapealla data-avain ja leveällä (64em+) myös data-avain-leve. Valittu määrä näkyy aina säätimen yläpuolella. */
+.portaat-tiheat span:not([data-avain]):not([data-avain-leve]) { display: none; }
 @media (max-width: 63.99em) {
-  .portaat-tiheat span:not([data-avain]) { color: transparent; background: none; }
+  .portaat-tiheat span[data-avain-leve] { display: none; }
 }
 
 .saadin-lisa {

@@ -111,6 +111,12 @@ Sivu käyttää logokonseptia 4, Pystyviiva, jonka Hannes valitsi 23.10.2026. L�
 > - Tiheissä porrasriveissä näkyvät vain avainnumerot (data-avain): Klippejä kuukaudessa -vivussa alle 64em leveällä näytöllä (`.portaat-tiheat`) ja Videoita kuukaudessa -vivussa, kun apuvivut ovat rinnakkain (`.portaat-rinnakkain`).
 > - Säädinkorttien ohjeet alla koskevat taas myös etusivuja. Korttien CSS (`.paketit`) ja `data-klippihinta` jäivät koodiin käyttämättöminä.
 
+> **Joka klippimäärä 29.10.2026** (Hanneksen päätös):
+> - Klippaamo on 4–64 ja kertaerä 1–50 yhden klipin välein. Välimäärien hinta nousee tasaisesti portaiden välissä, ja se pyöristetään euroon. Viimeisen portaan jälkeen hinta on 25 € jokaisesta lisäklipistä (hintadata.js).
+> - Videot × klipit per video antaa tarkan määrän.
+> - Tiheissä porrasriveissä (`.portaat-tiheat`) näkyvät vain avainmäärät: kapealla `data-avain` ja 64em+ myös `data-avain-leve`. Muut portaat ovat piilossa (display: none).
+> - Näytepyynnön valmis viesti on laajempi: videon ja kanavan linkki, kanavat, toiveet (aikaleimat, tyyli, kohderyhmä), nimi sekä yritys ja Y-tunnus.
+
 > **Tarjoussivun säätimet 28.10.2026** (Hanneksen pyyntö): Klippiä per video alkaa 1:stä, Videoita kuukaudessa ulottuu 20:een, ja Klippaamossa on 24:n yli koot 28–64 (neljän välein). Yli 24 klipin hinta on 599 € + 25 € jokaisesta lisäklipistä (Lisäklipin hinta), ja niihin sisältyvät julkaisutekstit kuten Pro-pakettiin. Yli 64 klippiä kuussa: tarjoussivu näyttää huomion "sovitaan erikseen".
 
 > **Arvioiden korjaukset 28.10.2026** (Pääaseman, Kilpailijan ja Tuomarin arviot, `04_myynti/2026-10-28_sivuston-korjaukset/2026-10-28_arviot-sivusta.md`):
