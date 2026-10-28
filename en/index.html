@@ -105,7 +105,8 @@
   <header class="ylapalkki">
     <div class="kehys ylapalkki-sisalto">
       <a class="logo" href="index.html" aria-label="Pysty Studio, home">
-        <img src="../assets/logo.svg" alt="Pysty Studio" width="537" height="121">
+        <img class="logo-vaalea" src="../assets/logo.svg" alt="Pysty Studio" width="537" height="121">
+        <img class="logo-tumma" src="../assets/logo-tumma.svg" alt="" width="537" height="112">
       </a>
       <!-- Kapealla näytöllä (alle 56em) päävalikko avautuu Menu-napista (sivu.js), ja kielivalinta on valikon lopussa.
            Ilman JavaScriptiä nappi on piilossa ja yläpalkki on kuten ennen. -->
@@ -151,8 +152,10 @@
         <figure class="demo" data-demo data-puhuja="a">
           <div class="demo-rivi">
             <div class="klippi" aria-hidden="true">
-              <svg class="kohtaus" viewBox="0 0 1600 900" aria-hidden="true" focusable="false"><use href="#kohtaus"/></svg>
-              <p class="tekstitys" aria-hidden="true">becomes eight clips.</p>
+              <div class="klippi-sisalto" data-puhuja="a">
+                <svg class="kohtaus" viewBox="0 0 1600 900" aria-hidden="true" focusable="false"><use href="#kohtaus"/></svg>
+                <p class="tekstitys" aria-hidden="true">becomes eight clips.</p>
+              </div>
             </div>
             <div class="demo-sivu">
               <div class="lahde" aria-hidden="true">
@@ -163,33 +166,34 @@
               <button class="demo-tauko" type="button" hidden>Pause example</button>
             </div>
           </div>
+          <!-- Jakson aikajana: keltainen kursori kelaa kohtaan, josta puhelimen klippi on tehty (sivu.js). -->
+          <figure class="aikajana">
+            <div class="aikajana-rata">
+              <svg class="aikajana-aalto" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                <defs>
+                  <clipPath id="klippikohdat">
+                    <rect x="62" width="24" height="60"/><rect x="158" width="24" height="60"/>
+                    <rect x="294" width="24" height="60"/><rect x="390" width="24" height="60"/>
+                    <rect x="542" width="24" height="60"/><rect x="694" width="24" height="60"/>
+                    <rect x="846" width="24" height="60"/><rect x="1078" width="24" height="60"/>
+                  </clipPath>
+                  <path id="aalto" d="M0 18.0h4.5v24h-4.5zM8 12.0h4.5v36h-4.5zM16 14.5h4.5v31h-4.5zM24 15.0h4.5v30h-4.5zM32 13.0h4.5v34h-4.5zM40 16.5h4.5v27h-4.5zM48 20.0h4.5v20h-4.5zM56 21.5h4.5v17h-4.5zM64 22.0h4.5v16h-4.5zM72 21.0h4.5v18h-4.5zM80 18.0h4.5v24h-4.5zM88 15.0h4.5v30h-4.5zM96 11.5h4.5v37h-4.5zM104 14.0h4.5v32h-4.5zM112 13.0h4.5v34h-4.5zM120 12.0h4.5v36h-4.5zM128 14.0h4.5v32h-4.5zM136 18.0h4.5v24h-4.5zM144 14.5h4.5v31h-4.5zM152 14.0h4.5v32h-4.5zM160 9.0h4.5v42h-4.5zM168 8.0h4.5v44h-4.5zM176 13.5h4.5v33h-4.5zM184 11.5h4.5v37h-4.5zM192 12.0h4.5v36h-4.5zM200 17.0h4.5v26h-4.5zM208 20.0h4.5v20h-4.5zM216 21.5h4.5v17h-4.5zM224 20.5h4.5v19h-4.5zM232 18.5h4.5v23h-4.5zM240 17.5h4.5v25h-4.5zM248 16.0h4.5v28h-4.5zM256 13.0h4.5v34h-4.5zM264 16.0h4.5v28h-4.5zM272 18.0h4.5v24h-4.5zM280 18.5h4.5v23h-4.5zM288 18.0h4.5v24h-4.5zM296 17.5h4.5v25h-4.5zM304 11.5h4.5v37h-4.5zM312 11.0h4.5v38h-4.5zM320 7.5h4.5v45h-4.5zM328 5.0h4.5v50h-4.5zM336 13.5h4.5v33h-4.5zM344 13.5h4.5v33h-4.5zM352 15.0h4.5v30h-4.5zM360 18.0h4.5v24h-4.5zM368 19.5h4.5v21h-4.5zM376 20.0h4.5v20h-4.5zM384 16.5h4.5v27h-4.5zM392 18.5h4.5v23h-4.5zM400 16.0h4.5v28h-4.5zM408 16.5h4.5v27h-4.5zM416 16.5h4.5v27h-4.5zM424 17.5h4.5v25h-4.5zM432 20.5h4.5v19h-4.5zM440 21.0h4.5v18h-4.5zM448 19.5h4.5v21h-4.5zM456 17.5h4.5v25h-4.5zM464 14.0h4.5v32h-4.5zM472 11.0h4.5v38h-4.5zM480 10.5h4.5v39h-4.5zM488 9.5h4.5v41h-4.5zM496 10.5h4.5v39h-4.5zM504 15.5h4.5v29h-4.5zM512 13.5h4.5v33h-4.5zM520 16.5h4.5v27h-4.5zM528 14.5h4.5v31h-4.5zM536 14.0h4.5v32h-4.5zM544 13.0h4.5v34h-4.5zM552 13.5h4.5v33h-4.5zM560 14.5h4.5v31h-4.5zM568 16.0h4.5v28h-4.5zM576 18.5h4.5v23h-4.5zM584 21.5h4.5v17h-4.5zM592 22.0h4.5v16h-4.5zM600 21.5h4.5v17h-4.5zM608 18.5h4.5v23h-4.5zM616 16.5h4.5v27h-4.5zM624 14.0h4.5v32h-4.5zM632 12.5h4.5v35h-4.5zM640 9.5h4.5v41h-4.5zM648 10.5h4.5v39h-4.5zM656 16.5h4.5v27h-4.5zM664 14.0h4.5v32h-4.5zM672 17.5h4.5v25h-4.5zM680 14.5h4.5v31h-4.5zM688 14.5h4.5v31h-4.5zM696 14.0h4.5v32h-4.5zM704 7.0h4.5v46h-4.5zM712 14.0h4.5v32h-4.5zM720 14.0h4.5v32h-4.5zM728 19.0h4.5v22h-4.5zM736 20.5h4.5v19h-4.5zM744 22.0h4.5v16h-4.5zM752 22.0h4.5v16h-4.5zM760 19.0h4.5v22h-4.5zM768 16.0h4.5v28h-4.5zM776 13.0h4.5v34h-4.5zM784 12.0h4.5v36h-4.5zM792 12.0h4.5v36h-4.5zM800 14.5h4.5v31h-4.5zM808 17.5h4.5v25h-4.5zM816 19.0h4.5v22h-4.5zM824 17.5h4.5v25h-4.5zM832 16.5h4.5v27h-4.5zM840 15.0h4.5v30h-4.5zM848 8.5h4.5v43h-4.5zM856 11.0h4.5v38h-4.5zM864 7.5h4.5v45h-4.5zM872 12.0h4.5v36h-4.5zM880 14.5h4.5v31h-4.5zM888 19.0h4.5v22h-4.5zM896 18.5h4.5v23h-4.5zM904 20.5h4.5v19h-4.5zM912 19.0h4.5v22h-4.5zM920 15.5h4.5v29h-4.5zM928 17.5h4.5v25h-4.5zM936 15.5h4.5v29h-4.5zM944 18.5h4.5v23h-4.5zM952 17.0h4.5v26h-4.5zM960 19.5h4.5v21h-4.5zM968 19.0h4.5v22h-4.5zM976 20.5h4.5v19h-4.5zM984 14.5h4.5v31h-4.5zM992 15.0h4.5v30h-4.5zM1000 6.5h4.5v47h-4.5zM1008 8.5h4.5v43h-4.5zM1016 7.5h4.5v45h-4.5zM1024 13.0h4.5v34h-4.5zM1032 15.0h4.5v30h-4.5zM1040 17.0h4.5v26h-4.5zM1048 16.5h4.5v27h-4.5zM1056 18.5h4.5v23h-4.5zM1064 14.5h4.5v31h-4.5zM1072 13.5h4.5v33h-4.5zM1080 13.0h4.5v34h-4.5zM1088 14.5h4.5v31h-4.5zM1096 18.5h4.5v23h-4.5zM1104 20.5h4.5v19h-4.5zM1112 20.5h4.5v19h-4.5zM1120 22.5h4.5v15h-4.5zM1128 21.0h4.5v18h-4.5zM1136 17.5h4.5v25h-4.5zM1144 18.0h4.5v24h-4.5zM1152 10.0h4.5v40h-4.5zM1160 8.5h4.5v43h-4.5zM1168 7.0h4.5v46h-4.5zM1176 9.0h4.5v42h-4.5zM1184 12.0h4.5v36h-4.5zM1192 15.5h4.5v29h-4.5z"/>
+                </defs>
+                <g class="aikajana-kohdat">
+                  <rect x="60" y="0" width="28" height="60" rx="4"/><rect x="156" y="0" width="28" height="60" rx="4"/>
+                  <rect x="292" y="0" width="28" height="60" rx="4"/><rect x="388" y="0" width="28" height="60" rx="4"/>
+                  <rect x="540" y="0" width="28" height="60" rx="4"/><rect x="692" y="0" width="28" height="60" rx="4"/>
+                  <rect x="844" y="0" width="28" height="60" rx="4"/><rect x="1076" y="0" width="28" height="60" rx="4"/>
+                </g>
+                <use href="#aalto" class="aikajana-puhe"/>
+                <use href="#aalto" class="aikajana-valitut" clip-path="url(#klippikohdat)"/>
+              </svg>
+              <span class="aikajana-kursori" aria-hidden="true" hidden><span class="aikajana-aika">0:00</span></span>
+            </div>
+            <div class="aikajana-ajat" aria-hidden="true"><span>0:00</span><span>58:40</span></div>
+            <figcaption>Example: eight moments are picked from a one-hour episode, each one working on its own.</figcaption>
+          </figure>
           <figcaption class="piilotettu">Example: a podcast frame is cropped vertically around the speaker, and the captions appear word by word.</figcaption>
-        </figure>
-      </div>
-
-      <div class="kehys">
-        <figure class="aikajana">
-          <svg class="aikajana-aalto" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-            <defs>
-              <clipPath id="klippikohdat">
-                <rect x="62" width="24" height="60"/><rect x="158" width="24" height="60"/>
-                <rect x="294" width="24" height="60"/><rect x="390" width="24" height="60"/>
-                <rect x="542" width="24" height="60"/><rect x="694" width="24" height="60"/>
-                <rect x="846" width="24" height="60"/><rect x="1078" width="24" height="60"/>
-              </clipPath>
-              <path id="aalto" d="M0 18.0h4.5v24h-4.5zM8 12.0h4.5v36h-4.5zM16 14.5h4.5v31h-4.5zM24 15.0h4.5v30h-4.5zM32 13.0h4.5v34h-4.5zM40 16.5h4.5v27h-4.5zM48 20.0h4.5v20h-4.5zM56 21.5h4.5v17h-4.5zM64 22.0h4.5v16h-4.5zM72 21.0h4.5v18h-4.5zM80 18.0h4.5v24h-4.5zM88 15.0h4.5v30h-4.5zM96 11.5h4.5v37h-4.5zM104 14.0h4.5v32h-4.5zM112 13.0h4.5v34h-4.5zM120 12.0h4.5v36h-4.5zM128 14.0h4.5v32h-4.5zM136 18.0h4.5v24h-4.5zM144 14.5h4.5v31h-4.5zM152 14.0h4.5v32h-4.5zM160 9.0h4.5v42h-4.5zM168 8.0h4.5v44h-4.5zM176 13.5h4.5v33h-4.5zM184 11.5h4.5v37h-4.5zM192 12.0h4.5v36h-4.5zM200 17.0h4.5v26h-4.5zM208 20.0h4.5v20h-4.5zM216 21.5h4.5v17h-4.5zM224 20.5h4.5v19h-4.5zM232 18.5h4.5v23h-4.5zM240 17.5h4.5v25h-4.5zM248 16.0h4.5v28h-4.5zM256 13.0h4.5v34h-4.5zM264 16.0h4.5v28h-4.5zM272 18.0h4.5v24h-4.5zM280 18.5h4.5v23h-4.5zM288 18.0h4.5v24h-4.5zM296 17.5h4.5v25h-4.5zM304 11.5h4.5v37h-4.5zM312 11.0h4.5v38h-4.5zM320 7.5h4.5v45h-4.5zM328 5.0h4.5v50h-4.5zM336 13.5h4.5v33h-4.5zM344 13.5h4.5v33h-4.5zM352 15.0h4.5v30h-4.5zM360 18.0h4.5v24h-4.5zM368 19.5h4.5v21h-4.5zM376 20.0h4.5v20h-4.5zM384 16.5h4.5v27h-4.5zM392 18.5h4.5v23h-4.5zM400 16.0h4.5v28h-4.5zM408 16.5h4.5v27h-4.5zM416 16.5h4.5v27h-4.5zM424 17.5h4.5v25h-4.5zM432 20.5h4.5v19h-4.5zM440 21.0h4.5v18h-4.5zM448 19.5h4.5v21h-4.5zM456 17.5h4.5v25h-4.5zM464 14.0h4.5v32h-4.5zM472 11.0h4.5v38h-4.5zM480 10.5h4.5v39h-4.5zM488 9.5h4.5v41h-4.5zM496 10.5h4.5v39h-4.5zM504 15.5h4.5v29h-4.5zM512 13.5h4.5v33h-4.5zM520 16.5h4.5v27h-4.5zM528 14.5h4.5v31h-4.5zM536 14.0h4.5v32h-4.5zM544 13.0h4.5v34h-4.5zM552 13.5h4.5v33h-4.5zM560 14.5h4.5v31h-4.5zM568 16.0h4.5v28h-4.5zM576 18.5h4.5v23h-4.5zM584 21.5h4.5v17h-4.5zM592 22.0h4.5v16h-4.5zM600 21.5h4.5v17h-4.5zM608 18.5h4.5v23h-4.5zM616 16.5h4.5v27h-4.5zM624 14.0h4.5v32h-4.5zM632 12.5h4.5v35h-4.5zM640 9.5h4.5v41h-4.5zM648 10.5h4.5v39h-4.5zM656 16.5h4.5v27h-4.5zM664 14.0h4.5v32h-4.5zM672 17.5h4.5v25h-4.5zM680 14.5h4.5v31h-4.5zM688 14.5h4.5v31h-4.5zM696 14.0h4.5v32h-4.5zM704 7.0h4.5v46h-4.5zM712 14.0h4.5v32h-4.5zM720 14.0h4.5v32h-4.5zM728 19.0h4.5v22h-4.5zM736 20.5h4.5v19h-4.5zM744 22.0h4.5v16h-4.5zM752 22.0h4.5v16h-4.5zM760 19.0h4.5v22h-4.5zM768 16.0h4.5v28h-4.5zM776 13.0h4.5v34h-4.5zM784 12.0h4.5v36h-4.5zM792 12.0h4.5v36h-4.5zM800 14.5h4.5v31h-4.5zM808 17.5h4.5v25h-4.5zM816 19.0h4.5v22h-4.5zM824 17.5h4.5v25h-4.5zM832 16.5h4.5v27h-4.5zM840 15.0h4.5v30h-4.5zM848 8.5h4.5v43h-4.5zM856 11.0h4.5v38h-4.5zM864 7.5h4.5v45h-4.5zM872 12.0h4.5v36h-4.5zM880 14.5h4.5v31h-4.5zM888 19.0h4.5v22h-4.5zM896 18.5h4.5v23h-4.5zM904 20.5h4.5v19h-4.5zM912 19.0h4.5v22h-4.5zM920 15.5h4.5v29h-4.5zM928 17.5h4.5v25h-4.5zM936 15.5h4.5v29h-4.5zM944 18.5h4.5v23h-4.5zM952 17.0h4.5v26h-4.5zM960 19.5h4.5v21h-4.5zM968 19.0h4.5v22h-4.5zM976 20.5h4.5v19h-4.5zM984 14.5h4.5v31h-4.5zM992 15.0h4.5v30h-4.5zM1000 6.5h4.5v47h-4.5zM1008 8.5h4.5v43h-4.5zM1016 7.5h4.5v45h-4.5zM1024 13.0h4.5v34h-4.5zM1032 15.0h4.5v30h-4.5zM1040 17.0h4.5v26h-4.5zM1048 16.5h4.5v27h-4.5zM1056 18.5h4.5v23h-4.5zM1064 14.5h4.5v31h-4.5zM1072 13.5h4.5v33h-4.5zM1080 13.0h4.5v34h-4.5zM1088 14.5h4.5v31h-4.5zM1096 18.5h4.5v23h-4.5zM1104 20.5h4.5v19h-4.5zM1112 20.5h4.5v19h-4.5zM1120 22.5h4.5v15h-4.5zM1128 21.0h4.5v18h-4.5zM1136 17.5h4.5v25h-4.5zM1144 18.0h4.5v24h-4.5zM1152 10.0h4.5v40h-4.5zM1160 8.5h4.5v43h-4.5zM1168 7.0h4.5v46h-4.5zM1176 9.0h4.5v42h-4.5zM1184 12.0h4.5v36h-4.5zM1192 15.5h4.5v29h-4.5z"/>
-            </defs>
-            <g class="aikajana-kohdat">
-              <rect x="60" y="0" width="28" height="60" rx="4"/><rect x="156" y="0" width="28" height="60" rx="4"/>
-              <rect x="292" y="0" width="28" height="60" rx="4"/><rect x="388" y="0" width="28" height="60" rx="4"/>
-              <rect x="540" y="0" width="28" height="60" rx="4"/><rect x="692" y="0" width="28" height="60" rx="4"/>
-              <rect x="844" y="0" width="28" height="60" rx="4"/><rect x="1076" y="0" width="28" height="60" rx="4"/>
-            </g>
-            <use href="#aalto" class="aikajana-puhe"/>
-            <use href="#aalto" class="aikajana-valitut" clip-path="url(#klippikohdat)"/>
-          </svg>
-          <div class="aikajana-ajat" aria-hidden="true"><span>0:00</span><span>58:40</span></div>
-          <figcaption>Example: eight moments are picked from a one-hour episode, each one working on its own.</figcaption>
         </figure>
       </div>
     </section>

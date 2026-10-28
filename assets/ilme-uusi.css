@@ -19,6 +19,11 @@
   100% { opacity: 1; transform: none; }
 }
 @keyframes ilme-varmistus { to { opacity: 1; } }
+/* Otsikot nousevat pehmeästi ilman pomppua (28.10.2026). Pomppu jää vain puhelimen tekstitykseen, koska klipeissä sanat ponnahtavat. */
+@keyframes ilme-nousu {
+  from { opacity: 0; transform: translateY(.32em); }
+  to { opacity: 1; transform: none; }
+}
 
 /* ---------- Rakeisuus betonipinnoilla (ei valkoisilla eikä mustilla osioilla) ---------- */
 .ilme-uusi body::before {
@@ -69,13 +74,14 @@
 .ilme-uusi .hero .lahde { box-shadow: 0 0 0 1px rgba(228, 228, 225, .3); }
 .ilme-uusi .hero .aikajana-puhe { fill: rgba(255, 255, 255, .26); }
 .ilme-uusi .hero .aikajana-valitut { fill: var(--valkoinen); }
+.ilme-uusi .hero .aikajana-kohdat rect { stroke: none; }
 
 /* Hero-otsikko ilmestyy sana kerrallaan. Varmistus: jos skripti ei ehdi, sanat tulevat näkyviin itsestään. */
 .ilme-animoi .hero h1 > span { opacity: 0; animation: ilme-varmistus .01s 3.2s forwards; }
-.ilme-animoi .hero.ilme-esilla h1 > span { animation: ilme-pop .44s cubic-bezier(.3, 1.6, .6, 1) both; }
-.ilme-animoi .hero.ilme-esilla h1 > span:nth-child(2) { animation-delay: .17s; }
-.ilme-animoi .hero.ilme-esilla h1 > span:nth-child(3) { animation-delay: .34s; }
-.ilme-animoi .hero.ilme-esilla h1 > span:nth-child(4) { animation-delay: .51s; }
+.ilme-animoi .hero.ilme-esilla h1 > span { animation: ilme-nousu .8s var(--ease-ulos) both; }
+.ilme-animoi .hero.ilme-esilla h1 > span:nth-child(2) { animation-delay: .1s; }
+.ilme-animoi .hero.ilme-esilla h1 > span:nth-child(3) { animation-delay: .2s; }
+.ilme-animoi .hero.ilme-esilla h1 > span:nth-child(4) { animation-delay: .3s; }
 
 /* Puhelimen tekstitys näyttävämmäksi: sana ponnahtaa, ja juuri puhuttu sana on keltainen. */
 @keyframes ilme-sana {
@@ -87,6 +93,8 @@
 .ilme-uusi .demo .tekstitys.loppukehote { font-size: 9.5cqi; }
 .ilme-uusi .demo .sana.nakyy { animation: ilme-sana .34s cubic-bezier(.3, 1.7, .55, 1) both; }
 .ilme-uusi .demo .tekstitys:not(.loppukehote) .sana.nakyy:not(:has(~ .sana.nakyy)) { color: var(--keltainen); }
+/* Pyyhkäisyssä poistuva klippi on kopio: sen sanat eivät ponnahda uudelleen. */
+.ilme-uusi .demo .klippi-sisalto-vanha .sana.nakyy { animation: none; }
 
 /* ---------- Nauha heron alla (ilme-uusi.js lisää sen, aria-hidden) ---------- */
 @keyframes ilme-nauha { to { transform: translateX(-50%); } }
@@ -125,18 +133,18 @@
 .ilme-uusi h2 .ilme-sana { display: inline-block; }
 .ilme-animoi .ilme-paljastus h2 .ilme-sana { opacity: 0; }
 .ilme-animoi .ilme-paljastus.ilme-esilla h2 .ilme-sana {
-  animation: ilme-pop .4s cubic-bezier(.3, 1.6, .6, 1) both;
-  animation-delay: calc(var(--i, 0) * .11s);
+  animation: ilme-nousu .7s var(--ease-ulos) both;
+  animation-delay: calc(var(--i, 0) * .06s);
 }
 .ilme-animoi .ilme-paljastus h2::after { animation: none; opacity: 0; }
 .ilme-animoi .ilme-paljastus.ilme-esilla h2::after {
   animation: ilme-vilkku-jaa .5s steps(1) 3 both;
-  animation-delay: calc(var(--n, 1) * .11s + .15s);
+  animation-delay: calc(var(--n, 1) * .06s + .35s);
 }
 .ilme-animoi .ilme-paljastus > .kehys > :not(h2) {
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity .6s ease-out .25s, transform .6s ease-out .25s;
+  transform: translateY(18px);
+  transition: opacity .8s var(--ease-ulos) .15s, transform .8s var(--ease-ulos) .15s;
 }
 .ilme-animoi .ilme-paljastus.ilme-esilla > .kehys > :not(h2) { opacity: 1; transform: none; }
 

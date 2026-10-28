@@ -190,6 +190,13 @@ Hannes pyysi näyttävämpää ilmettä ja avausefektiä. Ilme oli ensin esikats
     - otsikot kirjoittuvat näkyviin vieritettäessä
     - puhelinkuvan tekstityksessä juuri puhuttu sana on keltainen
     - hienovarainen rakeisuus betonitaustassa
+- **Ulkoasun uudistus 28.10.2026** (Hanneksen pyyntö: koukuttavampi ja sulavampi):
+  - **Heron klippisyöte** (`sivu.js`, kohta 2): puhelimessa pyörii kolme klippiä samasta jaksosta. Klippi vaihtuu pyyhkäisemällä ylös kuin somesyötteessä, ja puhelimen sisältö on kerroksessa `.klippi-sisalto` (rajaus ja zoomi sen `data-puhuja`- ja `data-zoomi`-kentistä). Repliikit ovat `KLIPIT`-listassa molemmilla kielillä.
+  - **Aikajana puhelimen alla:** jakson aikajana on demon sisällä. Keltainen kursori (logon pystyviiva) kelaa kohtaan, josta klippi on tehty, ja näyttää kohdan ajan. Nykyinen kohta on kirkas ja muut himmeitä.
+  - **Puhelimessa demo on heti otsikon alla** (alle 64em, `display: contents` ja `order`), joten liikkuva klippi näkyy ensimmäisellä ruudulla.
+  - **Tumma yläpalkki heron päällä** (`ilme-uusi.js`, kohta 5): etusivuilla logo on kahtena kuvana (`logo-vaalea` ja `logo-tumma`). Avoin mobiilivalikko on aina vaalea.
+  - **Pehmeä liike:** yksi käyrä `--ease-ulos` (`tyyli.css`, `:root`). Otsikot nousevat ilman pomppua, ja pomppu jää vain puhelimen tekstitykseen. Napit nousevat hoverissa 2 px. Avattavat osiot avautuvat pehmeästi selaimissa, jotka tukevat `interpolate-size`-ominaisuutta.
+  - Demo odottaa avausefektin loppuun, ja Pysäytä esimerkki -nappi pysäyttää myös kursorin.
 - **Intron ohitus:** Ohita-nappi oikeassa yläkulmassa, tai klikkaus, kosketus, vieritys tai mikä tahansa näppäin. Intro on vain sisällön päällä oleva kerros (`aria-hidden`), joten sivun sisältö on HTML:ssä heti hakukoneille ja ruudunlukijoille.
 - **Kerran:** intro merkitään nähdyksi selaimen muistiin (localStorage, avain `pystystudio-intro`). Jos selain estää tallennuksen, intro näkyy kerran latausta kohden. Uudelleen katsominen: `?intro=1`.
 - **Vähennetty liike:** jos laitteessa on valittu vähemmän liikettä (`prefers-reduced-motion`), intro ja animaatiot jäävät pois.

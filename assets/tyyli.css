@@ -50,6 +50,9 @@
 
   --sade-iso: 1.25rem;
   --sade: .375rem;
+
+  /* Liike (28.10.2026): yksi pehmeä hidastuva käyrä kaikkeen käyttöliittymän liikkeeseen, ei pomppua. */
+  --ease-ulos: cubic-bezier(.22, 1, .36, 1);
 }
 
 /* Perusta */
@@ -147,8 +150,10 @@ h4 { margin: 0; }
   font-weight: 800;
   line-height: 1.2;
   text-decoration: none;
-  transition: background-color .15s, color .15s, border-color .15s;
+  transition: background-color .15s, color .15s, border-color .15s, transform .25s var(--ease-ulos);
 }
+.nappi:hover { transform: translateY(-2px); }
+.nappi:active { transform: scale(.98); transition-duration: .08s; }
 .nappi-ensisijainen { background: var(--musta); color: var(--valkoinen); }
 .nappi-ensisijainen:hover { background: var(--keltainen); color: var(--musta); }
 .nappi-toissijainen { background: transparent; color: var(--musta); }
@@ -165,6 +170,7 @@ h4 { margin: 0; }
   background: color-mix(in srgb, var(--vari-paperi) 92%, transparent);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
+  transition: background-color .4s var(--ease-ulos);
 }
 .ylapalkki-sisalto {
   display: flex;
@@ -173,11 +179,15 @@ h4 { margin: 0; }
   gap: .75rem;
   min-height: 4rem;
 }
-.logo { display: block; flex: 0 0 auto; }
+.logo { --logo-k: 1.625rem; display: grid; flex: 0 0 auto; }
 .logo:hover { background: none; }
 /* Logo (viewBox 536,9 × 121): kirjaimet ovat 2/3 kuvan korkeudesta, pystyviiva koko korkeus. */
 /* Kapealla näytöllä logo, kielivalitsin ja nappi mahtuvat samalle riville (375 px). */
-.logo img { height: 1.625rem; width: auto; }
+.logo img { height: var(--logo-k); width: auto; }
+/* Etusivuilla tumma logo on vaalean päällä (sama leveys ja kirjaimet samassa kohdassa), ja ilme-uusi.js vaihtaa niitä. */
+.logo img.logo-vaalea,
+.logo img.logo-tumma { grid-area: 1 / 1; align-self: center; transition: opacity .3s var(--ease-ulos); }
+.logo img.logo-tumma { height: calc(var(--logo-k) * 112 / 121); opacity: 0; }
 .paavalikko { display: none; }
 
 /* Kielivalitsin FI | EN. Nykyinen kieli musta ja alleviivattu, toinen harmaa. */
@@ -208,6 +218,23 @@ h4 { margin: 0; }
 .kielet a:hover { color: var(--musta); background: var(--vari-korostus); }
 .kielet-vali { color: var(--vari-viiva); font-weight: 400; }
 .ylapalkki-sisalto .kielet + .nappi { margin-left: -.25rem; }
+
+/* Tumma yläpalkki heron päällä (28.10.2026): ilme-uusi.js lisää html-elementtiin luokan ylapalkki-tumma, kun musta hero on
+   yläpalkin alla. Musta hero ja palkki ovat silloin yhtä pintaa. Avoin mobiilivalikko on aina vaalea. */
+.ylapalkki-tumma:not(.valikko-auki) .ylapalkki { background: color-mix(in srgb, var(--musta) 88%, transparent); }
+.ylapalkki-tumma:not(.valikko-auki) .logo-vaalea { opacity: 0; }
+.ylapalkki-tumma:not(.valikko-auki) .logo-tumma { opacity: 1; }
+.ylapalkki-tumma:not(.valikko-auki) .ylapalkki .kielet a { color: var(--vari-harmaa-tumma); }
+.ylapalkki-tumma:not(.valikko-auki) .ylapalkki .kielet a[aria-current] { color: var(--valkoinen); }
+.ylapalkki-tumma:not(.valikko-auki) .ylapalkki .kielet a:hover { color: var(--musta); }
+.ylapalkki-tumma:not(.valikko-auki) .ylapalkki .kielet-vali { color: #5C5C58; }
+.ylapalkki-tumma:not(.valikko-auki) .ylapalkki .paavalikko a { color: var(--valkoinen); }
+.ylapalkki-tumma:not(.valikko-auki) .ylapalkki .paavalikko a:hover { color: var(--musta); }
+.ylapalkki-tumma:not(.valikko-auki) .ylapalkki .nappi-ensisijainen { background: var(--keltainen); border-color: var(--keltainen); color: var(--musta); }
+.ylapalkki-tumma:not(.valikko-auki) .ylapalkki .nappi-ensisijainen:hover { background: var(--valkoinen); border-color: var(--valkoinen); }
+.ylapalkki-tumma:not(.valikko-auki) .ylapalkki .valikko-nappi { border-color: var(--valkoinen); color: var(--valkoinen); }
+.ylapalkki-tumma:not(.valikko-auki) .ylapalkki .valikko-nappi:hover { background: var(--keltainen); border-color: var(--keltainen); color: var(--musta); }
+.ylapalkki-tumma:not(.valikko-auki) .ylapalkki :focus-visible { outline-color: var(--keltainen); }
 
 /* Mobiilivalikko (sivu.js lisää html-elementtiin luokat valikko-kaytossa ja auki ollessa valikko-auki).
    Alle 56em: yläpalkissa logo, Ilmaiset näytteet ja Valikko-nappi. Päävalikko ja kielivalinta avautuvat yläpalkin alle. */
@@ -298,6 +325,16 @@ h4 { margin: 0; }
 /* Hero */
 .hero { padding-block: 2rem 4rem; }
 .hero-ruudukko { display: grid; gap: 2.75rem; }
+/* Kapealla (alle 64em) demo on heti otsikon alla, jotta liikkuva klippi näkyy ensimmäisellä ruudulla (28.10.2026).
+   Tekstin osat ovat suoraan flex-säiliön lapsia (display: contents), ja järjestys tulee order-arvoista. */
+@media (max-width: 63.99em) {
+  .hero-ruudukko { display: flex; flex-direction: column; gap: 0; }
+  .hero-teksti { display: contents; }
+  .hero-teksti > * { order: 3; }
+  .hero-teksti > .ylaotsake,
+  .hero-teksti > h1 { order: 1; }
+  .hero-ruudukko > .demo { order: 2; margin: .25rem 0 2.5rem; }
+}
 /* Yläotsake H1:n yläpuolella: keltainen pystyviiva mustalla reunalla kuin logossa. */
 .ylaotsake {
   display: flex;
@@ -381,6 +418,7 @@ h1 span { display: block; }
   box-shadow: 0 0 0 .4rem var(--vari-muste);
   container-type: inline-size;
 }
+.klippi-sisalto { position: absolute; inset: 0; }
 .klippi .kohtaus {
   position: absolute;
   top: 0;
@@ -394,14 +432,14 @@ h1 span { display: block; }
   translate: -14.18% 0;
   scale: 1;
   transform-origin: 30% 46%;
-  transition: scale .35s cubic-bezier(.2, .8, .2, 1);
+  transition: scale .5s var(--ease-ulos);
 }
-.demo[data-puhuja="b"] .kohtaus,
+.klippi-sisalto[data-puhuja="b"] .kohtaus,
 .klippi-b .kohtaus {
   translate: -54.18% 0;
   transform-origin: 70% 46%;
 }
-.demo[data-zoomi="1"] .kohtaus { scale: 1.12; }
+.klippi-sisalto[data-zoomi="1"] .kohtaus { scale: 1.12; }
 
 .tekstitys {
   position: absolute;
@@ -424,6 +462,7 @@ h1 span { display: block; }
 .tekstitys .emoji { -webkit-text-stroke: 0; text-shadow: none; }
 .sana { display: inline-block; opacity: 0; }
 .sana.nakyy { opacity: 1; animation: pomppu .26s cubic-bezier(.34, 1.56, .64, 1) both; }
+.klippi-sisalto-vanha .sana.nakyy { animation: none; }
 @keyframes pomppu {
   from { opacity: 0; transform: scale(.6); }
   to { opacity: 1; transform: none; }
@@ -477,8 +516,38 @@ h1 span { display: block; }
 }
 .demo-tauko:hover { background: var(--vari-korostus); color: var(--musta); }
 
-/* Aikajana */
-.aikajana { margin: 3.5rem 0 0; }
+/* Aikajana: heron demossa puhelimen alla (28.10.2026). Keltainen kursori on logon pystyviiva, joka kelaa jaksoa (sivu.js). */
+.aikajana { margin: 2.25rem 0 0; }
+.aikajana-rata { position: relative; }
+.aikajana-kursori {
+  position: absolute;
+  top: -.4rem;
+  bottom: -.4rem;
+  left: 0;
+  width: 3px;
+  margin-left: -1.5px;
+  border-radius: 2px;
+  background: var(--keltainen);
+  pointer-events: none;
+}
+.aikajana-kursori[hidden] { display: none; }
+.aikajana-aika {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  translate: -50% -.3rem;
+  padding: .1rem .4rem;
+  border-radius: 3px;
+  background: var(--keltainen);
+  color: var(--musta);
+  font-size: .75rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+.aikajana-kohdat rect { transition: opacity .5s var(--ease-ulos); }
+.aikajana-kohdat:has(.nyt) rect:not(.nyt) { opacity: .45; }
 .aikajana-aalto { width: 100%; height: 3rem; }
 .aikajana-kohdat rect {
   fill: var(--vari-korostus);
@@ -1201,6 +1270,18 @@ h1 span { display: block; }
   .kuka-sisalto:has(.kuka-kuva) { grid-template-columns: auto minmax(0, 1fr); }
 }
 
+/* Avattavat osiot (<details>) avautuvat ja sulkeutuvat pehmeästi selaimissa, jotka osaavat animoida korkeuden
+   (interpolate-size, 28.10.2026). Muissa selaimissa ne avautuvat heti kuten ennen. */
+@supports (interpolate-size: allow-keywords) {
+  :root { interpolate-size: allow-keywords; }
+  details::details-content {
+    block-size: 0;
+    overflow-y: clip;
+    transition: block-size .45s var(--ease-ulos), content-visibility .45s allow-discrete;
+  }
+  details[open]::details-content { block-size: auto; }
+}
+
 /* UKK */
 .ukk-lista {
   max-width: 48rem;
@@ -1527,7 +1608,7 @@ h1 span { display: block; }
 @media (min-width: 30em) {
   .demo-rivi { gap: 1.5rem; }
   .ylapalkki-sisalto { gap: 1rem; }
-  .logo img { height: 2.125rem; }
+  .logo { --logo-k: 2.125rem; }
 }
 
 @media (min-width: 45em) {
@@ -1547,7 +1628,7 @@ h1 span { display: block; }
     text-decoration: none;
   }
   .paavalikko a:hover { color: var(--musta); background: var(--vari-korostus); text-decoration: underline; }
-  .logo img { height: 2.375rem; }
+  .logo { --logo-k: 2.375rem; }
   .osio { padding-block: 7rem; }
   .osio-tiivis { padding-block: 4.5rem; }
   .vaiheet { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2rem; }
@@ -1584,6 +1665,8 @@ h1 span { display: block; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .klippi .kohtaus, .ukk-lista summary::after, .valikko-kuvake::before, .valikko-kuvake::after { transition: none; }
+  .klippi .kohtaus, .ukk-lista summary::after, .valikko-kuvake::before, .valikko-kuvake::after, .aikajana-kursori { transition: none; }
+  .nappi:hover, .nappi:active { transform: none; }
+  details::details-content { transition: none; }
   .sana.nakyy { animation: none; }
 }

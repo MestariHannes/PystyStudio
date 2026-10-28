@@ -8,6 +8,7 @@
       Intro on vain sisällön päällä oleva kerros (aria-hidden): sivun sisältö on HTML:ssä heti.
       Pakota uudelleen: ?intro=1.
    4. Hero-otsikko sana kerrallaan ja osioiden otsikot kirjoittuvat näkyviin vieritettäessä.
+   5. Yläpalkki on musta heron päällä ja vaalea sen jälkeen (28.10.2026, tyylit: tyyli.css, .ylapalkki-tumma).
    Vähennetty liike (prefers-reduced-motion): ei introa eikä animaatioita (luokkia ei lisätä). */
 (function () {
   'use strict';
@@ -138,4 +139,19 @@
   }
 
   if (!intro()) heroEsiin();
+
+  // 5. Yläpalkki on musta, kun musta hero on sen alla, joten palkki ja hero ovat yhtä pintaa.
+  var ylapalkki = document.querySelector('.ylapalkki');
+  if (hero && ylapalkki) {
+    var tulossa = false;
+    var tarkista = function () {
+      tulossa = false;
+      h.classList.toggle('ylapalkki-tumma', hero.getBoundingClientRect().bottom > ylapalkki.offsetHeight);
+    };
+    window.addEventListener('scroll', function () {
+      if (!tulossa) { tulossa = true; window.requestAnimationFrame(tarkista); }
+    }, { passive: true });
+    window.addEventListener('resize', tarkista);
+    tarkista();
+  }
 })();
