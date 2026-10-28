@@ -338,6 +338,11 @@ h4 { margin: 0; }
   .hero-teksti > .toiminnot { order: 1; }
   .hero-ruudukko > .demo { order: 2; margin: 2.5rem 0 1.5rem; }
 }
+/* Puhelimella kehys on pienempi, jotta tekstitys näkyy jo ensimmäisellä ruudulla näytepainikkeen alla (29.10.2026). */
+@media (max-width: 35.99em) {
+  .hero-ruudukko > .demo { margin-top: 1.5rem; }
+  .demo .klippi { width: min(46%, 12rem); }
+}
 /* Yläotsake H1:n yläpuolella: keltainen pystyviiva mustalla reunalla kuin logossa. */
 .ylaotsake {
   display: flex;
@@ -411,6 +416,8 @@ h1 span { display: block; }
   background: var(--k-seina);
   box-shadow: 0 0 0 .4rem var(--vari-muste);
   container-type: inline-size;
+  /* Taustan lamppu näkyy vain avausefektin koko kuvassa. Rajauksen reunassa siitä jäi keltainen pala (29.10.2026). */
+  --k-lamppu: transparent;
 }
 .klippi-sisalto { position: absolute; inset: 0; }
 .klippi .kohtaus {
@@ -439,7 +446,8 @@ h1 span { display: block; }
   position: absolute;
   left: 7%;
   right: 7%;
-  top: 57%;
+  /* Tekstitys rinnan korkeudella, ei suun päällä (29.10.2026, laatusäännöt). */
+  top: 64%;
   margin: 0;
   color: #fff;
   font-family: var(--fontti-tekstitys);
@@ -452,7 +460,7 @@ h1 span { display: block; }
   paint-order: stroke fill;
   text-shadow: 0 .06em .14em rgba(0, 0, 0, .45);
 }
-.tekstitys.loppukehote { top: 44%; font-size: 9.5cqi; }
+.tekstitys.loppukehote { top: 64%; font-size: 9.5cqi; }
 .tekstitys .emoji { -webkit-text-stroke: 0; text-shadow: none; }
 .sana { display: inline-block; opacity: 0; }
 .sana.nakyy { opacity: 1; animation: pomppu .26s cubic-bezier(.34, 1.56, .64, 1) both; }
@@ -561,8 +569,9 @@ h1 span { display: block; }
   color: var(--vari-harmaa);
 }
 .aikajana figcaption {
-  margin-top: .25rem;
-  font-size: .9375rem;
+  margin-top: .35rem;
+  font-size: .875rem;
+  font-weight: 600;
   color: var(--vari-muste);
 }
 

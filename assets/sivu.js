@@ -73,7 +73,8 @@
     { kohta: 6, vaiheet: [{ puhuja: 'b', sanat: 'Kauanko siinä' }, { puhuja: 'b', sanat: 'menee?' }, { puhuja: 'a', sanat: 'Yleensä vuorokausi.', zoomi: true },
       { puhuja: 'a', loppu: 'Koko jakso YouTubessa', emoji: '🔥' }] }
   ];
-  var NAPPI = en ? ['Pause example', 'Play example'] : ['Pysäytä esimerkki', 'Jatka esimerkkiä'];
+  var NAPPI = en ? ['Pause example', 'Play example', 'Replay example'] : ['Pysäytä esimerkki', 'Jatka esimerkkiä', 'Toista esimerkki'];
+  var KIERROKSET = 2;    // silmukka pysähtyy kahden kierroksen jälkeen viimeiseen ruutuun (29.10.2026)
   var SANAVALI = 300;    // ms sanojen välillä
   var PIDA = 900;        // ms vaiheen viimeisen sanan jälkeen
   var PIDA_LOPPU = 2400;
@@ -85,6 +86,7 @@
   var klippiNro = 0, vaihe = 0, sana = 0;
   var ajastin = null, liukuAjastin = null;
   var kayttajaPysaytti = false;
+  var kierros = 0, loppui = false;
   var nakyvissa = true;
   var odottaaIntroa = false;
 
@@ -180,18 +182,33 @@
       sana = 0;
       vaihe += 1;
       if (vaihe < k.vaiheet.length) { askel(); return; }
-      // Seuraava klippi: pyyhkäisy, kursori seuraavaan kohtaan ja ensimmäinen sana pyyhkäisyn jälkeen.
       vaihe = 0;
-      klippiNro = (klippiNro + 1) % KLIPIT.length;
-      pyyhkaise(); // kopio vanhasta klipistä ensin, sitten uusi sisältö alta nousevaan kerrokseen
-      piirra(KLIPIT[klippiNro].vaiheet[0]);
-      kursoriKohtaan(KLIPIT[klippiNro]);
-      ajastin = setTimeout(askel, PYYHKAISY * 0.6);
+      // Kahden kierroksen jälkeen esimerkki jää viimeiseen ruutuun (loppukehote), ja napista voi toistaa sen.
+      if (klippiNro === KLIPIT.length - 1 && ++kierros >= KIERROKSET) { lopeta(); return; }
+      seuraavaKlippi();
     }, v.loppu ? PIDA_LOPPU : PIDA);
   }
 
+  // Seuraava klippi: pyyhkäisy, kursori seuraavaan kohtaan ja ensimmäinen sana pyyhkäisyn jälkeen.
+  function seuraavaKlippi() {
+    vaihe = 0;
+    sana = 0;
+    klippiNro = (klippiNro + 1) % KLIPIT.length;
+    pyyhkaise(); // kopio vanhasta klipistä ensin, sitten uusi sisältö alta nousevaan kerrokseen
+    piirra(KLIPIT[klippiNro].vaiheet[0]);
+    kursoriKohtaan(KLIPIT[klippiNro]);
+    ajastin = setTimeout(askel, PYYHKAISY * 0.6);
+  }
+
+  function lopeta() {
+    ajastin = null;
+    loppui = true;
+    kursoriSeis();
+    nappi.textContent = NAPPI[2];
+  }
+
   function kaynnista() {
-    if (ajastin || kayttajaPysaytti || !nakyvissa || odottaaIntroa) return;
+    if (ajastin || loppui || kayttajaPysaytti || !nakyvissa || odottaaIntroa) return;
     kursoriKohtaan(KLIPIT[klippiNro]);
     askel();
   }
@@ -218,6 +235,14 @@
   // Napin teksti kertoo, mitä painallus tekee (Pysäytä / Jatka), joten aria-pressed-tilaa ei käytetä.
   nappi.hidden = false;
   nappi.addEventListener('click', function () {
+    if (loppui) {
+      loppui = false;
+      kierros = 0;
+      kayttajaPysaytti = false;
+      nappi.textContent = NAPPI[0];
+      seuraavaKlippi();
+      return;
+    }
     kayttajaPysaytti = !kayttajaPysaytti;
     nappi.textContent = kayttajaPysaytti ? NAPPI[1] : NAPPI[0];
     if (kayttajaPysaytti) pysayta(); else kaynnista();
