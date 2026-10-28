@@ -212,6 +212,7 @@ Hannes pyysi näyttävämpää ilmettä ja avausefektiä. Ilme oli ensin esikats
   - Mitä klipeissä on -osion kaavio ja tekniikkalista (drop, äänitaso, kuvataajuus). Tilalla on neljä lyhyttä kohtaa (`.ominaisuudet-tiivis`), joista ensimmäinen on pysäyttävä alku.
   - hintaosion musta näytelaatikko ja keltaiset lupausrivit; laskutusteksti yhteen lauseeseen
   - UKK 13 → 8 kysymystä, vastaukset lyhyemmiksi
+  - Näytenappi on kahdesti: yläpalkissa ja herossa. Yhteysosion nappi poistettiin, ja sen viestipohja on nyt ison sähköpostiosoitteen linkissä.
   - Vaiheita on kolme (ennen neljä). Heron otsikko on puhelimessa pienempi (`h1`: `clamp(3.25rem, 15vw, 9.5rem)`).
 
 ## Hakukoneet ja somejaot
