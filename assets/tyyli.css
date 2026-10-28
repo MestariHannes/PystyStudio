@@ -1388,6 +1388,11 @@ h1 span { display: block; }
   line-height: 1.05;
   overflow-wrap: anywhere;
 }
+.iso-linkki[href^="tel:"] { white-space: nowrap; }
+/* Tabletilla yhteystiedot ovat kapeassa sarakkeessa: pienempi koko, ettei osoite katkea keskeltä (28.10.2026). */
+@media (min-width: 45em) and (max-width: 63.99em) {
+  .iso-linkki { font-size: 2rem; }
+}
 .yhteys-huomio { margin: 0; font-size: .9375rem; opacity: .85; }
 
 /* Alapalkki: musta pohja ja tumma logo (assets/logo-tumma.svg, viewBox 536,9 × 112) */
