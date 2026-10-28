@@ -105,6 +105,12 @@ Sivu käyttää logokonseptia 4, Pystyviiva, jonka Hannes valitsi 23.10.2026. L�
 
 > **Etusivun hintaosio muuttui 28.10.2026** (Hanneksen pyyntö: yksinkertaisemmat hinnat). Etusivuilla on nyt kolme pakettikorttia (4, 12 ja 24 klippiä, `.paketit`), joiden hinnat tulevat hintadata.js:stä muodossa `data-hinta="klippaamo:N"` (hinnat.js, `kiinteaHinta`; myös `kertaera:1`). Yksityishenkilö | Yritys -valitsin vaihtaa korttien hinnat. Liukusäätimet, apusäätimet, Muut palvelut ja lisäpalvelut (18) poistettiin etusivuilta; ne ovat tarjoussivulla (tarjous.html ja en/quote.html), ja kortin Valitse-linkki avaa sen valmiiksi valitulla paketilla (`?klippaamo=N`). Suomenkieliseltä etusivulta poistettiin myös valuuttavalitsin. Alla olevat säädinkorttien ohjeet koskevat enää tarjoussivua.
 
+> **Hintavivut palautettu etusivuille 28.10.2026** (Hanneksen pyyntö: vipu oli kivemman näköinen). Hintaosio on taas sama kuin commitissa 87f099e: Klippaamon vipu ja Laske koko videoiden määrästä -apuvivut, Kertaerä-vipu, Muut palvelut ja lisäpalvelut avattavina, valuuttavalitsin ja Räätälöity tarjous -painike. Pakettikortit poistettiin. Erot vanhaan:
+> - Klippaamossa on koot 4–64. Yli 24 klippiä on Klippaamo Pro julkaisuteksteineen, ja yli 64 klippiä sovitaan erikseen.
+> - Videoita kuukaudessa on 1–20, ja Klippiä per video on 1–8.
+> - Tiheissä porrasriveissä näkyvät vain avainnumerot (data-avain): Klippejä kuukaudessa -vivussa alle 64em leveällä näytöllä (`.portaat-tiheat`) ja Videoita kuukaudessa -vivussa, kun apuvivut ovat rinnakkain (`.portaat-rinnakkain`).
+> - Säädinkorttien ohjeet alla koskevat taas myös etusivuja. Korttien CSS (`.paketit`) ja `data-klippihinta` jäivät koodiin käyttämättöminä.
+
 > **Tarjoussivun säätimet 28.10.2026** (Hanneksen pyyntö): Klippiä per video alkaa 1:stä, Videoita kuukaudessa ulottuu 20:een, ja Klippaamossa on 24:n yli koot 28–64 (neljän välein). Yli 24 klipin hinta on 599 € + 25 € jokaisesta lisäklipistä (Lisäklipin hinta), ja niihin sisältyvät julkaisutekstit kuten Pro-pakettiin. Yli 64 klippiä kuussa: tarjoussivu näyttää huomion "sovitaan erikseen".
 
 > **Arvioiden korjaukset 28.10.2026** (Pääaseman, Kilpailijan ja Tuomarin arviot, `04_myynti/2026-10-28_sivuston-korjaukset/2026-10-28_arviot-sivusta.md`):

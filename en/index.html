@@ -247,33 +247,254 @@
           <p class="valuutta-huomio" data-valuutta-huomio data-malli="USD prices are approximate, converted at the ECB reference rate (1 € = {kurssi} USD on {pvm}). All prices are agreed and invoiced in euros. Currency conversion costs are paid by the customer." hidden></p>
           <p class="piilotettu" data-valuutta-ilmoitus aria-live="polite"></p>
         </div>
-        <!-- Pakettikortit (28.10.2026): kolme kuukausipakettia. Hinnat tulevat hintadata.js:stä (data-hinta="klippaamo:N",
-             hinnat.js), alv 0 %. Kaikki paketit, kertaerä, lisäpalvelut ja muut palvelut ovat tarjoussivulla (quote.html). -->
-        <ul class="paketit">
-          <li class="paketti">
-            <h3>4 clips</h3>
-            <p class="paketti-kuvaus">For a small channel or a trial.</p>
-            <p class="hinta"><span class="summa" data-hinta="klippaamo:4">€129</span><span class="jakso">/mo</span><span class="alv">+ VAT</span></p>
-            <p class="paketti-klippihinta" data-klippihinta="klippaamo:4">about €32 per clip</p>
-            <a class="paketti-linkki" href="quote.html?klippaamo=4">Choose 4 clips</a>
-          </li>
-          <li class="paketti">
-            <h3>12 clips</h3>
-            <p class="paketti-kuvaus">About three clips a week.</p>
-            <p class="hinta"><span class="summa" data-hinta="klippaamo:12">€349</span><span class="jakso">/mo</span><span class="alv">+ VAT</span></p>
-            <p class="paketti-klippihinta" data-klippihinta="klippaamo:12">about €29 per clip</p>
-            <a class="paketti-linkki" href="quote.html?klippaamo=12">Choose 12 clips</a>
-          </li>
-          <li class="paketti">
-            <h3>24 clips</h3>
-            <p class="paketti-kuvaus">Six clips a week, each with ready-to-post copy.</p>
-            <p class="hinta"><span class="summa" data-hinta="klippaamo:24">€599</span><span class="jakso">/mo</span><span class="alv">+ VAT</span></p>
-            <p class="paketti-klippihinta" data-klippihinta="klippaamo:24">about €25 per clip</p>
-            <a class="paketti-linkki" href="quote.html?klippaamo=24">Choose 24 clips</a>
-          </li>
-        </ul>
-        <p class="paketit-muut">Also 8, 16, 20 or more than 24 clips a month. For a single video, a one-off batch from <span data-hinta="kertaera:1">€49</span>. Monthly packages are invoiced at the start of the month, one-off jobs after delivery.</p>
-        <p class="tarjous-kehote tarjous-kehote-loppu"><a class="nappi nappi-toissijainen" href="quote.html">Build your own package</a><span>All packages, add-ons and other services, such as Pysty Puhe and AI ads. No commitment.</span></p>
+        <!-- Hintavivut palautettu 28.10.2026 (Hanneksen pyyntö: vipu oli kivemman näköinen kuin pakettikortit). Klippaamossa koot 4–64,
+             videoita 1–20 ja klippiä per video 1–8 kuten tarjoussivulla. Kapealla porrasrivillä näkyvät vain data-avain-numerot.
+             Hintasäätimet: hinnat ovat tiedostossa ../assets/hintadata.js (data-saadin kertoo, mikä palvelu).
+             Portaat (n) ja portaiden omat nimet ovat kortin data-portaat-attribuutissa. Ilman JavaScriptiä näkyy oletusporras,
+             joten kortin teksteissä on oletusportaan luvut. Muutos: päivitä hintadata.js ja oletusportaan tekstit
+             sekä tähän että ../index.html-tiedostoon. Kiinteät hinnat: data-hinta="nimi" (hintadata.js, kiinteat).
+             Säätimissä on autocomplete="off" (Takaisin-nappi, ks. hinnat.js). -->
+
+        <div class="hintaryhma">
+          <div class="hintaryhma-otsikko">
+            <h3>Monthly package</h3>
+            <p>Month to month. Cancel any time by email.</p>
+          </div>
+          <ul class="hinnasto">
+            <li class="hintarivi saadinrivi" data-saadin="klippaamo" data-nimi="Klippaamo" data-malli="{n} {yksikko} per month." data-yksikko="clip|clips" data-per="clip" data-kk data-oletus="2"
+                data-portaat='[{"n":4},{"n":8},{"n":12,"nimi":"Klippaamo Starter"},{"n":16},{"n":20},{"n":24,"nimi":"Klippaamo Pro","lisa":"+ ready-to-use post copy for every clip"},{"n":28,"nimi":"Klippaamo Pro","lisa":"+ ready-to-use post copy for every clip"},{"n":32,"nimi":"Klippaamo Pro","lisa":"+ ready-to-use post copy for every clip"},{"n":36,"nimi":"Klippaamo Pro","lisa":"+ ready-to-use post copy for every clip"},{"n":40,"nimi":"Klippaamo Pro","lisa":"+ ready-to-use post copy for every clip"},{"n":44,"nimi":"Klippaamo Pro","lisa":"+ ready-to-use post copy for every clip"},{"n":48,"nimi":"Klippaamo Pro","lisa":"+ ready-to-use post copy for every clip"},{"n":52,"nimi":"Klippaamo Pro","lisa":"+ ready-to-use post copy for every clip"},{"n":56,"nimi":"Klippaamo Pro","lisa":"+ ready-to-use post copy for every clip"},{"n":60,"nimi":"Klippaamo Pro","lisa":"+ ready-to-use post copy for every clip"},{"n":64,"nimi":"Klippaamo Pro","lisa":"+ ready-to-use post copy for every clip"}]'>
+              <div>
+                <h4 data-nimi>Klippaamo Starter</h4>
+                <p data-kuvaus>12 clips per month.</p>
+              </div>
+              <p class="hinta"><span class="summa" data-summa>€349</span><span class="jakso">/mo</span><span class="alv">+ VAT</span></p>
+              <div class="saadin" hidden>
+                <!-- Apusäätimet: videoita × klippiä per video siirtää pakettisäätimen pienimpään riittävään portaaseen.
+                     data-arvot = säätimen arvot, data-oletus = oletusarvon järjestysnumero (0 = ensimmäinen). -->
+                <div class="apusaatimet" data-apusaatimet role="group" aria-labelledby="helper-heading" hidden>
+                  <p class="apu-otsikko" id="helper-heading">Find your package size</p>
+                  <div class="apusaadin">
+                    <div class="saadin-otsikko"><label for="slider-videos">Videos per month</label><span class="saadin-arvo" data-apu-arvo="videot" aria-hidden="true">4</span></div>
+                    <input class="saadin-input" type="range" id="slider-videos" min="0" max="10" step="1" value="3" autocomplete="off" data-apu="videot" data-arvot="[1,2,3,4,5,6,8,10,12,16,20]" data-oletus="3">
+                    <div class="portaat portaat-rinnakkain" aria-hidden="true" style="--n:11"><span style="--i:0" data-i="0" data-avain>1</span><span style="--i:1" data-i="1" data-avain>2</span><span style="--i:2" data-i="2" data-avain>3</span><span style="--i:3" data-i="3" data-avain>4</span><span style="--i:4" data-i="4" data-avain>5</span><span style="--i:5" data-i="5" data-avain>6</span><span style="--i:6" data-i="6" data-avain>8</span><span style="--i:7" data-i="7">10</span><span style="--i:8" data-i="8" data-avain>12</span><span style="--i:9" data-i="9">16</span><span style="--i:10" data-i="10" data-avain>20</span></div>
+                  </div>
+                  <div class="apusaadin">
+                    <div class="saadin-otsikko"><label for="slider-per-video">Clips per video</label><span class="saadin-arvo" data-apu-arvo="per" aria-hidden="true">3</span></div>
+                    <input class="saadin-input" type="range" id="slider-per-video" min="0" max="6" step="1" value="2" autocomplete="off" data-apu="per" data-arvot="[1,2,3,4,5,6,8]" data-oletus="2">
+                    <div class="portaat" aria-hidden="true" style="--n:7"><span style="--i:0" data-i="0">1</span><span style="--i:1" data-i="1">2</span><span style="--i:2" data-i="2">3</span><span style="--i:3" data-i="3">4</span><span style="--i:4" data-i="4">5</span><span style="--i:5" data-i="5">6</span><span style="--i:6" data-i="6">8</span></div>
+                  </div>
+                  <div class="apu-tulos">
+                    <p class="apu-yhteensa" data-apu-yhteensa>Total 12 clips per month</p>
+                    <p class="apu-viesti" data-apu-viesti hidden><span data-apu-viesti-teksti></span> <a data-apu-tarjous href="mailto:korkiakoskihannes@gmail.com?subject=Quote%20request%3A%20more%20than%2064%20clips%20a%20month&amp;body=Hi%2C%0A%0AVideos%20per%20month%3A%20%0AClips%20per%20video%3A%20%0AChannel%3A%20%0A" hidden>Ask for a quote</a></p>
+                    <p class="piilotettu" data-apu-ilmoitus aria-live="polite"></p>
+                  </div>
+                </div>
+                <div class="saadin-otsikko"><label for="slider-monthly">Clips per month</label><span class="saadin-arvo" data-arvo aria-hidden="true">12</span></div>
+                <input class="saadin-input" type="range" id="slider-monthly" min="0" max="15" step="1" value="2" autocomplete="off">
+                <div class="portaat portaat-tiheat" aria-hidden="true" style="--n:16"><span style="--i:0" data-i="0" data-avain>4</span><span style="--i:1" data-i="1">8</span><span style="--i:2" data-i="2" data-avain>12</span><span style="--i:3" data-i="3">16</span><span style="--i:4" data-i="4">20</span><span style="--i:5" data-i="5" data-avain>24</span><span style="--i:6" data-i="6">28</span><span style="--i:7" data-i="7">32</span><span style="--i:8" data-i="8" data-avain>36</span><span style="--i:9" data-i="9">40</span><span style="--i:10" data-i="10">44</span><span style="--i:11" data-i="11" data-avain>48</span><span style="--i:12" data-i="12">52</span><span style="--i:13" data-i="13">56</span><span style="--i:14" data-i="14">60</span><span style="--i:15" data-i="15" data-avain>64</span></div>
+              </div>
+              <p class="saadin-lisa" data-lisa hidden></p>
+              <p class="saadin-yhteenveto" data-yhteenveto>Incl. Finnish VAT 25.5%: €438/mo · €29.08/clip (excl. VAT)</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="hintaryhma">
+          <div class="hintaryhma-otsikko">
+            <h3>One-off</h3>
+          </div>
+          <ul class="hinnasto">
+            <li class="hintarivi saadinrivi" data-saadin="kertaera" data-nimi="Single batch" data-malli="{n} {yksikko} from one episode, no monthly contract." data-yksikko="clip|clips" data-per="clip" data-oletus="3"
+                data-portaat='[{"n":1},{"n":4},{"n":6},{"n":8}]'>
+              <div>
+                <h4 data-nimi>Single batch</h4>
+                <p data-kuvaus>8 clips from one episode, no monthly contract.</p>
+              </div>
+              <p class="hinta"><span class="summa" data-summa>€269</span><span class="alv">+ VAT</span></p>
+              <div class="saadin" hidden>
+                <div class="saadin-otsikko"><label for="slider-batch">Clips</label><span class="saadin-arvo" data-arvo aria-hidden="true">8</span></div>
+                <input class="saadin-input" type="range" id="slider-batch" min="0" max="3" step="1" value="3" autocomplete="off">
+                <div class="portaat" aria-hidden="true" style="--n:4"><span style="--i:0" data-i="0">1</span><span style="--i:1" data-i="1">4</span><span style="--i:2" data-i="2">6</span><span style="--i:3" data-i="3">8</span></div>
+              </div>
+              <p class="saadin-yhteenveto" data-yhteenveto>Incl. Finnish VAT 25.5%: €337.60 · €33.63/clip (excl. VAT)</p>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Avattavat osiot (<details>) toimivat ilman JavaScriptiä. Ankkuri (esim. #add-ons, #clip-account)
+             tai osoitteen säädinvalinta (esim. ?tilinhoito=20) avaa osion automaattisesti (sivu.js ja hinnat.js). -->
+        <details class="avattava" id="other-services">
+          <summary><span class="avattava-otsikko">Other services:</span> <span class="avattava-selite">clip account all done for you, Pysty Puhe and AI ads</span></summary>
+          <ul class="hinnasto">
+            <li class="hintarivi" id="all-done-for-you">
+              <div>
+                <h4>Clip account, all done for you</h4>
+                <p>Klippaamo with 20 clips and clip account management in one package: I make clips from your videos and publish them for you on a separate clip account on TikTok, Instagram and YouTube Shorts (20 posts a month). <span data-kaikki-saasto>€49</span> a month cheaper than buying them separately.</p>
+              </div>
+              <p class="hinta"><span class="summa" data-hinta="kaikkiValmiina">€649</span><span class="jakso">/mo</span><span class="kerta">+ setup <span data-hinta="kaikkiValmiinaKayttoonotto">€149</span></span><span class="alv">+ VAT</span></p>
+            </li>
+            <li class="hintarivi" id="pysty-puhe">
+              <div>
+                <h4>Pysty Puhe pilot</h4>
+                <p>For when you don’t have a podcast: I interview you remotely for 45 minutes and make 8 clips from the recording.</p>
+              </div>
+              <p class="hinta"><span class="summa" data-hinta="pystyPuhe">€290</span><span class="alv">+ VAT</span></p>
+            </li>
+            <li class="hintarivi saadinrivi" id="ai-ad-package" data-saadin="aiMainos" data-nimi="AI ad package" data-malli="{n} short vertical ads made from your online store’s product photos. The product is shown as it really is, and the videos are labeled as AI-generated." data-yksikko="ad|ads" data-per="ad" data-oletus="1"
+                data-portaat='[{"n":5},{"n":10},{"n":20}]'>
+              <div>
+                <h4 data-nimi>AI ad package</h4>
+                <p data-kuvaus>10 short vertical ads made from your online store’s product photos. The product is shown as it really is, and the videos are labeled as AI-generated.</p>
+              </div>
+              <p class="hinta"><span class="summa" data-summa>€690</span><span class="alv">+ VAT</span></p>
+              <div class="saadin" hidden>
+                <div class="saadin-otsikko"><label for="slider-ai">Ads</label><span class="saadin-arvo" data-arvo aria-hidden="true">10</span></div>
+                <input class="saadin-input" type="range" id="slider-ai" min="0" max="2" step="1" value="1" autocomplete="off">
+                <div class="portaat" aria-hidden="true" style="--n:3"><span style="--i:0" data-i="0">5</span><span style="--i:1" data-i="1">10</span><span style="--i:2" data-i="2">20</span></div>
+              </div>
+              <p class="saadin-yhteenveto" data-yhteenveto>Incl. Finnish VAT 25.5%: €865.95 · €69/ad (excl. VAT)</p>
+            </li>
+          </ul>
+        </details>
+
+        <!-- Lisäpalveluhinnasto 23.10.2026 (18 palvelua). Rivin rakenne sama kuin hinnastossa: li.hintarivi.
+             Jos lisäpalvelujen määrä muuttuu, päivitä luku myös summary-tekstiin. -->
+        <details class="avattava" id="add-ons">
+          <summary><span class="avattava-otsikko">Show add-ons:</span> <span class="avattava-selite">publishing, clip account, archive and more (18)</span></summary>
+          <p class="avattava-johdanto">Add-ons are usually ordered alongside a package. Prices exclude VAT, as above.</p>
+          <div class="lisapalvelut">
+            <div class="lisaryhma">
+              <h3>More clips</h3>
+              <ul class="hinnasto hinnasto-tiivis">
+                <li class="hintarivi saadinrivi" id="archive" data-saadin="arkisto" data-nimi="Archive" data-malli="{n} {yksikko} from your older videos, to schedule alongside the new ones." data-yksikko="clip|clips" data-per="clip" data-oletus="2"
+                    data-portaat='[{"n":10},{"n":20},{"n":30},{"n":50,"nimi":"Channel’s best 50","kuvaus":"50 clips from the best moments in your channel’s entire history."}]'>
+                  <div><h4 data-nimi>Archive</h4><p data-kuvaus>30 clips from your older videos, to schedule alongside the new ones.</p></div>
+                  <p class="hinta"><span class="summa" data-summa>€590</span></p>
+                  <div class="saadin" hidden>
+                    <div class="saadin-otsikko"><label for="slider-archive">Clips</label><span class="saadin-arvo" data-arvo aria-hidden="true">30</span></div>
+                    <input class="saadin-input" type="range" id="slider-archive" min="0" max="3" step="1" value="2" autocomplete="off">
+                    <div class="portaat" aria-hidden="true" style="--n:4"><span style="--i:0" data-i="0">10</span><span style="--i:1" data-i="1">20</span><span style="--i:2" data-i="2">30</span><span style="--i:3" data-i="3">50</span></div>
+                  </div>
+                  <p class="saadin-yhteenveto" data-yhteenveto>Incl. Finnish VAT 25.5%: €740.45 · €19.67/clip (excl. VAT)</p>
+                </li>
+                <li class="hintarivi">
+                  <div><h4>Extra clip</h4><p>More clips on top of your monthly package.</p></div>
+                  <p class="hinta"><span class="summa" data-hinta="lisaklippi">€25</span><span class="jakso">&nbsp;each</span></p>
+                </li>
+                <li class="hintarivi">
+                  <div><h4>Livestream clipping</h4><p>About 8 clips from a stream.</p></div>
+                  <p class="hinta"><span class="summa" data-hinta="livestriimi">€269</span><span class="jakso">/stream</span></p>
+                </li>
+                <li class="hintarivi">
+                  <div><h4>Trailer</h4><p>A teaser clip the day before a new video.</p></div>
+                  <p class="hinta"><span class="summa" data-hinta="traileri">€25</span><span class="jakso">&nbsp;each</span></p>
+                </li>
+                <li class="hintarivi">
+                  <div><h4>Comment reply clip</h4><p>A clip that replies to a popular comment.</p></div>
+                  <p class="hinta"><span class="summa" data-hinta="kommenttivastaus">€20</span><span class="jakso">&nbsp;each</span></p>
+                </li>
+                <li class="hintarivi">
+                  <div><h4>Best-of compilation</h4><p>The month’s best bits in 60–90 seconds.</p></div>
+                  <p class="hinta"><span class="summa" data-hinta="bestOf">€79</span><span class="jakso">&nbsp;each</span></p>
+                </li>
+                <li class="hintarivi">
+                  <div><h4>Before-and-after compilation</h4><p>A project from start to finish in 45–60 seconds.</p></div>
+                  <p class="hinta"><span class="summa" data-hinta="ennenJalkeen">€99</span><span class="jakso">&nbsp;each</span></p>
+                </li>
+                <li class="hintarivi">
+                  <div><h4>Sponsor or merch clip</h4><p>A dedicated promo clip for a partner’s product or your own merch. I’ll tell you how to label the paid partnership, and if I publish for you, I add the label myself.</p></div>
+                  <p class="hinta"><span class="summa" data-hinta="sponsori">€149</span><span class="jakso">&nbsp;each</span></p>
+                </li>
+                <li class="hintarivi">
+                  <div><h4>Podcast audiogram</h4><p>An audio clip with a waveform and captions.</p></div>
+                  <p class="hinta"><span class="summa" data-hinta="audiogrammi">€15</span><span class="jakso">&nbsp;each</span></p>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="lisaryhma">
+                <h3>Publishing and reporting</h3>
+                <ul class="hinnasto hinnasto-tiivis">
+                  <li class="hintarivi">
+                    <div><h4>Post copy and hashtags</h4><p>Post copy for TikTok, Reels and Shorts for every clip in your monthly package (up to 24 a month). Included in the Pro packages (24 clips or more) and in clip account management.</p></div>
+                    <p class="hinta"><span class="summa" data-hinta="julkaisutekstit">€60</span><span class="jakso">/mo</span></p>
+                  </li>
+                  <li class="hintarivi">
+                    <div><h4>Publishing for you</h4><p>I publish and schedule the clips on your own accounts. I get a publisher role on the accounts, not your password. On TikTok, business accounts only.</p></div>
+                    <p class="hinta"><span class="summa" data-hinta="julkaisuPuolesta">€120</span><span class="jakso">/mo</span></p>
+                  </li>
+                  <!-- Klippitilin hoito: hinnat ovat hintadata.js:ssä (tilinhoito ja tilinhoitoKayttoonotto).
+                       data-portaat = julkaisuja kuukaudessa (n) ja noin viikossa (vko). Oletus: kaikki kolme alustaa ja 20 julkaisua. -->
+                  <li class="hintarivi saadinrivi" id="clip-account" data-tilinhoito data-oletus="2"
+                      data-portaat='[{"n":8,"vko":2},{"n":12,"vko":3},{"n":20,"vko":5},{"n":30,"vko":7}]'>
+                    <div>
+                      <h4>Clip account management</h4>
+                      <p>You create the accounts in about 10 minutes, and I handle the rest: profiles, posts, scheduling, post copy and a short monthly summary. The accounts and followers are always in your name; I only get a publisher role. You reply to comments and messages yourself. The clips come from your clip package, as extra clips <span data-hinta="lisaklippi" data-jakso=" each" data-sulut>(€25 each)</span> or from an archive package. Available alongside a clip package.</p>
+                    </div>
+                    <p class="hinta"><span class="summa" data-summa>€199</span><span class="jakso">/mo</span><span class="kerta" data-kerta>+ setup €149</span></p>
+                    <div class="saadin" hidden>
+                      <fieldset class="alustat">
+                        <legend>Platforms</legend>
+                        <div class="alustat-valinnat">
+                          <label class="valinta"><input type="checkbox" name="alusta" value="TikTok" autocomplete="off" checked> TikTok</label>
+                          <label class="valinta"><input type="checkbox" name="alusta" value="Instagram" autocomplete="off" checked> Instagram</label>
+                          <label class="valinta"><input type="checkbox" name="alusta" value="YouTube Shorts" autocomplete="off" checked> YouTube Shorts</label>
+                        </div>
+                        <p class="valinta-huomio" data-huomio hidden>Select at least one platform.</p>
+                      </fieldset>
+                      <div class="saadin-otsikko"><label for="slider-account">Posts per month</label><span class="saadin-arvo" data-arvo aria-hidden="true">20</span></div>
+                      <input class="saadin-input" type="range" id="slider-account" min="0" max="3" step="1" value="2" autocomplete="off">
+                      <div class="portaat" aria-hidden="true" style="--n:4"><span style="--i:0" data-i="0">8</span><span style="--i:1" data-i="1">12</span><span style="--i:2" data-i="2">20</span><span style="--i:3" data-i="3">30</span></div>
+                    </div>
+                    <p class="saadin-yhteenveto" data-yhteenveto>3 platforms (TikTok, Instagram and YouTube Shorts), 20 posts per month, about 5 per week. Incl. Finnish VAT 25.5%: €249.75/mo and setup €187.</p>
+                    <p class="saadin-huomio">On TikTok, I publish for you only to a business account, which means TikTok’s Commercial Music Library is used instead of trending sounds. On a personal account, you publish the finished clips yourself.</p>
+                    <p class="piilotettu" data-ilmoitus aria-live="polite"></p>
+                  </li>
+                  <li class="hintarivi">
+                    <div><h4>Monthly report</h4><p>Views, top clips and suggestions for the next month.</p></div>
+                    <p class="hinta"><span class="summa" data-hinta="kuukausiraportti">€49</span><span class="jakso">/mo</span></p>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="lisaryhma">
+                <h3>Images</h3>
+                <ul class="hinnasto hinnasto-tiivis">
+                  <li class="hintarivi">
+                    <div><h4>Cover image</h4><p>A Reels or Shorts cover for a clip.</p></div>
+                    <p class="hinta"><span class="summa" data-hinta="kansikuva">€10</span><span class="jakso">&nbsp;each</span></p>
+                  </li>
+                  <li class="hintarivi">
+                    <div><h4>YouTube thumbnail</h4><p>The main image for a long video.</p></div>
+                    <p class="hinta"><span class="summa" data-hinta="pikkukuva">€49</span><span class="jakso">&nbsp;each</span></p>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="lisaryhma">
+                <h3>Clip extras</h3>
+                <ul class="hinnasto hinnasto-tiivis">
+                  <li class="hintarivi">
+                    <div><h4>English captions</h4><p>Captions in English for an international audience.</p></div>
+                    <p class="hinta"><span class="summa" data-hinta="englanninTekstitys" data-etumerkki="+">+€5</span><span class="jakso">/clip</span></p>
+                  </li>
+                  <li class="hintarivi">
+                    <div><h4>Horizontal 16:9 version</h4><p>The same clip in horizontal format as well, for YouTube, LinkedIn or your website. Horizontal-only clips cost the same as vertical clips.</p></div>
+                    <p class="hinta"><span class="summa" data-hinta="vaakaversio" data-etumerkki="+">+€10</span><span class="jakso">/clip</span></p>
+                  </li>
+                  <li class="hintarivi">
+                    <div><h4>Extra revision</h4><p>The second and any further rounds of revisions. I always fix my own mistakes, such as caption errors, free of charge, and they don’t use up your revision round. A completely new moment counts as a new clip <span data-hinta="lisaklippi" data-sulut>(€25)</span>.</p></div>
+                    <p class="hinta"><span class="summa" data-hinta="lisakorjaus">€15</span><span class="jakso">/clip</span></p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <p class="hinta-huomio">Monthly packages are invoiced at the start of the month, one-off jobs after delivery.</p>
+        <p class="tarjous-kehote tarjous-kehote-loppu"><a class="nappi nappi-toissijainen" href="quote.html" data-tarjouslinkki>Custom quote</a><span>Build your own package and send a quote request. No commitment.</span></p>
       </div>
     </section>
 
