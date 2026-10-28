@@ -227,11 +227,17 @@
     eurEl.hidden = V.valuutta() !== 'usd';
   }
 
-  // Kiinteät hinnat: data-hinta="nimi" (hinta hintadata.js:n kiinteat-osasta).
+  // Kiinteät hinnat: data-hinta="nimi" (hinta hintadata.js:n kiinteat-osasta) tai data-hinta="palvelu:N"
+  // (paketin N hinta, esim. "klippaamo:12" tai "kertaera:1"; etusivun pakettikortit 28.10.2026).
   // .summa = iso hinta; data-sulut = koko summa sulkeissa; data-jakso = summan perään tuleva teksti, esim. "/kpl".
+  function kiinteaHinta(avain) {
+    var osat = avain.split(':');
+    if (osat.length === 2) return H[osat[0]] ? H[osat[0]][osat[1]] : undefined;
+    return H.kiinteat[avain];
+  }
   function piirraKiinteat() {
     document.querySelectorAll('[data-hinta]').forEach(function (el) {
-      var euroja = H.kiinteat[el.getAttribute('data-hinta')];
+      var euroja = kiinteaHinta(el.getAttribute('data-hinta'));
       if (typeof euroja !== 'number') return;
       var sentit = hinnaksi(euroja);
       var etumerkki = el.getAttribute('data-etumerkki') || '';

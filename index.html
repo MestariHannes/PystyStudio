@@ -225,8 +225,8 @@
             <p>Täyskorkea 9:16 koko klipin ajan, ja rajaus seuraa sitä, joka puhuu.</p>
           </li>
           <li>
-            <h3>Musiikki</h3>
-            <p>Musiikki on itse tehtyä tai lisensoitua.</p>
+            <h3>Kanavasi tyyli</h3>
+            <p>Tekstitys, värit ja musiikki sovitetaan kanavasi tyyliin. Musiikki on itse tehtyä tai lisensoitua.</p>
           </li>
         </ul>
       </div>
@@ -250,270 +250,31 @@
           <p class="valuutta-huomio" data-hintatapa-huomio data-kuluttaja="Hinnat sisältävät alv:n 25,5 %. Yksityishenkilönä sinulla on 14 päivän peruuttamisoikeus." data-yritys="Hinnat ovat alv 0 %, ja laskuun lisätään alv 25,5 %."></p>
           <p class="piilotettu" data-hintatapa-ilmoitus aria-live="polite"></p>
         </div>
-        <!-- Hintasäätimet: hinnat ovat tiedostossa assets/hintadata.js (data-saadin kertoo, mikä palvelu).
-             Portaat (n = klippejä) ja portaiden omat nimet ovat kortin data-portaat-attribuutissa.
-             data-oletus on oletusportaan järjestysnumero (0 = ensimmäinen). Ilman JavaScriptiä näkyy oletusporras,
-             joten kortin teksteissä on oletusportaan luvut. Muutos: päivitä hintadata.js ja oletusportaan tekstit
-             sekä tähän että en/index.html-tiedostoon. Kiinteät hinnat: data-hinta="nimi" (hintadata.js, kiinteat).
-             Säätimissä on autocomplete="off" (Takaisin-nappi, ks. hinnat.js). -->
-
-        <div class="hintaryhma">
-          <div class="hintaryhma-otsikko">
-            <h3>Kuukausipaketti</h3>
-            <p>Kuukausi kerrallaan. Voit lopettaa sähköpostilla.</p>
-          </div>
-          <ul class="hinnasto">
-            <li class="hintarivi saadinrivi" data-saadin="klippaamo" data-nimi="Klippaamo" data-malli="{n} {yksikko} kuukaudessa." data-yksikko="klippi|klippiä" data-per="klippi" data-kk data-oletus="2"
-                data-portaat='[{"n":4},{"n":8},{"n":12,"nimi":"Klippaamo Starter"},{"n":16},{"n":20},{"n":24,"nimi":"Klippaamo Pro","lisa":"+ valmis julkaisuteksti jokaiselle klipille"}]'>
-              <div>
-                <h4 data-nimi>Klippaamo Starter</h4>
-                <p data-kuvaus>12 klippiä kuukaudessa.</p>
-              </div>
-              <p class="hinta"><span class="summa" data-summa>349&nbsp;€</span><span class="jakso">/kk</span><span class="alv">+ alv 25,5&nbsp;%</span></p>
-              <div class="saadin" hidden>
-                <!-- Laskuri on suljettavan otsikon takana (28.10.2026), jotta kortissa näkyy yksi säädin. Laskuri siirtää alla olevan säätimen.
-                     Osoitteen valinnat ?videot=&per= avaavat sen (hinnat.js). -->
-                <details class="apu-avattava">
-                  <summary>Laske koko videoiden määrästä</summary>
-                  <!-- Apusäätimet: videoita × klippiä per video siirtää pakettisäätimen pienimpään riittävään portaaseen.
-                       data-arvot = säätimen arvot, data-oletus = oletusarvon järjestysnumero (0 = ensimmäinen). -->
-                  <div class="apusaatimet" data-apusaatimet role="group" aria-labelledby="apu-otsikko" hidden>
-                    <p class="apu-otsikko piilotettu" id="apu-otsikko">Laske paketin koko</p>
-                    <div class="apusaadin">
-                      <div class="saadin-otsikko"><label for="saadin-videot">Videoita kuukaudessa</label><span class="saadin-arvo" data-apu-arvo="videot" aria-hidden="true">4</span></div>
-                      <input class="saadin-input" type="range" id="saadin-videot" min="0" max="6" step="1" value="3" autocomplete="off" data-apu="videot" data-arvot="[1,2,3,4,5,6,8]" data-oletus="3">
-                      <div class="portaat" aria-hidden="true" style="--n:7"><span style="--i:0" data-i="0">1</span><span style="--i:1" data-i="1">2</span><span style="--i:2" data-i="2">3</span><span style="--i:3" data-i="3">4</span><span style="--i:4" data-i="4">5</span><span style="--i:5" data-i="5">6</span><span style="--i:6" data-i="6">8</span></div>
-                    </div>
-                    <div class="apusaadin">
-                      <div class="saadin-otsikko"><label for="saadin-per-video">Klippiä per video</label><span class="saadin-arvo" data-apu-arvo="per" aria-hidden="true">3</span></div>
-                      <input class="saadin-input" type="range" id="saadin-per-video" min="0" max="5" step="1" value="1" autocomplete="off" data-apu="per" data-arvot="[2,3,4,5,6,8]" data-oletus="1">
-                      <div class="portaat" aria-hidden="true" style="--n:6"><span style="--i:0" data-i="0">2</span><span style="--i:1" data-i="1">3</span><span style="--i:2" data-i="2">4</span><span style="--i:3" data-i="3">5</span><span style="--i:4" data-i="4">6</span><span style="--i:5" data-i="5">8</span></div>
-                    </div>
-                    <div class="apu-tulos">
-                      <p class="apu-yhteensa" data-apu-yhteensa>Yhteensä 12 klippiä kuukaudessa</p>
-                      <p class="apu-viesti" data-apu-viesti hidden><span data-apu-viesti-teksti></span> <a data-apu-tarjous href="mailto:korkiakoskihannes@gmail.com?subject=Tarjouspyynt%C3%B6%3A%20yli%2024%20klippi%C3%A4%20kuukaudessa&amp;body=Hei%2C%0A%0AVideoita%20kuukaudessa%3A%20%0AKlippi%C3%A4%20per%20video%3A%20%0AKanava%3A%20%0A" hidden>Kysy tarjous</a></p>
-                      <p class="piilotettu" data-apu-ilmoitus aria-live="polite"></p>
-                    </div>
-                  </div>
-                </details>
-                <div class="saadin-otsikko"><label for="saadin-kuukausi">Klippejä kuukaudessa</label><span class="saadin-arvo" data-arvo aria-hidden="true">12</span></div>
-                <input class="saadin-input" type="range" id="saadin-kuukausi" min="0" max="5" step="1" value="2" autocomplete="off">
-                <div class="portaat" aria-hidden="true" style="--n:6"><span style="--i:0" data-i="0">4</span><span style="--i:1" data-i="1">8</span><span style="--i:2" data-i="2">12</span><span style="--i:3" data-i="3">16</span><span style="--i:4" data-i="4">20</span><span style="--i:5" data-i="5">24</span></div>
-              </div>
-              <p class="saadin-lisa" data-lisa hidden></p>
-              <p class="saadin-yhteenveto" data-yhteenveto>Sis. alv 25,5&nbsp;%: 438&nbsp;€/kk · 29,08&nbsp;€/klippi (alv 0&nbsp;%)</p>
-            </li>
-          </ul>
-        </div>
-
-        <div class="hintaryhma">
-          <div class="hintaryhma-otsikko">
-            <h3>Kertatyö</h3>
-          </div>
-          <ul class="hinnasto">
-            <li class="hintarivi saadinrivi" data-saadin="kertaera" data-nimi="Kertaerä" data-malli="Yhdestä jaksosta {n} {yksikko}, ilman kuukausisopimusta." data-yksikko="klippi|klippiä" data-per="klippi" data-oletus="3"
-                data-portaat='[{"n":1},{"n":4},{"n":6},{"n":8}]'>
-              <div>
-                <h4 data-nimi>Kertaerä</h4>
-                <p data-kuvaus>Yhdestä jaksosta 8 klippiä, ilman kuukausisopimusta.</p>
-              </div>
-              <p class="hinta"><span class="summa" data-summa>269&nbsp;€</span><span class="alv">+ alv 25,5&nbsp;%</span></p>
-              <div class="saadin" hidden>
-                <div class="saadin-otsikko"><label for="saadin-kertaera">Klippejä</label><span class="saadin-arvo" data-arvo aria-hidden="true">8</span></div>
-                <input class="saadin-input" type="range" id="saadin-kertaera" min="0" max="3" step="1" value="3" autocomplete="off">
-                <div class="portaat" aria-hidden="true" style="--n:4"><span style="--i:0" data-i="0">1</span><span style="--i:1" data-i="1">4</span><span style="--i:2" data-i="2">6</span><span style="--i:3" data-i="3">8</span></div>
-              </div>
-              <p class="saadin-yhteenveto" data-yhteenveto>Sis. alv 25,5&nbsp;%: 337,60&nbsp;€ · 33,63&nbsp;€/klippi (alv 0&nbsp;%)</p>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Avattavat osiot (<details>) toimivat ilman JavaScriptiä. Ankkuri (esim. #lisapalvelut, #klippitilin-hoito)
-             tai osoitteen säädinvalinta (esim. ?tilinhoito=20) avaa osion automaattisesti (sivu.js ja hinnat.js). -->
-        <details class="avattava" id="muut-palvelut">
-          <summary><span class="avattava-otsikko">Muut palvelut:</span> <span class="avattava-selite">Kaikki valmiina, Pysty Puhe ja AI-mainospaketti</span></summary>
-          <ul class="hinnasto">
-            <li class="hintarivi" id="kaikki-valmiina">
-              <div>
-                <h4>Klippitili Kaikki valmiina</h4>
-                <p>Klippaamo 20 klippiä ja klippitilin hoito samassa paketissa: teen klipit videoistasi ja julkaisen ne puolestasi erilliselle klippitilillesi TikTokiin, Instagramiin ja YouTube Shortsiin (20 julkaisua kuussa). <span data-kaikki-saasto>49&nbsp;€</span> kuussa edullisempi kuin erikseen.</p>
-              </div>
-              <p class="hinta"><span class="summa" data-hinta="kaikkiValmiina">649&nbsp;€</span><span class="jakso">/kk</span><span class="kerta">+ käyttöönotto <span data-hinta="kaikkiValmiinaKayttoonotto">149&nbsp;€</span></span><span class="alv">+ alv 25,5&nbsp;%</span></p>
-            </li>
-            <li class="hintarivi" id="pysty-puhe">
-              <div>
-                <h4>Pysty Puhe -pilotti</h4>
-                <p>Kun sinulla ei ole podcastia: haastattelen sinua etänä 45 minuuttia ja teen tallenteesta 8 klippiä.</p>
-              </div>
-              <p class="hinta"><span class="summa" data-hinta="pystyPuhe">290&nbsp;€</span><span class="alv">+ alv 25,5&nbsp;%</span></p>
-            </li>
-            <li class="hintarivi saadinrivi" id="ai-mainospaketti" data-saadin="aiMainos" data-nimi="AI-mainospaketti" data-malli="{n} lyhyttä pystymainosta verkkokaupan tuotekuvista. Tuote näytetään aitona, ja videot merkitään tekoälyllä tehdyiksi." data-yksikko="mainos|mainosta" data-per="mainos" data-oletus="1"
-                data-portaat='[{"n":5},{"n":10},{"n":20}]'>
-              <div>
-                <h4 data-nimi>AI-mainospaketti</h4>
-                <p data-kuvaus>10 lyhyttä pystymainosta verkkokaupan tuotekuvista. Tuote näytetään aitona, ja videot merkitään tekoälyllä tehdyiksi.</p>
-              </div>
-              <p class="hinta"><span class="summa" data-summa>690&nbsp;€</span><span class="alv">+ alv 25,5&nbsp;%</span></p>
-              <div class="saadin" hidden>
-                <div class="saadin-otsikko"><label for="saadin-ai">Mainoksia</label><span class="saadin-arvo" data-arvo aria-hidden="true">10</span></div>
-                <input class="saadin-input" type="range" id="saadin-ai" min="0" max="2" step="1" value="1" autocomplete="off">
-                <div class="portaat" aria-hidden="true" style="--n:3"><span style="--i:0" data-i="0">5</span><span style="--i:1" data-i="1">10</span><span style="--i:2" data-i="2">20</span></div>
-              </div>
-              <p class="saadin-yhteenveto" data-yhteenveto>Sis. alv 25,5&nbsp;%: 865,95&nbsp;€ · 69&nbsp;€/mainos (alv 0&nbsp;%)</p>
-            </li>
-          </ul>
-        </details>
-
-        <!-- Lisäpalveluhinnasto 23.10.2026 (18 palvelua). Rivin rakenne sama kuin hinnastossa: li.hintarivi.
-             Jos lisäpalvelujen määrä muuttuu, päivitä luku myös summary-tekstiin. -->
-        <details class="avattava" id="lisapalvelut">
-          <summary><span class="avattava-otsikko">Näytä lisäpalvelut:</span> <span class="avattava-selite">julkaisu, klippitili, arkisto ja muut (18)</span></summary>
-          <p class="avattava-johdanto">Lisäpalvelut tilataan yleensä paketin rinnalle. <span data-alv-kuluttaja="Hinnat sisältävät alv:n 25,5&nbsp;%.">Hinnat ovat alv 0&nbsp;%.</span></p>
-          <div class="lisapalvelut">
-            <div class="lisaryhma">
-              <h3>Lisää klippejä</h3>
-              <ul class="hinnasto hinnasto-tiivis">
-                <li class="hintarivi saadinrivi" id="arkisto" data-saadin="arkisto" data-nimi="Arkisto" data-malli="{n} {yksikko} vanhoista videoistasi, ajastettavaksi uusien rinnalle." data-yksikko="klippi|klippiä" data-per="klippi" data-oletus="2"
-                    data-portaat='[{"n":10},{"n":20},{"n":30},{"n":50,"nimi":"Kanavan parhaat 50","kuvaus":"50 klippiä koko kanavan historian parhaista hetkistä."}]'>
-                  <div><h4 data-nimi>Arkisto</h4><p data-kuvaus>30 klippiä vanhoista videoistasi, ajastettavaksi uusien rinnalle.</p></div>
-                  <p class="hinta"><span class="summa" data-summa>590&nbsp;€</span></p>
-                  <div class="saadin" hidden>
-                    <div class="saadin-otsikko"><label for="saadin-arkisto">Klippejä</label><span class="saadin-arvo" data-arvo aria-hidden="true">30</span></div>
-                    <input class="saadin-input" type="range" id="saadin-arkisto" min="0" max="3" step="1" value="2" autocomplete="off">
-                    <div class="portaat" aria-hidden="true" style="--n:4"><span style="--i:0" data-i="0">10</span><span style="--i:1" data-i="1">20</span><span style="--i:2" data-i="2">30</span><span style="--i:3" data-i="3">50</span></div>
-                  </div>
-                  <p class="saadin-yhteenveto" data-yhteenveto>Sis. alv 25,5&nbsp;%: 740,45&nbsp;€ · 19,67&nbsp;€/klippi (alv 0&nbsp;%)</p>
-                </li>
-                <li class="hintarivi">
-                  <div><h4>Lisäklippi</h4><p>Lisää klippejä kuukausipaketin päälle.</p></div>
-                  <p class="hinta"><span class="summa" data-hinta="lisaklippi">25&nbsp;€</span><span class="jakso">/kpl</span></p>
-                </li>
-                <li class="hintarivi">
-                  <div><h4>Livestriimin klippaus</h4><p>Striimistä noin 8 klippiä.</p></div>
-                  <p class="hinta"><span class="summa" data-hinta="livestriimi">269&nbsp;€</span><span class="jakso">/striimi</span></p>
-                </li>
-                <li class="hintarivi">
-                  <div><h4>Traileri</h4><p>Teaser-klippi päivää ennen uutta videota.</p></div>
-                  <p class="hinta"><span class="summa" data-hinta="traileri">25&nbsp;€</span><span class="jakso">/kpl</span></p>
-                </li>
-                <li class="hintarivi">
-                  <div><h4>Kommentti&shy;vastaus&shy;klippi</h4><p>Klippi, joka vastaa suosittuun kommenttiin.</p></div>
-                  <p class="hinta"><span class="summa" data-hinta="kommenttivastaus">20&nbsp;€</span><span class="jakso">/kpl</span></p>
-                </li>
-                <li class="hintarivi">
-                  <div><h4>Best of -kooste</h4><p>Kuukauden parhaat palat 60–90 sekunnissa.</p></div>
-                  <p class="hinta"><span class="summa" data-hinta="bestOf">79&nbsp;€</span><span class="jakso">/kpl</span></p>
-                </li>
-                <li class="hintarivi">
-                  <div><h4>Ennen ja jälkeen -kooste</h4><p>Projekti alusta loppuun 45–60 sekunnissa.</p></div>
-                  <p class="hinta"><span class="summa" data-hinta="ennenJalkeen">99&nbsp;€</span><span class="jakso">/kpl</span></p>
-                </li>
-                <li class="hintarivi">
-                  <div><h4>Sponsori- tai merch-klippi</h4><p>Oma mainosklippi yhteistyökumppanin tuotteelle tai omalle merchille. Kerron, miten kaupallinen yhteistyö merkitään, ja jos julkaisen puolestasi, teen merkinnän itse.</p></div>
-                  <p class="hinta"><span class="summa" data-hinta="sponsori">149&nbsp;€</span><span class="jakso">/kpl</span></p>
-                </li>
-                <li class="hintarivi">
-                  <div><h4>Podcast-audiogrammi</h4><p>Ääniklippi aaltomuodolla ja tekstityksellä.</p></div>
-                  <p class="hinta"><span class="summa" data-hinta="audiogrammi">15&nbsp;€</span><span class="jakso">/kpl</span></p>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <div class="lisaryhma">
-                <h3>Julkaisu ja seuranta</h3>
-                <ul class="hinnasto hinnasto-tiivis">
-                  <li class="hintarivi">
-                    <div><h4>Julkaisutekstit ja aihetunnisteet</h4><p>Tekstit TikTokiin, Reelsiin ja Shortsiin jokaiselle kuukausipaketin klipille (enintään 24 kuussa). Sisältyy Pro-pakettiin ja klippitilin hoitoon.</p></div>
-                    <p class="hinta"><span class="summa" data-hinta="julkaisutekstit">60&nbsp;€</span><span class="jakso">/kk</span></p>
-                  </li>
-                  <li class="hintarivi">
-                    <div><h4>Julkaisu puolestasi</h4><p>Julkaisen ja ajastan klipit omille tileillesi. Saan tileille julkaisijaroolin, en salasanaa. TikTokissa vain yritystilille.</p></div>
-                    <p class="hinta"><span class="summa" data-hinta="julkaisuPuolesta">120&nbsp;€</span><span class="jakso">/kk</span></p>
-                  </li>
-                  <!-- Klippitilin hoito: hinnat ovat hintadata.js:ssä (tilinhoito ja tilinhoitoKayttoonotto).
-                       data-portaat = julkaisuja kuukaudessa (n) ja noin viikossa (vko). Oletus: kaikki kolme alustaa ja 20 julkaisua. -->
-                  <li class="hintarivi saadinrivi" id="klippitilin-hoito" data-tilinhoito data-oletus="2"
-                      data-portaat='[{"n":8,"vko":2},{"n":12,"vko":3},{"n":20,"vko":5},{"n":30,"vko":7}]'>
-                    <div>
-                      <h4>Klippitilin hoito</h4>
-                      <p>Sinä luot tilit noin 10 minuutissa, minä hoidan loput: profiilit, julkaisut, ajastukset, julkaisutekstit ja lyhyen kuukausikatsauksen. Tili ja seuraajat ovat aina sinun nimissäsi, minä saan vain julkaisijaroolin. Kommentteihin ja viesteihin vastaat itse. Klipit tulevat klippipaketistasi, lisäklippeinä <span data-hinta="lisaklippi" data-jakso="/kpl" data-sulut>(25&nbsp;€/kpl)</span> tai arkistopaketista. Saatavilla klippipaketin rinnalle.</p>
-                    </div>
-                    <p class="hinta"><span class="summa" data-summa>199&nbsp;€</span><span class="jakso">/kk</span><span class="kerta" data-kerta>+ käyttöönotto 149&nbsp;€</span></p>
-                    <div class="saadin" hidden>
-                      <fieldset class="alustat">
-                        <legend>Alustat</legend>
-                        <div class="alustat-valinnat">
-                          <label class="valinta"><input type="checkbox" name="alusta" value="TikTok" autocomplete="off" checked> TikTok</label>
-                          <label class="valinta"><input type="checkbox" name="alusta" value="Instagram" autocomplete="off" checked> Instagram</label>
-                          <label class="valinta"><input type="checkbox" name="alusta" value="YouTube Shorts" autocomplete="off" checked> YouTube Shorts</label>
-                        </div>
-                        <p class="valinta-huomio" data-huomio hidden>Valitse vähintään yksi alusta.</p>
-                      </fieldset>
-                      <div class="saadin-otsikko"><label for="saadin-tilinhoito">Julkaisuja kuukaudessa</label><span class="saadin-arvo" data-arvo aria-hidden="true">20</span></div>
-                      <input class="saadin-input" type="range" id="saadin-tilinhoito" min="0" max="3" step="1" value="2" autocomplete="off">
-                      <div class="portaat" aria-hidden="true" style="--n:4"><span style="--i:0" data-i="0">8</span><span style="--i:1" data-i="1">12</span><span style="--i:2" data-i="2">20</span><span style="--i:3" data-i="3">30</span></div>
-                    </div>
-                    <p class="saadin-yhteenveto" data-yhteenveto>3 alustaa (TikTok, Instagram ja YouTube Shorts), 20 julkaisua kuukaudessa eli noin 5 viikossa. Sis. alv 25,5&nbsp;%: 249,75&nbsp;€/kk ja käyttöönotto 187&nbsp;€.</p>
-                    <p class="saadin-huomio">TikTokissa julkaisen puolestasi vain yritystilille, jolloin käytössä on TikTokin kaupallinen musiikkikirjasto eikä trendiääniä. Henkilökohtaiselle tilille julkaiset itse valmiista klipeistä.</p>
-                    <p class="piilotettu" data-ilmoitus aria-live="polite"></p>
-                  </li>
-                  <li class="hintarivi">
-                    <div><h4>Kuukausiraportti</h4><p>Katselut, parhaat klipit ja ehdotukset seuraavaan kuuhun.</p></div>
-                    <p class="hinta"><span class="summa" data-hinta="kuukausiraportti">49&nbsp;€</span><span class="jakso">/kk</span></p>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="lisaryhma">
-                <h3>Kuvat</h3>
-                <ul class="hinnasto hinnasto-tiivis">
-                  <li class="hintarivi">
-                    <div><h4>Kansikuva</h4><p>Reels- tai Shorts-kansi klipille.</p></div>
-                    <p class="hinta"><span class="summa" data-hinta="kansikuva">10&nbsp;€</span><span class="jakso">/kpl</span></p>
-                  </li>
-                  <li class="hintarivi">
-                    <div><h4>YouTube-pikkukuva</h4><p>Pitkän videon pääkuva (thumbnail).</p></div>
-                    <p class="hinta"><span class="summa" data-hinta="pikkukuva">49&nbsp;€</span><span class="jakso">/kpl</span></p>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="lisaryhma">
-                <h3>Klippien lisät</h3>
-                <ul class="hinnasto hinnasto-tiivis">
-                  <li class="hintarivi">
-                    <div><h4>Englanninkielinen tekstitys</h4><p>Tekstitys englanniksi kansainväliselle yleisölle.</p></div>
-                    <p class="hinta"><span class="summa" data-hinta="englanninTekstitys" data-etumerkki="+">+5&nbsp;€</span><span class="jakso">/klippi</span></p>
-                  </li>
-                  <li class="hintarivi">
-                    <div><h4>Vaakaversio 16:9</h4><p>Sama klippi myös vaakana YouTubeen, LinkedIniin tai verkkosivulle. Pelkät vaakaklipit maksavat saman verran kuin pystyklipit.</p></div>
-                    <p class="hinta"><span class="summa" data-hinta="vaakaversio" data-etumerkki="+">+10&nbsp;€</span><span class="jakso">/klippi</span></p>
-                  </li>
-                  <li class="hintarivi">
-                    <div><h4>Lisäkorjaus</h4><p>Toinen ja sitä seuraavat korjauskierrokset. Omat virheeni, kuten tekstitysvirheet, korjaan aina maksutta, eivätkä ne kuluta korjauskierrostasi. Kokonaan uusi kohta on uusi klippi <span data-hinta="lisaklippi" data-sulut>(25&nbsp;€)</span>.</p></div>
-                    <p class="hinta"><span class="summa" data-hinta="lisakorjaus">15&nbsp;€</span><span class="jakso">/klippi</span></p>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </details>
-
-        <p class="hinta-huomio">Kuukausipaketit laskutetaan kuun alussa ja kertatyöt toimituksen jälkeen.</p>
-        <!-- Valuuttavalitsin (assets/valuutta.js). Suomenkielisellä sivulla hintaosion lopussa (siirretty 28.10.2026), koska lähes kaikki maksavat euroissa.
-             Räätälöity tarjous -kehote on tämän alla ja yläpalkissa (puhelimessa Valikossa). Kurssi ja päivämäärä tulevat hintadata.js:stä huomautuksen {kurssi}- ja {pvm}-kohtiin. -->
-        <div class="valuutta valuutta-loppu" data-valuuttavalitsin hidden>
-          <span class="valuutta-otsikko" id="valuutta-otsikko">Valuutta</span>
-          <div class="valuutta-napit" role="group" aria-labelledby="valuutta-otsikko">
-            <button type="button" data-valuutta-nappi="eur" aria-pressed="true">€ EUR</button>
-            <button type="button" data-valuutta-nappi="usd" aria-pressed="false">$ USD</button>
-          </div>
-          <p class="valuutta-huomio" data-valuutta-huomio data-malli="USD-hinnat ovat suuntaa antavia, EKP:n viitekurssilla (1 € = {kurssi} USD, {pvm}). Hinnat sovitaan ja laskutetaan euroissa. Valuutanvaihdon kulut maksaa asiakas." hidden></p>
-          <p class="piilotettu" data-valuutta-ilmoitus aria-live="polite"></p>
-        </div>
-        <!-- Räätälöity tarjous: hinnat.js lisää linkkiin säätimien valinnat (data-tarjouslinkki). -->
-        <p class="tarjous-kehote tarjous-kehote-loppu"><a class="nappi nappi-toissijainen" href="tarjous.html" data-tarjouslinkki>Räätälöity tarjous</a><span>Kokoa oma paketti ja lähetä tarjouspyyntö. Ei sido mihinkään.</span></p>
+        <!-- Pakettikortit (28.10.2026): kolme kuukausipakettia. Hinnat tulevat hintadata.js:stä (data-hinta="klippaamo:N",
+             hinnat.js), ja Yksityishenkilö | Yritys -valitsin vaihtaa ne. Ilman JavaScriptiä näkyy alv 0 % -hinta.
+             Kaikki paketit, kertaerä, lisäpalvelut ja muut palvelut ovat tarjoussivulla (tarjous.html). -->
+        <ul class="paketit">
+          <li class="paketti">
+            <h3>4 klippiä</h3>
+            <p class="paketti-kuvaus">Pienelle kanavalle tai kokeiluun.</p>
+            <p class="hinta"><span class="summa" data-hinta="klippaamo:4">129&nbsp;€</span><span class="jakso">/kk</span><span class="alv">+ alv 25,5&nbsp;%</span></p>
+            <a class="paketti-linkki" href="tarjous.html?klippaamo=4">Valitse 4 klippiä</a>
+          </li>
+          <li class="paketti">
+            <h3>12 klippiä</h3>
+            <p class="paketti-kuvaus">Noin kolme klippiä viikossa.</p>
+            <p class="hinta"><span class="summa" data-hinta="klippaamo:12">349&nbsp;€</span><span class="jakso">/kk</span><span class="alv">+ alv 25,5&nbsp;%</span></p>
+            <a class="paketti-linkki" href="tarjous.html?klippaamo=12">Valitse 12 klippiä</a>
+          </li>
+          <li class="paketti">
+            <h3>24 klippiä</h3>
+            <p class="paketti-kuvaus">Kuusi klippiä viikossa ja valmis julkaisuteksti jokaiselle.</p>
+            <p class="hinta"><span class="summa" data-hinta="klippaamo:24">599&nbsp;€</span><span class="jakso">/kk</span><span class="alv">+ alv 25,5&nbsp;%</span></p>
+            <a class="paketti-linkki" href="tarjous.html?klippaamo=24">Valitse 24 klippiä</a>
+          </li>
+        </ul>
+        <p class="paketit-muut">Myös 8, 16 ja 20 klippiä kuukaudessa. Yksittäisestä videosta kertaerä alkaen <span data-hinta="kertaera:1">49&nbsp;€</span>. Kuukausipaketit laskutetaan kuun alussa ja kertatyöt toimituksen jälkeen.</p>
+        <p class="tarjous-kehote tarjous-kehote-loppu"><a class="nappi nappi-toissijainen" href="tarjous.html">Kokoa oma paketti</a><span>Kaikki paketit, lisäpalvelut ja muut palvelut, kuten Pysty Puhe ja AI-mainokset. Ei sido mihinkään.</span></p>
       </div>
     </section>
 

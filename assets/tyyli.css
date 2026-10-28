@@ -1460,6 +1460,34 @@ h1 span { display: block; }
 .tarjous-kehote span { font-size: .9375rem; color: var(--vari-harmaa); }
 .tarjous-kehote + .johdanto { margin-top: 1.25rem; }
 .tarjous-kehote-loppu { margin-top: 3rem; }
+
+/* Pakettikortit etusivulla (28.10.2026): kolme kuukausipakettia ohuella yläviivalla kuten vaiheissa, ei laatikoita. */
+.paketit {
+  list-style: none;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 2rem;
+  max-width: 58rem;
+}
+.paketti {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--vari-muste);
+}
+.paketti h3 { font-family: var(--fontti-otsikko); font-size: 2.25rem; font-weight: 900; line-height: 1; margin: 0; }
+.paketti-kuvaus { margin: 0; max-width: 22em; }
+.paketti .hinta { margin: .5rem 0 0; text-align: left; }
+.paketti .hinta .alv { display: block; }
+.paketti-linkki { margin-top: .5rem; font-weight: 800; }
+.paketit-muut { max-width: 46em; margin: 2rem 0 0; }
+@media (min-width: 45em) {
+  .paketit { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  /* Kuvaus kahden rivin korkuiseksi, jotta hinnat ovat samalla korkeudella. */
+  .paketti-kuvaus { min-height: 3.2em; }
+}
 .paavalikko .paavalikko-tarjous { display: none; }
 
 /* Räätälöity tarjous (tarjous.html ja en/quote.html, assets/tarjous.js) */

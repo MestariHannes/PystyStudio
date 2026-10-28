@@ -103,6 +103,8 @@ Sivu käyttää logokonseptia 4, Pystyviiva, jonka Hannes valitsi 23.10.2026. L�
 
 ## Hintojen muokkaus
 
+> **Etusivun hintaosio muuttui 28.10.2026** (Hanneksen pyyntö: yksinkertaisemmat hinnat). Etusivuilla on nyt kolme pakettikorttia (4, 12 ja 24 klippiä, `.paketit`), joiden hinnat tulevat hintadata.js:stä muodossa `data-hinta="klippaamo:N"` (hinnat.js, `kiinteaHinta`; myös `kertaera:1`). Yksityishenkilö | Yritys -valitsin vaihtaa korttien hinnat. Liukusäätimet, apusäätimet, Muut palvelut ja lisäpalvelut (18) poistettiin etusivuilta; ne ovat tarjoussivulla (tarjous.html ja en/quote.html), ja kortin Valitse-linkki avaa sen valmiiksi valitulla paketilla (`?klippaamo=N`). Suomenkieliseltä etusivulta poistettiin myös valuuttavalitsin. Alla olevat säädinkorttien ohjeet koskevat enää tarjoussivua.
+
 **Hinnat ovat tiedostossa `assets/hintadata.js`** (euroja, alv 0 %). Sieltä ne tulevat kummankin kielen etusivulle, ja JavaScript kirjoittaa ne sivulle.
 
 Etusivuilla (`index.html` ja `en/index.html`) on samat hinnat myös näkyvinä teksteinä sitä varten, että sivu toimii ilman JavaScriptiä. **Kun muutat hintaa:**
