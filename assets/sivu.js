@@ -84,7 +84,7 @@
   var LEVEYS = 1200;     // aikajanan viewBox-leveys
 
   var klippiNro = 0, vaihe = 0, sana = 0;
-  var ajastin = null, liukuAjastin = null;
+  var ajastin = null, liukuAjastin = null, aikaKehys = null;
   var kayttajaPysaytti = false;
   var kierros = 0, loppui = false;
   var nakyvissa = true;
@@ -103,14 +103,29 @@
     }, 0);
   }
 
+  // Kursorin aika juoksee kursorin mukana (29.10.2026): aika luetaan kursorin hetkellisestä paikasta joka ruudulla,
+  // joten se kelaa siirtymässä ja etenee tasaisesti, kun kursori liukuu klipin kohdan läpi.
+  function paivitaAika() {
+    var rata = kursori.parentElement.clientWidth;
+    if (rata) {
+      var t = aikaTeksti(parseFloat(getComputedStyle(kursori).left) / rata * JAKSO);
+      if (aikaEl.textContent !== t) aikaEl.textContent = t;
+    }
+  }
+  function aikaJuoksee() {
+    paivitaAika();
+    aikaKehys = requestAnimationFrame(aikaJuoksee);
+  }
+
   // Kursori: ensin pehmeästi kohdan alkuun, sitten tasaisesti kohdan läpi klipin ajan.
   function kursoriKohtaan(k) {
     if (!kursori || !kohdat.length) return;
     kursori.hidden = false;
     Array.prototype.forEach.call(kohdat, function (r, i) { r.classList.toggle('nyt', i === k.kohta); });
-    aikaEl.textContent = aikaTeksti(kohdanAlku(k.kohta) * JAKSO);
     kursori.style.transition = 'left .7s ' + PEHMEA;
     kursori.style.left = (kohdanAlku(k.kohta) * 100) + '%';
+    cancelAnimationFrame(aikaKehys);
+    aikaJuoksee();
     clearTimeout(liukuAjastin);
     liukuAjastin = setTimeout(function () {
       kursori.style.transition = 'left ' + (kesto(k) / 1000) + 's linear';
@@ -120,9 +135,11 @@
   function kursoriSeis() {
     if (!kursori) return;
     clearTimeout(liukuAjastin);
+    cancelAnimationFrame(aikaKehys);
     var vasen = getComputedStyle(kursori).left;
     kursori.style.transition = 'none';
     kursori.style.left = vasen;
+    paivitaAika();
   }
 
   function piirra(v) {
