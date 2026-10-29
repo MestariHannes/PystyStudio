@@ -1,4 +1,4 @@
-/* Pysty Studio – hintojen valuutta (EUR / USD) ja rahasummien muotoilu.
+/* Pysty Studio – rahasummien muotoilu (euroina). USD-valinta poistettiin sivuilta 29.10.2026, joten valuutta on aina EUR.
    Kurssi on tiedostossa hintadata.js. Laskut ovat aina euroissa, joten USD-tilassa euro näytetään aina mukana.
 
    Valuutta valitaan näin: URL-parametri ?currency=usd tai ?currency=eur, sitten selaimeen tallennettu
@@ -40,8 +40,11 @@
   function tallenna(v) {
     try { window.localStorage.setItem(MUISTI, v); } catch (e) { /* tallennus estetty: valinta pätee tällä sivulla */ }
   }
-  var valuutta = parametri() || tallennettu() || 'eur';
-  if (parametri()) tallenna(valuutta);
+  // USD-tila poistettiin sivuilta 29.10.2026 (Hanneksen päätös): hinnat näytetään aina euroina, eikä ?currency=usd
+  // tai aiemmin tallennettu valinta vaihda valuuttaa. Aiemmin tallennettu valinta poistetaan selaimen muistista.
+  // Dollaritilan koodi (usd(), dollaria() ja valitsimen käsittely) on jätetty, jotta valinnan voi tarvittaessa palauttaa.
+  var valuutta = 'eur';
+  try { window.localStorage.removeItem(MUISTI); } catch (e) { /* muisti estetty: mitään ei ole tallennettu */ }
   var NBSP = '\u00a0';
   var KUUT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 

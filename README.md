@@ -122,6 +122,8 @@ Sivu käyttää logokonseptia 4, Pystyviiva, jonka Hannes valitsi 23.10.2026. L�
 > - Videoita kuukaudessa on 1–20 ja Klippiä per video 1–8. AI-mainokset ovat 5–20, Arkisto 10–50 ja klippitilin julkaisut 8–30. Välimäärien hinta nousee tasaisesti portaiden välissä, ja `vko` = round(n × 12 / 52).
 > - Jokaisessa vivussa on − ja + -napit (hinnat.js `teeAskelnapit`, tyyli.css `.saadin-nappi`), koska puhelimella vipu hyppää helposti usean pykälän. Merkit piirretään CSS:llä (`data-suunta`). Napit ovat rajoilla pois käytöstä, ja otsikkorivi keskitetään, kun napit ovat mukana.
 
+> **USD pois 29.10.2026** (Hanneksen päätös): valuuttavalitsimet poistettiin etusivuilta ja tarjoussivuilta. Hinnat näytetään aina euroina, eikä ?currency=usd tai aiemmin tallennettu valinta vaihda valuuttaa, ja vanha valinta poistetaan selaimen muistista (valuutta.js). Tietosuojaselosteista poistettiin maininta valuuttavalinnan tallennuksesta. Dollaritilan koodi ja hintadata.js:n kurssi jäivät, jotta valinnan voi tarvittaessa palauttaa. Alla olevat Valuutta-ohjeet eivät ole käytössä.
+
 > **Tarjoussivun säätimet 28.10.2026** (Hanneksen pyyntö): Klippiä per video alkaa 1:stä, Videoita kuukaudessa ulottuu 20:een, ja Klippaamossa on 24:n yli koot 28–64 (neljän välein). Yli 24 klipin hinta on 599 € + 25 € jokaisesta lisäklipistä (Lisäklipin hinta), ja niihin sisältyvät julkaisutekstit kuten Pro-pakettiin. Yli 64 klippiä kuussa: tarjoussivu näyttää huomion "sovitaan erikseen".
 
 > **Arvioiden korjaukset 28.10.2026** (Pääaseman, Kilpailijan ja Tuomarin arviot, `04_myynti/2026-10-28_sivuston-korjaukset/2026-10-28_arviot-sivusta.md`):

@@ -240,16 +240,6 @@
         <h2 id="pricing-heading">Services and pricing</h2>
         <p class="johdanto">Prices exclude VAT. Finnish customers: VAT 25.5% is added. EU businesses with a valid VAT number: 0% VAT (reverse charge). Businesses outside the EU: 0% VAT. Services are for businesses only.</p>
 
-        <!-- Valuuttavalitsin (assets/valuutta.js). Kurssi ja päivämäärä tulevat hintadata.js:stä huomautuksen {kurssi}- ja {pvm}-kohtiin. -->
-        <div class="valuutta" data-valuuttavalitsin hidden>
-          <span class="valuutta-otsikko" id="currency-label">Currency</span>
-          <div class="valuutta-napit" role="group" aria-labelledby="currency-label">
-            <button type="button" data-valuutta-nappi="eur" aria-pressed="true">€ EUR</button>
-            <button type="button" data-valuutta-nappi="usd" aria-pressed="false">$ USD</button>
-          </div>
-          <p class="valuutta-huomio" data-valuutta-huomio data-malli="USD prices are approximate, converted at the ECB reference rate (1 € = {kurssi} USD on {pvm}). All prices are agreed and invoiced in euros. Currency conversion costs are paid by the customer." hidden></p>
-          <p class="piilotettu" data-valuutta-ilmoitus aria-live="polite"></p>
-        </div>
         <!-- Hintavivut palautettu 28.10.2026 (Hanneksen pyyntö: vipu oli kivemman näköinen kuin pakettikortit). Klippaamossa koot 4–64,
              videoita 1–20 ja klippiä per video 1–8 kuten tarjoussivulla. Kapealla porrasrivillä näkyvät vain data-avain-numerot.
              Hintasäätimet: hinnat ovat tiedostossa ../assets/hintadata.js (data-saadin kertoo, mikä palvelu).

@@ -506,17 +506,6 @@
         </details>
 
         <p class="hinta-huomio">Kuukausipaketit laskutetaan kuun alussa ja kertatyöt toimituksen jälkeen.</p>
-        <!-- Valuuttavalitsin (assets/valuutta.js). Suomenkielisellä sivulla hintaosion lopussa (siirretty 28.10.2026), koska lähes kaikki maksavat euroissa.
-             Räätälöity tarjous -kehote on tämän alla ja yläpalkissa (puhelimessa Valikossa). Kurssi ja päivämäärä tulevat hintadata.js:stä huomautuksen {kurssi}- ja {pvm}-kohtiin. -->
-        <div class="valuutta valuutta-loppu" data-valuuttavalitsin hidden>
-          <span class="valuutta-otsikko" id="valuutta-otsikko">Valuutta</span>
-          <div class="valuutta-napit" role="group" aria-labelledby="valuutta-otsikko">
-            <button type="button" data-valuutta-nappi="eur" aria-pressed="true">€ EUR</button>
-            <button type="button" data-valuutta-nappi="usd" aria-pressed="false">$ USD</button>
-          </div>
-          <p class="valuutta-huomio" data-valuutta-huomio data-malli="USD-hinnat ovat suuntaa antavia, EKP:n viitekurssilla (1 € = {kurssi} USD, {pvm}). Hinnat sovitaan ja laskutetaan euroissa. Valuutanvaihdon kulut maksaa asiakas." hidden></p>
-          <p class="piilotettu" data-valuutta-ilmoitus aria-live="polite"></p>
-        </div>
         <!-- Räätälöity tarjous: hinnat.js lisää linkkiin säätimien valinnat (data-tarjouslinkki). -->
         <p class="tarjous-kehote tarjous-kehote-loppu"><a class="nappi nappi-toissijainen" href="tarjous.html" data-tarjouslinkki>Räätälöity tarjous</a><span>Kokoa oma paketti ja lähetä tarjouspyyntö. Ei sido mihinkään.</span></p>
       </div>
