@@ -238,7 +238,20 @@
     <section id="pricing" class="osio" aria-labelledby="pricing-heading">
       <div class="kehys">
         <h2 id="pricing-heading">Services and pricing</h2>
-        <p class="johdanto">Prices exclude VAT. Finnish customers: VAT 25.5% is added. EU businesses with a valid VAT number: 0% VAT (reverse charge). Businesses outside the EU: 0% VAT. Services are for businesses only.</p>
+        <p class="johdanto">Start with three free sample clips from your own video. Monthly packages run month to month, and you can order as a business or as a private individual.</p>
+
+        <!-- Hintatapa Private person | Business (assets/hinnat.js), sama kuin suomenkielisellä sivulla (29.10.2026, Hanneksen päätös:
+             englanninkielinen sivu myös yksityishenkilöille). Oletus on yksityishenkilö, ja ?hinnat=yritys avaa yrityksen hinnat.
+             Ilman JavaScriptiä valitsin on piilossa, ja hinnat näytetään alv 0 % (+ VAT). -->
+        <div class="valuutta" data-hintatapa-valitsin hidden>
+          <span class="valuutta-otsikko" id="hintatapa-otsikko">Prices</span>
+          <div class="valuutta-napit" role="group" aria-labelledby="hintatapa-otsikko">
+            <button type="button" data-hintatapa-nappi="kuluttaja" aria-pressed="true">Private person</button>
+            <button type="button" data-hintatapa-nappi="yritys" aria-pressed="false">Business</button>
+          </div>
+          <p class="valuutta-huomio" data-hintatapa-huomio data-kuluttaja="Prices include Finnish VAT 25.5%. As a private individual, you have a 14-day right of withdrawal." data-yritys="Prices exclude VAT. Finnish businesses: VAT 25.5% is added. EU businesses with a valid VAT number: 0% VAT (reverse charge). Businesses outside the EU: 0% VAT."></p>
+          <p class="piilotettu" data-hintatapa-ilmoitus aria-live="polite"></p>
+        </div>
 
         <!-- Hintavivut palautettu 28.10.2026 (Hanneksen pyyntö: vipu oli kivemman näköinen kuin pakettikortit). Klippaamossa koot 4–64,
              videoita 1–20 ja klippiä per video 1–8 kuten tarjoussivulla. Kapealla porrasrivillä näkyvät vain data-avain-numerot.

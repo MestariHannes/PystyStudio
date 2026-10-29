@@ -76,6 +76,17 @@
     <p class="johdanto">Select the services you need and you’ll see a price estimate right away. A quote request doesn’t commit you to anything, and I’ll send the final quote by email.</p>
     <p class="tarjous-ilman-js" data-ilman-js>Send an email to <a href="mailto:korkiakoskihannes@gmail.com?subject=Quote%20request">korkiakoskihannes@gmail.com</a> and tell me which of the services below you’re interested in. You can find the prices on the <a href="index.html#pricing">home page</a>.</p>
 
+    <!-- Hintatapa Private person | Business (assets/tarjous.js), sama valinta ja muisti kuin etusivulla (29.10.2026). -->
+    <div class="valuutta" data-hintatapa-valitsin hidden>
+      <span class="valuutta-otsikko" id="hintatapa-otsikko">Prices</span>
+      <div class="valuutta-napit" role="group" aria-labelledby="hintatapa-otsikko">
+        <button type="button" data-hintatapa-nappi="kuluttaja" aria-pressed="true">Private person</button>
+        <button type="button" data-hintatapa-nappi="yritys" aria-pressed="false">Business</button>
+      </div>
+      <p class="valuutta-huomio" data-hintatapa-huomio data-kuluttaja="Prices include Finnish VAT 25.5%. As a private individual, you have a 14-day right of withdrawal." data-yritys="Prices exclude VAT. Finnish businesses: VAT 25.5% is added. EU businesses with a valid VAT number: 0% VAT (reverse charge). Businesses outside the EU: 0% VAT."></p>
+      <p class="piilotettu" data-hintatapa-ilmoitus aria-live="polite"></p>
+    </div>
+
 
     <form class="tarjous-ruudukko" data-tarjous>
       <div class="tarjous-valinnat">
@@ -87,7 +98,7 @@
           </div>
         </fieldset>
 
-        <p class="tarjous-alv">Prices exclude VAT. Finnish customers: VAT 25.5% is added. EU businesses with a valid VAT number: 0% VAT (reverse charge). Businesses outside the EU: 0% VAT. Services are for businesses only.</p>
+        <p class="tarjous-alv" data-hintatapa-huomio data-kuluttaja="Line prices include Finnish VAT 25.5%. The summary also shows the price excluding VAT." data-yritys="Line prices exclude VAT. Finnish businesses: VAT 25.5% is added. EU businesses with a valid VAT number: 0% VAT (reverse charge). Businesses outside the EU: 0% VAT.">Line prices exclude VAT. Finnish businesses: VAT 25.5% is added. EU businesses with a valid VAT number: 0% VAT (reverse charge). Businesses outside the EU: 0% VAT.</p>
 
         <fieldset class="tarjous-osio">
           <legend>Main services</legend>
