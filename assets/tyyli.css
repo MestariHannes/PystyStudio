@@ -344,6 +344,10 @@ h4 { margin: 0; }
   .hero-ruudukko > .demo { margin-top: 1.5rem; }
   .demo .klippi { width: min(46%, 12rem); }
 }
+/* Tabletilla (36–64em) puhelin on keskellä aikajanan yläpuolella, ettei oikealle jää tyhjää (29.10.2026). */
+@media (min-width: 36em) and (max-width: 63.99em) {
+  .hero-ruudukko > .demo .demo-rivi { justify-content: center; }
+}
 /* Yläotsake H1:n yläpuolella: keltainen pystyviiva mustalla reunalla kuin logossa. */
 .ylaotsake {
   display: flex;
@@ -1683,7 +1687,7 @@ h1 span { display: block; }
 }
 .tarjous-palkki[hidden] { display: none; }
 .tarjous-palkki.piiloon { opacity: 0; visibility: hidden; }
-.tarjous-palkki a { color: var(--valkoinen); font-weight: 800; white-space: nowrap; }
+.tarjous-palkki a { display: inline-block; padding-block: .6rem; margin-block: -.6rem; color: var(--valkoinen); font-weight: 800; white-space: nowrap; }
 .tarjous-palkki a:hover { color: var(--musta); }
 .tarjous-palkki :focus-visible { outline-color: var(--keltainen); }
 /* Hintapalkki ei peitä näppäimistöllä kohdistettua kenttää. */
@@ -1738,6 +1742,12 @@ h1 span { display: block; }
   .alapalkki-sisalto { grid-template-columns: 1.2fr 1.4fr 1fr 1fr; align-items: start; }
 }
 
+/* Tabletilla (45–64em) neljä saraketta oli liian ahdas: logo omalle rivilleen ja tekstit kolmeen sarakkeeseen (29.10.2026). */
+@media (min-width: 45em) and (max-width: 63.99em) {
+  .alapalkki-sisalto { grid-template-columns: 1.6fr 1fr 1fr; }
+  .alapalkki-logo { grid-column: 1 / -1; }
+}
+
 @media (min-width: 56em) {
   .paavalikko { display: flex; gap: 1.75rem; margin-left: auto; margin-right: .5rem; }
   .paavalikko + .kielet { margin-left: 0; margin-right: .5rem; }
@@ -1747,6 +1757,8 @@ h1 span { display: block; }
     font-weight: 700;
     text-decoration: none;
     white-space: nowrap;
+    padding: .5rem .375rem;
+    margin-inline: -.375rem;
   }
   .paavalikko a:hover { color: var(--musta); background: var(--vari-korostus); text-decoration: underline; }
   .logo { --logo-k: 2.375rem; }
