@@ -217,7 +217,7 @@ Hannes pyysi näyttävämpää ilmettä ja avausefektiä. Ilme oli ensin esikats
 - **Teema:** logon pystyviiva on kursori, joka kirjoittaa tekstityksen sana kerrallaan.
   - **Avausefekti** (noin 3 s, vain etusivulla ensimmäisellä käynnillä; lyhennetty 28.10.2026 viidestä sekunnista, koska myyntiviestistä tuleva kävijä näkee sen ensimmäisenä. Aikajana on `ilme-uusi.css`:n kommentissa):
     1. Musta ruutu ja vilkkuva kursori.
-    2. PYSTY | STUDIO ja ”Sinä kuvaat. Minä klippaan.” ilmestyvät sana kerrallaan (otsikko vaihdettu 29.10.2026, ennen ”Pitkät videot pystyyn.”).
+    2. PYSTY | STUDIO ja ”Pitkät videot pystyyn.” ilmestyvät sana kerrallaan.
     3. 16:9-studiokuva rajautuu 9:16:ksi puhujan kohdalle.
     4. Pystykehys suurenee ja aukeaa sivuksi.
   - **Muu ilme:**

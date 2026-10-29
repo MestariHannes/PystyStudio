@@ -1787,11 +1787,8 @@ h1 span { display: block; }
   }
   .klippi { width: min(62%, 19rem); }
   .ingressi { font-size: 1.25rem; }
-  /* Kahdessa sarakkeessa otsikko skaalataan sarakkeen mukaan, jotta pisin sana mahtuu. */
+  /* Kahdessa sarakkeessa otsikko skaalataan sarakkeen mukaan, jotta "pystyyn.|" mahtuu. */
   h1 { font-size: clamp(5rem, 14.5vw - 1.5rem, 9.5rem); }
-  /* Suomenkielinen otsikko "Sinä kuvaat. Minä klippaan." (29.10.2026): kahdessa sarakkeessa sana per rivi ja koko 3/4,
-     jotta neljä riviä vievät saman tilan kuin entiset kolme. Kapeammalla otsikko on kaksi riviä. */
-  h1.otsikko-pino { font-size: clamp(3.75rem, 10.875vw - 1.125rem, 7.125rem); word-spacing: 100vw; }
 }
 
 @media (prefers-reduced-motion: reduce) {
