@@ -74,7 +74,9 @@
       { puhuja: 'a', loppu: 'Koko jakso YouTubessa', emoji: '🔥' }] }
   ];
   var NAPPI = en ? ['Pause example', 'Play example', 'Replay example'] : ['Pysäytä esimerkki', 'Jatka esimerkkiä', 'Toista esimerkki'];
-  var KIERROKSET = 2;    // silmukka pysähtyy kahden kierroksen jälkeen viimeiseen ruutuun (29.10.2026)
+  // Esimerkki pyörii jatkuvasti (Hanneksen pyyntö 29.10.2026, aiemmin pysähtyi kahden kierroksen jälkeen).
+  // Pysäytä-nappi pysäyttää sen, ja ruudun ulkopuolella se odottaa. Rajallinen luku palauttaa pysähtymisen.
+  var KIERROKSET = Infinity;
   var SANAVALI = 300;    // ms sanojen välillä
   var PIDA = 900;        // ms vaiheen viimeisen sanan jälkeen
   var PIDA_LOPPU = 2400;
