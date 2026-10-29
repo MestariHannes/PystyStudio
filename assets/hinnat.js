@@ -34,11 +34,11 @@
     alusta: ['platform', 'platforms'],
     ja: ' and ',
     tilinhoito: function (a, lista, n, vko, kk, kerta, kuluttajalle) {
-      return a + ' ' + monikko(a, 'platform', 'platforms') + ' (' + lista + '), ' + n + ' posts per month, about ' +
-        vko + ' per week. ' + (kuluttajalle ? 'For businesses: ' + kk + ' and setup ' + kerta + ' + VAT.'
+      return a + ' ' + monikko(a, 'platform', 'platforms') + ' (' + lista + '), ' + n + ' ' + monikko(n, 'post', 'posts') +
+        ' per month' + (vko ? ', about ' + vko + ' per week. ' : '. ') + (kuluttajalle ? 'For businesses: ' + kk + ' and setup ' + kerta + ' + VAT.'
           : 'Incl. Finnish VAT 25.5%: ' + kk + ' and setup ' + kerta + '.');
     },
-    tilinhoitoAria: function (n, vko, raha) { return n + ' posts per month, about ' + vko + ' per week, ' + raha; },
+    tilinhoitoAria: function (n, vko, raha) { return n + ' ' + monikko(n, 'post', 'posts') + ' per month, ' + (vko ? 'about ' + vko + ' per week, ' : '') + raha; },
     valitseAlusta: 'Select at least one platform. ',
     alustaIlmoitus: function (a, kk, kerta) {
       return a + ' ' + monikko(a, 'platform', 'platforms') + ': ' + kk + ', setup ' + kerta + '.';
@@ -77,11 +77,11 @@
     alusta: ['alusta', 'alustaa'],
     ja: ' ja ',
     tilinhoito: function (a, lista, n, vko, kk, kerta, kuluttajalle) {
-      return a + ' ' + monikko(a, 'alusta', 'alustaa') + ' (' + lista + '), ' + n + ' julkaisua kuukaudessa eli noin ' +
-        vko + ' viikossa. ' + (kuluttajalle ? 'Yritykselle ' + kk + ' ja käyttöönotto ' + kerta + ' + alv.'
+      return a + ' ' + monikko(a, 'alusta', 'alustaa') + ' (' + lista + '), ' + n + ' ' + monikko(n, 'julkaisu', 'julkaisua') +
+        ' kuukaudessa' + (vko ? ' eli noin ' + vko + ' viikossa. ' : '. ') + (kuluttajalle ? 'Yritykselle ' + kk + ' ja käyttöönotto ' + kerta + ' + alv.'
           : 'Sis. alv 25,5 %: ' + kk + ' ja käyttöönotto ' + kerta + '.');
     },
-    tilinhoitoAria: function (n, vko, raha) { return n + ' julkaisua kuukaudessa, noin ' + vko + ' viikossa, ' + raha; },
+    tilinhoitoAria: function (n, vko, raha) { return n + ' ' + monikko(n, 'julkaisu', 'julkaisua') + ' kuukaudessa, ' + (vko ? 'noin ' + vko + ' viikossa, ' : '') + raha; },
     valitseAlusta: 'Valitse vähintään yksi alusta. ',
     alustaIlmoitus: function (a, kk, kerta) {
       return a + ' ' + monikko(a, 'alusta', 'alustaa') + ': ' + kk + ', käyttöönotto ' + kerta + '.';
