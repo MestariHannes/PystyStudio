@@ -133,7 +133,7 @@
   translate: -50% -50%;
   transform-origin: 50% 50%;
   overflow: hidden;
-  background: var(--k-seina);
+  /* Ei omaa taustaa: fonttien latauksen ajan ruutu on musta, ja seinä tulee studiokuvan mukana (29.10.2026). */
   container-type: inline-size;
 }
 /* Lamppu piiloon kuten heron kehyksessä, ettei sen reuna jää rajaukseen. */
