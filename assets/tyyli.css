@@ -1789,6 +1789,9 @@ h1 span { display: block; }
   .ingressi { font-size: 1.25rem; }
   /* Kahdessa sarakkeessa otsikko skaalataan sarakkeen mukaan, jotta "pystyyn.|" mahtuu. */
   h1 { font-size: clamp(5rem, 14.5vw - 1.5rem, 9.5rem); }
+  /* Englanninkielinen otsikko on neljä riviä (Long / videos, / made / vertical.), joten sen koko on 3/4. Silloin se vie
+     saman tilan kuin suomenkielisen kolme riviä, ja näytepainike näkyy kannettavalla ilman vieritystä (29.10.2026). */
+  h1.otsikko-nelja { font-size: clamp(3.75rem, 10.875vw - 1.125rem, 7.125rem); }
 }
 
 @media (prefers-reduced-motion: reduce) {
