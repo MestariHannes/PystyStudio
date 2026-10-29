@@ -34,14 +34,16 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700..900&family=Figtree:wght@400..900&display=swap">
   <link rel="stylesheet" href="assets/tyyli.css">
   <!-- Pystyviiva-ilme (käytössä 23.10.2026): luokka ilme-uusi sekä assets/ilme-uusi.css ja ilme-uusi.js.
-       Avausefekti (data-intro) poistettiin käytöstä 28.10.2026; koodi on yhä ilme-uusi.js:ssä. -->
-  <script data-polku="assets/">
+       Avausefekti (data-intro): poistettiin 28.10.2026 ja palautettiin uusittuna 29.10.2026 (noin 1,5 s, ilme-uusi.js).
+       Introa ei näytetä, jos osoitteessa on #-ankkuri tai parametreja (esim. myyntiviestin linkki), paitsi ?intro=1. -->
+  <script data-polku="assets/" data-intro>
   (function () {
     var h = document.documentElement, s = document.currentScript, p = s.getAttribute('data-polku');
     h.classList.add('ilme-uusi');
     var liike = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
     if (liike && 'IntersectionObserver' in window) h.classList.add('ilme-animoi');
-    if (liike && s.hasAttribute('data-intro') && !location.hash) {
+    var pakota = /[?&]intro=1(&|$)/.test(location.search);
+    if (liike && s.hasAttribute('data-intro') && !location.hash && (!location.search || pakota)) {
       var nahty = false;
       try { nahty = window.localStorage.getItem('pystystudio-intro') === '1'; } catch (e) { nahty = false; }
       if (/[?&]intro=1(&|$)/.test(location.search)) nahty = false;

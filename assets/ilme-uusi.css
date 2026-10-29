@@ -94,13 +94,14 @@
 }
 .ilme-animoi .ilme-paljastus.ilme-esilla > .kehys > :not(h2) { opacity: 1; transform: none; }
 
-/* ---------- Avausefekti (noin 3 s, vain etusivulla ensimmäisellä käynnillä) ----------
-   Lyhennetty 28.10.2026 viidestä sekunnista kolmeen, koska myyntiviestistä tuleva kävijä näkee sen ensimmäisenä.
-   0–0,3 s     musta ruutu ja vilkkuva keltainen kursori
-   0,3–1,7 s   PYSTY | STUDIO ja ”Pitkät videot pystyyn.” sana kerrallaan, takana 16:9-studiokuva
-   1,7–2,2 s   16:9-kuva rajautuu 9:16:ksi puhujan kohdalle
-   2,2–3 s     pystykehys suurenee ja intro aukeaa sivuksi
-   Ohita-nappi, klikkaus, kosketus, vieritys tai mikä tahansa näppäin ohittaa. */
+/* ---------- Avausefekti (noin 1,5 s, vain etusivulla ensimmäisellä käynnillä; uusittu 29.10.2026) ----------
+   Vanha 3 sekunnin intro (iso logo ja slogan sana kerrallaan) poistettiin 28.10.2026 liian täyteläisenä.
+   Uusi intro liittyy heroon, eikä siinä ole erillistä tekstiruutua:
+   0–0,3 s     studiokuva 16:9 ja pieni logo tulevat esiin mustalta
+   0,5–0,9 s   logo häipyy ja kuva rajautuu 9:16:ksi puhujan kohdalle
+   0,9–1,5 s   pystykehys liukuu heron puhelimen paikalle, ja musta tausta häipyy sivun alta
+   Ajoitus ja kehyksen kohde lasketaan ilme-uusi.js:ssä (Web Animations). Ohita-nappi, klikkaus, kosketus,
+   vieritys tai mikä tahansa näppäin ohittaa. Intron ajan heron oma kehys on piilossa, jotta kuvaa ei näy kahta. */
 
 /* Musta peite heti ensimmäisestä piirrosta, kunnes intro on rakennettu. Varmistus: häviää itsestään. */
 .ilme-uusi.intro-tulossa::before {
@@ -109,89 +110,54 @@
   inset: 0;
   z-index: 2000;
   background: #000;
-  animation: ilme-peite-pois .3s 1.6s forwards;
+  animation: ilme-peite-pois .3s 1.2s forwards;
 }
 @keyframes ilme-peite-pois { to { opacity: 0; visibility: hidden; } }
+.ilme-uusi.intro-kaynnissa .hero .klippi { visibility: hidden; }
 
 .ilme-intro {
   position: fixed;
   inset: 0;
   z-index: 2001;
-  display: grid;
-  place-items: center;
   overflow: hidden;
-  background: #000;
-  color: var(--valkoinen);
   cursor: pointer;
 }
-.ilme-intro-ohitetaan { opacity: 0 !important; transition: opacity .25s ease-out; animation: none !important; }
+.ilme-intro-ohitetaan { opacity: 0; transition: opacity .25s ease-out; }
+.ilme-intro-tausta { position: absolute; inset: 0; background: #000; }
 .ilme-intro-kehys {
-  position: relative;
+  position: absolute;
+  left: 50%;
+  top: 50%;
   width: min(94vw, 150vh);
   aspect-ratio: 16 / 9;
+  translate: -50% -50%;
+  transform-origin: 50% 50%;
   overflow: hidden;
-  border-radius: .4rem;
-  background: #000;
+  background: var(--k-seina);
   container-type: inline-size;
 }
-.ilme-intro-kehys::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border: 1.5px solid rgba(228, 228, 225, .4);
-  border-radius: inherit;
-  opacity: 0;
-}
-.ilme-intro-kohtaus { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; opacity: 0; }
-.ilme-intro-rajaus { position: absolute; top: 0; bottom: 0; width: 34.2%; background: #000; }
-.ilme-intro-rajaus-v { left: 0; transform: translateX(-101%); }
-.ilme-intro-rajaus-o { right: 0; transform: translateX(101%); }
-.ilme-intro-rako {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 34.18%;
-  width: 31.64%;
-  border: 2px solid var(--betoni);
-  border-radius: .3rem;
-  opacity: 0;
-}
-.ilme-intro-teksti { position: absolute; inset: 0; }
+/* Lamppu piiloon kuten heron kehyksessä, ettei sen reuna jää rajaukseen. */
+.ilme-intro-kohtaus { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; opacity: 0; --k-lamppu: transparent; }
 .ilme-intro-logo {
   position: absolute;
   left: 0;
   right: 0;
-  top: 19%;
+  top: 12%;
   margin: 0;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  column-gap: 2.2cqi;
+  column-gap: 1.2cqi;
   font-family: var(--fontti-otsikko);
-  font-size: 16cqi;
+  font-size: 7cqi;
   font-weight: 900;
   line-height: .9;
+  color: var(--valkoinen);
+  opacity: 0;
 }
 .ilme-intro-pysty { justify-self: end; }
 .ilme-intro-studio { justify-self: start; }
-.ilme-intro-kursori { width: 1.7cqi; height: 14cqi; background: var(--keltainen); }
-.ilme-intro-slogan {
-  position: absolute;
-  left: 3%;
-  right: 3%;
-  top: 62%;
-  margin: 0;
-  text-align: center;
-  font-family: var(--fontti-tekstitys);
-  font-size: 6.8cqi;
-  font-weight: 900;
-  line-height: 1.1;
-  -webkit-text-stroke: .2em #000;
-  paint-order: stroke fill;
-}
-.ilme-intro-pysty,
-.ilme-intro-studio,
-.ilme-intro-slogan span { display: inline-block; opacity: 0; }
+.ilme-intro-kursori { width: .8cqi; height: 6.2cqi; background: var(--keltainen); }
 .ilme-intro-ohita {
   position: fixed;
   top: max(1rem, env(safe-area-inset-top));
@@ -210,49 +176,6 @@
   cursor: pointer;
 }
 .ilme-intro-ohita:hover { background: var(--valkoinen); border-color: var(--valkoinen); }
-
-/* Aikajana: kaikki animaatiot kestävät koko intron (3 s), ja prosentit ovat aikaa (1 % = 0,03 s). */
-.ilme-intro-kaynnissa { animation: ilme-intro-pois 3s linear both; }
-@keyframes ilme-intro-pois { 0%, 84% { opacity: 1; } 100% { opacity: 0; } }
-
-.ilme-intro-kaynnissa .ilme-intro-kursori { animation: ilme-intro-kursori .13s steps(1) 2 both; }
-@keyframes ilme-intro-kursori { 0%, 49% { opacity: 1; } 50%, 99% { opacity: 0; } 100% { opacity: 1; } }
-.ilme-intro-kaynnissa .ilme-intro-pysty { animation: ilme-pop .34s cubic-bezier(.3, 1.6, .6, 1) .28s both; }
-.ilme-intro-kaynnissa .ilme-intro-studio { animation: ilme-pop .34s cubic-bezier(.3, 1.6, .6, 1) .48s both; }
-.ilme-intro-kaynnissa .ilme-intro-slogan span {
-  animation: ilme-pop .34s cubic-bezier(.3, 1.6, .6, 1) both;
-  animation-delay: calc(.7s + var(--i, 0) * .2s);
-}
-.ilme-intro-kaynnissa .ilme-intro-teksti { animation: ilme-intro-teksti 3s linear both; }
-@keyframes ilme-intro-teksti { 0%, 55% { opacity: 1; } 60%, 100% { opacity: 0; } }
-
-.ilme-intro-kaynnissa .ilme-intro-kohtaus { animation: ilme-intro-kohtaus 3s both; }
-@keyframes ilme-intro-kohtaus {
-  0%, 18% { opacity: 0; transform: none; animation-timing-function: ease-out; }
-  30% { opacity: .38; }
-  55% { opacity: .38; transform: none; animation-timing-function: cubic-bezier(.6, 0, .3, 1); }
-  62% { opacity: 1; }
-  70%, 100% { opacity: 1; transform: translateX(20%); }
-}
-.ilme-intro-kaynnissa .ilme-intro-kehys::after { animation: ilme-intro-reunus 3s both; }
-@keyframes ilme-intro-reunus { 0%, 18% { opacity: 0; } 28%, 56% { opacity: 1; } 64%, 100% { opacity: 0; } }
-.ilme-intro-kaynnissa .ilme-intro-rajaus-v { animation: ilme-intro-rajaus-v 3s both; }
-.ilme-intro-kaynnissa .ilme-intro-rajaus-o { animation: ilme-intro-rajaus-o 3s both; }
-@keyframes ilme-intro-rajaus-v {
-  0%, 56% { transform: translateX(-101%); animation-timing-function: cubic-bezier(.7, 0, .3, 1); }
-  71%, 100% { transform: translateX(0); }
-}
-@keyframes ilme-intro-rajaus-o {
-  0%, 56% { transform: translateX(101%); animation-timing-function: cubic-bezier(.7, 0, .3, 1); }
-  71%, 100% { transform: translateX(0); }
-}
-.ilme-intro-kaynnissa .ilme-intro-rako { animation: ilme-intro-rako 3s both; }
-@keyframes ilme-intro-rako { 0%, 69% { opacity: 0; } 74%, 100% { opacity: 1; } }
-.ilme-intro-kaynnissa .ilme-intro-kehys { animation: ilme-intro-avaus 3s both; }
-@keyframes ilme-intro-avaus {
-  0%, 75% { transform: scale(1); animation-timing-function: cubic-bezier(.55, 0, .8, .25); }
-  100% { transform: scale(3.6); }
-}
 
 /* ---------- Vähennetty liike: ei introa eikä liikettä ---------- */
 @media (prefers-reduced-motion: reduce) {
