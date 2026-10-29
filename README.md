@@ -124,6 +124,10 @@ Sivu käyttää logokonseptia 4, Pystyviiva, jonka Hannes valitsi 23.10.2026. L�
 
 > **USD pois 29.10.2026** (Hanneksen päätös): valuuttavalitsimet poistettiin etusivuilta ja tarjoussivuilta. Hinnat näytetään aina euroina, eikä ?currency=usd tai aiemmin tallennettu valinta vaihda valuuttaa, ja vanha valinta poistetaan selaimen muistista (valuutta.js). Tietosuojaselosteista poistettiin maininta valuuttavalinnan tallennuksesta. Dollaritilan koodi ja hintadata.js:n kurssi jäivät, jotta valinnan voi tarvittaessa palauttaa. Alla olevat Valuutta-ohjeet eivät ole käytössä.
 
+> **Neon-korostus 29.10.2026** (Hanneksen toive: painettava kohta tulee esille taustavärillä, neon-tyyppisesti), ilme-uusi.css:
+> - Napit, linkit, valikko, avattavat osiot ja kysymykset, vivut ja niiden −/+-napit, Yksityishenkilö / Yritys -valitsin, alustavalinnat ja tarjoussivun palvelurivit syttyvät keltaisena. Keltainen pohja tai sävy saa ympärilleen hehkun (`--neon-hehku`, `--neon-savy`). Mustissa osioissa hehkuu itse teksti (`--neon-teksti`).
+> - Hover vain hiirellä (`@media (hover: hover)`), painallus (`:active`) kaikilla laitteilla. Herossa ja tummassa yläpalkissa keltainen nappi pysyy hoverissa keltaisena eikä muutu valkoiseksi.
+
 > **Tarjoussivun säätimet 28.10.2026** (Hanneksen pyyntö): Klippiä per video alkaa 1:stä, Videoita kuukaudessa ulottuu 20:een, ja Klippaamossa on 24:n yli koot 28–64 (neljän välein). Yli 24 klipin hinta on 599 € + 25 € jokaisesta lisäklipistä (Lisäklipin hinta), ja niihin sisältyvät julkaisutekstit kuten Pro-pakettiin. Yli 64 klippiä kuussa: tarjoussivu näyttää huomion "sovitaan erikseen".
 
 > **Arvioiden korjaukset 28.10.2026** (Pääaseman, Kilpailijan ja Tuomarin arviot, `04_myynti/2026-10-28_sivuston-korjaukset/2026-10-28_arviot-sivusta.md`):

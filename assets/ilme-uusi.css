@@ -177,6 +177,95 @@
 }
 .ilme-intro-ohita:hover { background: var(--valkoinen); border-color: var(--valkoinen); }
 
+/* ---------- Neon-korostus (29.10.2026) ----------
+   Hanneksen toive: kun jotain painaa tai vie hiiren sen päälle, se tulee esille taustavärillä, vähän neon-tyyppisesti.
+   Kaikki painettava syttyy keltaisena kuin neonvalo: tausta keltaiseksi tai keltaiseksi sävyksi ja ympärille hehku.
+   Hiiren hover vain laitteilla, joissa on hiiri (hover: hover), jotta kosketusnäytöllä korostus ei jää päälle.
+   Painallus (:active) näkyy kaikilla laitteilla. Korostuksen saavat vain painettavat asiat. */
+.ilme-uusi {
+  --neon-hehku: 0 0 0 1px rgb(255 225 0 / .95), 0 0 14px rgb(255 225 0 / .55), 0 0 36px rgb(255 225 0 / .3);
+  --neon-hehku-vahva: 0 0 0 2px rgb(255 225 0), 0 0 20px rgb(255 225 0 / .7), 0 0 52px rgb(255 225 0 / .4);
+  --neon-teksti: 0 0 10px rgb(255 225 0 / .75), 0 0 26px rgb(255 225 0 / .35);
+  --neon-savy: rgb(255 225 0 / .32);
+  --neon-savy-vahva: rgb(255 225 0 / .5);
+  --neon-siirtyma: background-color .22s var(--ease-ulos), color .22s var(--ease-ulos), border-color .22s var(--ease-ulos),
+    box-shadow .3s var(--ease-ulos), text-shadow .3s var(--ease-ulos);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Napit */
+.ilme-uusi .nappi,
+.ilme-uusi .saadin-nappi,
+.ilme-uusi .demo-tauko,
+.ilme-uusi .valikko-nappi { transition: var(--neon-siirtyma), transform .25s var(--ease-ulos); }
+/* Keltainen nappi mustalla pohjalla pysyy keltaisena ja hehkuu (ennen hover vaihtoi sen valkoiseksi). */
+.ilme-uusi .hero .nappi-ensisijainen:hover,
+.ilme-uusi.ylapalkki-tumma:not(.valikko-auki) .ylapalkki .nappi-ensisijainen:hover { background: var(--keltainen); border-color: var(--keltainen); color: var(--musta); }
+@media (hover: hover) {
+  .ilme-uusi .nappi:hover,
+  .ilme-uusi .saadin-nappi:hover:not(:disabled),
+  .ilme-uusi .valikko-nappi:hover { box-shadow: var(--neon-hehku); }
+  .ilme-uusi .demo-tauko:hover { box-shadow: var(--neon-hehku); border-radius: 3px; }
+}
+.ilme-uusi .nappi:active,
+.ilme-uusi .saadin-nappi:active:not(:disabled),
+.ilme-uusi .valikko-nappi:active { box-shadow: var(--neon-hehku-vahva); }
+.ilme-uusi .saadin-nappi:active:not(:disabled) { background: var(--keltainen); }
+
+/* Linkit: keltainen korostus (kuten ennenkin) ja sen ympärille hehku. Mustissa osioissa hehkuu itse teksti. */
+.ilme-uusi a { transition: var(--neon-siirtyma); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+@media (hover: hover) {
+  .ilme-uusi a:not(.nappi):not(.logo):hover { box-shadow: 0 0 0 .14em var(--vari-korostus), 0 0 16px rgb(255 225 0 / .5); border-radius: .2em; }
+  .ilme-uusi .yhteys a:not(.nappi):hover,
+  .ilme-uusi .alapalkki a:hover,
+  .ilme-uusi .tarjous-palkki a:hover,
+  .ilme-uusi .naytelaatikko a:not(.nappi):hover { box-shadow: none; text-shadow: var(--neon-teksti); }
+}
+.ilme-uusi a:not(.nappi):not(.logo):active { background-color: var(--keltainen); color: var(--musta); box-shadow: 0 0 0 .14em var(--keltainen), 0 0 20px rgb(255 225 0 / .65); border-radius: .2em; }
+.ilme-uusi .yhteys a:not(.nappi):active,
+.ilme-uusi .alapalkki a:active,
+.ilme-uusi .tarjous-palkki a:active { background: none; color: var(--keltainen); box-shadow: none; text-shadow: var(--neon-teksti); }
+
+/* Avattavat osiot ja kysymykset: rivi saa keltaisen sävyn, ja plus-pallo hehkuu.
+   Sivuvarjot jatkavat sävyä rivin ulkopuolelle siirtämättä sisältöä. */
+.ilme-uusi .avattava > summary,
+.ilme-uusi .ukk-lista summary,
+.ilme-uusi .apu-avattava > summary { transition: var(--neon-siirtyma); }
+.ilme-uusi .avattava > summary::before,
+.ilme-uusi .apu-avattava > summary::before { transition: box-shadow .3s var(--ease-ulos); }
+@media (hover: hover) {
+  .ilme-uusi .avattava > summary:hover,
+  .ilme-uusi .ukk-lista summary:hover { background: var(--neon-savy); box-shadow: -.75rem 0 0 var(--neon-savy), .75rem 0 0 var(--neon-savy); }
+  .ilme-uusi .avattava > summary:hover::before,
+  .ilme-uusi .apu-avattava > summary:hover::before { box-shadow: 0 0 0 2px var(--musta), var(--neon-hehku); }
+}
+.ilme-uusi .avattava > summary:active,
+.ilme-uusi .ukk-lista summary:active { background: var(--neon-savy-vahva); box-shadow: -.75rem 0 0 var(--neon-savy-vahva), .75rem 0 0 var(--neon-savy-vahva); }
+
+/* Vivut: kahva hehkuu, kun hiiri on vivun päällä, ja vahvemmin vedettäessä. Näppäimistön kohdistusrengas säilyy. */
+.ilme-uusi .saadin-input::-webkit-slider-thumb { transition: box-shadow .3s var(--ease-ulos); }
+@media (hover: hover) {
+  .ilme-uusi .saadin-input:hover:not(:focus-visible)::-webkit-slider-thumb { box-shadow: var(--neon-hehku); }
+  .ilme-uusi .saadin-input:hover:not(:focus-visible)::-moz-range-thumb { box-shadow: var(--neon-hehku); }
+}
+.ilme-uusi .saadin-input:active::-webkit-slider-thumb { box-shadow: var(--neon-hehku-vahva); }
+.ilme-uusi .saadin-input:active::-moz-range-thumb { box-shadow: var(--neon-hehku-vahva); }
+
+/* Valitsimet (Yksityishenkilö / Yritys), alustavalinnat ja tarjoussivun palvelurivit. */
+.ilme-uusi .valuutta-napit,
+.ilme-uusi .valuutta-napit button,
+.ilme-uusi .valinta,
+.ilme-uusi .palvelu { transition: var(--neon-siirtyma); }
+@media (hover: hover) {
+  .ilme-uusi .valuutta-napit:hover,
+  .ilme-uusi .valinta:hover { box-shadow: var(--neon-hehku); }
+  .ilme-uusi .valuutta-napit button:not([aria-pressed="true"]):hover,
+  .ilme-uusi .valinta:not(:has(input:checked)):hover { background: var(--neon-savy); }
+  .ilme-uusi .palvelu:hover { background: var(--neon-savy); box-shadow: -.75rem 0 0 var(--neon-savy), .75rem 0 0 var(--neon-savy); }
+}
+.ilme-uusi .valuutta-napit button:not([aria-pressed="true"]):active,
+.ilme-uusi .valinta:not(:has(input:checked)):active { background: var(--neon-savy-vahva); }
+
 /* ---------- Vähennetty liike: ei introa eikä liikettä ---------- */
 @media (prefers-reduced-motion: reduce) {
   .ilme-intro { display: none; }
