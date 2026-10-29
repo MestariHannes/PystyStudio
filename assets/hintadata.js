@@ -15,7 +15,7 @@ window.PystyHinnat = {
   // 4 klippiä lisätty 28.10.2026 (Hanneksen päätös): pienille kanaville, 32,25 €/klippi, eli portaat pysyvät järjestyksessä.
   // Yli 24 klippiä lisätty 28.10.2026 (Hanneksen pyyntö): 24 klipin hinta + 25 € jokaisesta lisäklipistä (sama kuin Lisäklippi).
   // Joka määrä 29.10.2026 (Hanneksen päätökset): kaikki vivut yhden välein. Klippaamo 1–64 (alkaa 1 klipistä:
-  // 1 = 39 €, 2 = 69 €, 3 = 99 €), kertaerä 1–50, AI-mainokset 5–20, Arkisto 10–50 ja klippitilin julkaisut 8–30.
+  // 1 = 39 €, 2 = 69 €, 3 = 99 €), kertaerä 1–50, AI-mainokset 1–20 (1 = 150 €), Arkisto 10–50 ja klippitilin julkaisut 8–30.
   // Hyväksytyt portaat ovat ennallaan. Välimäärien hinta on tasaisesti portaiden välistä euroon pyöristettynä,
   // ja viimeisen portaan jälkeen 25 € jokaisesta lisäklipistä (Klippaamo yli 24, kertaerä yli 8).
   klippaamo: {

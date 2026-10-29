@@ -293,11 +293,11 @@
     });
     var tilinhoitoHuomio = rivi('tilinhoito').querySelector('[data-huomio]');
     if (tilinhoitoHuomio) tilinhoitoHuomio.hidden = alustat(rivi('tilinhoito')).length > 0;
-    // Klippitilin hoito ilman klippipalvelua: huomio, että se myydään klippipaketin rinnalle.
+    // Klippitilin hoito ilman kuukausipakettia: huomio, että se myydään kuukausipaketin rinnalle (sopimusehtojen liite C, 29.10.2026).
     var pakettiHuomio = rivi('tilinhoito').querySelector('[data-huomio-paketti]');
     if (pakettiHuomio) {
       pakettiHuomio.hidden = !(valittu('tilinhoito') &&
-        !['klippaamo', 'kaikkiValmiina', 'kertaera', 'arkisto'].some(valittu));
+        !['klippaamo', 'kaikkiValmiina'].some(valittu));
     }
     // Yli suurimman Klippaamo-paketin (videoita × klippiä per video): sovitaan erikseen, kuten etusivulla.
     var k = rivi('klippaamo');
