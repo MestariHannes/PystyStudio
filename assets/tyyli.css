@@ -335,7 +335,8 @@ h4 { margin: 0; }
   .hero-teksti > .ylaotsake,
   .hero-teksti > h1,
   .hero-teksti > .ingressi,
-  .hero-teksti > .toiminnot { order: 1; }
+  .hero-teksti > .toiminnot,
+  .hero-teksti > .pienteksti { order: 1; }
   .hero-ruudukko > .demo { order: 2; margin: 2.5rem 0 1.5rem; }
 }
 /* Puhelimella kehys on pienempi, jotta tekstitys näkyy jo ensimmäisellä ruudulla näytepainikkeen alla (29.10.2026). */
