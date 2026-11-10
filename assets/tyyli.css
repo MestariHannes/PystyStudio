@@ -429,21 +429,23 @@ h1 span { display: block; }
   position: absolute;
   top: 0;
   left: 0;
+  display: block;
   height: 100%;
   width: auto;
   max-width: none;
   aspect-ratio: 16 / 9;
+  object-fit: cover;
   /* Kuva on 16:9 ja kehys 9:16: kehyksen leveys on 81/256 kuvan leveydestä.
-     translate = 15,82 % – puhujan kohta (A 30 %, B 70 %). */
-  translate: -14.18% 0;
+     translate = 15,82 % – puhujan kohta. Oikea podcastkuva 10.11.2026: A 25 %, B 71 % (piirroksessa 30 % ja 70 %). */
+  translate: -9.18% 0;
   scale: 1;
-  transform-origin: 30% 46%;
+  transform-origin: 25% 38%;
   transition: scale .5s var(--ease-ulos);
 }
 .klippi-sisalto[data-puhuja="b"] .kohtaus,
 .klippi-b .kohtaus {
-  translate: -54.18% 0;
-  transform-origin: 70% 46%;
+  translate: -55.18% 0;
+  transform-origin: 71% 38%;
 }
 .klippi-sisalto[data-zoomi="1"] .kohtaus { scale: 1.12; }
 

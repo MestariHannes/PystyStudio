@@ -137,7 +137,7 @@
   container-type: inline-size;
 }
 /* Lamppu piiloon kuten heron kehyksessä, ettei sen reuna jää rajaukseen. */
-.ilme-intro-kohtaus { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; opacity: 0; --k-lamppu: transparent; }
+.ilme-intro-kohtaus { position: absolute; inset: 0; display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; opacity: 0; --k-lamppu: transparent; }
 .ilme-intro-logo {
   position: absolute;
   left: 0;

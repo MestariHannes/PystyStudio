@@ -54,6 +54,8 @@
   var klippi = demo.querySelector('.klippi');
   var kerros = demo.querySelector('.klippi-sisalto');
   var teksti = kerros.querySelector('.tekstitys');
+  // Oikea podcastvideo piirroksen tilalla (10.11.2026). Se pysähtyy, kun esimerkki pysähtyy.
+  var video = kerros.querySelector('video.kohtaus');
   var nappi = demo.querySelector('.demo-tauko');
   var kursori = demo.querySelector('.aikajana-kursori');
   var aikaEl = demo.querySelector('.aikajana-aika');
@@ -166,10 +168,38 @@
     }
   }
 
+  function videoSoi(soi) {
+    if (!video) return;
+    if (!soi) { video.pause(); return; }
+    var p = video.play();
+    if (p && p.catch) p.catch(function () { /* toisto estetty (esim. virransäästö): näkyy aloituskuva */ });
+  }
+
+  // Pyyhkäisyn kopioon videon tilalle pysäytyskuva nykyisestä ruudusta (videota ei kopioida).
+  function pysaytyskuva() {
+    var el;
+    if (video.readyState >= 2 && video.videoWidth) {
+      el = document.createElement('canvas');
+      el.width = Math.round(video.videoWidth / 2);
+      el.height = Math.round(video.videoHeight / 2);
+      try { el.getContext('2d').drawImage(video, 0, 0, el.width, el.height); } catch (e) { /* tyhjä kuva */ }
+    } else {
+      el = document.createElement('img');
+      el.src = video.poster;
+      el.alt = '';
+    }
+    el.className = 'kohtaus';
+    el.setAttribute('aria-hidden', 'true');
+    return el;
+  }
+
   // Edellinen klippi liukuu ylös, ja uusi tulee alta.
   function pyyhkaise() {
     if (!kerros.animate) return;
-    var vanha = kerros.cloneNode(true);
+    var vanha = kerros.cloneNode(false);
+    Array.prototype.forEach.call(kerros.childNodes, function (n) {
+      vanha.appendChild(video && n === video ? pysaytyskuva() : n.cloneNode(true));
+    });
     vanha.classList.add('klippi-sisalto-vanha');
     klippi.appendChild(vanha);
     var asetus = { duration: PYYHKAISY, easing: PEHMEA };
@@ -223,11 +253,13 @@
     ajastin = null;
     loppui = true;
     kursoriSeis();
+    videoSoi(false);
     nappi.textContent = NAPPI[2];
   }
 
   function kaynnista() {
     if (ajastin || loppui || kayttajaPysaytti || !nakyvissa || odottaaIntroa) return;
+    videoSoi(true);
     kursoriKohtaan(KLIPIT[klippiNro]);
     askel();
   }
@@ -236,10 +268,13 @@
     clearTimeout(ajastin);
     ajastin = null;
     kursoriSeis();
+    // Avausefektin aikana video saa pyöriä piilossa, jotta se jatkuu introsta saumattomasti.
+    if (!odottaaIntroa) videoSoi(false);
   }
 
   // Vähemmän liikettä: pysäytyskuva ilman silmukkaa ja pyyhkäisyä.
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (video) { video.removeAttribute('autoplay'); video.pause(); }
     piirra(KLIPIT[0].vaiheet[1]);
     teksti.querySelectorAll('.sana').forEach(function (el) { el.classList.add('nakyy'); });
     if (kursori && kohdat.length) {

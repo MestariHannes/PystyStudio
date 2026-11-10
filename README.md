@@ -26,6 +26,7 @@ Pysty Studion oma staattinen sivusto: pelkkää HTML:ää, CSS:ää ja JavaScrip
 | `assets/apple-touch-icon.png` | 180 × 180 px kuvake iPhonen kotivalikkoon ja PNG-varakuvake (kopio tiedostosta `08_brandi/logo/png/2026-10-23_pysty-logo-favicon-180.png`) |
 | `assets/jakokuva.png`, `assets/jakokuva-en.png` | Somejakojen kuva (`og:image`) 1200 × 630, suomeksi ja englanniksi (ks. Hakukoneet ja somejaot) |
 | `assets/ilme-uusi.css`, `assets/ilme-uusi.js` | Pystyviiva-ilme ja avausefekti, käytössä kaikilla sivuilla 23.10.2026 alkaen (ks. Pystyviiva-ilme) |
+| `assets/esimerkki-podcast.mp4`, `assets/esimerkki-podcast.jpg` | Heron esimerkkiklipin oikea podcastkuva ja sen aloituskuva (10.11.2026, Hanneksen pyyntö: piirretyn studion tilalle mainosvideon oikeat ihmiset). Pexels 37874132 (Pexels License, ks. `04_myynti/2026-10-30_mainosvideot/materiaali/LISENSSIT.md`), sama kuin mainoksessa p7, neonkyltti ja kannettavan merkki poistettu. 1920 × 1080, 25 fps, 14 s saumaton silmukka, ei ääntä, h264 + faststart, 2,8 Mt. Rajaus puhujiin (A 25 %, B 71 %): `tyyli.css` `.klippi .kohtaus`. Vanha piirros: `99_arkisto/2026-11-10_verkkosivu-ennen-oikeaa-esimerkkivideota/`. |
 | `404.html` | Oma ”Sivua ei löytynyt” -sivu suomeksi ja englanniksi. Polut alkavat `/PystyStudio/`, koska GitHub Pages näyttää sivun mistä tahansa puuttuvasta osoitteesta. |
 | `.nojekyll` | Kertoo GitHub Pagesille, että sivu julkaistaan sellaisenaan |
 

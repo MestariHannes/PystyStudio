@@ -61,7 +61,9 @@
   function intro() {
     if (!h.classList.contains('intro-tulossa')) return false;
     var kohde = hero && hero.querySelector('.klippi');
-    if (!kohde || !document.getElementById('kohtaus') || !kohde.animate) { h.classList.remove('intro-tulossa'); return false; }
+    // 10.11.2026: piirretyn studion tilalla on oikea podcastvideo (sama kuin heron puhelimessa).
+    var heroVideo = kohde && kohde.querySelector('video.kohtaus');
+    if (!kohde || !heroVideo || !kohde.animate) { h.classList.remove('intro-tulossa'); return false; }
     try { window.localStorage.setItem(AVAIN, '1'); } catch (e) { /* ilman tallennusta intro näkyy kerran tällä latauksella */ }
 
     var kerros = document.createElement('div');
@@ -70,11 +72,17 @@
     kerros.innerHTML =
       '<div class="ilme-intro-tausta"></div>' +
       '<div class="ilme-intro-kehys">' +
-        '<svg class="ilme-intro-kohtaus" viewBox="0 0 1600 900" focusable="false"><use href="#kohtaus"/></svg>' +
+        '<video class="ilme-intro-kohtaus" muted autoplay playsinline preload="auto" disablepictureinpicture tabindex="-1"></video>' +
         '<p class="ilme-intro-logo"><span class="ilme-intro-pysty">PYSTY</span><span class="ilme-intro-kursori"></span><span class="ilme-intro-studio">STUDIO</span></p>' +
       '</div>' +
       '<button class="ilme-intro-ohita" type="button" tabindex="-1">' + (en ? 'Skip' : 'Ohita') + '</button>';
+    var introVideo = kerros.querySelector('.ilme-intro-kohtaus');
+    introVideo.muted = true;
+    introVideo.poster = heroVideo.poster;
+    introVideo.src = heroVideo.currentSrc || heroVideo.src;
     document.body.appendChild(kerros);
+    var soi = introVideo.play();
+    if (soi && soi.catch) soi.catch(function () { /* ilman toistoa näkyy aloituskuva */ });
     h.classList.remove('intro-tulossa');
     h.classList.add('intro-kaynnissa');
 
@@ -83,6 +91,10 @@
     var animaatiot = [];
     var TAPAHTUMAT = ['pointerdown', 'keydown', 'wheel', 'touchstart'];
     function poista() {
+      // Heron video jatkaa samasta kohdasta kuin introssa, ettei kuva hyppää vaihdossa.
+      if (introVideo.readyState >= 2 && heroVideo.readyState >= 1 && Math.abs(heroVideo.currentTime - introVideo.currentTime) > 0.15) {
+        try { heroVideo.currentTime = introVideo.currentTime; } catch (e) { /* ei haittaa */ }
+      }
       if (kerros.parentNode) kerros.parentNode.removeChild(kerros);
       h.classList.remove('intro-kaynnissa');
     }
@@ -123,8 +135,8 @@
       var aja = function (el, avaimet, asetus) { animaatiot.push(el.animate(avaimet, Object.assign({ fill: 'both' }, asetus))); };
       aja(kuva, [{ opacity: 0 }, { opacity: 1 }], { duration: 300, easing: 'ease-out' });
       aja(logo, [{ opacity: 0, transform: 'translateY(10%)' }, { opacity: 1, transform: 'none', offset: .35 }, { opacity: 1, offset: .7 }, { opacity: 0 }], { duration: 750 });
-      // Kuva siirtyy niin, että puhuja A (30 % leveydestä) on keskellä, kuten heron ensimmäisessä klipissä.
-      aja(kuva, [{ transform: 'none' }, { transform: 'translateX(20%)' }], { delay: 500, duration: 400, easing: EASE });
+      // Kuva siirtyy niin, että puhuja A (25 % leveydestä, oikea podcastkuva 10.11.2026) on keskellä, kuten heron ensimmäisessä klipissä.
+      aja(kuva, [{ transform: 'none' }, { transform: 'translateX(25%)' }], { delay: 500, duration: 400, easing: EASE });
       aja(kehys, [{ clipPath: 'inset(0 0 0 0 round 0px)' }, { clipPath: 'inset(0 ' + reuna + ' 0 ' + reuna + ' round ' + sade.toFixed(1) + 'px)' }], { delay: 500, duration: 400, easing: EASE });
       aja(kehys, [{ transform: 'none' }, { transform: 'translate(' + dx.toFixed(1) + 'px, ' + dy.toFixed(1) + 'px) scale(' + s.toFixed(4) + ')' }], { delay: 900, duration: 600, easing: 'cubic-bezier(.65, 0, .35, 1)' });
       aja(tausta, [{ opacity: 1 }, { opacity: 0 }], { delay: 900, duration: 500, easing: 'ease-in-out' });

@@ -61,50 +61,6 @@
 <body>
   <a class="ohituslinkki" href="#content">Skip to content</a>
 
-  <!-- Esimerkkikuvan podcaststudio (sama kuin index.html:ssä). Värit tulevat tyyli.css:n k-alkuisista muuttujista. -->
-  <svg class="svg-maaritykset" width="0" height="0" aria-hidden="true" focusable="false">
-    <defs>
-      <pattern id="rimat" width="56" height="900" patternUnits="userSpaceOnUse">
-        <rect x="13" y="40" width="30" height="660" rx="15" style="fill:var(--k-rima)"/>
-      </pattern>
-    </defs>
-    <symbol id="kohtaus" viewBox="0 0 1600 900">
-      <rect width="1600" height="900" style="fill:var(--k-seina)"/>
-      <rect width="1600" height="900" fill="url(#rimat)"/>
-      <circle cx="800" cy="170" r="74" style="fill:var(--k-lamppu);opacity:.18"/>
-      <circle cx="800" cy="170" r="34" style="fill:var(--k-lamppu)"/>
-      <!-- Puhuja A -->
-      <path d="M262 900C264 724 332 642 420 620H540C628 642 696 724 698 900Z" style="fill:var(--k-paita-a)"/>
-      <path d="M440 520h80v104c0 26-80 26-80 0z" style="fill:var(--k-iho-a-varjo)"/>
-      <ellipse cx="480" cy="420" rx="92" ry="112" style="fill:var(--k-iho-a)"/>
-      <path d="M386 428C370 330 420 290 486 290C552 290 596 334 576 424C566 378 540 352 498 350C450 348 410 370 386 428Z" style="fill:var(--k-hius-a)"/>
-      <path d="M384 424C380 296 580 296 576 424" style="fill:none;stroke:var(--k-tumma);stroke-width:20;stroke-linecap:round"/>
-      <rect x="366" y="388" width="40" height="88" rx="20" style="fill:var(--k-tumma)"/>
-      <rect x="554" y="388" width="40" height="88" rx="20" style="fill:var(--k-tumma)"/>
-      <ellipse cx="470" cy="430" rx="9" ry="12" style="fill:var(--k-silma)"/>
-      <ellipse cx="524" cy="430" rx="9" ry="12" style="fill:var(--k-silma)"/>
-      <path d="M480 478q19 15 38 0" style="fill:none;stroke:var(--k-suu);stroke-width:7;stroke-linecap:round"/>
-      <path d="M648 790L614 560" style="stroke:var(--k-tumma);stroke-width:16;stroke-linecap:round"/>
-      <rect x="588" y="468" width="52" height="106" rx="26" transform="rotate(-14 614 521)" style="fill:var(--k-tumma)"/>
-      <!-- Puhuja B -->
-      <path d="M902 900C904 724 972 642 1060 620H1180C1268 642 1336 724 1338 900Z" style="fill:var(--k-paita-b)"/>
-      <path d="M1080 520h80v104c0 26-80 26-80 0z" style="fill:var(--k-iho-b-varjo)"/>
-      <ellipse cx="1120" cy="420" rx="92" ry="112" style="fill:var(--k-iho-b)"/>
-      <path d="M1024 404C1022 306 1070 286 1120 286C1170 286 1218 306 1216 404Z" style="fill:var(--k-pipo)"/>
-      <rect x="1018" y="370" width="204" height="46" rx="23" style="fill:var(--k-pipo-varjo)"/>
-      <ellipse cx="1092" cy="446" rx="9" ry="12" style="fill:var(--k-silma)"/>
-      <ellipse cx="1146" cy="446" rx="9" ry="12" style="fill:var(--k-silma)"/>
-      <path d="M1100 490q19 15 38 0" style="fill:none;stroke:var(--k-suu);stroke-width:7;stroke-linecap:round"/>
-      <path d="M952 790L986 560" style="stroke:var(--k-tumma);stroke-width:16;stroke-linecap:round"/>
-      <rect x="960" y="468" width="52" height="106" rx="26" transform="rotate(14 986 521)" style="fill:var(--k-tumma)"/>
-      <!-- Pöytä -->
-      <rect y="780" width="1600" height="120" style="fill:var(--k-poyta)"/>
-      <rect y="780" width="1600" height="14" style="fill:var(--k-poyta-reuna)"/>
-      <rect x="318" y="722" width="58" height="62" rx="9" style="fill:var(--k-muki)"/>
-      <rect x="1226" y="722" width="58" height="62" rx="9" style="fill:var(--k-muki)"/>
-    </symbol>
-  </svg>
-
   <header class="ylapalkki">
     <div class="kehys ylapalkki-sisalto">
       <a class="logo" href="index.html" aria-label="Pysty Studio, home">
@@ -153,7 +109,8 @@
           <div class="demo-rivi">
             <div class="klippi" aria-hidden="true">
               <div class="klippi-sisalto" data-puhuja="a">
-                <svg class="kohtaus" viewBox="0 0 1600 900" aria-hidden="true" focusable="false"><use href="#kohtaus"/></svg>
+                <!-- Oikea podcastkuva (10.11.2026, Hanneksen pyyntö: piirroksen tilalle mainosvideon oikeat ihmiset). Pexels 37874132, Pexels License, sama kuin mainoksessa p7, neonkyltti ja kannettavan merkki poistettu. 14 s saumaton silmukka. Rajaus puhujaan: tyyli.css, ohjaus: sivu.js. -->
+                <video class="kohtaus" src="../assets/esimerkki-podcast.mp4" poster="../assets/esimerkki-podcast.jpg" autoplay muted loop playsinline preload="auto" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video>
                 <p class="tekstitys" aria-hidden="true">becomes eight clips.</p>
               </div>
             </div>
