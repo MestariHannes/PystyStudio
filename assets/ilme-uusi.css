@@ -94,12 +94,12 @@
 }
 .ilme-animoi .ilme-paljastus.ilme-esilla > .kehys > :not(h2) { opacity: 1; transform: none; }
 
-/* ---------- Avausefekti (noin 1,5 s, vain etusivulla ensimmäisellä käynnillä; uusittu 29.10.2026) ----------
+/* ---------- Avausefekti (noin 3 s, vain etusivulla ensimmäisellä käynnillä; uusittu 29.10.2026, pidennetty 11.11.2026) ----------
    Vanha 3 sekunnin intro (iso logo ja slogan sana kerrallaan) poistettiin 28.10.2026 liian täyteläisenä.
    Uusi intro liittyy heroon, eikä siinä ole erillistä tekstiruutua:
-   0–0,3 s     studiokuva 16:9 ja pieni logo tulevat esiin mustalta
-   0,5–0,9 s   logo häipyy ja kuva rajautuu 9:16:ksi puhujan kohdalle
-   0,9–1,5 s   pystykehys liukuu heron puhelimen paikalle, ja musta tausta häipyy sivun alta
+   0–0,5 s     studiokuva 16:9 ja pieni logo tulevat esiin mustalta
+   1,3–2,1 s   logo häipyy ja kuva rajautuu 9:16:ksi puhujan kohdalle
+   2,1–3,0 s   pystykehys liukuu heron puhelimen paikalle, ja musta tausta häipyy sivun alta
    Ajoitus ja kehyksen kohde lasketaan ilme-uusi.js:ssä (Web Animations). Ohita-nappi, klikkaus, kosketus,
    vieritys tai mikä tahansa näppäin ohittaa. Intron ajan heron oma kehys on piilossa, jotta kuvaa ei näy kahta. */
 

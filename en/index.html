@@ -34,7 +34,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700..900&family=Figtree:wght@400..900&display=swap">
   <link rel="stylesheet" href="../assets/tyyli.css">
   <!-- Pystyviiva-ilme (käytössä 23.10.2026): luokka ilme-uusi sekä ../assets/ilme-uusi.css ja ilme-uusi.js.
-       Avausefekti (data-intro): poistettiin 28.10.2026 ja palautettiin uusittuna 29.10.2026 (noin 1,5 s, ilme-uusi.js).
+       Avausefekti (data-intro): poistettiin 28.10.2026 ja palautettiin uusittuna 29.10.2026 (noin 1,5 s, ilme-uusi.js). Pidennetty noin 3 sekuntiin 11.11.2026.
        Introa ei näytetä, jos osoitteessa on #-ankkuri tai parametreja (esim. myyntiviestin linkki), paitsi ?intro=1. -->
   <script data-polku="../assets/" data-intro>
   (function () {
@@ -99,14 +99,24 @@
           <h1 id="hero-heading" class="otsikko-nelja"><span>Long</span> <span>videos,</span> <span>made</span> <span class="kursori">vertical.</span></h1>
           <p class="ingressi">I turn your YouTube videos and podcasts into ready-to-post vertical clips for TikTok, Reels and Shorts. You just approve them.</p>
           <div class="toiminnot">
-            <a class="nappi nappi-ensisijainen" href="mailto:korkiakoskihannes@gmail.com?subject=Free%20sample%20clips&amp;body=Hi%20Hannes%2C%0A%0AI%E2%80%99d%20like%203%20free%20sample%20clips.%0A%0ALink%20to%20the%20video%20or%20episode%3A%20%0AChannel%20name%20or%20link%3A%20%0AWhere%20I%20publish%20(TikTok%2C%20Instagram%20Reels%2C%20YouTube%20Shorts)%3A%20%0A%0AWishes%20(optional)%3A%0A-%20Moments%20I%E2%80%99d%20like%20clipped%20(timestamps)%3A%20%0A-%20Style%20(caption%20colours%2C%20font%2C%20music)%3A%20%0A-%20Who%20the%20channel%20is%20for%3A%20%0A%0AName%3A%20%0ACompany%20and%20VAT%20number%20(if%20any)%3A%20%0A%0AI%20accept%20the%20sample%20terms%3A%20https%3A%2F%2Fpystystudio.fi%2Fen%2Fsamples.html%0A">Get 3 free sample clips</a>
+            <a class="nappi nappi-ensisijainen" href="mailto:korkiakoskihannes@gmail.com?subject=Free%20sample%20clips&amp;body=Hi%20Hannes%2C%0A%0AI%E2%80%99d%20like%203%20free%20sample%20clips.%0A%0ALink%20to%20the%20video%20or%20episode%3A%20%0AChannel%20name%20or%20link%3A%20%0AWhere%20I%20publish%20(TikTok%2C%20Instagram%20Reels%2C%20YouTube%20Shorts)%3A%20%0A%0AWishes%20(optional)%3A%0A-%20Moments%20I%E2%80%99d%20like%20clipped%20(timestamps)%3A%20%0A-%20Style%20(caption%20colours%2C%20font%2C%20music)%3A%20%0A-%20Who%20the%20channel%20is%20for%3A%20%0A%0AName%3A%20%0ACompany%20and%20VAT%20number%20(if%20any)%3A%20%0A%0AI%20accept%20the%20sample%20terms%3A%20https%3A%2F%2Fpystystudio.fi%2Fen%2Fsamples.html%0A"><span>Get 3 free sample clips</span><svg class="nuoli" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             <a class="nappi nappi-toissijainen" href="#pricing">See pricing</a>
           </div>
           <p class="pienteksti">You can keep the samples and post them, even if you don’t order.</p>
         </div>
 
         <figure class="demo" data-demo data-puhuja="a">
+          <!-- Teema 11.11.2026 (Hanneksen ChatGPT-luonnokset): vaakajakso ja pystyklippi rinnakkain. Keltainen rajain näyttää,
+               mistä kohdasta klippi rajataan, ja hyppää puhujaan (sivu.js). Sama Pexels-video kuin klipissä. -->
+          <div class="demo-jakso">
+            <p class="demo-nimi" aria-hidden="true"><span>Episode</span></p>
+            <div class="lahde" aria-hidden="true">
+              <video class="lahde-video" src="../assets/esimerkki-podcast.mp4" poster="../assets/esimerkki-podcast.jpg" autoplay muted loop playsinline preload="auto" disablepictureinpicture disableremoteplayback tabindex="-1"></video>
+              <span class="rajain"></span>
+            </div>
+          </div>
           <div class="demo-rivi">
+            <p class="demo-nimi" aria-hidden="true"><span>Vertical clip</span></p>
             <div class="klippi" aria-hidden="true">
               <div class="klippi-sisalto" data-puhuja="a">
                 <!-- Oikea podcastkuva (10.11.2026, Hanneksen pyyntö: piirroksen tilalle mainosvideon oikeat ihmiset). Pexels 37874132, Pexels License, sama kuin mainoksessa p7, neonkyltti ja kannettavan merkki poistettu. 14 s saumaton silmukka. Rajaus puhujaan: tyyli.css, ohjaus: sivu.js. -->
@@ -142,9 +152,16 @@
             <div class="aikajana-ajat" aria-hidden="true"><span>0:00</span><span>58:40</span></div>
             <figcaption>The yellow marks are the episode’s 8 clips.</figcaption>
           </figure>
-          <button class="demo-tauko" type="button" hidden>Pause example</button>
+          <button class="demo-tauko" type="button" hidden><span class="demo-tauko-kuvake" aria-hidden="true"></span><span class="demo-tauko-teksti piilotettu">Pause example</span></button>
           <figcaption class="piilotettu">Example: a podcast frame is cropped vertically around the speaker, and the captions appear word by word.</figcaption>
         </figure>
+      </div>
+      <!-- Teema 11.11.2026: Kertaerä | Kuukausipaketti (luonnos 24458d67). Nimet ja kuvaukset ovat hintakorttien nykyiset tekstit. Linkit vievät hintakortteihin, hinnat vain hinnastossa (hintadata.js). -->
+      <div class="kehys palveluvalinta">
+        <ul class="palveluvalinta-lista" aria-label="Services">
+          <li><a class="palveluvalinta-rivi" href="#kertatyo"><span class="palveluvalinta-nimi">Single batch</span><span class="palveluvalinta-kuvaus">8 clips from one episode, no monthly contract.</span><span class="palveluvalinta-nuoli"><svg class="nuoli" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+          <li><a class="palveluvalinta-rivi" href="#kuukausipaketti"><span class="palveluvalinta-nimi">Monthly package</span><span class="palveluvalinta-kuvaus">12 clips per month. Month to month.</span><span class="palveluvalinta-nuoli"><svg class="nuoli" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></li>
+        </ul>
       </div>
     </section>
 
@@ -220,7 +237,7 @@
              sekä tähän että ../index.html-tiedostoon. Kiinteät hinnat: data-hinta="nimi" (hintadata.js, kiinteat).
              Säätimissä on autocomplete="off" (Takaisin-nappi, ks. hinnat.js). -->
 
-        <div class="hintaryhma">
+        <div class="hintaryhma" id="kuukausipaketti">
           <div class="hintaryhma-otsikko">
             <h3>Monthly package</h3>
             <p>Month to month. If you cancel by email by the 15th, the service ends at the end of that month.</p>
@@ -264,7 +281,7 @@
           </ul>
         </div>
 
-        <div class="hintaryhma">
+        <div class="hintaryhma" id="kertatyo">
           <div class="hintaryhma-otsikko">
             <h3>One-off</h3>
           </div>

@@ -56,6 +56,14 @@
   var teksti = kerros.querySelector('.tekstitys');
   // Oikea podcastvideo piirroksen tilalla (10.11.2026). Se pysähtyy, kun esimerkki pysähtyy.
   var video = kerros.querySelector('video.kohtaus');
+  // Teema 11.11.2026: vaakajakso klipin vieressä (sama video). Se pidetään samassa kohdassa kuin klippi.
+  var jaksoVideo = demo.querySelector('.lahde-video');
+  function tahdista() {
+    if (!video || !jaksoVideo || video.readyState < 2 || jaksoVideo.readyState < 1) return;
+    if (Math.abs(jaksoVideo.currentTime - video.currentTime) > 0.12) {
+      try { jaksoVideo.currentTime = video.currentTime; } catch (e) { /* ei haittaa */ }
+    }
+  }
   var nappi = demo.querySelector('.demo-tauko');
   var kursori = demo.querySelector('.aikajana-kursori');
   var aikaEl = demo.querySelector('.aikajana-aika');
@@ -169,10 +177,13 @@
   }
 
   function videoSoi(soi) {
-    if (!video) return;
-    if (!soi) { video.pause(); return; }
-    var p = video.play();
-    if (p && p.catch) p.catch(function () { /* toisto estetty (esim. virransäästö): näkyy aloituskuva */ });
+    [video, jaksoVideo].forEach(function (v) {
+      if (!v) return;
+      if (!soi) { v.pause(); return; }
+      var p = v.play();
+      if (p && p.catch) p.catch(function () { /* toisto estetty (esim. virransäästö): näkyy aloituskuva */ });
+    });
+    if (soi) tahdista();
   }
 
   // Pyyhkäisyn kopioon videon tilalle pysäytyskuva nykyisestä ruudusta (videota ei kopioida).
@@ -244,6 +255,7 @@
     sana = 0;
     klippiNro = (klippiNro + 1) % KLIPIT.length;
     pyyhkaise(); // kopio vanhasta klipistä ensin, sitten uusi sisältö alta nousevaan kerrokseen
+    tahdista(); // jakson mahdollinen pieni hyppy peittyy pyyhkäisyn liikkeeseen
     piirra(KLIPIT[klippiNro].vaiheet[0]);
     kursoriKohtaan(KLIPIT[klippiNro]);
     ajastin = setTimeout(askel, PYYHKAISY * 0.6);
@@ -254,7 +266,7 @@
     loppui = true;
     kursoriSeis();
     videoSoi(false);
-    nappi.textContent = NAPPI[2];
+    napinTila(2);
   }
 
   function kaynnista() {
@@ -274,7 +286,7 @@
 
   // Vähemmän liikettä: pysäytyskuva ilman silmukkaa ja pyyhkäisyä.
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    if (video) { video.removeAttribute('autoplay'); video.pause(); }
+    [video, jaksoVideo].forEach(function (v) { if (v) { v.removeAttribute('autoplay'); v.pause(); } });
     piirra(KLIPIT[0].vaiheet[1]);
     teksti.querySelectorAll('.sana').forEach(function (el) { el.classList.add('nakyy'); });
     if (kursori && kohdat.length) {
@@ -287,18 +299,28 @@
   }
 
   // Napin teksti kertoo, mitä painallus tekee (Pysäytä / Jatka), joten aria-pressed-tilaa ei käytetä.
+  // Teema 11.11.2026: nappi on kuvake aaltomuodon vieressä, ja teksti on ruudunlukijalle (.demo-tauko-teksti).
+  // demo.dataset.tila (soi / tauko / loppu) vaihtaa kuvakkeen, ja pysäytettynä klipin päällä näkyy play-merkki.
+  var napinTeksti = nappi.querySelector('.demo-tauko-teksti') || nappi;
+  function napinTila(i) {
+    napinTeksti.textContent = NAPPI[i];
+    demo.dataset.tila = ['soi', 'tauko', 'loppu'][i];
+  }
+  napinTila(0);
   nappi.hidden = false;
+  // Klipin painallus toimii kuten nappi (kuin videosoittimessa).
+  klippi.addEventListener('click', function () { nappi.click(); });
   nappi.addEventListener('click', function () {
     if (loppui) {
       loppui = false;
       kierros = 0;
       kayttajaPysaytti = false;
-      nappi.textContent = NAPPI[0];
+      napinTila(0);
       seuraavaKlippi();
       return;
     }
     kayttajaPysaytti = !kayttajaPysaytti;
-    nappi.textContent = kayttajaPysaytti ? NAPPI[1] : NAPPI[0];
+    napinTila(kayttajaPysaytti ? 1 : 0);
     if (kayttajaPysaytti) pysayta(); else kaynnista();
   });
 

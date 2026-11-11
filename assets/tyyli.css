@@ -1815,3 +1815,237 @@ h1 span { display: block; }
   details::details-content { transition: none; }
   .sana.nakyy { animation: none; }
 }
+
+/* ==========================================================================================================
+   Teema 11.11.2026: asettelu Hanneksen ChatGPT-luonnoksista (00_saapuneet/2026-11-11_chatgpt-teema-*.png,
+   tavoitekuvat 24458d67 työpöytä ja 866ae6bd mobiili). Hanneksen linja: "nykyisen värit ja teema kans pysyisi mutta
+   sisältö ei muutu". Siksi värit, fontit ja tekstit ovat ennallaan. Luonnoksista on otettu vain asettelu:
+   - Työpöytä: vasemmalla otsikko, ingressi ja näytepainike. Keskellä vaakajakso (keltainen 9:16-rajain hyppää
+     puhujaan, sivu.js) ja sen alla play/tauko-nappi ja aaltomuoto. Oikealla pystyklippi.
+   - Mobiili: otsikko, jakso ja pystyklippi rinnakkain, aaltomuoto, ingressi, napit ja "Saat pitää…".
+   - Heron alla rivi Kertaerä | Kuukausipaketti nuolipainikkeilla (hintakorttien nykyiset tekstit, linkit kortteihin).
+   Vanha versio: 99_arkisto/2026-11-11_verkkosivu-ennen-teemaa/.
+   ========================================================================================================== */
+:root { --sade-paneeli: 1rem; }
+
+/* Näytepainike: luonnoksen tapaan isompi ja nuoli perässä. */
+.nuoli { width: 1.3em; height: 1.3em; flex: 0 0 auto; }
+.hero .toiminnot .nappi-ensisijainen { gap: .7rem; }
+.hero .toiminnot .nappi-ensisijainen .nuoli { transition: transform .3s var(--ease-ulos); }
+.hero .toiminnot .nappi-ensisijainen:hover .nuoli { transform: translateX(.2em); }
+
+/* Demo: jakso, aaltomuoto ja pystyklippi */
+.hero .demo {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: "jakso jakso klippi" "tauko aikajana klippi";
+  grid-template-rows: auto 1fr;
+  column-gap: 1.25rem;
+  align-items: start;
+}
+.demo-jakso { grid-area: jakso; min-width: 0; }
+.hero .demo > .demo-rivi { grid-area: klippi; display: block; }
+.hero .demo > .aikajana { grid-area: aikajana; margin-top: 1.75rem; min-width: 0; }
+.hero .demo > .demo-tauko { grid-area: tauko; }
+.hero .demo .klippi {
+  width: clamp(10rem, 17vw, 15rem);
+  margin: 0;
+  border-radius: var(--sade-paneeli);
+  cursor: pointer;
+}
+.ilme-uusi .hero .demo .klippi { box-shadow: none; }
+.demo-nimi {
+  margin: 0 0 .6rem;
+  font-size: .875rem;
+  font-weight: 800;
+  line-height: 1.3;
+}
+.hero .lahde {
+  border-radius: var(--sade-paneeli);
+  background: #1A1A18;
+  box-shadow: none;
+}
+.lahde-video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Rajain: 9:16-alue (31,64 % jakson leveydestä) puhujan kohdalla, kuten klipin rajaus (A 25 %, B 71 %). */
+.hero .rajain {
+  z-index: 1;
+  left: 9.18%;
+  border: 3px solid var(--keltainen);
+  border-radius: .55rem;
+  /* Himmennys rajauksen ulkopuolelle ääriviivalla: box-shadow ei piirtynyt videon päälle (11.11.2026). */
+  box-shadow: none;
+  outline: 100vmax solid rgba(0, 0, 0, .55);
+  transition: left .55s var(--ease-ulos);
+}
+.hero .demo[data-puhuja="b"] .rajain { left: 55.18%; }
+
+/* Play/tauko: keltainen neliö aaltomuodon vasemmalla puolella (teksti ruudunlukijalle). */
+.hero .demo-tauko {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  margin: 2.55rem 0 0;
+  padding: 0;
+  border: 0;
+  border-radius: .55rem;
+  background: var(--keltainen);
+  color: var(--musta);
+  cursor: pointer;
+  transition: background-color .2s;
+}
+.hero .demo-tauko[hidden] { display: none; }
+.hero .demo-tauko:hover { background: var(--keltainen); color: var(--musta); }
+.ilme-uusi .hero .demo-tauko,
+.ilme-uusi .hero .demo-tauko:hover { color: var(--musta); border-radius: .55rem; }
+.demo-tauko-kuvake { position: relative; display: block; width: 1rem; height: 1.1rem; }
+/* Soi: tauko-merkki (kaksi palkkia). */
+.demo-tauko-kuvake::before,
+.demo-tauko-kuvake::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: .32rem;
+  border-radius: 1px;
+  background: currentColor;
+}
+.demo-tauko-kuvake::before { left: .05rem; }
+.demo-tauko-kuvake::after { right: .05rem; }
+/* Tauolla tai lopussa: play-merkki (kolmio). */
+.demo:is([data-tila="tauko"], [data-tila="loppu"]) .demo-tauko-kuvake::after { display: none; }
+.demo:is([data-tila="tauko"], [data-tila="loppu"]) .demo-tauko-kuvake::before {
+  left: .15rem;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: .55rem 0 .55rem .9rem;
+  border-color: transparent transparent transparent currentColor;
+  border-radius: 0;
+  background: none;
+}
+/* Pysäytettynä klipin päällä iso play-merkki kuten luonnoksessa. */
+.hero .demo .klippi::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  z-index: 3;
+  width: 4rem;
+  height: 4rem;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: var(--keltainen) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6.5v11l9-5.5z' fill='%23000'/%3E%3C/svg%3E") center / 60% no-repeat;
+  opacity: 0;
+  scale: .8;
+  pointer-events: none;
+  transition: opacity .25s, scale .25s var(--ease-ulos);
+}
+.hero .demo:is([data-tila="tauko"], [data-tila="loppu"]) .klippi::after { opacity: 1; scale: 1; }
+
+/* Puhelin ja tabletti (alle 64em): luonnoksen järjestys. Otsikko, kuvat, aaltomuoto, ingressi, napit ja "Saat pitää…". */
+@media (max-width: 63.99em) {
+  .hero-teksti > *,
+  .hero-teksti > .ylaotsake,
+  .hero-teksti > .ingressi,
+  .hero-teksti > .toiminnot,
+  .hero-teksti > .pienteksti { order: 3; }
+  .hero-teksti > h1 { order: 1; }
+  .hero-ruudukko > .demo { order: 2; margin: .75rem 0 2rem; }
+}
+@media (max-width: 35.99em) {
+  .hero .demo {
+    grid-template-columns: auto minmax(0, 1fr) 38%;
+    column-gap: .75rem;
+    grid-template-areas: "jakso jakso klippi" "tauko aikajana aikajana";
+  }
+  .hero .demo .klippi { width: 100%; border-radius: .75rem; }
+  .hero .lahde { border-radius: .75rem; }
+  .demo-nimi { font-size: .8125rem; margin-bottom: .45rem; }
+  .hero .demo-tauko { width: 2.75rem; height: 2.75rem; }
+  .hero .demo .klippi::after { width: 3rem; height: 3rem; }
+}
+@media (min-width: 36em) and (max-width: 63.99em) {
+  .hero .demo .klippi { width: clamp(11rem, 30vw, 15rem); }
+}
+
+/* Tietokone: otsikko, ingressi ja napit vasemmalla, kuvat oikealla. */
+@media (min-width: 64em) {
+  .hero-ruudukko {
+    grid-template-columns: minmax(17rem, 24rem) minmax(0, 1fr);
+    align-items: center;
+    column-gap: 3.5rem;
+  }
+  .hero h1 { font-size: clamp(4.75rem, 6.6vw, 7rem); margin-bottom: 1.75rem; }
+  .hero h1.otsikko-nelja { font-size: clamp(4rem, 5.4vw, 5.75rem); }
+  .hero .toiminnot .nappi { flex: 1 1 100%; }
+}
+
+/* Rivi Kertaerä | Kuukausipaketti heron alaosassa */
+.palveluvalinta { padding-top: 3.5rem; }
+.palveluvalinta-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(255, 255, 255, .28);
+}
+.palveluvalinta-lista li + li { border-top: 1px solid rgba(255, 255, 255, .28); }
+.palveluvalinta-rivi {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "nimi nuoli" "kuvaus nuoli";
+  align-items: center;
+  column-gap: 1.25rem;
+  row-gap: .3rem;
+  padding: 1.25rem 0;
+  color: var(--valkoinen);
+  text-decoration: none;
+}
+.palveluvalinta-nimi {
+  grid-area: nimi;
+  font-family: var(--fontti-otsikko);
+  font-size: clamp(2.25rem, 9vw, 3.25rem);
+  font-weight: 900;
+  line-height: .95;
+}
+.palveluvalinta-kuvaus {
+  grid-area: kuvaus;
+  max-width: 30em;
+  font-size: .9375rem;
+  line-height: 1.45;
+  color: var(--vari-harmaa-tumma);
+}
+.palveluvalinta-nuoli {
+  grid-area: nuoli;
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  background: var(--keltainen);
+  color: var(--musta);
+  transition: transform .3s var(--ease-ulos), box-shadow .2s;
+}
+.palveluvalinta-rivi:hover .palveluvalinta-nuoli,
+.palveluvalinta-rivi:focus-visible .palveluvalinta-nuoli { transform: translateX(.3rem); box-shadow: var(--neon-hehku, none); }
+.palveluvalinta-rivi:focus-visible { outline: 3px solid var(--keltainen); outline-offset: 4px; border-radius: 4px; }
+@media (min-width: 56em) {
+  .palveluvalinta-lista { display: grid; grid-template-columns: 1fr 1fr; }
+  .palveluvalinta-lista li + li { border-top: 0; border-left: 1px solid rgba(255, 255, 255, .28); padding-left: 2rem; }
+  .palveluvalinta-lista li:first-child { padding-right: 2rem; }
+  .palveluvalinta-rivi { column-gap: 1.5rem; padding: 1.6rem 0 .5rem; }
+  .palveluvalinta-nimi { font-size: clamp(2.5rem, 3.6vw, 3.5rem); }
+  .palveluvalinta-kuvaus { font-size: .875rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero .rajain, .palveluvalinta-nuoli, .hero .toiminnot .nappi-ensisijainen .nuoli, .hero .demo .klippi::after { transition: none; }
+}

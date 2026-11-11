@@ -5,6 +5,7 @@
    2. (Nauha heron alla poistettiin 28.10.2026.)
    3. Avausefekti etusivulla ensimmäisellä käynnillä (localStorage; ilman tallennusta kerran latausta kohden).
       Uusittu 29.10.2026: noin 1,5 s, studiokuva rajautuu pystyyn ja liukuu heron puhelimen paikalle.
+      Pidennetty 11.11.2026 noin 3 sekuntiin (Hanneksen toive).
       Ohita-nappi, ja klikkaus, kosketus, vieritys tai mikä tahansa näppäin ohittaa sen.
       Intro on vain sisällön päällä oleva kerros (aria-hidden): sivun sisältö on HTML:ssä heti.
       Pakota uudelleen: ?intro=1.
@@ -133,15 +134,17 @@
       var sade = (parseFloat(getComputedStyle(kohde).borderTopLeftRadius) || 0) / s;
       var EASE = 'cubic-bezier(.7, 0, .3, 1)';
       var aja = function (el, avaimet, asetus) { animaatiot.push(el.animate(avaimet, Object.assign({ fill: 'both' }, asetus))); };
-      aja(kuva, [{ opacity: 0 }, { opacity: 1 }], { duration: 300, easing: 'ease-out' });
-      aja(logo, [{ opacity: 0, transform: 'translateY(10%)' }, { opacity: 1, transform: 'none', offset: .35 }, { opacity: 1, offset: .7 }, { opacity: 0 }], { duration: 750 });
+      // Pidennetty 11.11.2026 (Hanneksen toive "hiukan pidempi"): noin 1,5 s -> noin 3 s. Logo näkyy pidempään,
+      // ja rajaus sekä siirto puhelimen paikalle ovat rauhallisempia.
+      aja(kuva, [{ opacity: 0 }, { opacity: 1 }], { duration: 500, easing: 'ease-out' });
+      aja(logo, [{ opacity: 0, transform: 'translateY(10%)' }, { opacity: 1, transform: 'none', offset: .2 }, { opacity: 1, offset: .78 }, { opacity: 0 }], { duration: 1650 });
       // Kuva siirtyy niin, että puhuja A (25 % leveydestä, oikea podcastkuva 10.11.2026) on keskellä, kuten heron ensimmäisessä klipissä.
-      aja(kuva, [{ transform: 'none' }, { transform: 'translateX(25%)' }], { delay: 500, duration: 400, easing: EASE });
-      aja(kehys, [{ clipPath: 'inset(0 0 0 0 round 0px)' }, { clipPath: 'inset(0 ' + reuna + ' 0 ' + reuna + ' round ' + sade.toFixed(1) + 'px)' }], { delay: 500, duration: 400, easing: EASE });
-      aja(kehys, [{ transform: 'none' }, { transform: 'translate(' + dx.toFixed(1) + 'px, ' + dy.toFixed(1) + 'px) scale(' + s.toFixed(4) + ')' }], { delay: 900, duration: 600, easing: 'cubic-bezier(.65, 0, .35, 1)' });
-      aja(tausta, [{ opacity: 1 }, { opacity: 0 }], { delay: 900, duration: 500, easing: 'ease-in-out' });
-      ajastimet.push(setTimeout(heroEsiin, 1150));
-      ajastimet.push(setTimeout(function () { lopeta(false); }, 1520));
+      aja(kuva, [{ transform: 'none' }, { transform: 'translateX(25%)' }], { delay: 1350, duration: 700, easing: EASE });
+      aja(kehys, [{ clipPath: 'inset(0 0 0 0 round 0px)' }, { clipPath: 'inset(0 ' + reuna + ' 0 ' + reuna + ' round ' + sade.toFixed(1) + 'px)' }], { delay: 1350, duration: 700, easing: EASE });
+      aja(kehys, [{ transform: 'none' }, { transform: 'translate(' + dx.toFixed(1) + 'px, ' + dy.toFixed(1) + 'px) scale(' + s.toFixed(4) + ')' }], { delay: 2100, duration: 900, easing: 'cubic-bezier(.65, 0, .35, 1)' });
+      aja(tausta, [{ opacity: 1 }, { opacity: 0 }], { delay: 2100, duration: 800, easing: 'ease-in-out' });
+      ajastimet.push(setTimeout(heroEsiin, 2550));
+      ajastimet.push(setTimeout(function () { lopeta(false); }, 3020));
     }
     // Aloitus, kun logon fontti on ladattu (enintään 0,45 s odotus; musta peite peittää odotuksen).
     if (document.fonts && document.fonts.load) {
@@ -149,7 +152,7 @@
     }
     ajastimet.push(setTimeout(aloita, 450));
     // Varmistus: intro ei jää päälle missään tilanteessa.
-    ajastimet.push(setTimeout(function () { lopeta(true); }, 3000));
+    ajastimet.push(setTimeout(function () { lopeta(true); }, 5000));
     return true;
   }
 
